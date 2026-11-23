@@ -1,0 +1,11 @@
+{
+  "candidate": "AIP-HL-3",
+  "active_baseline": "AIP-HL-1",
+  "fixed_before_separate_test": true,
+  "change": "Keep the English research challenger coefficients. Enrich Arabic human development with native pre-2019 Wikipedia prose taken from the original (not translated) ARCD corpus. Keep AIRABIC and split additional passages by original article title.",
+  "threshold": "99.8th percentile using the higher order statistic of per-document maximum human validation-window logits",
+  "new_primary_test": "Ar-APT independent 400 original human press articles and 400 fully machine-generated articles in eight subject domains. Use original article fields separately from their polish variants. Report raw, removed, abstaining and analyzed counts.",
+  "additional_external": "Separate human academic abstracts from KFUPM and Claude-polished counterparts. Treat polished human writing as assisted, not as a known wholly machine-authored passage.",
+  "arabic_release_gate": "Less than 1% any false signal among both eligible Ar-APT human articles and KFUPM human abstracts, plus at least 50% recall on Ar-APT fully generated articles. Retain already seen o-qn collection as regression information, not a fresh blind test.",
+  "bilingual_release_gate": "Also meet the previously fixed English release gates for AIP-HL-2. No production promotion on a partial pass."
+}

@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "normalization": "ASCII compounds split at internal punctuation; count agrees with whitespace and ASCII letter spans; no visible title or footer",
+  "normalized_text_sha256": "b8abb736408352a1df26659b834ee01941d5c21395b3b04096cdf6256f4fc04f",
+  "files": [
+    {
+      "file": "melville-3000.docx",
+      "format": "docx",
+      "words": 3000,
+      "parser": "python-docx",
+      "source": "Melville, Moby-Dick (1851), normalized historical English literary excerpt",
+      "bytes": 44107,
+      "sha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13"
+    },
+    {
+      "file": "melville-3000.pdf",
+      "format": "pdf",
+      "words": 3000,
+      "pages": 4,
+      "parser": "pypdf",
+      "source": "same excerpt, independently extracted from PDF",
+      "bytes": 13996,
+      "sha256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7"
+    },
+    {
+      "file": "arabic-format-signals.docx",
+      "format": "docx",
+      "script": "Arabic",
+      "source": "original functional QA text; excluded from authorship metrics",
+      "signals": [
+        "Arabic and Latin text",
+        "directional paragraphs",
+        "2 explicitly assigned paragraph revision-session IDs; package defaults also present",
+        "7 paraIds",
+        "w:vanish",
+        "FFFFFF text",
+        "U+200B",
+        "US/UK spelling examples",
+        "labeled synthetic student ID",
+        "reserved example.invalid email"
+      ],
+      "bytes": 37327,
+      "sha256": "6d8f40db085a82126c3117aef677fc5f5cfd2276cc4b18fe52c8588be12a7f6c"
+    }
+  ]
+}

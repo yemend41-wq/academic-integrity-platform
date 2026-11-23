@@ -1,0 +1,9 @@
+{
+  "language": "en",
+  "model": "AIP-HL-2",
+  "frozen_before_evaluation": true,
+  "threshold": "99.8th percentile (higher order statistic) of maximum human validation-window logits",
+  "fit_data": "baseline plus distinct MAGE and RAID development rows from the published calibration slice",
+  "test_data": "reserved MAGE/RAID test slice; ELLIPSE and ICNALE learner essay cohorts",
+  "decision": "Promote the English model only if the pooled English general-domain test has fewer than 1% human documents flagged (including suppressed), at least 50% machine documents signalled, and fewer than 1% human documents flagged in the ELLIPSE/ICNALE combined sample. Also publish stricter one-sided uncertainty bounds and per-source results. Neither promotion nor these research observations certify committee acceptance."
+}

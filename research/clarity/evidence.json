@@ -1,0 +1,33 @@
+{
+  "executed_at": "2026-11-23T19:08:18.096Z",
+  "environment": "Node 24, real draft API functions and SQLite; independently exercised shared playback helpers",
+  "passed": 25,
+  "checks": [
+    "typing and interval classification",
+    "focused short gaps count; initial and idle gaps excluded",
+    "opening a new workspace",
+    "JSON save status",
+    "active time persisted",
+    "one large paste and five deltas persisted",
+    "scrubbing reconstructs English and Arabic",
+    "PII removed in preview and stored history",
+    "response-loss retry recognizes committed edits",
+    "divergence in another tab is preserved",
+    "stale client revision rejected",
+    "checkpoint playback across boundaries",
+    "count-bounded transport",
+    "UTF-8 byte cap applied to actual serialized Arabic request",
+    "cross-save PII match instructs browser to fetch rewritten history",
+    "all older email fragments scrubbed from persisted SQLite payload",
+    "unrelated surrounding text and revision positions survive retroactive masking",
+    "response-loss reconciliation works after canonical history rewrite",
+    "deleting below recognition threshold keeps known private cells masked",
+    "same-batch Arabic name and earlier label fragments scrubbed",
+    "legacy history converted and persisted with one optimistic revision increment",
+    "legacy partial values absent from every reconstructed historical frame",
+    "subsequent reads of legacy record do not rewrite again",
+    "large redacted history remains under storage limit with compact persistence",
+    "packed historical masks round-trip with unchanged text, timing and revision count"
+  ],
+  "browser_testing": "Tracked separately in deployment acceptance"
+}

@@ -1,0 +1,81 @@
+{
+  "version": "AIP-HL-3",
+  "units": "documents",
+  "threshold_selection": "validation human maximum, fixed before test",
+  "laboratory_holdout": true,
+  "independent_committee_blind": false,
+  "by_language": {
+    "en": {
+      "train_documents": 168,
+      "validation_documents": 42,
+      "test_documents": 42,
+      "human_test_eligible": 21,
+      "ai_test_eligible": 21,
+      "abstentions": 0,
+      "false_positives_including_suppressed": 0,
+      "true_positives_including_suppressed": 3,
+      "false_positive_rate": 0.0,
+      "recall": 0.14285714285714285,
+      "human_flags_at_least_20_percent": 0,
+      "ai_flags_at_least_20_percent": 2,
+      "one_sided_95pct_binomial_fpr_upper_bound": 0.13294591102652337
+    },
+    "ar": {
+      "train_documents": 336,
+      "validation_documents": 67,
+      "test_documents": 87,
+      "human_test_eligible": 32,
+      "ai_test_eligible": 55,
+      "abstentions": 0,
+      "false_positives_including_suppressed": 0,
+      "true_positives_including_suppressed": 52,
+      "false_positive_rate": 0.0,
+      "recall": 0.9454545454545454,
+      "human_flags_at_least_20_percent": 0,
+      "ai_flags_at_least_20_percent": 51,
+      "one_sided_95pct_binomial_fpr_upper_bound": 0.08936819898626475
+    }
+  },
+  "mixtures": {
+    "en": {
+      "0.25": {
+        "documents": 21,
+        "visible_above_suppression": 0,
+        "within_10_percentage_points_visible": 0,
+        "suppressed": 0
+      },
+      "0.5": {
+        "documents": 21,
+        "visible_above_suppression": 1,
+        "within_10_percentage_points_visible": 0,
+        "suppressed": 0
+      },
+      "0.75": {
+        "documents": 21,
+        "visible_above_suppression": 1,
+        "within_10_percentage_points_visible": 0,
+        "suppressed": 0
+      }
+    },
+    "ar": {
+      "0.25": {
+        "documents": 25,
+        "visible_above_suppression": 1,
+        "within_10_percentage_points_visible": 1,
+        "suppressed": 0
+      },
+      "0.5": {
+        "documents": 25,
+        "visible_above_suppression": 16,
+        "within_10_percentage_points_visible": 12,
+        "suppressed": 0
+      },
+      "0.75": {
+        "documents": 25,
+        "visible_above_suppression": 21,
+        "within_10_percentage_points_visible": 8,
+        "suppressed": 0
+      }
+    }
+  }
+}

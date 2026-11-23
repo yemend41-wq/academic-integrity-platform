@@ -1,0 +1,352 @@
+{
+  "ar_apt_machine": {
+    "total": 400,
+    "excluded": 40,
+    "abstained": 1,
+    "eligible": 359,
+    "any": 298,
+    "visible": 293,
+    "domains": {
+      "Business": {
+        "eligible": 11,
+        "any": 8
+      },
+      "Finance": {
+        "eligible": 12,
+        "any": 8
+      },
+      "Medical": {
+        "eligible": 11,
+        "any": 7
+      },
+      "Politics": {
+        "eligible": 11,
+        "any": 10
+      },
+      "Science": {
+        "eligible": 11,
+        "any": 9
+      },
+      "Sport": {
+        "eligible": 12,
+        "any": 8
+      },
+      "Technology": {
+        "eligible": 10,
+        "any": 8
+      },
+      "Tourisms": {
+        "eligible": 13,
+        "any": 11
+      },
+      "Education": {
+        "eligible": 7,
+        "any": 5
+      },
+      "Law": {
+        "eligible": 7,
+        "any": 5
+      },
+      "History": {
+        "eligible": 7,
+        "any": 3
+      },
+      "Art": {
+        "eligible": 7,
+        "any": 4
+      },
+      "Music": {
+        "eligible": 7,
+        "any": 2
+      },
+      "Literature": {
+        "eligible": 7,
+        "any": 4
+      },
+      "Environment": {
+        "eligible": 7,
+        "any": 4
+      },
+      "Agriculture": {
+        "eligible": 7,
+        "any": 6
+      },
+      "Food": {
+        "eligible": 7,
+        "any": 5
+      },
+      "Religion": {
+        "eligible": 7,
+        "any": 4
+      },
+      "Health": {
+        "eligible": 7,
+        "any": 4
+      },
+      "Entertainment": {
+        "eligible": 7,
+        "any": 4
+      },
+      "Culture": {
+        "eligible": 31,
+        "any": 31
+      },
+      "Travel": {
+        "eligible": 19,
+        "any": 18
+      },
+      "Fashion": {
+        "eligible": 18,
+        "any": 18
+      },
+      "Design": {
+        "eligible": 13,
+        "any": 13
+      },
+      "Innovation": {
+        "eligible": 4,
+        "any": 4
+      },
+      "Psychology": {
+        "eligible": 4,
+        "any": 4
+      },
+      "Sociology": {
+        "eligible": 4,
+        "any": 4
+      },
+      "Philosophy": {
+        "eligible": 3,
+        "any": 3
+      },
+      "Engineering": {
+        "eligible": 4,
+        "any": 4
+      },
+      "Architecture": {
+        "eligible": 4,
+        "any": 4
+      },
+      "Marketing": {
+        "eligible": 4,
+        "any": 4
+      },
+      "Communication": {
+        "eligible": 4,
+        "any": 4
+      },
+      "Media": {
+        "eligible": 4,
+        "any": 4
+      },
+      "Cinema": {
+        "eligible": 4,
+        "any": 3
+      },
+      "Photography": {
+        "eligible": 4,
+        "any": 4
+      },
+      "Space": {
+        "eligible": 4,
+        "any": 4
+      },
+      "Energy": {
+        "eligible": 4,
+        "any": 4
+      },
+      "Transportation": {
+        "eligible": 4,
+        "any": 4
+      },
+      "Economics": {
+        "eligible": 4,
+        "any": 4
+      },
+      "Linguistics": {
+        "eligible": 4,
+        "any": 3
+      },
+      "Mathematics": {
+        "eligible": 4,
+        "any": 4
+      },
+      "Geography": {
+        "eligible": 4,
+        "any": 3
+      },
+      "Chemistry": {
+        "eligible": 4,
+        "any": 4
+      },
+      "Physics": {
+        "eligible": 4,
+        "any": 3
+      },
+      "Biology": {
+        "eligible": 4,
+        "any": 4
+      },
+      "Astronomy": {
+        "eligible": 4,
+        "any": 4
+      },
+      "Security": {
+        "eligible": 4,
+        "any": 4
+      },
+      "TechnologyEthics": {
+        "eligible": 4,
+        "any": 4
+      },
+      "Robotics": {
+        "eligible": 4,
+        "any": 4
+      },
+      "ArtificialIntelligence": {
+        "eligible": 4,
+        "any": 4
+      }
+    }
+  },
+  "ar_apt_human": {
+    "total": 400,
+    "excluded": 0,
+    "abstained": 0,
+    "eligible": 400,
+    "any": 130,
+    "visible": 119,
+    "domains": {
+      "Tou": {
+        "eligible": 50,
+        "any": 18
+      },
+      "Pol": {
+        "eligible": 50,
+        "any": 18
+      },
+      "Spo": {
+        "eligible": 50,
+        "any": 11
+      },
+      "Tec": {
+        "eligible": 50,
+        "any": 20
+      },
+      "Bus": {
+        "eligible": 50,
+        "any": 23
+      },
+      "Sci": {
+        "eligible": 50,
+        "any": 8
+      },
+      "Med": {
+        "eligible": 50,
+        "any": 11
+      },
+      "Fin": {
+        "eligible": 50,
+        "any": 21
+      }
+    }
+  },
+  "ar_apt_assisted": {
+    "total": 400,
+    "excluded": 0,
+    "abstained": 8,
+    "eligible": 392,
+    "any": 177,
+    "visible": 169,
+    "domains": {
+      "Tou": {
+        "eligible": 49,
+        "any": 27
+      },
+      "Pol": {
+        "eligible": 50,
+        "any": 21
+      },
+      "Spo": {
+        "eligible": 50,
+        "any": 14
+      },
+      "Tec": {
+        "eligible": 50,
+        "any": 20
+      },
+      "Bus": {
+        "eligible": 50,
+        "any": 29
+      },
+      "Sci": {
+        "eligible": 46,
+        "any": 20
+      },
+      "Med": {
+        "eligible": 48,
+        "any": 18
+      },
+      "Fin": {
+        "eligible": 49,
+        "any": 28
+      }
+    }
+  },
+  "academic_human": {
+    "total": 703,
+    "excluded": 2,
+    "abstained": 0,
+    "eligible": 701,
+    "any": 189,
+    "visible": 185,
+    "domains": {
+      "abstract": {
+        "eligible": 701,
+        "any": 189
+      }
+    }
+  },
+  "academic_assisted": {
+    "total": 703,
+    "excluded": 0,
+    "abstained": 0,
+    "eligible": 703,
+    "any": 619,
+    "visible": 618,
+    "domains": {
+      "abstract": {
+        "eligible": 703,
+        "any": 619
+      }
+    }
+  },
+  "oqn_human": {
+    "total": 849,
+    "excluded": 1,
+    "abstained": 49,
+    "eligible": 799,
+    "any": 449,
+    "visible": 444,
+    "domains": {
+      "unspecified": {
+        "eligible": 799,
+        "any": 449
+      }
+    }
+  },
+  "oqn_ai": {
+    "total": 858,
+    "excluded": 0,
+    "abstained": 46,
+    "eligible": 812,
+    "any": 759,
+    "visible": 758,
+    "domains": {
+      "unspecified": {
+        "eligible": 812,
+        "any": 759
+      }
+    }
+  }
+}

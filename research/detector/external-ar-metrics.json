@@ -1,0 +1,18 @@
+{
+  "arabic_public_collection__0": {
+    "total": 849,
+    "overlap": 1,
+    "insufficient": 49,
+    "eligible": 799,
+    "any": 449,
+    "visible": 444
+  },
+  "arabic_public_collection__1": {
+    "total": 858,
+    "overlap": 0,
+    "insufficient": 46,
+    "eligible": 812,
+    "any": 759,
+    "visible": 758
+  }
+}

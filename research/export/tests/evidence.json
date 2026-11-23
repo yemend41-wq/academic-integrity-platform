@@ -1,0 +1,38 @@
+{
+  "environment": "Node.js + local Poppler, MuPDF and pypdf; source-inspection QA files",
+  "runAt": "2026-11-23T18:57:29.739Z",
+  "sourceSHA256": "e180b3d65bf650dffffd71dd21b6180767b469a18dd87e1d8552be69bb9ecdf0",
+  "status": "passed",
+  "runs": [
+    {
+      "locale": "en",
+      "bytes": 92176,
+      "ms": 49.6,
+      "pages": 4,
+      "sha256": "156e7fc8df7162133cc31691ad92c9657fdc7695049caaeb707678e0822d8503",
+      "checks": [
+        "strict PDF parse",
+        "A4 page bounds",
+        "render all pages",
+        "embedded TrueType and Unicode CMap",
+        "logical Arabic and English fields",
+        "final field and all page numbers"
+      ]
+    },
+    {
+      "locale": "ar",
+      "bytes": 92988,
+      "ms": 19.3,
+      "pages": 4,
+      "sha256": "eac041b222f09d058b0610e83092159808807109c70df23850e1f37476739a45",
+      "checks": [
+        "strict PDF parse",
+        "A4 page bounds",
+        "render all pages",
+        "embedded TrueType and Unicode CMap",
+        "logical Arabic and English fields",
+        "final field and all page numbers"
+      ]
+    }
+  ]
+}

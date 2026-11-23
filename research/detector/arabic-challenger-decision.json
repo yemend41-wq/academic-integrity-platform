@@ -1,0 +1,112 @@
+{
+  "version": "AIP-HL-3",
+  "status": "rejected",
+  "arabic_gate_met": false,
+  "bilingual_gate_met": false,
+  "active_model_changed": false,
+  "calibration": {
+    "arabic_eligible_human_calibration_documents": 112,
+    "arabic_eligible_training_documents": 606,
+    "wikipedia_development_passages_before_length_filter": 460
+  },
+  "comparison": {
+    "ar_apt_machine": {
+      "baseline": {
+        "eligible": 359,
+        "signals": 298,
+        "inclusive_rate": 0.83008356545961,
+        "one_sided_95pct_upper_binomial": 0.861960280684244
+      },
+      "candidate": {
+        "eligible": 359,
+        "signals": 263,
+        "inclusive_rate": 0.7325905292479109,
+        "one_sided_95pct_upper_binomial": 0.770872206155564
+      }
+    },
+    "ar_apt_human": {
+      "baseline": {
+        "eligible": 400,
+        "signals": 130,
+        "inclusive_rate": 0.325,
+        "one_sided_95pct_upper_binomial": 0.3656518268725954
+      },
+      "candidate": {
+        "eligible": 400,
+        "signals": 59,
+        "inclusive_rate": 0.1475,
+        "one_sided_95pct_upper_binomial": 0.179855214953343
+      }
+    },
+    "ar_apt_assisted": {
+      "baseline": {
+        "eligible": 392,
+        "signals": 177,
+        "inclusive_rate": 0.45153061224489793,
+        "one_sided_95pct_upper_binomial": 0.49431896532516034
+      },
+      "candidate": {
+        "eligible": 392,
+        "signals": 77,
+        "inclusive_rate": 0.19642857142857142,
+        "one_sided_95pct_upper_binomial": 0.2323811026805878
+      }
+    },
+    "academic_human": {
+      "baseline": {
+        "eligible": 701,
+        "signals": 189,
+        "inclusive_rate": 0.26961483594864477,
+        "one_sided_95pct_upper_binomial": 0.2985877271494316
+      },
+      "candidate": {
+        "eligible": 701,
+        "signals": 33,
+        "inclusive_rate": 0.047075606276747506,
+        "one_sided_95pct_upper_binomial": 0.06244345333817406
+      }
+    },
+    "academic_assisted": {
+      "baseline": {
+        "eligible": 703,
+        "signals": 619,
+        "inclusive_rate": 0.8805120910384068,
+        "one_sided_95pct_upper_binomial": 0.9001315689996473
+      },
+      "candidate": {
+        "eligible": 703,
+        "signals": 383,
+        "inclusive_rate": 0.5448079658605974,
+        "one_sided_95pct_upper_binomial": 0.5762302235505488
+      }
+    },
+    "oqn_human": {
+      "baseline": {
+        "eligible": 799,
+        "signals": 449,
+        "inclusive_rate": 0.5619524405506884,
+        "one_sided_95pct_upper_binomial": 0.5912445733522167
+      },
+      "candidate": {
+        "eligible": 799,
+        "signals": 239,
+        "inclusive_rate": 0.29912390488110135,
+        "one_sided_95pct_upper_binomial": 0.3269168741249634
+      }
+    },
+    "oqn_ai": {
+      "baseline": {
+        "eligible": 812,
+        "signals": 759,
+        "inclusive_rate": 0.9347290640394089,
+        "one_sided_95pct_upper_binomial": 0.9484088542956828
+      },
+      "candidate": {
+        "eligible": 812,
+        "signals": 611,
+        "inclusive_rate": 0.7524630541871922,
+        "one_sided_95pct_upper_binomial": 0.777282325937555
+      }
+    }
+  }
+}

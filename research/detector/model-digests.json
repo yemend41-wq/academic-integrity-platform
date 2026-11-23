@@ -1,0 +1,7 @@
+{
+  "weights.mjs": "956864e902eff441336432abbdf2bc4a9cc18af6027eed01e63d630ed836adef",
+  "weights-challenger.mjs": "771ccf01d66d4dc7f484da0e870b40e8aea3473c53cc9485ffd0db8f72c66f4a",
+  "weights-ar3.mjs": "956864e902eff441336432abbdf2bc4a9cc18af6027eed01e63d630ed836adef",
+  "baseline-weights.mjs": "0283c6972de953c091001b25894b2cec2d3a7fc43014ba734de6c9a995cd9b58",
+  "weights-strict.mjs": "cd1a5ea88a6cd52a36e0601db5f66169fff999b81cf8c3352e72696b24c86887"
+}

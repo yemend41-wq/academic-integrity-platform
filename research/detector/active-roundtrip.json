@@ -1,0 +1,10 @@
+{
+  "source_artifact_documents": 200,
+  "documents_containing_back_translation": 74,
+  "distinct_roundtrip_spans": 96,
+  "eligible_spans": 55,
+  "insufficient": 41,
+  "any_signal": 0,
+  "numeric_signal": 0,
+  "scope": "Published OPUS English–German–English round trips of human-source Wikipedia passages. Descriptive model response only. Machine translation of human prose has no binary machine-authorship ground truth."
+}

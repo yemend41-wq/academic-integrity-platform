@@ -1,0 +1,31 @@
+{
+  "verified_utc": "2026-11-23T19:16:50.641551+00:00",
+  "tested_mode": "experimental_public_assessment",
+  "model": "AIP-HL-3",
+  "production_release": false,
+  "weight_sha256": {
+    "assessment": "956864e902eff441336432abbdf2bc4a9cc18af6027eed01e63d630ed836adef",
+    "archived_baseline": "0283c6972de953c091001b25894b2cec2d3a7fc43014ba734de6c9a995cd9b58"
+  },
+  "tests": 6,
+  "runtime_confirmed_model": "AIP-HL-3",
+  "retrained_weights_byte_identical": true,
+  "completed_reproduction_utc": "2026-11-23T19:17:41.201027+00:00",
+  "reproduction_command": "python reproduce.py /tmp/aip-model-data",
+  "operating_points_reproduced": 4,
+  "matching_artifacts": {
+    "active-english-cohorts.json": "f790c275b839a4cd0a4105b811dc40b22be8fbbbe66ba4a7b6b08cb1b08b3d31",
+    "active-roundtrip.json": "b826665c9760e7fc0aefa24558edaff2652c8fcc300ea01a7a3586fd2437ebfb",
+    "active-group-metrics.json": "67593acebc01fc2ae9d398eae6347ca8a1ada9f7f5f45f307c1b8084bab32819",
+    "strict-calibration.json": "830d8f8ad1aa5c930a8e9c4c291c4dbc8973e8182ad3351c4251dabfb37bccc8",
+    "strict-holdout-metrics.json": "9f0a7c9b1036d71e4be5e95baf452eefabe1844fc943f3d23948fa504c797f1a",
+    "metrics.json": "6e1297b2ec4d904ed68063449be04accedf7575891a88a3ad35dd3ef9159e782",
+    "external-metrics.json": "fabe50d0c2c22f3139dad6ee691a5109e13b2404ee2f04248c75b0fcc8a064cc",
+    "external-ar-metrics.json": "177e6cbe4ad654a58145602ba77fb55aaf75ff0d02c60f1f18a9b99383dbcc3c",
+    "translation-metrics.json": "fea588d6323ceb4d1b1aa5a4d3a8a51bba77f929855e02df5d89eb6f3223d8af",
+    "baseline-arabic-followup.json": "b9ab512bfa1d58fbedf68f3c0597b28e2b622be8d1f1e72583e5c8c899e0a65b",
+    "arabic-challenger-metrics.json": "15608e0e9225d3e030f7ef66e457281c97aa91c106378f9b83a35090b0cd7b06",
+    "baseline-domain-metrics.json": "a938eb97c2945ce3e5dd3e064daaa41291bf6be9addfcb82dbba59648a915b9e",
+    "challenger-metrics.json": "10df0b4e0d9127c8b0ac587e782227a8023058fa3b8439fc248afde48e025776"
+  }
+}

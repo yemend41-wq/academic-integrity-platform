@@ -1,0 +1,14 @@
+{
+  "training": 833,
+  "heldOut": 167,
+  "sourceGroupsTrain": 331,
+  "sourceGroupsTest": 66,
+  "eligible": 167,
+  "vocabulary": 3100,
+  "dimensions": 48,
+  "arabicToEnglishTop1": 0.2874251497005988,
+  "arabicToEnglishTop5": 0.49101796407185627,
+  "meanCosineOnAlignedPairs": 0.34574536264224187,
+  "dataset": "Parallel Universal Dependencies, English–Arabic. Unseen aligned sentences, not a student essay paraphrase benchmark.",
+  "dataSha256": "79decb6b7754799ee39eb908bf054835993b92d609c5681ef2d98847a06f3750"
+}

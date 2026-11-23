@@ -1,0 +1,97 @@
+{
+  "at": "2026-11-23T19:14:16.775Z",
+  "environment": "Work Node; production evidence recorded separately",
+  "checks": {
+    "liveKnownDoi": false,
+    "liveUnavailableDoi": false,
+    "liveExistingIsbn": false,
+    "rejectInvalidChecksum": true,
+    "localPublisherFallback": true
+  },
+  "actual": [
+    {
+      "kind": "doi",
+      "id": "10.21105/joss.04886",
+      "status": "matched_publisher_snapshot",
+      "registry": "Crossref / DOI Handle System",
+      "attempts": [
+        {
+          "registry": "Crossref",
+          "outcome": "timeout"
+        },
+        {
+          "registry": "DOI Handle System",
+          "outcome": "timeout"
+        }
+      ],
+      "registryStatus": "registry_unavailable",
+      "title": "PyArabic: A Python package for Arabic text",
+      "publisher": "Journal of Open Source Software",
+      "publisherSource": "https://joss.theoj.org/papers/10.21105/joss.04886",
+      "publisherCheckedOn": "2026-11-23",
+      "checkedAt": 1795461256765
+    },
+    {
+      "kind": "doi",
+      "id": "10.1038/nature12373",
+      "status": "registry_unavailable",
+      "registry": "Crossref / DOI Handle System",
+      "attempts": [
+        {
+          "registry": "Crossref",
+          "outcome": "timeout"
+        },
+        {
+          "registry": "DOI Handle System",
+          "outcome": "timeout"
+        }
+      ],
+      "checkedAt": 1795461256773
+    },
+    {
+      "kind": "doi",
+      "id": "10.99999/mizan-no-record-2026",
+      "status": "registry_unavailable",
+      "registry": "Crossref / DOI Handle System",
+      "attempts": [
+        {
+          "registry": "Crossref",
+          "outcome": "timeout"
+        },
+        {
+          "registry": "DOI Handle System",
+          "outcome": "timeout"
+        }
+      ],
+      "checkedAt": 1795461256774
+    },
+    {
+      "kind": "isbn",
+      "id": "9780306406157",
+      "status": "registry_unavailable",
+      "registry": "Open Library / Crossref / Google Books",
+      "attempts": [
+        {
+          "registry": "Open Library",
+          "outcome": "timeout"
+        },
+        {
+          "registry": "Crossref",
+          "outcome": "response",
+          "httpStatus": 200
+        },
+        {
+          "registry": "Google Books",
+          "outcome": "timeout"
+        }
+      ],
+      "checkedAt": 1795461256775
+    },
+    {
+      "kind": "isbn",
+      "id": "9780306406158",
+      "status": "invalid_checksum",
+      "registry": null
+    }
+  ]
+}

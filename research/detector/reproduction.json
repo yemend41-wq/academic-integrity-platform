@@ -1,0 +1,22 @@
+{
+  "verified_utc": "2026-11-23T19:07:25.478517+00:00",
+  "scope": "local model research only",
+  "command": "python reproduce.py /tmp/aip-model-data",
+  "three_frozen_weights_match_sha256": true,
+  "matching_regenerated_metric_files": {
+    "metrics.json": "6e1297b2ec4d904ed68063449be04accedf7575891a88a3ad35dd3ef9159e782",
+    "external-metrics.json": "fabe50d0c2c22f3139dad6ee691a5109e13b2404ee2f04248c75b0fcc8a064cc",
+    "external-ar-metrics.json": "177e6cbe4ad654a58145602ba77fb55aaf75ff0d02c60f1f18a9b99383dbcc3c",
+    "translation-metrics.json": "fea588d6323ceb4d1b1aa5a4d3a8a51bba77f929855e02df5d89eb6f3223d8af",
+    "baseline-arabic-followup.json": "b9ab512bfa1d58fbedf68f3c0597b28e2b622be8d1f1e72583e5c8c899e0a65b",
+    "arabic-challenger-metrics.json": "15608e0e9225d3e030f7ef66e457281c97aa91c106378f9b83a35090b0cd7b06",
+    "baseline-domain-metrics.json": "a938eb97c2945ce3e5dd3e064daaa41291bf6be9addfcb82dbba59648a915b9e",
+    "challenger-metrics.json": "10df0b4e0d9127c8b0ac587e782227a8023058fa3b8439fc248afde48e025776"
+  },
+  "governance_unit_tests": {
+    "passed": 5,
+    "failed": 0
+  },
+  "node": "v24.22.3",
+  "python": "3.12.14"
+}

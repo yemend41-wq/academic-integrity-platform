@@ -1,0 +1,53 @@
+TAP version 13
+# Subtest: Word package reads bilingual prose, editing metadata, formatting and embedded media
+ok 1 - Word package reads bilingual prose, editing metadata, formatting and embedded media
+  ---
+  duration_ms: 17.38375
+  type: 'test'
+  ...
+# Warning: Please use the `legacy` build in Node.js environments.
+# Subtest: PDF parser reads both scripts from an actual paginated file
+ok 2 - PDF parser reads both scripts from an actual paginated file
+  ---
+  duration_ms: 231.44345
+  type: 'test'
+  ...
+# Subtest: Unsigned image files expose true PNG chunks and JPEG markers and dimensions
+ok 3 - Unsigned image files expose true PNG chunks and JPEG markers and dimensions
+  ---
+  duration_ms: 2.772707
+  type: 'test'
+  ...
+# Subtest: Authentic upstream C2PA JPEG passes leaf, assertion and asset checks without claiming trust
+ok 4 - Authentic upstream C2PA JPEG passes leaf, assertion and asset checks without claiming trust
+  ---
+  duration_ms: 8.011052
+  type: 'test'
+  ...
+# Subtest: Extension checking and unsupported-file handling
+ok 5 - Extension checking and unsupported-file handling
+  ---
+  duration_ms: 1.600454
+  type: 'test'
+  ...
+# Subtest: Citation extraction preserves balanced DOI brackets and normalizes Arabic ISBN punctuation
+ok 6 - Citation extraction preserves balanced DOI brackets and normalizes Arabic ISBN punctuation
+  ---
+  duration_ms: 2.585568
+  type: 'test'
+  ...
+# Subtest: ISBN records match only the same valid edition across 10- and 13-digit encodings
+ok 7 - ISBN records match only the same valid edition across 10- and 13-digit encodings
+  ---
+  duration_ms: 0.419938
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 378.505319

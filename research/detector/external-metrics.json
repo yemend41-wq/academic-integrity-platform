@@ -1,0 +1,112 @@
+{
+  "TOEFL_real_91": {
+    "origin": "human",
+    "description": "Non-native English TOEFL",
+    "source_sha256": "d5e2bf0bd4831262d60aa936b2ac8e532bd3859067411288b6c22ed16867666b",
+    "total": 91,
+    "excluded_as_duplicates_or_overlap": 1,
+    "abstained": 0,
+    "eligible": 90,
+    "flagged_including_suppressed": 0,
+    "flagged_at_least_20_percent": 0
+  },
+  "HewlettStudentEssay_real_88": {
+    "origin": "human",
+    "description": "US eighth grade essays",
+    "source_sha256": "6145e4e8bf36b780624626b31a783d7ca97696e1e14ae6d13c083b79da2f042d",
+    "total": 88,
+    "excluded_as_duplicates_or_overlap": 0,
+    "abstained": 0,
+    "eligible": 88,
+    "flagged_including_suppressed": 0,
+    "flagged_at_least_20_percent": 0
+  },
+  "CollegeEssay_real_70": {
+    "origin": "human",
+    "description": "US college application essays",
+    "source_sha256": "37534035e5ad8bbb7a362433644b38c6b8d45ad9c444836cc89a7013eb0d9917",
+    "total": 70,
+    "excluded_as_duplicates_or_overlap": 0,
+    "abstained": 0,
+    "eligible": 70,
+    "flagged_including_suppressed": 2,
+    "flagged_at_least_20_percent": 0
+  },
+  "CS224N_real_145": {
+    "origin": "human",
+    "description": "course abstracts",
+    "source_sha256": "fa62fd0355b7121283feb3ee4468bd0db23ba7847806a04d4a754f77b723a31d",
+    "total": 145,
+    "excluded_as_duplicates_or_overlap": 0,
+    "abstained": 0,
+    "eligible": 145,
+    "flagged_including_suppressed": 16,
+    "flagged_at_least_20_percent": 12
+  },
+  "CollegeEssay_gpt3_31": {
+    "origin": "machine",
+    "description": "Generated college essays",
+    "source_sha256": "2e11f35d067ec8aa2c5b844cb3a00b2d4e87d87cf5d012b566869c109273afe0",
+    "total": 31,
+    "excluded_as_duplicates_or_overlap": 0,
+    "abstained": 0,
+    "eligible": 31,
+    "flagged_including_suppressed": 9,
+    "flagged_at_least_20_percent": 8
+  },
+  "CollegeEssay_gpt3PromptEng_31": {
+    "origin": "machine_rewritten",
+    "description": "Rewritten generated college essays",
+    "source_sha256": "59ac102fcd01895509494a6c4e26e0dae632ae816ee210afd1bea9a0c7c0ec2c",
+    "total": 31,
+    "excluded_as_duplicates_or_overlap": 0,
+    "abstained": 0,
+    "eligible": 31,
+    "flagged_including_suppressed": 13,
+    "flagged_at_least_20_percent": 12
+  },
+  "CS224N_gpt3_145": {
+    "origin": "machine",
+    "description": "Generated abstracts",
+    "source_sha256": "4c5d1e6e3d8d479684245d154e334bc076d1ccd4e315f4a8c4be3b3fba9a565e",
+    "total": 145,
+    "excluded_as_duplicates_or_overlap": 4,
+    "abstained": 0,
+    "eligible": 141,
+    "flagged_including_suppressed": 47,
+    "flagged_at_least_20_percent": 47
+  },
+  "CS224N_gpt3PromptEng_145": {
+    "origin": "machine_rewritten",
+    "description": "Rewritten generated abstracts",
+    "source_sha256": "18c9afb38569c986c7140e1cd2d3ba414f06e948ba3b866e209f2cfe1063d956",
+    "total": 145,
+    "excluded_as_duplicates_or_overlap": 0,
+    "abstained": 0,
+    "eligible": 145,
+    "flagged_including_suppressed": 49,
+    "flagged_at_least_20_percent": 49
+  },
+  "HewlettStudentEssay_GPTsimplify_88": {
+    "origin": "mixed",
+    "description": "Simplified human essays",
+    "source_sha256": "59fef9d557c689f1a508269b780f37bab548346d5033c455c3e211a99c1feba3",
+    "total": 88,
+    "excluded_as_duplicates_or_overlap": 0,
+    "abstained": 1,
+    "eligible": 87,
+    "flagged_including_suppressed": 19,
+    "flagged_at_least_20_percent": 19
+  },
+  "TOEFL_gpt4polished_91": {
+    "origin": "mixed",
+    "description": "Polished human essays",
+    "source_sha256": "8dcbce862bc54259666c77d68ed43927af9d4cfd350c57ff1b250c21860256c6",
+    "total": 91,
+    "excluded_as_duplicates_or_overlap": 0,
+    "abstained": 0,
+    "eligible": 91,
+    "flagged_including_suppressed": 14,
+    "flagged_at_least_20_percent": 14
+  }
+}

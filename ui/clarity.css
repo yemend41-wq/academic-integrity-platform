@@ -1,0 +1,100 @@
+.clarity-pane {
+  display: grid;
+  gap: 1.25rem;
+}
+.clarity-pane h2,
+.clarity-pane h3,
+.clarity-pane p {
+  margin: 0;
+}
+.clarity-pane button {
+  font: inherit;
+  cursor: pointer;
+  min-height: 42px;
+  padding: 0.5rem 0.85rem;
+  border-radius: 0.5rem;
+  border: 1px solid #c1cdc9;
+  background: #fff;
+  color: #183f37;
+}
+.clarity-pane button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.clarity-pane .primary {
+  color: white;
+  background: #19594d;
+  border-color: #19594d;
+}
+.clarity-controls,
+.clarity-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+}
+.clarity-stats {
+  border-block: 1px solid #d7dfdb;
+  padding: 0.75rem 0;
+}
+.clarity-stats span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+.clarity-stats strong {
+  font-variant-numeric: tabular-nums;
+}
+.clarity-pane label {
+  font-weight: 650;
+  display: grid;
+  gap: 0.45rem;
+}
+.clarity-pane textarea,
+.clarity-preview {
+  box-sizing: border-box;
+  border: 1px solid #c6d1ca;
+  border-radius: 0.6rem;
+  background: #fff;
+  color: #152d27;
+  padding: 0.85rem 1rem;
+  line-height: 1.7;
+  font: inherit;
+  width: 100%;
+  resize: vertical;
+}
+.clarity-pane textarea {
+  min-height: 12rem;
+}
+.clarity-pane input[type="range"] {
+  width: min(100%, 30rem);
+  accent-color: #19594d;
+}
+.clarity-preview {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  max-height: 22rem;
+  min-height: 5rem;
+  overflow: auto;
+}
+.clarity-history {
+  display: grid;
+  gap: 0.65rem;
+}
+.clarity-conflict {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.75rem;
+  border: 1px solid #b96331;
+  background: #fff7ef;
+}
+.clarity-pane [hidden] {
+  display: none !important;
+}
+.clarity-note {
+  font-size: 0.875rem;
+  color: #425951;
+}
+.clarity-pane [role="status"] {
+  min-height: 1.4em;
+}

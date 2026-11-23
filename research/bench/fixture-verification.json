@@ -1,0 +1,42 @@
+{
+  "scope": "Local Node, deployed source parser and redactor; no network or end-to-end SLA conclusion",
+  "at": "2026-11-23T18:58:22.999Z",
+  "runtime": "v24.22.3",
+  "observations": [
+    {
+      "file": "melville-3000.docx",
+      "sha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+      "bytes": 44107,
+      "parserWallMs": 15.163,
+      "checks": {
+        "extractedWords": 3000,
+        "exactTokenRoundTrip": true
+      }
+    },
+    {
+      "file": "melville-3000.pdf",
+      "sha256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+      "bytes": 13996,
+      "parserWallMs": 114.333,
+      "checks": {
+        "extractedWords": 3000,
+        "exactTokenRoundTrip": true
+      }
+    },
+    {
+      "file": "arabic-format-signals.docx",
+      "sha256": "6d8f40db085a82126c3117aef677fc5f5cfd2276cc4b18fe52c8588be12a7f6c",
+      "bytes": 37327,
+      "parserWallMs": 3.386,
+      "checks": {
+        "zeroWidth": 1,
+        "hiddenRuns": 1,
+        "whiteRuns": 1,
+        "paragraphIds": 7,
+        "usExamples": 2,
+        "ukExamples": 2,
+        "syntheticEmailAndStudentIdMasked": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "fixture": {
+    "file": "pyarabic-published.pdf",
+    "sha256": "b196e33fcebb974fca4ec5e9563e0c1ca54ceb026426c98a9f3ead36d182e9b1",
+    "parser": "pdftotext -raw",
+    "englishPaperMatched": true,
+    "matchingIntervals": 22,
+    "eligibleWords": 1097,
+    "coverageAllSources": 76.3
+  },
+  "benchmark": "SemEval 2017 Task 1, held-out Arabic (track 1) and English (track 5) sentence pairs. Positive: gold >=4/5; negative: gold <=1/5. Match is an interval attributed to the supplied partner. Includes all lengths. No thresholds fitted on these tracks.",
+  "tracks": [
+    {
+      "track": "track1.ar-ar",
+      "inputSha256": "a4f24daa03def87b52769b3a5ea9fe5f8b66d2f06db2a6565395cb1575443e3e",
+      "goldSha256": "4a7ad1eb5219605ab09cd743727c4059acdf55df9ae7351b5df079cc47ae983e",
+      "total": 250,
+      "high": {
+        "matched": 6,
+        "total": 41
+      },
+      "low": {
+        "matched": 0,
+        "total": 72
+      },
+      "intermediate": 137,
+      "missingLabel": 0,
+      "recallHigh": 0.14634146341463414,
+      "lowPairFlagRate": 0
+    },
+    {
+      "track": "track5.en-en",
+      "inputSha256": "8d493844c1010eb6b5d373e289b8d6ddc003e626bf8495976cc40c0a5f47414c",
+      "goldSha256": "a767d322cc3e78ff43f3c541a4fc0b9e0e5681f27c20de7eb9095fbb9072cf04",
+      "total": 250,
+      "high": {
+        "matched": 21,
+        "total": 41
+      },
+      "low": {
+        "matched": 0,
+        "total": 61
+      },
+      "intermediate": 148,
+      "missingLabel": 0,
+      "recallHigh": 0.5121951219512195,
+      "lowPairFlagRate": 0
+    }
+  ]
+}

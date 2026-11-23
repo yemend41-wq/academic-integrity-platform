@@ -1,0 +1,24 @@
+{
+  "version": "AIP-HL-2",
+  "status": "rejected",
+  "pooled_general_domain_human": {
+    "eligible": 555,
+    "alerts": 9,
+    "rate": 0.016216216216216217,
+    "one_sided_95pct_upper_binomial": 0.02812681029482843
+  },
+  "pooled_general_domain_machine": {
+    "eligible": 1573,
+    "alerts": 597,
+    "rate": 0.3795295613477432,
+    "one_sided_95pct_upper_binomial": 0.4001278415508528
+  },
+  "learner_essays": {
+    "eligible": 328,
+    "alerts": 1,
+    "rate": 0.003048780487804878,
+    "one_sided_95pct_upper_binomial": 0.014380721349179533
+  },
+  "rule_file": "challenger-protocol.json",
+  "changed_active_model": false
+}

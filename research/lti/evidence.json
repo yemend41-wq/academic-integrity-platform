@@ -1,0 +1,24 @@
+{
+  "executed_at": "2026-11-23T18:55:12.782Z",
+  "environment": "Node Web Crypto, real local TLS JWKS, SQLite in memory, D1 adapter",
+  "passed": 16,
+  "checks": [
+    "unregistered deployment configuration is explicit",
+    "unregistered login unavailable",
+    "GET initiation and OIDC parameters",
+    "cookie bound state required",
+    "signed instructor launch",
+    "pseudonyms replace raw user and course",
+    "single-use accepted launch",
+    "POST initiation, learner role, stable scoped identity",
+    "expired assertion rejected",
+    "unknown deployment rejected",
+    "audience mismatch rejected",
+    "multiple audiences require authorized party",
+    "nonce mismatch rejected",
+    "unknown course role rejected",
+    "concurrent duplicate completion consumed once",
+    "course isolation uses separate pseudonym"
+  ],
+  "external_lms_status": "not registered or tested"
+}

@@ -1,0 +1,51 @@
+{
+  "source": "AIP-HL-3 fixed coefficients",
+  "rule": "fixed before new holdout: maximum observed group 99.5th percentile of eligible human per-document maximum logits. Native 48-word floor unchanged; no new abstention rule.",
+  "groups": {
+    "MAGE-RAID / previous test": {
+      "lang": "en",
+      "eligible_unique": 557,
+      "quantile": 3.079313576406298
+    },
+    "Learner and native essays / previous test": {
+      "lang": "en",
+      "eligible_unique": 505,
+      "quantile": 2.4307345409729537
+    },
+    "Liang human / previous test": {
+      "lang": "en",
+      "eligible_unique": 392,
+      "quantile": 3.034227853805972
+    },
+    "Arabic collection / previous test": {
+      "lang": "ar",
+      "eligible_unique": 797,
+      "quantile": 3.4217932051336377
+    },
+    "Academic abstracts / previous test": {
+      "lang": "ar",
+      "eligible_unique": 701,
+      "quantile": 1.5025816867481698
+    },
+    "Ar-APT original articles / previous test": {
+      "lang": "ar",
+      "eligible_unique": 382,
+      "quantile": 2.0452430035686775
+    },
+    "ar / earlier human calibration": {
+      "lang": "ar",
+      "eligible_unique": 112,
+      "quantile": 0.466546962277946
+    },
+    "en / earlier human calibration": {
+      "lang": "en",
+      "eligible_unique": 125,
+      "quantile": 2.7274681343858305
+    }
+  },
+  "thresholds": {
+    "en": 3.079313576406298,
+    "ar": 3.4217932051336377
+  },
+  "candidate_sha256": "cd1a5ea88a6cd52a36e0601db5f66169fff999b81cf8c3352e72696b24c86887"
+}

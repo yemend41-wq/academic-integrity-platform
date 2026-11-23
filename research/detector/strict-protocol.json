@@ -1,0 +1,9 @@
+{
+  "candidate": "AIP-HL-4-research",
+  "source_coefficients": "AIP-HL-3",
+  "operating_point": "Max(group-specific 99.5th percentile) of per-document maximum human window margins from the listed calibration sources, plus 1e-8. No threshold selection on new results.",
+  "selection_sources": "Prior named external test corpora reclassified as calibration for this model version. The design history and baseline/challenger records remain available.",
+  "holdout": ["UKP persuasive essays", "published ArguGPT test generation texts", "native 2021 ANAD news from three prespecified publisher-topic strata, 120 each", "published AlpaGasus unreviewed machine-translated prompts and outputs from two prescribed Arabic keyword slices"],
+  "overlap": "Reject any duplicate within these new pools or any sample showing >=20% seven-word shingle containment in one previously examined document; tests fixed prior to new scoring.",
+  "endpoints": "Inclusive false positives must fall below 1% for each language; report exact one-sided 95% uncertainty; retain at least 50% recall in each machine pool. Word floor unchanged. No always-abstain/always-negative release. No institutional certification from cross-domain data alone."
+}

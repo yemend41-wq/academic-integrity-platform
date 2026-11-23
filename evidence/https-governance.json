@@ -1,0 +1,55 @@
+{
+  "id": "production-governance",
+  "title": "Hosted access and writing tests",
+  "titleAr": "الصلاحيات وسجل الكتابة في الاستضافة",
+  "at": "2026-11-23T19:15:00.285146+00:00",
+  "checks": [
+    {
+      "name": "Student and instructor boundaries on public HTTPS",
+      "ar": "صلاحيات الطالب والمدرّس على الرابط العام",
+      "status": "passed",
+      "detail": "Student and course instructor saw the report; separate cohort, anonymous reader and student administration had restricted responses.",
+      "evidence": {
+        "http": [
+          200,
+          200,
+          404,
+          401,
+          403
+        ]
+      }
+    },
+    {
+      "name": "Live Clarity save, revision reconstruction and submission",
+      "ar": "حفظ المسودة واستعادة المراجعات وتحليلها عبر الرابط العام",
+      "status": "passed",
+      "detail": "Saved real English/Arabic edits, reconstructed all revisions and submitted them to analysis. Canonical frames masked the test email prefix.",
+      "evidence": {
+        "frames": 4,
+        "bulkPastes": 1,
+        "activeMs": 4000,
+        "reportId": "0c0b778a-b933-4020-8e68-b8b6b90a696f"
+      }
+    },
+    {
+      "name": "Live similarity filters",
+      "ar": "تصفية الاقتباسات على الرابط العام",
+      "status": "passed",
+      "detail": "Applying the quote filter changed the eligible word count on the saved report.",
+      "evidence": {
+        "excluded": 4,
+        "included": 16
+      }
+    },
+    {
+      "name": "Retention heartbeat verified",
+      "ar": "التحقق من تشغيل سياسة الاحتفاظ",
+      "status": "passed",
+      "detail": "Expired-record cleanup was invoked on the live host and its completion timestamp was read back. The daily schedule is enabled.",
+      "evidence": {
+        "lastSuccess": 1795461108,
+        "retentionDays": 7
+      }
+    }
+  ]
+}

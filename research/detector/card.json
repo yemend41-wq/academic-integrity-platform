@@ -1,0 +1,562 @@
+{
+  "version": "AIP-HL-3",
+  "purpose": "Experimental bilingual review signal in the assessment build.",
+  "production_release": false,
+  "deployment_class": "experimental_review_signal",
+  "training": {
+    "family": "Separate English and Arabic logistic regressions on hashed lexical features and balanced document-level fitting.",
+    "windows": "96 words, stride of 32, minimum 48 words. Sentence spans inherit the nearest window score. Positive document shares under 20% are suppressed.",
+    "origin": [
+      "AIRABIC books, news and generated text; pre-2019 Arabic Wikipedia paragraphs from ARCD.",
+      "Paired English TOEFL-style writing plus MAGE and RAID development examples."
+    ]
+  },
+  "limits": {
+    "en": "External human group rates and machine recall vary by genre. The English detector exceeded 1% on the inclusive MAGE/RAID endpoint.",
+    "ar": "High measured false alarms in Arabic, including academic and student-contributed material. Treat highlights as experimental.",
+    "general": "Numeric percentages represent eligible words within flagged units. No authorship or misconduct determination may be made from the score alone."
+  },
+  "acceptance": {
+    "false_positive_rate_below_one_percent": "failed",
+    "production_release": false,
+    "fairness_certified": false,
+    "committee_blind_test": "not_run",
+    "paraphrase_resilience": "not_established",
+    "backtranslation_resilience": "not_established"
+  },
+  "groups": [
+    {
+      "group": "English / Liang human cohorts",
+      "language": "en",
+      "alerts": 3,
+      "eligible": 393,
+      "numeric_alerts": 3
+    },
+    {
+      "group": "English / TOEFL (non-native)",
+      "language": "en",
+      "alerts": 0,
+      "eligible": 90,
+      "numeric_alerts": 0
+    },
+    {
+      "group": "English / held-out MAGE and RAID",
+      "language": "en",
+      "alerts": 9,
+      "eligible": 555,
+      "numeric_alerts": 5
+    },
+    {
+      "group": "English / UKP persuasive essays",
+      "language": "en",
+      "alerts": 1,
+      "eligible": 399,
+      "numeric_alerts": 0
+    },
+    {
+      "group": "Arabic / course-project human collection",
+      "language": "ar",
+      "alerts": 239,
+      "eligible": 799,
+      "numeric_alerts": 227
+    },
+    {
+      "group": "Arabic / Ar-APT original press articles",
+      "language": "ar",
+      "alerts": 59,
+      "eligible": 400,
+      "numeric_alerts": 56
+    },
+    {
+      "group": "Arabic / KFUPM human academic abstracts",
+      "language": "ar",
+      "alerts": 33,
+      "eligible": 701,
+      "numeric_alerts": 32
+    },
+    {
+      "group": "Arabic / ANAD 2021 news",
+      "language": "ar",
+      "alerts": 72,
+      "eligible": 358,
+      "numeric_alerts": 35
+    }
+  ],
+  "ai_recall": {
+    "english_general": {
+      "detected": 597,
+      "eligible": 1573
+    },
+    "english_rewritten_college": {
+      "detected": 0,
+      "eligible": 31
+    },
+    "arabic_external": {
+      "detected": 611,
+      "eligible": 812
+    },
+    "arabic_generated_press": {
+      "detected": 263,
+      "eligible": 359
+    },
+    "english_generated_argugpt": {
+      "detected": 22,
+      "eligible": 350
+    }
+  },
+  "roundtrip": {
+    "source_artifact_documents": 200,
+    "documents_containing_back_translation": 74,
+    "distinct_roundtrip_spans": 96,
+    "eligible_spans": 55,
+    "insufficient": 41,
+    "any_signal": 0,
+    "numeric_signal": 0,
+    "scope": "Published OPUS English\u2013German\u2013English round trips of human-source Wikipedia passages. Descriptive model response only. Machine translation of human prose has no binary machine-authorship ground truth."
+  },
+  "active_heldout": {
+    "version": "AIP-HL-3",
+    "units": "documents",
+    "threshold_selection": "validation human maximum, fixed before test",
+    "laboratory_holdout": true,
+    "independent_committee_blind": false,
+    "by_language": {
+      "en": {
+        "train_documents": 168,
+        "validation_documents": 42,
+        "test_documents": 42,
+        "human_test_eligible": 21,
+        "ai_test_eligible": 21,
+        "abstentions": 0,
+        "false_positives_including_suppressed": 0,
+        "true_positives_including_suppressed": 3,
+        "false_positive_rate": 0.0,
+        "recall": 0.14285714285714285,
+        "human_flags_at_least_20_percent": 0,
+        "ai_flags_at_least_20_percent": 2,
+        "one_sided_95pct_binomial_fpr_upper_bound": 0.13294591102652337
+      },
+      "ar": {
+        "train_documents": 336,
+        "validation_documents": 67,
+        "test_documents": 87,
+        "human_test_eligible": 32,
+        "ai_test_eligible": 55,
+        "abstentions": 0,
+        "false_positives_including_suppressed": 0,
+        "true_positives_including_suppressed": 52,
+        "false_positive_rate": 0.0,
+        "recall": 0.9454545454545454,
+        "human_flags_at_least_20_percent": 0,
+        "ai_flags_at_least_20_percent": 51,
+        "one_sided_95pct_binomial_fpr_upper_bound": 0.08936819898626475
+      }
+    },
+    "mixtures": {
+      "en": {
+        "0.25": {
+          "documents": 21,
+          "visible_above_suppression": 0,
+          "within_10_percentage_points_visible": 0,
+          "suppressed": 0
+        },
+        "0.5": {
+          "documents": 21,
+          "visible_above_suppression": 1,
+          "within_10_percentage_points_visible": 0,
+          "suppressed": 0
+        },
+        "0.75": {
+          "documents": 21,
+          "visible_above_suppression": 1,
+          "within_10_percentage_points_visible": 0,
+          "suppressed": 0
+        }
+      },
+      "ar": {
+        "0.25": {
+          "documents": 25,
+          "visible_above_suppression": 1,
+          "within_10_percentage_points_visible": 1,
+          "suppressed": 0
+        },
+        "0.5": {
+          "documents": 25,
+          "visible_above_suppression": 16,
+          "within_10_percentage_points_visible": 12,
+          "suppressed": 0
+        },
+        "0.75": {
+          "documents": 25,
+          "visible_above_suppression": 21,
+          "within_10_percentage_points_visible": 8,
+          "suppressed": 0
+        }
+      }
+    }
+  },
+  "baseline": {
+    "version": "AIP-HL-1",
+    "units": "documents",
+    "threshold_selection": "validation human maximum, fixed before test",
+    "laboratory_holdout": true,
+    "independent_committee_blind": false,
+    "by_language": {
+      "en": {
+        "train_documents": 168,
+        "validation_documents": 42,
+        "test_documents": 42,
+        "human_test_eligible": 21,
+        "ai_test_eligible": 21,
+        "abstentions": 0,
+        "false_positives_including_suppressed": 0,
+        "true_positives_including_suppressed": 21,
+        "false_positive_rate": 0.0,
+        "recall": 1.0,
+        "human_flags_at_least_20_percent": 0,
+        "ai_flags_at_least_20_percent": 20,
+        "one_sided_95pct_binomial_fpr_upper_bound": 0.13294591102652337
+      },
+      "ar": {
+        "train_documents": 336,
+        "validation_documents": 67,
+        "test_documents": 87,
+        "human_test_eligible": 32,
+        "ai_test_eligible": 55,
+        "abstentions": 0,
+        "false_positives_including_suppressed": 0,
+        "true_positives_including_suppressed": 55,
+        "false_positive_rate": 0.0,
+        "recall": 1.0,
+        "human_flags_at_least_20_percent": 0,
+        "ai_flags_at_least_20_percent": 55,
+        "one_sided_95pct_binomial_fpr_upper_bound": 0.08936819898626475
+      }
+    },
+    "mixtures": {
+      "en": {
+        "0.25": {
+          "documents": 21,
+          "visible_above_suppression": 9,
+          "within_10_percentage_points_visible": 9,
+          "suppressed": 1
+        },
+        "0.5": {
+          "documents": 21,
+          "visible_above_suppression": 16,
+          "within_10_percentage_points_visible": 3,
+          "suppressed": 0
+        },
+        "0.75": {
+          "documents": 21,
+          "visible_above_suppression": 18,
+          "within_10_percentage_points_visible": 5,
+          "suppressed": 2
+        }
+      },
+      "ar": {
+        "0.25": {
+          "documents": 25,
+          "visible_above_suppression": 5,
+          "within_10_percentage_points_visible": 5,
+          "suppressed": 1
+        },
+        "0.5": {
+          "documents": 25,
+          "visible_above_suppression": 19,
+          "within_10_percentage_points_visible": 15,
+          "suppressed": 0
+        },
+        "0.75": {
+          "documents": 25,
+          "visible_above_suppression": 21,
+          "within_10_percentage_points_visible": 5,
+          "suppressed": 0
+        }
+      }
+    }
+  },
+  "challenger": {
+    "version": "AIP-HL-2",
+    "status": "rejected",
+    "pooled_general_domain_human": {
+      "eligible": 555,
+      "alerts": 9,
+      "rate": 0.016216216216216217,
+      "one_sided_95pct_upper_binomial": 0.02812681029482843
+    },
+    "pooled_general_domain_machine": {
+      "eligible": 1573,
+      "alerts": 597,
+      "rate": 0.3795295613477432,
+      "one_sided_95pct_upper_binomial": 0.4001278415508528
+    },
+    "learner_essays": {
+      "eligible": 328,
+      "alerts": 1,
+      "rate": 0.003048780487804878,
+      "one_sided_95pct_upper_binomial": 0.014380721349179533
+    },
+    "rule_file": "challenger-protocol.json",
+    "changed_active_model": false
+  },
+  "arabic_challenger": {
+    "version": "AIP-HL-3",
+    "status": "rejected",
+    "arabic_gate_met": false,
+    "bilingual_gate_met": false,
+    "active_model_changed": false,
+    "calibration": {
+      "arabic_eligible_human_calibration_documents": 112,
+      "arabic_eligible_training_documents": 606,
+      "wikipedia_development_passages_before_length_filter": 460
+    },
+    "comparison": {
+      "ar_apt_machine": {
+        "baseline": {
+          "eligible": 359,
+          "signals": 298,
+          "inclusive_rate": 0.83008356545961,
+          "one_sided_95pct_upper_binomial": 0.861960280684244
+        },
+        "candidate": {
+          "eligible": 359,
+          "signals": 263,
+          "inclusive_rate": 0.7325905292479109,
+          "one_sided_95pct_upper_binomial": 0.770872206155564
+        }
+      },
+      "ar_apt_human": {
+        "baseline": {
+          "eligible": 400,
+          "signals": 130,
+          "inclusive_rate": 0.325,
+          "one_sided_95pct_upper_binomial": 0.3656518268725954
+        },
+        "candidate": {
+          "eligible": 400,
+          "signals": 59,
+          "inclusive_rate": 0.1475,
+          "one_sided_95pct_upper_binomial": 0.179855214953343
+        }
+      },
+      "ar_apt_assisted": {
+        "baseline": {
+          "eligible": 392,
+          "signals": 177,
+          "inclusive_rate": 0.45153061224489793,
+          "one_sided_95pct_upper_binomial": 0.49431896532516034
+        },
+        "candidate": {
+          "eligible": 392,
+          "signals": 77,
+          "inclusive_rate": 0.19642857142857142,
+          "one_sided_95pct_upper_binomial": 0.2323811026805878
+        }
+      },
+      "academic_human": {
+        "baseline": {
+          "eligible": 701,
+          "signals": 189,
+          "inclusive_rate": 0.26961483594864477,
+          "one_sided_95pct_upper_binomial": 0.2985877271494316
+        },
+        "candidate": {
+          "eligible": 701,
+          "signals": 33,
+          "inclusive_rate": 0.047075606276747506,
+          "one_sided_95pct_upper_binomial": 0.06244345333817406
+        }
+      },
+      "academic_assisted": {
+        "baseline": {
+          "eligible": 703,
+          "signals": 619,
+          "inclusive_rate": 0.8805120910384068,
+          "one_sided_95pct_upper_binomial": 0.9001315689996473
+        },
+        "candidate": {
+          "eligible": 703,
+          "signals": 383,
+          "inclusive_rate": 0.5448079658605974,
+          "one_sided_95pct_upper_binomial": 0.5762302235505488
+        }
+      },
+      "oqn_human": {
+        "baseline": {
+          "eligible": 799,
+          "signals": 449,
+          "inclusive_rate": 0.5619524405506884,
+          "one_sided_95pct_upper_binomial": 0.5912445733522167
+        },
+        "candidate": {
+          "eligible": 799,
+          "signals": 239,
+          "inclusive_rate": 0.29912390488110135,
+          "one_sided_95pct_upper_binomial": 0.3269168741249634
+        }
+      },
+      "oqn_ai": {
+        "baseline": {
+          "eligible": 812,
+          "signals": 759,
+          "inclusive_rate": 0.9347290640394089,
+          "one_sided_95pct_upper_binomial": 0.9484088542956828
+        },
+        "candidate": {
+          "eligible": 812,
+          "signals": 611,
+          "inclusive_rate": 0.7524630541871922,
+          "one_sided_95pct_upper_binomial": 0.777282325937555
+        }
+      }
+    }
+  },
+  "strict_operating_point": {
+    "version": "AIP-HL-4-research",
+    "active_model_changed": false,
+    "strict": [
+      {
+        "cohort": "ANAD 2021 news",
+        "language": "ar",
+        "origin": "human",
+        "total": 360,
+        "eligible": 358,
+        "excluded_overlap": 2,
+        "abstained": 0,
+        "inclusive_signals": 0,
+        "numerically_visible": 0,
+        "point_rate": 0.0,
+        "upper_one_sided_95": 0.008333053260890996,
+        "lower_one_sided_95": 0
+      },
+      {
+        "cohort": "AlpaGasus Arabic machine-translated instruction and output",
+        "language": "ar",
+        "origin": "machine",
+        "total": 222,
+        "eligible": 100,
+        "excluded_overlap": 0,
+        "abstained": 122,
+        "inclusive_signals": 0,
+        "numerically_visible": 0,
+        "point_rate": 0.0,
+        "upper_one_sided_95": 0.029513049607039925,
+        "lower_one_sided_95": 0
+      },
+      {
+        "cohort": "UKP persuasive essays",
+        "language": "en",
+        "origin": "human",
+        "total": 402,
+        "eligible": 399,
+        "excluded_overlap": 3,
+        "abstained": 0,
+        "inclusive_signals": 0,
+        "numerically_visible": 0,
+        "point_rate": 0.0,
+        "upper_one_sided_95": 0.007479985554768396,
+        "lower_one_sided_95": 0
+      },
+      {
+        "cohort": "ArguGPT generated test essays",
+        "language": "en",
+        "origin": "machine",
+        "total": 350,
+        "eligible": 350,
+        "excluded_overlap": 0,
+        "abstained": 0,
+        "inclusive_signals": 13,
+        "numerically_visible": 1,
+        "point_rate": 0.037142857142857144,
+        "upper_one_sided_95": 0.05840530965337634,
+        "lower_one_sided_95": 0.022107442297782862
+      }
+    ],
+    "same_data_AIP_HL_3": [
+      {
+        "cohort": "ANAD 2021 news",
+        "language": "ar",
+        "origin": "human",
+        "total": 360,
+        "eligible": 358,
+        "excluded_overlap": 2,
+        "abstained": 0,
+        "inclusive_signals": 72,
+        "numerically_visible": 35,
+        "point_rate": 0.2011173184357542,
+        "upper_one_sided_95": 0.23915716130880152,
+        "lower_one_sided_95": 0.16681265889856756
+      },
+      {
+        "cohort": "AlpaGasus Arabic machine-translated instruction and output",
+        "language": "ar",
+        "origin": "machine",
+        "total": 222,
+        "eligible": 100,
+        "excluded_overlap": 0,
+        "abstained": 122,
+        "inclusive_signals": 6,
+        "numerically_visible": 6,
+        "point_rate": 0.06,
+        "upper_one_sided_95": 0.1149852556079209,
+        "lower_one_sided_95": 0.026449712975947563
+      },
+      {
+        "cohort": "UKP persuasive essays",
+        "language": "en",
+        "origin": "human",
+        "total": 402,
+        "eligible": 399,
+        "excluded_overlap": 3,
+        "abstained": 0,
+        "inclusive_signals": 1,
+        "numerically_visible": 0,
+        "point_rate": 0.002506265664160401,
+        "upper_one_sided_95": 0.011833750453181508,
+        "lower_one_sided_95": 0.00012854635973378017
+      },
+      {
+        "cohort": "ArguGPT generated test essays",
+        "language": "en",
+        "origin": "machine",
+        "total": 350,
+        "eligible": 350,
+        "excluded_overlap": 0,
+        "abstained": 0,
+        "inclusive_signals": 22,
+        "numerically_visible": 7,
+        "point_rate": 0.06285714285714286,
+        "upper_one_sided_95": 0.08854225986086031,
+        "lower_one_sided_95": 0.0429333587410613
+      }
+    ],
+    "both_human_cohorts_below_one_percent_observed": true,
+    "both_fpr_upper_bounds_below_one_percent": true,
+    "both_machine_cohorts_recall_at_least_half": false,
+    "production_release": false,
+    "scope": "New sources after locked calibration. Domestic news and machine-translated instruction pairs are not representative of Arabic student essays. The English human and machine essays come from different collections. Arabic repeated publishers and English essay sources limit independence."
+  },
+  "operating_points": [
+    {
+      "id": "AIP-HL-1",
+      "state": "archived baseline",
+      "record": "historical-baseline-card.json"
+    },
+    {
+      "id": "AIP-HL-2",
+      "state": "English research challenger, failed release",
+      "record": "challenger-decision.json"
+    },
+    {
+      "id": "AIP-HL-3",
+      "state": "selected for experimental assessment, failed release",
+      "record": "arabic-challenger-decision.json"
+    },
+    {
+      "id": "AIP-HL-4-research",
+      "state": "rejected: insufficient sensitivity",
+      "record": "strict-holdout-summary.json"
+    }
+  ]
+}

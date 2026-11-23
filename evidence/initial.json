@@ -1,0 +1,621 @@
+{
+  "title": "Development measurements",
+  "titleAr": "قياسات التطوير",
+  "checks": [
+    {
+      "name": "Bilingual AI false positives below 1%",
+      "ar": "معدل إنذارات كاشف الكتابة أقل من ١٪",
+      "status": "failed",
+      "detail": "AIP-HL-3 returned visible alerts on 3/393 Liang English human texts, 227/799 Arabic course-project texts and 32/701 Arabic academic abstracts.",
+      "detailsAr": "سجّل النموذج المنشور إشارات ظاهرة على ٣ من ٣٩٣ نصًا إنجليزيًا، و٢٢٧ من ٧٩٩ نصًا عربيًا في عينة مشاريع المقرر، و٣٢ من ٧٠١ ملخصًا أكاديميًا عربيًا.",
+      "evidence": [
+        {
+          "group": "English / Liang human cohorts",
+          "language": "en",
+          "alerts": 3,
+          "eligible": 393,
+          "numeric_alerts": 3
+        },
+        {
+          "group": "English / TOEFL (non-native)",
+          "language": "en",
+          "alerts": 0,
+          "eligible": 90,
+          "numeric_alerts": 0
+        },
+        {
+          "group": "English / held-out MAGE and RAID",
+          "language": "en",
+          "alerts": 9,
+          "eligible": 555,
+          "numeric_alerts": 5
+        },
+        {
+          "group": "English / UKP persuasive essays",
+          "language": "en",
+          "alerts": 1,
+          "eligible": 399,
+          "numeric_alerts": 0
+        },
+        {
+          "group": "Arabic / course-project human collection",
+          "language": "ar",
+          "alerts": 239,
+          "eligible": 799,
+          "numeric_alerts": 227
+        },
+        {
+          "group": "Arabic / Ar-APT original press articles",
+          "language": "ar",
+          "alerts": 59,
+          "eligible": 400,
+          "numeric_alerts": 56
+        },
+        {
+          "group": "Arabic / KFUPM human academic abstracts",
+          "language": "ar",
+          "alerts": 33,
+          "eligible": 701,
+          "numeric_alerts": 32
+        },
+        {
+          "group": "Arabic / ANAD 2021 news",
+          "language": "ar",
+          "alerts": 72,
+          "eligible": 358,
+          "numeric_alerts": 35
+        }
+      ]
+    },
+    {
+      "name": "Source matching and paraphrase retrieval",
+      "ar": "مطابقة المصادر وإعادة الصياغة",
+      "status": "partial",
+      "detail": "The published PDF matched its indexed paper. Held-out high-similarity pairs retrieved: 21/41 English and 6/41 Arabic.",
+      "detailsAr": "تعرّف المحرك على المقال المنشور. استرجع ٢١ من ٤١ زوجًا إنجليزيًا عالي التشابه و٦ من ٤١ زوجًا عربيًا.",
+      "evidence": {
+        "fixture": {
+          "file": "pyarabic-published.pdf",
+          "sha256": "b196e33fcebb974fca4ec5e9563e0c1ca54ceb026426c98a9f3ead36d182e9b1",
+          "parser": "pdftotext -raw",
+          "englishPaperMatched": true,
+          "matchingIntervals": 22,
+          "eligibleWords": 1097,
+          "coverageAllSources": 76.3
+        },
+        "benchmark": "SemEval 2017 Task 1, held-out Arabic (track 1) and English (track 5) sentence pairs. Positive: gold >=4/5; negative: gold <=1/5. Match is an interval attributed to the supplied partner. Includes all lengths. No thresholds fitted on these tracks.",
+        "tracks": [
+          {
+            "track": "track1.ar-ar",
+            "inputSha256": "a4f24daa03def87b52769b3a5ea9fe5f8b66d2f06db2a6565395cb1575443e3e",
+            "goldSha256": "4a7ad1eb5219605ab09cd743727c4059acdf55df9ae7351b5df079cc47ae983e",
+            "total": 250,
+            "high": {
+              "matched": 6,
+              "total": 41
+            },
+            "low": {
+              "matched": 0,
+              "total": 72
+            },
+            "intermediate": 137,
+            "missingLabel": 0,
+            "recallHigh": 0.14634146341463414,
+            "lowPairFlagRate": 0
+          },
+          {
+            "track": "track5.en-en",
+            "inputSha256": "8d493844c1010eb6b5d373e289b8d6ddc003e626bf8495976cc40c0a5f47414c",
+            "goldSha256": "a767d322cc3e78ff43f3c541a4fc0b9e0e5681f27c20de7eb9095fbb9072cf04",
+            "total": 250,
+            "high": {
+              "matched": 21,
+              "total": 41
+            },
+            "low": {
+              "matched": 0,
+              "total": 61
+            },
+            "intermediate": 148,
+            "missingLabel": 0,
+            "recallHigh": 0.5121951219512195,
+            "lowPairFlagRate": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "Single 3,000-word uploads in the local edge runtime",
+      "ar": "رفع مستندات ٣٠٠٠ كلمة في محرك محلي",
+      "status": "passed",
+      "detail": "docx 109 ms, pdf 179 ms",
+      "detailsAr": "قياسات فردية محلية لملفي Word وPDF. يعرض التفصيل مدة كل ملف.",
+      "evidence": [
+        {
+          "kind": "docx",
+          "sha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+          "startMs": 0.15391999999997097,
+          "http": 201,
+          "ms": 108.94175299999995,
+          "readback": 200,
+          "id": "90ba4e29-5fbf-4e92-aa8c-b95102a319ce",
+          "ok": true
+        },
+        {
+          "kind": "pdf",
+          "sha256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+          "startMs": 117.51943299999994,
+          "http": 201,
+          "ms": 179.00345700000003,
+          "readback": 200,
+          "id": "3062ab66-3fd4-4b8f-8594-cc360946f773",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "name": "50 concurrent uploads in the local edge runtime",
+      "ar": "خمسون عملية رفع متزامنة محليًا",
+      "status": "passed",
+      "detail": "50/50 distinct reports; p95 1565 ms",
+      "detailsAr": "جلسة مصادقة واحدة، ٢٥ ملف Word و٢٥ ملف PDF، مع استرجاع التقارير من قاعدة البيانات.",
+      "evidence": {
+        "accounts": 1,
+        "distinct": 50,
+        "p95": 1564.5136200000002,
+        "max": 1566.103698
+      }
+    },
+    {
+      "name": "File and media inspection",
+      "ar": "فحص المستندات والوسائط",
+      "status": "passed",
+      "detail": "Local workerd inspected real binary files in five cases. The C2PA test checks asset binding and signature. Signer trust is not evaluated.",
+      "detailsAr": "فُحصت خمس حالات بملفات فعلية. شمل فحص C2PA التوقيع وارتباطه بالملف. لم يُختبر اعتماد الموقّع لدى قائمة ثقة.",
+      "evidence": {
+        "runtime": "local workerd / Miniflare",
+        "at": "2026-11-23T19:02:52.126Z",
+        "cases": [
+          {
+            "file": "bilingual-forensics.docx",
+            "status": 200,
+            "passed": true,
+            "parseHttpMs": 904
+          },
+          {
+            "file": "bilingual-text.pdf",
+            "status": 200,
+            "passed": true,
+            "parseHttpMs": 230
+          },
+          {
+            "file": "official-CA.jpg",
+            "status": 200,
+            "passed": true,
+            "parseHttpMs": 8
+          },
+          {
+            "file": "geometry.png",
+            "status": 200,
+            "passed": true,
+            "parseHttpMs": 4
+          },
+          {
+            "file": "pyarabic-published.pdf",
+            "status": 200,
+            "passed": true,
+            "parseHttpMs": 105
+          }
+        ]
+      }
+    },
+    {
+      "name": "Reference registries",
+      "ar": "سجلات المراجع",
+      "status": "unverified",
+      "detail": "Local network did not verify DOI or ISBN registry access. An offline response is not a fabricated reference.",
+      "detailsAr": "تعذّر التحقق من اتصال السجلات في الاختبار المحلي. تعرض المنصة نتيجة تعذّر الاتصال عند غياب الرد."
+    },
+    {
+      "name": "Clarity editing and revision playback",
+      "ar": "تعديلات المحرر وإعادة تشغيل المراجعات",
+      "status": "passed",
+      "detail": "The local editor, persistence, privacy and conflict checks passed.",
+      "detailsAr": "اجتاز المحرر اختبارات محلية للتعديلات والحفظ وتعارض النسخ وحجب أجزاء بيانات الهوية في المراجعات السابقة.",
+      "evidence": {
+        "executed_at": "2026-11-23T19:08:18.096Z",
+        "environment": "Node 24, real draft API functions and SQLite; independently exercised shared playback helpers",
+        "passed": 25,
+        "checks": [
+          "typing and interval classification",
+          "focused short gaps count; initial and idle gaps excluded",
+          "opening a new workspace",
+          "JSON save status",
+          "active time persisted",
+          "one large paste and five deltas persisted",
+          "scrubbing reconstructs English and Arabic",
+          "PII removed in preview and stored history",
+          "response-loss retry recognizes committed edits",
+          "divergence in another tab is preserved",
+          "stale client revision rejected",
+          "checkpoint playback across boundaries",
+          "count-bounded transport",
+          "UTF-8 byte cap applied to actual serialized Arabic request",
+          "cross-save PII match instructs browser to fetch rewritten history",
+          "all older email fragments scrubbed from persisted SQLite payload",
+          "unrelated surrounding text and revision positions survive retroactive masking",
+          "response-loss reconciliation works after canonical history rewrite",
+          "deleting below recognition threshold keeps known private cells masked",
+          "same-batch Arabic name and earlier label fragments scrubbed",
+          "legacy history converted and persisted with one optimistic revision increment",
+          "legacy partial values absent from every reconstructed historical frame",
+          "subsequent reads of legacy record do not rewrite again",
+          "large redacted history remains under storage limit with compact persistence",
+          "packed historical masks round-trip with unchanged text, timing and revision count"
+        ],
+        "browser_testing": "Tracked separately in deployment acceptance"
+      }
+    },
+    {
+      "name": "PDF audit export",
+      "ar": "تصدير تقرير PDF",
+      "status": "passed",
+      "detail": "Two bilingual audit fixtures were parsed, rendered and checked for pagination.",
+      "detailsAr": "خضع تقريران بالعربية والإنجليزية لفحص القراءة والعرض وترقيم الصفحات.",
+      "evidence": {
+        "environment": "Node.js + local Poppler, MuPDF and pypdf; source-inspection QA files",
+        "runAt": "2026-11-23T18:57:29.739Z",
+        "sourceSHA256": "e180b3d65bf650dffffd71dd21b6180767b469a18dd87e1d8552be69bb9ecdf0",
+        "status": "passed",
+        "runs": [
+          {
+            "locale": "en",
+            "bytes": 92176,
+            "ms": 49.6,
+            "pages": 4,
+            "sha256": "156e7fc8df7162133cc31691ad92c9657fdc7695049caaeb707678e0822d8503",
+            "checks": [
+              "strict PDF parse",
+              "A4 page bounds",
+              "render all pages",
+              "embedded TrueType and Unicode CMap",
+              "logical Arabic and English fields",
+              "final field and all page numbers"
+            ]
+          },
+          {
+            "locale": "ar",
+            "bytes": 92988,
+            "ms": 19.3,
+            "pages": 4,
+            "sha256": "eac041b222f09d058b0610e83092159808807109c70df23850e1f37476739a45",
+            "checks": [
+              "strict PDF parse",
+              "A4 page bounds",
+              "render all pages",
+              "embedded TrueType and Unicode CMap",
+              "logical Arabic and English fields",
+              "final field and all page numbers"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "LTI 1.3 resource launch",
+      "ar": "الربط بنظام التعلم LTI 1.3",
+      "status": "partial",
+      "detail": "16 local protocol checks passed. Institutional LMS launch requires registration.",
+      "detailsAr": "اجتازت الوحدة ١٦ فحصًا محليًا. يتطلب التحقق المؤسسي تسجيل المنصة في نظام تعلم الجامعة."
+    },
+    {
+      "name": "Blind committee files and mobile end-to-end acceptance",
+      "ar": "ملفات اللجنة العمياء والاختبار الكامل على الهاتف",
+      "status": "unverified",
+      "detail": "No blind committee outcome or physical-device acceptance has been recorded.",
+      "detailsAr": "لم تتوافر نتيجة من اختبار اللجنة الأعمى أو اختبار قبول على هاتف فعلي."
+    },
+    {
+      "name": "Mobile-width Arabic and desktop-width English browser workflows",
+      "ar": "مسارات المتصفح العربية بعرض الهاتف والإنجليزية بعرض الحاسوب",
+      "status": "passed",
+      "detail": "Actual Chrome rendered a 390px and a 1240px viewport on the local test deployment. Eight upload, export, editor, search and health workflows passed.",
+      "detailsAr": "اجتاز متصفح Chrome ثمانية اختبارات على نسخة محلية بعرض ٣٩٠ و١٢٤٠ بكسل، منها الرفع والتصدير والمحرر والبحث.",
+      "evidence": {
+        "at": "2026-11-23T19:16:20.510Z",
+        "environment": "Chrome via managed local preview; actual SQLite workspace and ephemeral test principal",
+        "checks": [
+          {
+            "width": 390,
+            "lang": "ar",
+            "name": "Upload a real 3,000-word DOCX in rendered controls",
+            "status": "passed",
+            "sha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "overflow": 0
+          },
+          {
+            "width": 390,
+            "lang": "ar",
+            "name": "Report tabs, exclusions, JSON and PDF controls",
+            "status": "passed",
+            "pdfBytes": 213117
+          },
+          {
+            "width": 390,
+            "lang": "ar",
+            "name": "Clarity entry, paste, save, playback and submission",
+            "status": "passed",
+            "lastRevision": 2
+          },
+          {
+            "width": 390,
+            "lang": "ar",
+            "name": "Submissions, model card and health",
+            "status": "passed",
+            "overflow": 0
+          },
+          {
+            "width": 1240,
+            "lang": "en",
+            "name": "Upload a real 3,000-word DOCX in rendered controls",
+            "status": "passed",
+            "sha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "overflow": 0
+          },
+          {
+            "width": 1240,
+            "lang": "en",
+            "name": "Report tabs, exclusions, JSON and PDF controls",
+            "status": "passed",
+            "pdfBytes": 211447
+          },
+          {
+            "width": 1240,
+            "lang": "en",
+            "name": "Clarity entry, paste, save, playback and submission",
+            "status": "passed",
+            "lastRevision": 4
+          },
+          {
+            "width": 1240,
+            "lang": "en",
+            "name": "Submissions, model card and health",
+            "status": "passed",
+            "overflow": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "Integrated API and role checks",
+      "ar": "اختبارات الوظائف والصلاحيات المحلية",
+      "status": "passed",
+      "detail": "Local authenticated API tests; see details.",
+      "detailsAr": "تتضمن التفاصيل نتائج المسارات المحمية وفحص الملفات.",
+      "evidence": [
+        {
+          "name": "Health, distinct roles and protected routes",
+          "status": "passed",
+          "detail": {
+            "roles": [
+              "instructor",
+              "admin",
+              "student",
+              "student"
+            ],
+            "unauthenticated": 401,
+            "badCredentials": 401,
+            "secureHttpOnlyCookies": true
+          },
+          "ms": 20.385
+        },
+        {
+          "name": "Upload and persisted readback: docx",
+          "status": "passed",
+          "detail": {
+            "format": "docx",
+            "inputSha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "words": 3000,
+            "reportId": "b561a5fe-bb5b-4a5d-94fa-16b96399e384",
+            "uploadMs": 112.885,
+            "persistedEqual": true
+          },
+          "ms": 116.134
+        },
+        {
+          "name": "Upload and persisted readback: pdf",
+          "status": "passed",
+          "detail": {
+            "format": "pdf",
+            "inputSha256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "words": 3000,
+            "reportId": "15e57733-9ff3-4752-8405-026213a500b3",
+            "uploadMs": 191.422,
+            "persistedEqual": true
+          },
+          "ms": 193.772
+        },
+        {
+          "name": "Upload and persisted readback: png",
+          "status": "passed",
+          "detail": {
+            "format": "png",
+            "inputSha256": "e0e1a7502e3325b1776dc61168a36150f3ad22bc41b057002ae021dfc90912c1",
+            "words": 0,
+            "reportId": "edc1ea85-1728-40cf-98af-3111c06ff8f4",
+            "uploadMs": 1.43,
+            "persistedEqual": true
+          },
+          "ms": 2.274
+        },
+        {
+          "name": "Upload and persisted readback: jpeg",
+          "status": "passed",
+          "detail": {
+            "format": "jpeg",
+            "inputSha256": "cdba474f2f8069b266415466370c9572c588b702e0009d4929f72486cc292ddb",
+            "words": 0,
+            "reportId": "a79c982e-6475-48e6-b241-ac7974399d0c",
+            "uploadMs": 1.018,
+            "persistedEqual": true
+          },
+          "ms": 1.804
+        },
+        {
+          "name": "Media provenance: embedded C2PA",
+          "status": "passed",
+          "detail": {
+            "inputSha256": "e71bff58fc57640803e6e65f7534e2fb0c2f99018c85276cc14b30f04427cc76",
+            "status": "manifest_read",
+            "trust": "not_evaluated",
+            "reportId": "0d4ac70b-a332-4265-a54f-05b39086b488"
+          },
+          "ms": 6.3
+        },
+        {
+          "name": "Arabic DOCX forensics and privacy",
+          "status": "passed",
+          "detail": {
+            "inputSha256": "6d8f40db085a82126c3117aef677fc5f5cfd2276cc4b18fe52c8588be12a7f6c",
+            "words": 78,
+            "hidden": 1,
+            "white": 1,
+            "zeroWidth": 1,
+            "uniqueParagraphIds": 7,
+            "maskedInDatabase": true
+          },
+          "ms": 9.301
+        },
+        {
+          "name": "JSON audit and bilingual downloadable PDF exports",
+          "status": "passed",
+          "detail": {
+            "jsonExact": true,
+            "pdf": [
+              {
+                "language": "en",
+                "bytes": 71225,
+                "pages": 4,
+                "sha256": "4dc7707508bd4d2204eb86e56aabe02b89f578e4276864ed0f8e0ef1e99f2cd0",
+                "reportIdFound": true
+              },
+              {
+                "language": "ar",
+                "bytes": 72803,
+                "pages": 4,
+                "sha256": "3b1bc8a13ed8557b559ca42814294581477b15f5b6fe14ed854a1b881bb32ca5",
+                "reportIdFound": true
+              }
+            ]
+          },
+          "ms": 380.392
+        },
+        {
+          "name": "TXT indexing and duplicate in same cohort",
+          "status": "passed",
+          "detail": {
+            "first": "78900184-4e0a-45a3-81fd-cb931347c1aa",
+            "second": "2ff9246e-6880-4467-9ce1-836b3f9535ee",
+            "coverage": 100,
+            "method": "verbatim"
+          },
+          "ms": 3.928
+        },
+        {
+          "name": "Published paper and quote exclusion switch",
+          "status": "passed",
+          "detail": {
+            "publicPaper": "https://doi.org/10.21105/joss.04886",
+            "excludedWords": 0,
+            "includedCoverage": 100
+          },
+          "ms": 30.443
+        },
+        {
+          "name": "Student, instructor and cross-course isolation",
+          "status": "passed",
+          "detail": {
+            "instructorOwnCourse": 200,
+            "studentPeer": 404,
+            "studentOtherCourse": 404,
+            "adminOtherCourse": 404,
+            "indexSegregated": true
+          },
+          "ms": 5.881
+        },
+        {
+          "name": "Membership administration and evidence permissions",
+          "status": "passed",
+          "detail": {
+            "studentAndInstructorCreateDenied": 403,
+            "adminCreated": 201,
+            "duplicate": 409
+          },
+          "ms": 50.644
+        },
+        {
+          "name": "Clarity edits, active time, bulk paste, replay and submission",
+          "status": "passed",
+          "detail": {
+            "revision": 1,
+            "activeMs": 8000,
+            "replayedSnapshots": 2,
+            "bulkPastes": 1,
+            "staleSave": 409,
+            "reportId": "015a7f22-1935-4dec-b98a-dca599c442d3"
+          },
+          "ms": 4.136
+        },
+        {
+          "name": "Invalid document and missing session",
+          "status": "passed",
+          "detail": {
+            "formatMismatch": 422,
+            "anonymous": 401,
+            "empty": 422
+          },
+          "ms": 1.396
+        },
+        {
+          "name": "Built Worker local 50-upload and report-readback batch",
+          "status": "passed",
+          "detail": {
+            "requested": 50,
+            "uniquePersisted": 50,
+            "files": {
+              "docx": 25,
+              "pdf": 25
+            },
+            "accounts": 1,
+            "localSingleProcess": true,
+            "wallMs": 1634.83,
+            "p50Ms": 623.178,
+            "p95Ms": 1559.577,
+            "maxMs": 1607.136,
+            "under15s": 50
+          },
+          "ms": 1634.952
+        },
+        {
+          "name": "Expired test rows and scheduled handler",
+          "status": "passed",
+          "detail": {
+            "expiredRead": 404,
+            "removedDocuments": 1,
+            "removedDrafts": 1,
+            "handler": "manually invoked bundled scheduled hook; production schedule not exercised"
+          },
+          "ms": 1.243
+        },
+        {
+          "name": "Logout invalidates saved session",
+          "status": "passed",
+          "detail": {
+            "afterLogout": 401
+          },
+          "ms": 0.789
+        }
+      ]
+    }
+  ]
+}

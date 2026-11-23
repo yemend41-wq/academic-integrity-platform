@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "origin": "https://mizan-integrity-studio.yemend41.chatgpt.site",
+  "started_utc": "2026-11-23T19:18:15.539+00:00",
+  "requested_mode": "smoke",
+  "header_index": "no",
+  "batches": [
+    {
+      "name": "single_docx",
+      "observations": [
+        {
+          "sequence": 1,
+          "file": "melville-3000.docx",
+          "sha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+          "start_offset_ms": 0.0,
+          "started_utc": "2026-11-23T19:18:22.123+00:00",
+          "verified": true,
+          "analyze_ms": 893.78,
+          "analyze_http": 201,
+          "response_bytes": 27227,
+          "response_sha256": "09d0e917a0425d7c12c65dadcf043173885b2bec353601fd3ca8b744fb0fa521",
+          "words": 3000,
+          "analyze_verified": true,
+          "report_id": "31b08fb6-8e8c-40e8-96e1-853a0d5db803",
+          "readback_http": 200,
+          "readback_sha256": "09d0e917a0425d7c12c65dadcf043173885b2bec353601fd3ca8b744fb0fa521",
+          "through_readback_ms": 1447.37,
+          "finished_utc": "2026-11-23T19:18:23.570+00:00"
+        }
+      ],
+      "all_uploads_under_15s": true
+    },
+    {
+      "name": "single_pdf",
+      "observations": [
+        {
+          "sequence": 1,
+          "file": "melville-3000.pdf",
+          "sha256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+          "start_offset_ms": 0.0,
+          "started_utc": "2026-11-23T19:18:23.570+00:00",
+          "verified": true,
+          "analyze_ms": 1218.52,
+          "analyze_http": 201,
+          "response_bytes": 34288,
+          "response_sha256": "b1ef2b951038ee8ab96de047d4a6aa54d58b064b93761b147201bcab6cde8bec",
+          "words": 3000,
+          "analyze_verified": true,
+          "report_id": "ef8586ed-6fc7-4598-a5b0-8cfe2e4ab72e",
+          "readback_http": 200,
+          "readback_sha256": "b1ef2b951038ee8ab96de047d4a6aa54d58b064b93761b147201bcab6cde8bec",
+          "through_readback_ms": 1743.76,
+          "finished_utc": "2026-11-23T19:18:25.314+00:00"
+        }
+      ],
+      "all_uploads_under_15s": true
+    }
+  ],
+  "scope": "One authenticated committee account; concurrent HTTP requests, direct API, body bytes plus durable readback; no browser timing, distinct-user load or blind accuracy claim.",
+  "login_http": 200,
+  "finished_utc": "2026-11-23T19:18:25.314+00:00"
+}

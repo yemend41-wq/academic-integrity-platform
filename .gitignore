@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env*
+!.env.example
+.wrangler/
+*.sqlite*
+__pycache__/
+.DS_Store
+src/web-assets.mjs
+*.local.pem

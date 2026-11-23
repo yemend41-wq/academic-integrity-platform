@@ -1,0 +1,105 @@
+{
+  "at": "2026-11-23T19:19:18.386761+00:00",
+  "id": "https-isbn-editions",
+  "title": "Additional ISBN edition probes",
+  "titleAr": "اختبارات إضافية لطبعات محددة",
+  "checks": [
+    {
+      "name": "9780306406157",
+      "ar": "9780306406157",
+      "status": "passed",
+      "detail": "Error-correction coding for digital communications",
+      "evidence": {
+        "kind": "isbn",
+        "id": "9780306406157",
+        "status": "verified",
+        "registry": "Open Library",
+        "matchedISBN": "9780306406157",
+        "title": "Error-correction coding for digital communications",
+        "attempts": [
+          {
+            "registry": "Open Library",
+            "outcome": "response",
+            "httpStatus": 200
+          }
+        ],
+        "checkedAt": 1795461557237
+      }
+    },
+    {
+      "name": "9781489921741",
+      "ar": "9781489921741",
+      "status": "passed",
+      "detail": "Error-Correction Coding for Digital Communications",
+      "evidence": {
+        "kind": "isbn",
+        "id": "9781489921741",
+        "status": "verified",
+        "registry": "Crossref",
+        "matchedISBN": "9781489921741",
+        "title": "Error-Correction Coding for Digital Communications",
+        "attempts": [
+          {
+            "registry": "Open Library",
+            "outcome": "timeout"
+          },
+          {
+            "registry": "Crossref",
+            "outcome": "response",
+            "httpStatus": 200
+          },
+          {
+            "registry": "Google Books",
+            "outcome": "http_error",
+            "httpStatus": 429
+          }
+        ],
+        "checkedAt": 1795461558171
+      }
+    },
+    {
+      "name": "9781489921765",
+      "ar": "9781489921765",
+      "status": "passed",
+      "detail": "Error-Correction Coding for Digital Communications",
+      "evidence": {
+        "kind": "isbn",
+        "id": "9781489921765",
+        "status": "verified",
+        "registry": "Open Library",
+        "matchedISBN": "9781489921765",
+        "title": "Error-Correction Coding for Digital Communications",
+        "attempts": [
+          {
+            "registry": "Open Library",
+            "outcome": "response",
+            "httpStatus": 200
+          }
+        ],
+        "checkedAt": 1795461557211
+      }
+    },
+    {
+      "name": "0306406152",
+      "ar": "0306406152",
+      "status": "passed",
+      "detail": "Error-correction coding for digital communications",
+      "evidence": {
+        "kind": "isbn",
+        "id": "0306406152",
+        "status": "verified",
+        "registry": "Open Library",
+        "matchedISBN": "9780306406157",
+        "title": "Error-correction coding for digital communications",
+        "attempts": [
+          {
+            "registry": "Open Library",
+            "outcome": "response",
+            "httpStatus": 200
+          }
+        ],
+        "checkedAt": 1795461557141
+      }
+    }
+  ]
+}

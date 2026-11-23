@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-23T19:16:01.779Z",
+  "environment": "Chrome via managed local preview; actual SQLite workspace and ephemeral test principal",
+  "checks": [
+    {
+      "width": 390,
+      "lang": "ar",
+      "name": "Upload a real 3,000-word DOCX in rendered controls",
+      "status": "passed",
+      "sha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+      "overflow": 0
+    },
+    {
+      "width": 390,
+      "lang": "ar",
+      "name": "Report tabs, exclusions, JSON and PDF controls",
+      "status": "passed",
+      "pdfBytes": 72479
+    },
+    {
+      "status": "failed",
+      "detail": "empty first frame"
+    }
+  ]
+}

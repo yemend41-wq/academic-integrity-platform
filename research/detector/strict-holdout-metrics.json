@@ -1,0 +1,246 @@
+{
+  "strict": {
+    "ANAD 2021 news": {
+      "lang": "ar",
+      "label": 0,
+      "total": 360,
+      "overlap": 2,
+      "abstained": 0,
+      "eligible": 358,
+      "any": 0,
+      "visible": 0,
+      "subsets": {
+        "aawsat.com": {
+          "eligible": 118,
+          "any": 0
+        },
+        "alwatan.com.sa": {
+          "eligible": 120,
+          "any": 0
+        },
+        "aitnews.com": {
+          "eligible": 120,
+          "any": 0
+        }
+      }
+    },
+    "AlpaGasus Arabic machine-translated instruction and output": {
+      "lang": "ar",
+      "label": 1,
+      "total": 222,
+      "overlap": 0,
+      "abstained": 122,
+      "eligible": 100,
+      "any": 0,
+      "visible": 0,
+      "subsets": {
+        "alpaca-recipe.txt": {
+          "eligible": 98,
+          "any": 0
+        },
+        "alpaca-trans.txt": {
+          "eligible": 2,
+          "any": 0
+        }
+      }
+    },
+    "UKP persuasive essays": {
+      "lang": "en",
+      "label": 0,
+      "total": 402,
+      "overlap": 3,
+      "abstained": 0,
+      "eligible": 399,
+      "any": 0,
+      "visible": 0,
+      "subsets": {
+        "Translators": {
+          "eligible": 399,
+          "any": 0
+        }
+      }
+    },
+    "ArguGPT generated test essays": {
+      "lang": "en",
+      "label": 1,
+      "total": 350,
+      "overlap": 0,
+      "abstained": 0,
+      "eligible": 350,
+      "any": 13,
+      "visible": 1,
+      "subsets": {
+        "weccl/text-babbage-001": {
+          "eligible": 30,
+          "any": 0
+        },
+        "weccl/text-curie-001": {
+          "eligible": 30,
+          "any": 0
+        },
+        "weccl/text-davinci-003": {
+          "eligible": 30,
+          "any": 0
+        },
+        "weccl/gpt-3.5-turbo": {
+          "eligible": 31,
+          "any": 0
+        },
+        "weccl/gpt2-xl": {
+          "eligible": 29,
+          "any": 0
+        },
+        "toefl/text-babbage-001": {
+          "eligible": 30,
+          "any": 0
+        },
+        "toefl/text-curie-001": {
+          "eligible": 30,
+          "any": 2
+        },
+        "toefl/text-davinci-003": {
+          "eligible": 30,
+          "any": 4
+        },
+        "toefl/gpt-3.5-turbo": {
+          "eligible": 30,
+          "any": 0
+        },
+        "toefl/gpt2-xl": {
+          "eligible": 30,
+          "any": 0
+        },
+        "gre/gpt-3.5-turbo": {
+          "eligible": 25,
+          "any": 1
+        },
+        "gre/text-davinci-003": {
+          "eligible": 25,
+          "any": 6
+        }
+      }
+    }
+  },
+  "control": {
+    "ANAD 2021 news": {
+      "lang": "ar",
+      "label": 0,
+      "total": 360,
+      "overlap": 2,
+      "abstained": 0,
+      "eligible": 358,
+      "any": 72,
+      "visible": 35,
+      "subsets": {
+        "aawsat.com": {
+          "eligible": 118,
+          "any": 23
+        },
+        "alwatan.com.sa": {
+          "eligible": 120,
+          "any": 31
+        },
+        "aitnews.com": {
+          "eligible": 120,
+          "any": 18
+        }
+      }
+    },
+    "AlpaGasus Arabic machine-translated instruction and output": {
+      "lang": "ar",
+      "label": 1,
+      "total": 222,
+      "overlap": 0,
+      "abstained": 122,
+      "eligible": 100,
+      "any": 6,
+      "visible": 6,
+      "subsets": {
+        "alpaca-recipe.txt": {
+          "eligible": 98,
+          "any": 5
+        },
+        "alpaca-trans.txt": {
+          "eligible": 2,
+          "any": 1
+        }
+      }
+    },
+    "UKP persuasive essays": {
+      "lang": "en",
+      "label": 0,
+      "total": 402,
+      "overlap": 3,
+      "abstained": 0,
+      "eligible": 399,
+      "any": 1,
+      "visible": 0,
+      "subsets": {
+        "Translators": {
+          "eligible": 399,
+          "any": 1
+        }
+      }
+    },
+    "ArguGPT generated test essays": {
+      "lang": "en",
+      "label": 1,
+      "total": 350,
+      "overlap": 0,
+      "abstained": 0,
+      "eligible": 350,
+      "any": 22,
+      "visible": 7,
+      "subsets": {
+        "weccl/text-babbage-001": {
+          "eligible": 30,
+          "any": 0
+        },
+        "weccl/text-curie-001": {
+          "eligible": 30,
+          "any": 1
+        },
+        "weccl/text-davinci-003": {
+          "eligible": 30,
+          "any": 0
+        },
+        "weccl/gpt-3.5-turbo": {
+          "eligible": 31,
+          "any": 1
+        },
+        "weccl/gpt2-xl": {
+          "eligible": 29,
+          "any": 0
+        },
+        "toefl/text-babbage-001": {
+          "eligible": 30,
+          "any": 0
+        },
+        "toefl/text-curie-001": {
+          "eligible": 30,
+          "any": 5
+        },
+        "toefl/text-davinci-003": {
+          "eligible": 30,
+          "any": 5
+        },
+        "toefl/gpt-3.5-turbo": {
+          "eligible": 30,
+          "any": 1
+        },
+        "toefl/gpt2-xl": {
+          "eligible": 30,
+          "any": 0
+        },
+        "gre/gpt-3.5-turbo": {
+          "eligible": 25,
+          "any": 2
+        },
+        "gre/text-davinci-003": {
+          "eligible": 25,
+          "any": 7
+        }
+      }
+    }
+  }
+}

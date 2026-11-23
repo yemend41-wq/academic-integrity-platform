@@ -1,0 +1,186 @@
+{
+  "observedAt": "2026-11-23T19:01:58.016Z",
+  "runtime": "v24.22.3",
+  "environment": "Work Node process; restricted outbound network",
+  "observations": [
+    {
+      "file": "bilingual-forensics.docx",
+      "sha256": "f6050dd65c5a0985dd5c24f67c656612b4ebbe6192b6ebbd9bc9df046db42c2d",
+      "bytes": 37796,
+      "format": "DOCX",
+      "parseMs": 13.6,
+      "chars": 241,
+      "pages": null,
+      "ids": [
+        "10.1038/nature12373",
+        "10.99999/mizan-no-record-2026",
+        "9780306406157",
+        "9780306406158"
+      ],
+      "provenance": {
+        "status": "no_embedded_manifest_found",
+        "signature": "not_checked",
+        "assetBinding": "not_checked",
+        "trust": "not_evaluated",
+        "scope": "OOXML package; see embedded media separately"
+      }
+    },
+    {
+      "file": "bilingual-text.pdf",
+      "sha256": "a8aace26013c4d8b9ac75742dc25eb15bd5956dcb815030630d82d969a1fe885",
+      "bytes": 177256,
+      "format": "PDF",
+      "parseMs": 172.7,
+      "chars": 135,
+      "pages": 1,
+      "ids": [
+        "10.1038/nature12373"
+      ],
+      "provenance": {
+        "status": "no_document_level_manifest_found",
+        "signature": "not_checked",
+        "assetBinding": "not_checked",
+        "trust": "not_evaluated",
+        "scope": "catalog AF and named content credential attachments"
+      }
+    },
+    {
+      "file": "official-CA.jpg",
+      "sha256": "e71bff58fc57640803e6e65f7534e2fb0c2f99018c85276cc14b30f04427cc76",
+      "bytes": 166864,
+      "format": "JPEG",
+      "parseMs": 6.2,
+      "chars": 0,
+      "pages": null,
+      "ids": [],
+      "provenance": {
+        "status": "manifest_read",
+        "signature": "verified_with_embedded_leaf",
+        "assetBinding": "match",
+        "assertionHashes": "match",
+        "trust": "not_evaluated",
+        "manifestCount": 1,
+        "assertions": [
+          "c2pa.thumbnail.claim.jpeg",
+          "c2pa.thumbnail.ingredient.jpeg",
+          "c2pa.ingredient",
+          "stds.schema-org.CreativeWork",
+          "c2pa.actions",
+          "c2pa.hash.data"
+        ]
+      }
+    },
+    {
+      "file": "geometry.png",
+      "sha256": "e0e1a7502e3325b1776dc61168a36150f3ad22bc41b057002ae021dfc90912c1",
+      "bytes": 489,
+      "format": "PNG",
+      "parseMs": 0.2,
+      "chars": 0,
+      "pages": null,
+      "ids": [],
+      "provenance": {
+        "status": "no_embedded_manifest_found",
+        "signature": "not_checked",
+        "assetBinding": "not_checked",
+        "trust": "not_evaluated"
+      }
+    },
+    {
+      "file": "geometry.jpg",
+      "sha256": "cdba474f2f8069b266415466370c9572c588b702e0009d4929f72486cc292ddb",
+      "bytes": 1348,
+      "format": "JPEG",
+      "parseMs": 0.1,
+      "chars": 0,
+      "pages": null,
+      "ids": [],
+      "provenance": {
+        "status": "no_embedded_manifest_found",
+        "signature": "not_checked",
+        "assetBinding": "not_checked",
+        "trust": "not_evaluated"
+      }
+    },
+    {
+      "file": "pyarabic-published.pdf",
+      "sha256": "b196e33fcebb974fca4ec5e9563e0c1ca54ceb026426c98a9f3ead36d182e9b1",
+      "bytes": 215975,
+      "format": "PDF",
+      "parseMs": 106.8,
+      "chars": 19230,
+      "pages": 6,
+      "ids": [
+        "10.21105/joss.04886",
+        "10.18653/v1/n16-3003",
+        "10.5121/ijdkp.2016.6602",
+        "10.1109/icics52457.2021.9464602",
+        "10.1177/14604582211070998",
+        "10.1109/icics52457.2021.9464531",
+        "10.1117/12.2242187",
+        "10.1109/icics55353.2022.9811149",
+        "10.1109/fmec.2019.8795331",
+        "10.3390/app12094188",
+        "10.1109/icics52457.2021.9464605",
+        "10.1007/s13369-021-05383-3",
+        "10.18280/ria.340111",
+        "10.1109/icics52457.2021.9464614",
+        "10.1007/978-981-15-0947-6_76",
+        "10.3390/bdcc6020048",
+        "10.1109/icics52457.2021.9464566",
+        "10.14569/ijacsa.2020.0111045",
+        "10.1007/978-3-030-36778-7_22",
+        "10.1109/iciev.2019.8858561",
+        "10.48550/arxiv.1910.00421",
+        "10.1177/0165551519849516",
+        "10.1016/j.knosys.2022.108180",
+        "10.18653/v1/2021.eacl-main.204",
+        "10.14569/ijacsa.2022.0130751",
+        "10.1007/978-3-030-33582-3_1",
+        "10.1057/s41599-021-00798-7",
+        "9791095546344"
+      ],
+      "provenance": {
+        "status": "no_document_level_manifest_found",
+        "signature": "not_checked",
+        "assetBinding": "not_checked",
+        "trust": "not_evaluated",
+        "scope": "catalog AF and named content credential attachments"
+      }
+    }
+  ],
+  "refs": [
+    {
+      "kind": "doi",
+      "id": "10.21105/joss.04886",
+      "status": "registry_unavailable",
+      "registry": "Crossref / DOI Handle System",
+      "checkedAt": 1795460518013
+    },
+    {
+      "kind": "doi",
+      "id": "10.99999/mizan-no-record-2026",
+      "status": "registry_unavailable",
+      "registry": "Crossref / DOI Handle System",
+      "checkedAt": 1795460518016
+    },
+    {
+      "kind": "isbn",
+      "id": "9780306406157",
+      "status": "registry_unavailable",
+      "registry": "Open Library",
+      "checkedAt": 1795460515718
+    },
+    {
+      "kind": "isbn",
+      "id": "9780306406158",
+      "status": "invalid_checksum",
+      "registry": null
+    }
+  ],
+  "notes": [
+    "Parser timings exclude authentication, indexing and HTTP transport.",
+    "The external registry status recorded here is the runtime outcome.",
+    "C2PA trust list and certificate revocation are not evaluated."
+  ]
+}

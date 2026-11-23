@@ -1,0 +1,1415 @@
+{
+  "id": "zz-assessment-3",
+  "title": "Assessment build 3 · verified release record",
+  "titleAr": "إصدار التقييم الثالث · نتائج التحقق",
+  "testedAt": "2026-11-23T19:19:47.627958+00:00",
+  "model": "AIP-HL-3",
+  "releaseCommit": "408674ec2ca3cd2193704e8ba308daf4d5f27797",
+  "checks": [
+    {
+      "name": "Individual 3,000-word DOCX and PDF",
+      "ar": "تحليل ملف Word وملف PDF من ٣٠٠٠ كلمة",
+      "status": "passed",
+      "detail": "DOCX 0.89 s; PDF 1.22 s.",
+      "detailsAr": "استغرق Word نحو 0.89 ثانية، وPDF نحو 1.22 ثانية، مع استعادة النص الكامل في الملفين.",
+      "evidence": {
+        "version": 1,
+        "origin": "https://mizan-integrity-studio.yemend41.chatgpt.site",
+        "started_utc": "2026-11-23T19:18:15.539+00:00",
+        "requested_mode": "smoke",
+        "header_index": "no",
+        "batches": [
+          {
+            "name": "single_docx",
+            "observations": [
+              {
+                "sequence": 1,
+                "file": "melville-3000.docx",
+                "sha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+                "start_offset_ms": 0.0,
+                "started_utc": "2026-11-23T19:18:22.123+00:00",
+                "verified": true,
+                "analyze_ms": 893.78,
+                "analyze_http": 201,
+                "response_bytes": 27227,
+                "response_sha256": "09d0e917a0425d7c12c65dadcf043173885b2bec353601fd3ca8b744fb0fa521",
+                "words": 3000,
+                "analyze_verified": true,
+                "report_id": "31b08fb6-8e8c-40e8-96e1-853a0d5db803",
+                "readback_http": 200,
+                "readback_sha256": "09d0e917a0425d7c12c65dadcf043173885b2bec353601fd3ca8b744fb0fa521",
+                "through_readback_ms": 1447.37,
+                "finished_utc": "2026-11-23T19:18:23.570+00:00"
+              }
+            ],
+            "all_uploads_under_15s": true
+          },
+          {
+            "name": "single_pdf",
+            "observations": [
+              {
+                "sequence": 1,
+                "file": "melville-3000.pdf",
+                "sha256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+                "start_offset_ms": 0.0,
+                "started_utc": "2026-11-23T19:18:23.570+00:00",
+                "verified": true,
+                "analyze_ms": 1218.52,
+                "analyze_http": 201,
+                "response_bytes": 34288,
+                "response_sha256": "b1ef2b951038ee8ab96de047d4a6aa54d58b064b93761b147201bcab6cde8bec",
+                "words": 3000,
+                "analyze_verified": true,
+                "report_id": "ef8586ed-6fc7-4598-a5b0-8cfe2e4ab72e",
+                "readback_http": 200,
+                "readback_sha256": "b1ef2b951038ee8ab96de047d4a6aa54d58b064b93761b147201bcab6cde8bec",
+                "through_readback_ms": 1743.76,
+                "finished_utc": "2026-11-23T19:18:25.314+00:00"
+              }
+            ],
+            "all_uploads_under_15s": true
+          }
+        ],
+        "scope": "One authenticated committee account; concurrent HTTP requests, direct API, body bytes plus durable readback; no browser timing, distinct-user load or blind accuracy claim.",
+        "login_http": 200,
+        "finished_utc": "2026-11-23T19:18:25.314+00:00"
+      }
+    },
+    {
+      "name": "50 students uploading concurrently",
+      "ar": "الرفع المتزامن من خمسين حساب طالب",
+      "status": "passed",
+      "detail": "50 distinct readbacks; 95th percentile 8.43s, maximum 9.21s.",
+      "detailsAr": "اكتمل 50 تقريرًا وأعيدت قراءتها. بلغ المئين ٩٥ نحو 8.43 ثانية، وأبطأ طلب 9.21 ثانية. كانت فهرسة المجموعة مفعّلة.",
+      "evidence": {
+        "at": "2026-11-23T19:18:15.408317+00:00",
+        "origin": "https://mizan-integrity-studio.yemend41.chatgpt.site",
+        "testRun": "ae3816a23ebf",
+        "status": "passed",
+        "claims": "50 separate authenticated learner sessions; 25 DOCX and 25 PDF. Indexing enabled, with a pre-indexed published text. Upload response includes the report. Readback verifies persistence.",
+        "observations": [
+          {
+            "index": 0,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 0.82,
+            "ms": 1372.19,
+            "http": 201,
+            "ok": true,
+            "id": "e63e10c0-a4bf-4e8e-8835-05a9957dad7f",
+            "cohortCompared": 1,
+            "throughReadbackMs": 1952.57
+          },
+          {
+            "index": 1,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 2.26,
+            "ms": 7067.03,
+            "http": 201,
+            "ok": true,
+            "id": "1a97a6cb-8550-49fc-bae1-3cf819366c33",
+            "cohortCompared": 4,
+            "throughReadbackMs": 7606.74
+          },
+          {
+            "index": 2,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 2.78,
+            "ms": 7711.36,
+            "http": 201,
+            "ok": true,
+            "id": "c2698a79-e48b-4aeb-bc01-0c352bee2084",
+            "cohortCompared": 3,
+            "throughReadbackMs": 8662.04
+          },
+          {
+            "index": 3,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 4.19,
+            "ms": 6538.58,
+            "http": 201,
+            "ok": true,
+            "id": "5143f1ef-e06d-4485-a2c8-eda1a17b36e8",
+            "cohortCompared": 2,
+            "throughReadbackMs": 7164.97
+          },
+          {
+            "index": 4,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 4.86,
+            "ms": 6951.83,
+            "http": 201,
+            "ok": true,
+            "id": "822183b3-4ec2-479c-85ee-cce4e9f53895",
+            "cohortCompared": 2,
+            "throughReadbackMs": 7459.74
+          },
+          {
+            "index": 5,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 5.53,
+            "ms": 7266.39,
+            "http": 201,
+            "ok": true,
+            "id": "b8fe9618-acb3-40c3-89f7-6948601940c0",
+            "cohortCompared": 5,
+            "throughReadbackMs": 7767.91
+          },
+          {
+            "index": 6,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 6.51,
+            "ms": 7069.74,
+            "http": 201,
+            "ok": true,
+            "id": "a461e0f9-a3b8-447e-8651-7b642b50b467",
+            "cohortCompared": 2,
+            "throughReadbackMs": 7562.3
+          },
+          {
+            "index": 7,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 7.04,
+            "ms": 6873.13,
+            "http": 201,
+            "ok": true,
+            "id": "7aeb1f12-0a56-40e9-8ab7-78bd5fcae9e1",
+            "cohortCompared": 4,
+            "throughReadbackMs": 7390.25
+          },
+          {
+            "index": 8,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 7.55,
+            "ms": 7045.24,
+            "http": 201,
+            "ok": true,
+            "id": "efab393f-3ef0-43c1-9aed-ac4f48717f1d",
+            "cohortCompared": 2,
+            "throughReadbackMs": 7525.37
+          },
+          {
+            "index": 9,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 8.01,
+            "ms": 7585.32,
+            "http": 201,
+            "ok": true,
+            "id": "32c282c7-006c-4c9e-81a4-41f880fd9505",
+            "cohortCompared": 3,
+            "throughReadbackMs": 8355.46
+          },
+          {
+            "index": 10,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 8.45,
+            "ms": 6438.47,
+            "http": 201,
+            "ok": true,
+            "id": "b370d8e8-f0c1-4e95-8d77-05c0c211f191",
+            "cohortCompared": 2,
+            "throughReadbackMs": 7116.62
+          },
+          {
+            "index": 11,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 9.06,
+            "ms": 7303.96,
+            "http": 201,
+            "ok": true,
+            "id": "a7727af5-a32c-4e4f-8139-949abbea9ade",
+            "cohortCompared": 12,
+            "throughReadbackMs": 7817.38
+          },
+          {
+            "index": 12,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 9.53,
+            "ms": 6822.98,
+            "http": 201,
+            "ok": true,
+            "id": "20cbdd22-3a53-44da-a9a6-8eb804432d7a",
+            "cohortCompared": 2,
+            "throughReadbackMs": 7319.74
+          },
+          {
+            "index": 13,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 10.55,
+            "ms": 6749.03,
+            "http": 201,
+            "ok": true,
+            "id": "d6b7ccd7-3e4f-4e9d-8aa7-af8cfae2b717",
+            "cohortCompared": 2,
+            "throughReadbackMs": 7354.99
+          },
+          {
+            "index": 14,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 11.07,
+            "ms": 6733.67,
+            "http": 201,
+            "ok": true,
+            "id": "71f9e3b4-f41b-4b5f-a7d5-fc08e80db56e",
+            "cohortCompared": 2,
+            "throughReadbackMs": 7485.84
+          },
+          {
+            "index": 15,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 11.63,
+            "ms": 6861.24,
+            "http": 201,
+            "ok": true,
+            "id": "e6efcb79-920b-4806-899f-f3a26b5fa160",
+            "cohortCompared": 2,
+            "throughReadbackMs": 7501.17
+          },
+          {
+            "index": 16,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 12.13,
+            "ms": 6652.62,
+            "http": 201,
+            "ok": true,
+            "id": "1a96135a-7fa5-4206-ac6a-2d02a6caad5b",
+            "cohortCompared": 2,
+            "throughReadbackMs": 7129.1
+          },
+          {
+            "index": 17,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 12.63,
+            "ms": 7641.06,
+            "http": 201,
+            "ok": true,
+            "id": "648e1aaf-8fd8-4eab-9174-34a57d17aa81",
+            "cohortCompared": 4,
+            "throughReadbackMs": 8136.82
+          },
+          {
+            "index": 18,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 13.29,
+            "ms": 7431.96,
+            "http": 201,
+            "ok": true,
+            "id": "729452c4-14a5-4281-9853-9d3f0469a655",
+            "cohortCompared": 7,
+            "throughReadbackMs": 7919.99
+          },
+          {
+            "index": 19,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 13.8,
+            "ms": 6582.83,
+            "http": 201,
+            "ok": true,
+            "id": "26e3e48c-bd3d-4754-a086-44d27e0a5f82",
+            "cohortCompared": 2,
+            "throughReadbackMs": 7095.02
+          },
+          {
+            "index": 20,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 14.35,
+            "ms": 6632.86,
+            "http": 201,
+            "ok": true,
+            "id": "3730f7e4-2d31-45e6-b4a6-ebd37c94adfc",
+            "cohortCompared": 2,
+            "throughReadbackMs": 7082.37
+          },
+          {
+            "index": 21,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 14.82,
+            "ms": 7433.7,
+            "http": 201,
+            "ok": true,
+            "id": "e636b3ed-650b-4331-8deb-d7fe21e65f64",
+            "cohortCompared": 6,
+            "throughReadbackMs": 7888.01
+          },
+          {
+            "index": 22,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 15.24,
+            "ms": 7374.65,
+            "http": 201,
+            "ok": true,
+            "id": "0b511e46-6aa9-47a3-b7f6-e7942853309b",
+            "cohortCompared": 2,
+            "throughReadbackMs": 7866.14
+          },
+          {
+            "index": 23,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 17.4,
+            "ms": 8427.95,
+            "http": 201,
+            "ok": true,
+            "id": "d0d33e4e-32f9-4122-b6f1-82ac2cb373f0",
+            "cohortCompared": 39,
+            "throughReadbackMs": 8972.21
+          },
+          {
+            "index": 24,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 18.36,
+            "ms": 7746.31,
+            "http": 201,
+            "ok": true,
+            "id": "ff0578ce-a5b2-48a4-b3ce-755dd16b782d",
+            "cohortCompared": 23,
+            "throughReadbackMs": 8274.88
+          },
+          {
+            "index": 25,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 18.83,
+            "ms": 7135.34,
+            "http": 201,
+            "ok": true,
+            "id": "944bbf19-a2cd-419e-bf7e-2d06d24fb5c1",
+            "cohortCompared": 3,
+            "throughReadbackMs": 7670.24
+          },
+          {
+            "index": 26,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 19.36,
+            "ms": 7564.88,
+            "http": 201,
+            "ok": true,
+            "id": "c7ccd6bb-f6e2-4132-9280-c483fb0820bf",
+            "cohortCompared": 6,
+            "throughReadbackMs": 8013.68
+          },
+          {
+            "index": 27,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 19.84,
+            "ms": 7665.72,
+            "http": 201,
+            "ok": true,
+            "id": "50b39296-4311-4d18-b90e-516961af7369",
+            "cohortCompared": 14,
+            "throughReadbackMs": 8185.37
+          },
+          {
+            "index": 28,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 20.26,
+            "ms": 7364.6,
+            "http": 201,
+            "ok": true,
+            "id": "63387cd9-1991-490b-b69c-4945c3d9ca04",
+            "cohortCompared": 2,
+            "throughReadbackMs": 7884.4
+          },
+          {
+            "index": 29,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 20.91,
+            "ms": 7043.58,
+            "http": 201,
+            "ok": true,
+            "id": "faeb4247-5d09-4af8-a667-cfd269c6d79d",
+            "cohortCompared": 4,
+            "throughReadbackMs": 7695.31
+          },
+          {
+            "index": 30,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 21.53,
+            "ms": 9207.11,
+            "http": 201,
+            "ok": true,
+            "id": "d35e99de-9eb2-4b8f-95a9-04e417691a8d",
+            "cohortCompared": 38,
+            "throughReadbackMs": 9818.2
+          },
+          {
+            "index": 31,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 22.02,
+            "ms": 8630.68,
+            "http": 201,
+            "ok": true,
+            "id": "77e05d7a-5ccc-4ec9-a195-fb65c3c6f5c1",
+            "cohortCompared": 38,
+            "throughReadbackMs": 9147.93
+          },
+          {
+            "index": 32,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 22.48,
+            "ms": 6501.93,
+            "http": 201,
+            "ok": true,
+            "id": "b327e43f-261c-4f13-b042-bbfe676eb5e0",
+            "cohortCompared": 2,
+            "throughReadbackMs": 6950.62
+          },
+          {
+            "index": 33,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 22.85,
+            "ms": 7394.2,
+            "http": 201,
+            "ok": true,
+            "id": "6b7928a1-aa52-489f-a8f6-f7d5fd8c5a24",
+            "cohortCompared": 14,
+            "throughReadbackMs": 8341.19
+          },
+          {
+            "index": 34,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 23.35,
+            "ms": 7364.06,
+            "http": 201,
+            "ok": true,
+            "id": "737397ee-2e58-4231-ad9f-95f874da7808",
+            "cohortCompared": 6,
+            "throughReadbackMs": 7801.85
+          },
+          {
+            "index": 35,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 23.89,
+            "ms": 6993.38,
+            "http": 201,
+            "ok": true,
+            "id": "0a3e4f77-3c05-4579-b750-8305f735f685",
+            "cohortCompared": 3,
+            "throughReadbackMs": 7731.51
+          },
+          {
+            "index": 36,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 24.48,
+            "ms": 7645.36,
+            "http": 201,
+            "ok": true,
+            "id": "7d6e7b7b-7c87-4504-bbce-99439730dd71",
+            "cohortCompared": 3,
+            "throughReadbackMs": 8144.49
+          },
+          {
+            "index": 37,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 24.91,
+            "ms": 6759.86,
+            "http": 201,
+            "ok": true,
+            "id": "921a87f5-9bc7-45e0-bf77-ab16435ae573",
+            "cohortCompared": 2,
+            "throughReadbackMs": 7324.2
+          },
+          {
+            "index": 38,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 25.4,
+            "ms": 6839.27,
+            "http": 201,
+            "ok": true,
+            "id": "6c85efea-007e-4513-981e-014c66c44542",
+            "cohortCompared": 2,
+            "throughReadbackMs": 7347.98
+          },
+          {
+            "index": 39,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 25.86,
+            "ms": 6903.22,
+            "http": 201,
+            "ok": true,
+            "id": "c6c6c69a-c3f2-4d06-9181-418417043c9b",
+            "cohortCompared": 3,
+            "throughReadbackMs": 7626.64
+          },
+          {
+            "index": 40,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 26.33,
+            "ms": 7315.55,
+            "http": 201,
+            "ok": true,
+            "id": "be02a5fb-f8c2-43d2-aa4d-d3b2928bf342",
+            "cohortCompared": 2,
+            "throughReadbackMs": 8336.3
+          },
+          {
+            "index": 41,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 26.76,
+            "ms": 7726.94,
+            "http": 201,
+            "ok": true,
+            "id": "11a066ea-9334-45f8-9fe0-79e71f220908",
+            "cohortCompared": 4,
+            "throughReadbackMs": 8538.74
+          },
+          {
+            "index": 42,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 27.23,
+            "ms": 6673.57,
+            "http": 201,
+            "ok": true,
+            "id": "5a16816c-8b0a-4322-93e3-63598f68a4e0",
+            "cohortCompared": 2,
+            "throughReadbackMs": 7198.23
+          },
+          {
+            "index": 43,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 27.71,
+            "ms": 7680.45,
+            "http": 201,
+            "ok": true,
+            "id": "ee793dd7-214a-4519-b187-9be121c2e9b4",
+            "cohortCompared": 14,
+            "throughReadbackMs": 8217.5
+          },
+          {
+            "index": 44,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 28.14,
+            "ms": 7472.27,
+            "http": 201,
+            "ok": true,
+            "id": "087ba618-1895-4d9a-a6f7-ee4185eec91e",
+            "cohortCompared": 14,
+            "throughReadbackMs": 8128.76
+          },
+          {
+            "index": 45,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 28.64,
+            "ms": 7169.63,
+            "http": 201,
+            "ok": true,
+            "id": "05827f38-660c-43a2-8d45-93d50adb1b59",
+            "cohortCompared": 4,
+            "throughReadbackMs": 7873.65
+          },
+          {
+            "index": 46,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 29.06,
+            "ms": 7171.4,
+            "http": 201,
+            "ok": true,
+            "id": "ccd268ba-966b-416b-a66d-af03976b20fa",
+            "cohortCompared": 5,
+            "throughReadbackMs": 7667.7
+          },
+          {
+            "index": 47,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 29.5,
+            "ms": 7260.89,
+            "http": 201,
+            "ok": true,
+            "id": "aeb408df-538a-492c-8106-201477c159d5",
+            "cohortCompared": 6,
+            "throughReadbackMs": 7772.18
+          },
+          {
+            "index": 48,
+            "format": "docx",
+            "fileSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "offsetMs": 29.91,
+            "ms": 7983.02,
+            "http": 201,
+            "ok": true,
+            "id": "1edca62d-e47c-4ee0-84ab-9bbe69184b19",
+            "cohortCompared": 15,
+            "throughReadbackMs": 8759.42
+          },
+          {
+            "index": 49,
+            "format": "pdf",
+            "fileSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+            "offsetMs": 30.73,
+            "ms": 7168.6,
+            "http": 201,
+            "ok": true,
+            "id": "1da05e90-ed61-41e6-9516-154e431506e1",
+            "cohortCompared": 4,
+            "throughReadbackMs": 7780.71
+          }
+        ],
+        "distinctPrincipals": 50,
+        "seedId": "576d97bb-9b95-4b8b-b523-0622285f1de0",
+        "uniqueReadbacks": 50,
+        "under15s": 50,
+        "p95Ms": 8427.95,
+        "maxMs": 9207.11
+      }
+    },
+    {
+      "name": "DOI and ISBN registry availability",
+      "ar": "التحقق الحي من DOI وISBN",
+      "status": "passed",
+      "detail": "All four cases passed on confirmation; a prior ISBN lookup encountered registry unavailability.",
+      "detailsAr": "نجحت الحالات الأربع عند إعادة الفحص. سبق أن تعذّر الاتصال بأحد سجلات الكتب، وسُجلت المحاولتان.",
+      "evidence": {
+        "confirmation": [
+          {
+            "kind": "doi",
+            "id": "10.1038/nature12373",
+            "status": "verified",
+            "registry": "Crossref",
+            "title": "Nanometre-scale thermometry in a living cell",
+            "attempts": [
+              {
+                "registry": "Crossref",
+                "outcome": "response",
+                "httpStatus": 200
+              }
+            ],
+            "checkedAt": 1795461584323
+          },
+          {
+            "kind": "doi",
+            "id": "10.99999/mizan-evaluation-missing-2026",
+            "status": "not_found",
+            "registry": "DOI Handle System",
+            "attempts": [
+              {
+                "registry": "Crossref",
+                "outcome": "non_json_response",
+                "httpStatus": 404
+              },
+              {
+                "registry": "DOI Handle System",
+                "outcome": "response",
+                "httpStatus": 404
+              }
+            ],
+            "checkedAt": 1795461584434
+          },
+          {
+            "kind": "isbn",
+            "id": "9780306406157",
+            "status": "verified",
+            "registry": "Open Library",
+            "matchedISBN": "9780306406157",
+            "title": "Error-correction coding for digital communications",
+            "attempts": [
+              {
+                "registry": "Open Library",
+                "outcome": "response",
+                "httpStatus": 200
+              }
+            ],
+            "checkedAt": 1795461584309
+          },
+          {
+            "kind": "isbn",
+            "id": "9780306406158",
+            "status": "invalid_checksum",
+            "registry": null
+          }
+        ],
+        "firstAttempt": [
+          {
+            "kind": "doi",
+            "id": "10.1038/nature12373",
+            "status": "verified",
+            "registry": "Crossref",
+            "title": "Nanometre-scale thermometry in a living cell",
+            "attempts": [
+              {
+                "registry": "Crossref",
+                "outcome": "response",
+                "httpStatus": 200
+              }
+            ],
+            "checkedAt": 1795461513019
+          },
+          {
+            "kind": "doi",
+            "id": "10.99999/mizan-evaluation-missing-2026",
+            "status": "not_found",
+            "registry": "DOI Handle System",
+            "attempts": [
+              {
+                "registry": "Crossref",
+                "outcome": "non_json_response",
+                "httpStatus": 404
+              },
+              {
+                "registry": "DOI Handle System",
+                "outcome": "response",
+                "httpStatus": 404
+              }
+            ],
+            "checkedAt": 1795461513034
+          },
+          {
+            "kind": "isbn",
+            "id": "9780306406157",
+            "status": "registry_unavailable",
+            "registry": "Open Library / Crossref / Google Books",
+            "attempts": [
+              {
+                "registry": "Open Library",
+                "outcome": "timeout"
+              },
+              {
+                "registry": "Crossref",
+                "outcome": "response",
+                "httpStatus": 200
+              },
+              {
+                "registry": "Google Books",
+                "outcome": "http_error",
+                "httpStatus": 429
+              }
+            ],
+            "checkedAt": 1795461515568
+          },
+          {
+            "kind": "isbn",
+            "id": "9780306406158",
+            "status": "invalid_checksum",
+            "registry": null
+          }
+        ],
+        "editionChecks": [
+          {
+            "name": "9780306406157",
+            "ar": "9780306406157",
+            "status": "passed",
+            "detail": "Error-correction coding for digital communications",
+            "evidence": {
+              "kind": "isbn",
+              "id": "9780306406157",
+              "status": "verified",
+              "registry": "Open Library",
+              "matchedISBN": "9780306406157",
+              "title": "Error-correction coding for digital communications",
+              "attempts": [
+                {
+                  "registry": "Open Library",
+                  "outcome": "response",
+                  "httpStatus": 200
+                }
+              ],
+              "checkedAt": 1795461557237
+            }
+          },
+          {
+            "name": "9781489921741",
+            "ar": "9781489921741",
+            "status": "passed",
+            "detail": "Error-Correction Coding for Digital Communications",
+            "evidence": {
+              "kind": "isbn",
+              "id": "9781489921741",
+              "status": "verified",
+              "registry": "Crossref",
+              "matchedISBN": "9781489921741",
+              "title": "Error-Correction Coding for Digital Communications",
+              "attempts": [
+                {
+                  "registry": "Open Library",
+                  "outcome": "timeout"
+                },
+                {
+                  "registry": "Crossref",
+                  "outcome": "response",
+                  "httpStatus": 200
+                },
+                {
+                  "registry": "Google Books",
+                  "outcome": "http_error",
+                  "httpStatus": 429
+                }
+              ],
+              "checkedAt": 1795461558171
+            }
+          },
+          {
+            "name": "9781489921765",
+            "ar": "9781489921765",
+            "status": "passed",
+            "detail": "Error-Correction Coding for Digital Communications",
+            "evidence": {
+              "kind": "isbn",
+              "id": "9781489921765",
+              "status": "verified",
+              "registry": "Open Library",
+              "matchedISBN": "9781489921765",
+              "title": "Error-Correction Coding for Digital Communications",
+              "attempts": [
+                {
+                  "registry": "Open Library",
+                  "outcome": "response",
+                  "httpStatus": 200
+                }
+              ],
+              "checkedAt": 1795461557211
+            }
+          },
+          {
+            "name": "0306406152",
+            "ar": "0306406152",
+            "status": "passed",
+            "detail": "Error-correction coding for digital communications",
+            "evidence": {
+              "kind": "isbn",
+              "id": "0306406152",
+              "status": "verified",
+              "registry": "Open Library",
+              "matchedISBN": "9780306406157",
+              "title": "Error-correction coding for digital communications",
+              "attempts": [
+                {
+                  "registry": "Open Library",
+                  "outcome": "response",
+                  "httpStatus": 200
+                }
+              ],
+              "checkedAt": 1795461557141
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "False alerts on human writing (<1% required)",
+      "ar": "الإنذارات الخاطئة على الكتابة البشرية (المطلوب أقل من ١٪)",
+      "status": "failed",
+      "detail": "Displayed false positives: 3/393 in one English corpus and 227/799 in an Arabic course-project corpus. Including suppressed alerts yields 9/555 in held-out MAGE/RAID English.",
+      "detailsAr": "ظهرت إشارات رقمية على ٣ من ٣٩٣ نصًا إنجليزيًا و٢٢٧ من ٧٩٩ نصًا عربيًا. بلغ العدد في عينة MAGE/RAID الإنجليزية ٩ من ٥٥٥ عند احتساب الإشارات المحجوبة.",
+      "evidence": [
+        {
+          "group": "English / Liang human cohorts",
+          "language": "en",
+          "alerts": 3,
+          "eligible": 393,
+          "numeric_alerts": 3
+        },
+        {
+          "group": "English / TOEFL (non-native)",
+          "language": "en",
+          "alerts": 0,
+          "eligible": 90,
+          "numeric_alerts": 0
+        },
+        {
+          "group": "English / held-out MAGE and RAID",
+          "language": "en",
+          "alerts": 9,
+          "eligible": 555,
+          "numeric_alerts": 5
+        },
+        {
+          "group": "English / UKP persuasive essays",
+          "language": "en",
+          "alerts": 1,
+          "eligible": 399,
+          "numeric_alerts": 0
+        },
+        {
+          "group": "Arabic / course-project human collection",
+          "language": "ar",
+          "alerts": 239,
+          "eligible": 799,
+          "numeric_alerts": 227
+        },
+        {
+          "group": "Arabic / Ar-APT original press articles",
+          "language": "ar",
+          "alerts": 59,
+          "eligible": 400,
+          "numeric_alerts": 56
+        },
+        {
+          "group": "Arabic / KFUPM human academic abstracts",
+          "language": "ar",
+          "alerts": 33,
+          "eligible": 701,
+          "numeric_alerts": 32
+        },
+        {
+          "group": "Arabic / ANAD 2021 news",
+          "language": "ar",
+          "alerts": 72,
+          "eligible": 358,
+          "numeric_alerts": 35
+        }
+      ]
+    },
+    {
+      "name": "Paraphrase, mixed text and independent assessment",
+      "ar": "إعادة الصياغة والنص المختلط والتقييم المستقل",
+      "status": "partial",
+      "detail": "High-similarity retrieval: 21/41 English, 6/41 Arabic. Confidence and fairness remain conditional on source and genre.",
+      "detailsAr": "استرجعت المنصة ٢١ من ٤١ زوجًا إنجليزيًا عالي التشابه، و٦ من ٤١ زوجًا عربيًا. تبقى الدقة والإنصاف في نصوص الجامعة غير مثبتين.",
+      "evidence": {
+        "similarity": {
+          "fixture": {
+            "file": "pyarabic-published.pdf",
+            "sha256": "b196e33fcebb974fca4ec5e9563e0c1ca54ceb026426c98a9f3ead36d182e9b1",
+            "parser": "pdftotext -raw",
+            "englishPaperMatched": true,
+            "matchingIntervals": 22,
+            "eligibleWords": 1097,
+            "coverageAllSources": 76.3
+          },
+          "benchmark": "SemEval 2017 Task 1, held-out Arabic (track 1) and English (track 5) sentence pairs. Positive: gold >=4/5; negative: gold <=1/5. Match is an interval attributed to the supplied partner. Includes all lengths. No thresholds fitted on these tracks.",
+          "tracks": [
+            {
+              "track": "track1.ar-ar",
+              "inputSha256": "a4f24daa03def87b52769b3a5ea9fe5f8b66d2f06db2a6565395cb1575443e3e",
+              "goldSha256": "4a7ad1eb5219605ab09cd743727c4059acdf55df9ae7351b5df079cc47ae983e",
+              "total": 250,
+              "high": {
+                "matched": 6,
+                "total": 41
+              },
+              "low": {
+                "matched": 0,
+                "total": 72
+              },
+              "intermediate": 137,
+              "missingLabel": 0,
+              "recallHigh": 0.14634146341463414,
+              "lowPairFlagRate": 0
+            },
+            {
+              "track": "track5.en-en",
+              "inputSha256": "8d493844c1010eb6b5d373e289b8d6ddc003e626bf8495976cc40c0a5f47414c",
+              "goldSha256": "a767d322cc3e78ff43f3c541a4fc0b9e0e5681f27c20de7eb9095fbb9072cf04",
+              "total": 250,
+              "high": {
+                "matched": 21,
+                "total": 41
+              },
+              "low": {
+                "matched": 0,
+                "total": 61
+              },
+              "intermediate": 148,
+              "missingLabel": 0,
+              "recallHigh": 0.5121951219512195,
+              "lowPairFlagRate": 0
+            }
+          ]
+        },
+        "mixed": {
+          "en": {
+            "0.25": {
+              "documents": 21,
+              "visible_above_suppression": 0,
+              "within_10_percentage_points_visible": 0,
+              "suppressed": 0
+            },
+            "0.5": {
+              "documents": 21,
+              "visible_above_suppression": 1,
+              "within_10_percentage_points_visible": 0,
+              "suppressed": 0
+            },
+            "0.75": {
+              "documents": 21,
+              "visible_above_suppression": 1,
+              "within_10_percentage_points_visible": 0,
+              "suppressed": 0
+            }
+          },
+          "ar": {
+            "0.25": {
+              "documents": 25,
+              "visible_above_suppression": 1,
+              "within_10_percentage_points_visible": 1,
+              "suppressed": 0
+            },
+            "0.5": {
+              "documents": 25,
+              "visible_above_suppression": 16,
+              "within_10_percentage_points_visible": 12,
+              "suppressed": 0
+            },
+            "0.75": {
+              "documents": 25,
+              "visible_above_suppression": 21,
+              "within_10_percentage_points_visible": 8,
+              "suppressed": 0
+            }
+          }
+        },
+        "aiRecall": {
+          "english_general": {
+            "detected": 597,
+            "eligible": 1573
+          },
+          "english_rewritten_college": {
+            "detected": 0,
+            "eligible": 31
+          },
+          "arabic_external": {
+            "detected": 611,
+            "eligible": 812
+          },
+          "arabic_generated_press": {
+            "detected": 263,
+            "eligible": 359
+          },
+          "english_generated_argugpt": {
+            "detected": 22,
+            "eligible": 350
+          }
+        }
+      }
+    },
+    {
+      "name": "Evaluator login on public HTTPS",
+      "ar": "دخول حساب اللجنة عبر HTTPS",
+      "status": "passed",
+      "detail": "Evaluator logged in and authenticated identity was read back.",
+      "evidence": {
+        "role": "instructor",
+        "loginHTTP": 200,
+        "profileHTTP": 200
+      },
+      "seconds": 4.656
+    },
+    {
+      "name": "Experimental model identity",
+      "ar": "هوية نموذج التقييم المنشور",
+      "status": "passed",
+      "detail": "Final assessment classifier identity verified from the returned report.",
+      "evidence": {
+        "model": "AIP-HL-3",
+        "sha256": "4a952e040d6561bd6f6c09777c49903103c1b6b6218c028d6f8957f81874a1b0"
+      },
+      "seconds": 1.012
+    },
+    {
+      "name": "Published paper source retrieval",
+      "ar": "استرجاع مصدر بحث منشور",
+      "status": "passed",
+      "detail": "Correct journal paper linked in the returned report.",
+      "evidence": {
+        "format": "pdf",
+        "sha256": "b196e33fcebb974fca4ec5e9563e0c1ca54ceb026426c98a9f3ead36d182e9b1",
+        "words": 2772,
+        "reportId": "12eea675-2055-4384-a4e0-42ad104d4b64",
+        "similarity": 76.3,
+        "matchedPassages": 23
+      },
+      "seconds": 2.315
+    },
+    {
+      "name": "Arabic document forensics and masking",
+      "ar": "فحص مستند عربي وحجب المعرّفات",
+      "status": "passed",
+      "detail": "Arabic DOCX inspected and visible test identifiers masked.",
+      "evidence": {
+        "format": "docx",
+        "sha256": "6d8f40db085a82126c3117aef677fc5f5cfd2276cc4b18fe52c8588be12a7f6c",
+        "words": 78,
+        "reportId": "2373a406-0851-4747-97c7-6fab86c7d8a9",
+        "forensics": {
+          "paragraphCount": 9,
+          "trackedInsertions": 0,
+          "trackedDeletions": 0,
+          "hiddenTextRuns": 1,
+          "whiteTextRuns": 1,
+          "rsidDiversity": 5,
+          "paraIdDiversity": 7,
+          "pageSizes": [
+            {
+              "widthMm": 215.9,
+              "heightMm": 279.4
+            }
+          ],
+          "fonts": [],
+          "hexColors": [
+            "#FFFFFF"
+          ],
+          "core": {
+            "revision": "3",
+            "created": "2026-01-01T00:00:00Z",
+            "modified": "2026-01-01T00:00:00Z"
+          },
+          "app": {
+            "TotalTime": "0",
+            "Pages": "1",
+            "Words": "0",
+            "Characters": "0",
+            "Application": "Microsoft Macintosh Word",
+            "Paragraphs": "0",
+            "AppVersion": "14.0000"
+          },
+          "editingMinutes": 0,
+          "embeddedMediaCount": 0,
+          "embeddedMediaScanned": 0,
+          "embeddedMedia": [],
+          "zeroWidthCharacters": 1,
+          "bidiControls": 0,
+          "mixedLatinCyrillicWords": 0,
+          "usSpellingTokens": 2,
+          "ukSpellingTokens": 2,
+          "byteLength": 37327
+        }
+      },
+      "seconds": 1.118
+    },
+    {
+      "name": "Authentic C2PA JPEG",
+      "ar": "صورة JPEG بتوقيع C2PA",
+      "status": "passed",
+      "detail": "Signed JPEG parsed, with separate signature, asset binding and trust fields.",
+      "evidence": {
+        "format": "jpeg",
+        "sha256": "e71bff58fc57640803e6e65f7534e2fb0c2f99018c85276cc14b30f04427cc76",
+        "words": 0,
+        "reportId": "8dd6f865-8521-4d58-b7a1-b023e7bd023c",
+        "provenance": {
+          "status": "manifest_read",
+          "signature": "verified_with_embedded_leaf",
+          "assetBinding": "match",
+          "assertionHashes": "match",
+          "trust": "not_evaluated",
+          "manifestCount": 1,
+          "assertions": [
+            "c2pa.thumbnail.claim.jpeg",
+            "c2pa.thumbnail.ingredient.jpeg",
+            "c2pa.ingredient",
+            "stds.schema-org.CreativeWork",
+            "c2pa.actions",
+            "c2pa.hash.data"
+          ]
+        }
+      },
+      "seconds": 1.114
+    },
+    {
+      "name": "JSON and bilingual PDF export",
+      "ar": "تنزيل JSON وتقريري PDF",
+      "status": "passed",
+      "detail": "The committee account downloaded JSON and two parseable PDF audits.",
+      "evidence": {
+        "files": [
+          {
+            "locale": "ar",
+            "pages": 2,
+            "bytes": 59936,
+            "sha256": "9625e806fa3919fddb98572791420b333879f5371451faa71b9aba0fad46b793"
+          },
+          {
+            "locale": "en",
+            "pages": 2,
+            "bytes": 58485,
+            "sha256": "c14c022143419d7604e659fcd9df832b9aef0e89b4288cceb6cd805ded429162"
+          }
+        ]
+      },
+      "seconds": 2.478
+    },
+    {
+      "name": "Student and instructor boundaries on public HTTPS",
+      "ar": "صلاحيات الطالب والمدرّس على الرابط العام",
+      "status": "passed",
+      "detail": "Student and course instructor saw the report; separate cohort, anonymous reader and student administration had restricted responses.",
+      "evidence": {
+        "http": [
+          200,
+          200,
+          404,
+          401,
+          403
+        ]
+      }
+    },
+    {
+      "name": "Live Clarity save, revision reconstruction and submission",
+      "ar": "حفظ المسودة واستعادة المراجعات وتحليلها عبر الرابط العام",
+      "status": "passed",
+      "detail": "Saved real English/Arabic edits, reconstructed all revisions and submitted them to analysis. Canonical frames masked the test email prefix.",
+      "evidence": {
+        "frames": 8,
+        "bulkPastes": 2,
+        "activeMs": 8000,
+        "reportId": "f196400b-bef0-4649-a64a-13a63fa30a01"
+      }
+    },
+    {
+      "name": "Live similarity filters",
+      "ar": "تصفية الاقتباسات على الرابط العام",
+      "status": "passed",
+      "detail": "Applying the quote filter changed the eligible word count on the saved report.",
+      "evidence": {
+        "excluded": 4,
+        "included": 16
+      }
+    },
+    {
+      "name": "Retention heartbeat verified",
+      "ar": "التحقق من تشغيل سياسة الاحتفاظ",
+      "status": "passed",
+      "detail": "Expired-record cleanup was invoked on the live host and its completion timestamp was read back. The daily schedule is enabled.",
+      "evidence": {
+        "lastSuccess": 1795461108,
+        "retentionDays": 7
+      }
+    },
+    {
+      "name": "Institutional LTI 1.3 launch",
+      "ar": "الإطلاق من نظام تعلم الجامعة",
+      "status": "unverified",
+      "detail": "Protocol tests passed locally. No university LMS is registered.",
+      "detailsAr": "اجتاز البروتوكول اختباراته المحلية. يتطلب القبول النهائي إطلاق المنصة فعليًا من نظام الجامعة.",
+      "evidence": {
+        "executed_at": "2026-11-23T18:55:12.782Z",
+        "environment": "Node Web Crypto, real local TLS JWKS, SQLite in memory, D1 adapter",
+        "passed": 16,
+        "checks": [
+          "unregistered deployment configuration is explicit",
+          "unregistered login unavailable",
+          "GET initiation and OIDC parameters",
+          "cookie bound state required",
+          "signed instructor launch",
+          "pseudonyms replace raw user and course",
+          "single-use accepted launch",
+          "POST initiation, learner role, stable scoped identity",
+          "expired assertion rejected",
+          "unknown deployment rejected",
+          "audience mismatch rejected",
+          "multiple audiences require authorized party",
+          "nonce mismatch rejected",
+          "unknown course role rejected",
+          "concurrent duplicate completion consumed once",
+          "course isolation uses separate pseudonym"
+        ],
+        "external_lms_status": "not registered or tested"
+      }
+    },
+    {
+      "name": "Mobile and desktop browser controls",
+      "ar": "ضوابط واجهة الهاتف والحاسوب",
+      "status": "partial",
+      "detail": "Eight rendered browser checks passed on the local copy at widths 390 and 1240 px. Live HTTPS functions were verified separately. No physical-device committee or uptime certification.",
+      "detailsAr": "اجتازت النسخة المحلية ثمانية اختبارات متصفح بعرض ٣٩٠ و١٢٤٠ بكسل. اختُبرت وظائف الرابط العام بصورة مستقلة. لم يُختبر هاتف حقيقي للجنة أو استمرارية الخدمة طوال موعدها.",
+      "evidence": {
+        "at": "2026-11-23T19:16:20.510Z",
+        "environment": "Chrome via managed local preview; actual SQLite workspace and ephemeral test principal",
+        "checks": [
+          {
+            "width": 390,
+            "lang": "ar",
+            "name": "Upload a real 3,000-word DOCX in rendered controls",
+            "status": "passed",
+            "sha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "overflow": 0
+          },
+          {
+            "width": 390,
+            "lang": "ar",
+            "name": "Report tabs, exclusions, JSON and PDF controls",
+            "status": "passed",
+            "pdfBytes": 213117
+          },
+          {
+            "width": 390,
+            "lang": "ar",
+            "name": "Clarity entry, paste, save, playback and submission",
+            "status": "passed",
+            "lastRevision": 2
+          },
+          {
+            "width": 390,
+            "lang": "ar",
+            "name": "Submissions, model card and health",
+            "status": "passed",
+            "overflow": 0
+          },
+          {
+            "width": 1240,
+            "lang": "en",
+            "name": "Upload a real 3,000-word DOCX in rendered controls",
+            "status": "passed",
+            "sha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+            "overflow": 0
+          },
+          {
+            "width": 1240,
+            "lang": "en",
+            "name": "Report tabs, exclusions, JSON and PDF controls",
+            "status": "passed",
+            "pdfBytes": 211447
+          },
+          {
+            "width": 1240,
+            "lang": "en",
+            "name": "Clarity entry, paste, save, playback and submission",
+            "status": "passed",
+            "lastRevision": 4
+          },
+          {
+            "width": 1240,
+            "lang": "en",
+            "name": "Submissions, model card and health",
+            "status": "passed",
+            "overflow": 0
+          }
+        ]
+      }
+    }
+  ]
+}

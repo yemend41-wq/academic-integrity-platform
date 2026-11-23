@@ -1,0 +1,98 @@
+{
+  "mage_test__1": {
+    "total": 300,
+    "overlap": 0,
+    "insufficient": 0,
+    "eligible": 300,
+    "any": 11,
+    "visible": 5
+  },
+  "raid__1": {
+    "total": 1155,
+    "overlap": 70,
+    "insufficient": 0,
+    "eligible": 1085,
+    "any": 581,
+    "visible": 501
+  },
+  "mage_test__0": {
+    "total": 300,
+    "overlap": 18,
+    "insufficient": 0,
+    "eligible": 282,
+    "any": 4,
+    "visible": 3
+  },
+  "raid__0": {
+    "total": 183,
+    "overlap": 20,
+    "insufficient": 0,
+    "eligible": 163,
+    "any": 5,
+    "visible": 2
+  },
+  "mage_ood_gpt4__1": {
+    "total": 78,
+    "overlap": 0,
+    "insufficient": 0,
+    "eligible": 78,
+    "any": 1,
+    "visible": 0
+  },
+  "mage_ood_gpt4__0": {
+    "total": 72,
+    "overlap": 0,
+    "insufficient": 0,
+    "eligible": 72,
+    "any": 0,
+    "visible": 0
+  },
+  "mage_ood_gpt4_para__0": {
+    "total": 40,
+    "overlap": 2,
+    "insufficient": 0,
+    "eligible": 38,
+    "any": 0,
+    "visible": 0
+  },
+  "mage_ood_gpt4_para__1": {
+    "total": 110,
+    "overlap": 0,
+    "insufficient": 0,
+    "eligible": 110,
+    "any": 4,
+    "visible": 2
+  },
+  "esl_ellipse__0": {
+    "total": 248,
+    "overlap": 0,
+    "insufficient": 0,
+    "eligible": 248,
+    "any": 1,
+    "visible": 0
+  },
+  "native_hewlett__0": {
+    "total": 88,
+    "overlap": 0,
+    "insufficient": 0,
+    "eligible": 88,
+    "any": 0,
+    "visible": 0
+  },
+  "esl_toefl__0": {
+    "total": 91,
+    "overlap": 1,
+    "insufficient": 0,
+    "eligible": 90,
+    "any": 0,
+    "visible": 0
+  },
+  "esl_icnale__0": {
+    "total": 80,
+    "overlap": 0,
+    "insufficient": 0,
+    "eligible": 80,
+    "any": 0,
+    "visible": 0
+  }
+}

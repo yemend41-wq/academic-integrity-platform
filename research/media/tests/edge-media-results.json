@@ -1,0 +1,36 @@
+{
+  "runtime": "local workerd / Miniflare",
+  "at": "2026-11-23T19:02:52.126Z",
+  "cases": [
+    {
+      "file": "bilingual-forensics.docx",
+      "status": 200,
+      "passed": true,
+      "parseHttpMs": 904
+    },
+    {
+      "file": "bilingual-text.pdf",
+      "status": 200,
+      "passed": true,
+      "parseHttpMs": 230
+    },
+    {
+      "file": "official-CA.jpg",
+      "status": 200,
+      "passed": true,
+      "parseHttpMs": 8
+    },
+    {
+      "file": "geometry.png",
+      "status": 200,
+      "passed": true,
+      "parseHttpMs": 4
+    },
+    {
+      "file": "pyarabic-published.pdf",
+      "status": 200,
+      "passed": true,
+      "parseHttpMs": 105
+    }
+  ]
+}

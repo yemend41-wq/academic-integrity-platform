@@ -1,0 +1,28 @@
+{
+  "checkedOn": "2026-11-23",
+  "scope": "Peer-reviewed articles already present in the public similarity corpus, cross-checked against their publishers. Presence in this snapshot does not establish current registry availability.",
+  "records": [
+    {
+      "id": "10.21105/joss.04886",
+      "title": "PyArabic: A Python package for Arabic text",
+      "publisher": "Journal of Open Source Software",
+      "source": "https://joss.theoj.org/papers/10.21105/joss.04886",
+      "publisherDeposit": "https://github.com/openjournals/joss-papers/blob/master/joss.04886/10.21105.joss.04886.crossref.xml",
+      "depositGitBlob": "f339e57be21b4010fc6aca960459101b4005bc6a"
+    },
+    {
+      "id": "10.21105/joss.09128",
+      "title": "Shekar: A Python Toolkit for Persian Natural Language Processing",
+      "publisher": "Journal of Open Source Software",
+      "source": "https://joss.theoj.org/papers/10.21105/joss.09128",
+      "publisherDeposit": "https://github.com/openjournals/joss-papers/blob/master/joss.09128/10.21105.joss.09128.crossref.xml",
+      "depositGitBlob": "5ede372adfcee9d7cf740a8184a8b28757527b21"
+    },
+    {
+      "id": "10.59628/jhs.v5i2.1975",
+      "title": "دور أدوات الذكاء الاصطناعي في تحسين جودة البحث العلمي من وجهة نظر طلبة الدراسات العليا التربوية بجامعة الملك خالد بأبها",
+      "publisher": "مجلة جامعة صنعاء للعلوم الإنسانية",
+      "source": "https://www.journals.su.edu.ye/index.php/jhs/ar/article/view/1975"
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "ar0.xlsx": {
+    "repo": "Hamed1Hamed/AIRABIC",
+    "ref": "af1ecee21afa78467c6e9edf2c82a6605b09f4d0",
+    "file": "AI-generated texts.xlsx",
+    "sha256": "c4aecf1cd122f61def05242890b2e5d931c69b61794472cb25cbd5b1814242a0",
+    "blob": "ba2ea90fddcb51c140c10d542fbdd4f1412399e0"
+  },
+  "ar1.xlsx": {
+    "repo": "Hamed1Hamed/AIRABIC",
+    "ref": "af1ecee21afa78467c6e9edf2c82a6605b09f4d0",
+    "file": "Human-written texts.xlsx",
+    "sha256": "7b39ea189b805b8183364fe2ef0c9be3e01112216b61fbee15b638bc7eba2ac9",
+    "blob": "64f8e0f206168854180998c81762ba15ab3bce63"
+  },
+  "external-ar.csv": {
+    "repo": "o-qn/arabic_ai_detection",
+    "ref": "2f3c6865d9eb617a261f71fea7e815d9425a9121",
+    "file": "merged_dataset.csv",
+    "sha256": "bf2f5a7b88e3151a7cfb1f71315a533a2b43ce708bd7d5933ce50f3709fafecc",
+    "blob": "bc33e2e359656e0a38a90b35296b480daa4db12a"
+  },
+  "calib.jsonl": {
+    "repo": "ac-sys/originality-detector",
+    "ref": "72d2774c24e0df009172839b401947bad6808a40",
+    "file": "data/eval/calib.jsonl",
+    "sha256": "6c785b864c013f99a758f51cd62dc5047283baa163bf6d8097c874f9d966fe74",
+    "blob": "1107fd0841c78474cc95f2f256911664ad98e651"
+  },
+  "test.jsonl": {
+    "repo": "ac-sys/originality-detector",
+    "ref": "72d2774c24e0df009172839b401947bad6808a40",
+    "file": "data/eval/test.jsonl",
+    "sha256": "e1aea5c607fabcd564e4fb73caf09e967151f5e365258d99f3eea35466538bdb",
+    "blob": "65a884e054a3b59d1cf88fe90383b01a40a3c916"
+  },
+  "esl.jsonl": {
+    "repo": "ac-sys/originality-detector",
+    "ref": "72d2774c24e0df009172839b401947bad6808a40",
+    "file": "data/eval/esl.jsonl",
+    "sha256": "abc5aef4192e007029424c8ef46335e0d5ed962c4995616cf70e27eb23b5a48b",
+    "blob": "677d31b378ed9aecdbcf8d4a91568cc0df71ddd8"
+  },
+  "HewlettStudentEssay_GPTsimplify_88.json": {
+    "repo": "Weixin-Liang/ChatGPT-Detector-Bias",
+    "ref": "1d05ed8242d4694a0ed7b73a79c52be8864470f9",
+    "file": "Data_and_Results/Human_Data/HewlettStudentEssay_GPTsimplify_88/data.json",
+    "sha256": "59fef9d557c689f1a508269b780f37bab548346d5033c455c3e211a99c1feba3",
+    "blob": "3e288207cd8c22230936d5f6b9ab719b43057e64"
+  },
+  "CS224N_gpt3_145.json": {
+    "repo": "Weixin-Liang/ChatGPT-Detector-Bias",
+    "ref": "1d05ed8242d4694a0ed7b73a79c52be8864470f9",
+    "file": "Data_and_Results/GPT_Data/CS224N_gpt3_145/data.json",
+    "sha256": "4c5d1e6e3d8d479684245d154e334bc076d1ccd4e315f4a8c4be3b3fba9a565e",
+    "blob": "0d00f901d41f63ac06d8ec3ca707f6887fd9573c"
+  },
+  "HewlettStudentEssay_real_88.json": {
+    "repo": "Weixin-Liang/ChatGPT-Detector-Bias",
+    "ref": "1d05ed8242d4694a0ed7b73a79c52be8864470f9",
+    "file": "Data_and_Results/Human_Data/HewlettStudentEssay_real_88/data.json",
+    "sha256": "6145e4e8bf36b780624626b31a783d7ca97696e1e14ae6d13c083b79da2f042d",
+    "blob": "6a0ec2a5e6ae5a8e44a47fe8707025cdfae8f4d8"
+  },
+  "TOEFL_real_91.json": {
+    "repo": "Weixin-Liang/ChatGPT-Detector-Bias",
+    "ref": "1d05ed8242d4694a0ed7b73a79c52be8864470f9",
+    "file": "Data_and_Results/Human_Data/TOEFL_real_91/data.json",
+    "sha256": "d5e2bf0bd4831262d60aa936b2ac8e532bd3859067411288b6c22ed16867666b",
+    "blob": "7d0999ca0b21da7f2ad6f2f029db06bffda4358c"
+  },
+  "TOEFL_gpt4polished_91.json": {
+    "repo": "Weixin-Liang/ChatGPT-Detector-Bias",
+    "ref": "1d05ed8242d4694a0ed7b73a79c52be8864470f9",
+    "file": "Data_and_Results/Human_Data/TOEFL_gpt4polished_91/data.json",
+    "sha256": "8dcbce862bc54259666c77d68ed43927af9d4cfd350c57ff1b250c21860256c6",
+    "blob": "37535b9a5184d061e22cf4b9f36681d241e53d28"
+  },
+  "CS224N_gpt3PromptEng_145.json": {
+    "repo": "Weixin-Liang/ChatGPT-Detector-Bias",
+    "ref": "1d05ed8242d4694a0ed7b73a79c52be8864470f9",
+    "file": "Data_and_Results/GPT_Data/CS224N_gpt3PromptEng_145/data.json",
+    "sha256": "18c9afb38569c986c7140e1cd2d3ba414f06e948ba3b866e209f2cfe1063d956",
+    "blob": "6c7a1040b5148b5779c02c1af4a4d5ad1193f8a6"
+  },
+  "CollegeEssay_real_70.json": {
+    "repo": "Weixin-Liang/ChatGPT-Detector-Bias",
+    "ref": "1d05ed8242d4694a0ed7b73a79c52be8864470f9",
+    "file": "Data_and_Results/Human_Data/CollegeEssay_real_70/data.json",
+    "sha256": "37534035e5ad8bbb7a362433644b38c6b8d45ad9c444836cc89a7013eb0d9917",
+    "blob": "bcc611476a5f4863da564ba826e0ae1675ab4a5a"
+  },
+  "CollegeEssay_gpt3_31.json": {
+    "repo": "Weixin-Liang/ChatGPT-Detector-Bias",
+    "ref": "1d05ed8242d4694a0ed7b73a79c52be8864470f9",
+    "file": "Data_and_Results/GPT_Data/CollegeEssay_gpt3_31/data.json",
+    "sha256": "2e11f35d067ec8aa2c5b844cb3a00b2d4e87d87cf5d012b566869c109273afe0",
+    "blob": "6ada2779a52d8195dbb1fe218923845d85fce085"
+  },
+  "CollegeEssay_gpt3PromptEng_31.json": {
+    "repo": "Weixin-Liang/ChatGPT-Detector-Bias",
+    "ref": "1d05ed8242d4694a0ed7b73a79c52be8864470f9",
+    "file": "Data_and_Results/GPT_Data/CollegeEssay_gpt3PromptEng_31/data.json",
+    "sha256": "59ac102fcd01895509494a6c4e26e0dae632ae816ee210afd1bea9a0c7c0ec2c",
+    "blob": "47b3e6845dcf5569f6c69717e16152ed71fb6cce"
+  },
+  "CS224N_real_145.json": {
+    "repo": "Weixin-Liang/ChatGPT-Detector-Bias",
+    "ref": "1d05ed8242d4694a0ed7b73a79c52be8864470f9",
+    "file": "Data_and_Results/Human_Data/CS224N_real_145/data.json",
+    "sha256": "fa62fd0355b7121283feb3ee4468bd0db23ba7847806a04d4a754f77b723a31d",
+    "blob": "6c88ce00481a8cbb287781f3bd71504f8a3f6b5a"
+  },
+  "roundtrip.jsonl": {
+    "repo": "ac-sys/originality-detector",
+    "ref": "72d2774c24e0df009172839b401947bad6808a40",
+    "file": "data/simeval/susp_test.jsonl",
+    "blob": "cd151720ddc3e986f42c742cf8d19a8712f258df",
+    "sha256": "524797b8a7453d014a009705b170fcc69c4358bb215e55de0590e202282df88b"
+  },
+  "arcd.json": {
+    "repo": "husseinmozannar/SOQAL",
+    "ref": "1229d34aa2b7a0b9a2e4858c9268e68f45d7e3c4",
+    "file": "data/arcd.json",
+    "sha256": "9d17bd7a4830dbcc12d4b042974138650cc69ee576c6e991050120448cd07633",
+    "blob": "93cb67e7645d6b5b1b48629950649a0c2c9eb41a"
+  },
+  "apt-ai.json": {
+    "repo": "Saleh-Almohaimeed/Ar-APT",
+    "ref": "bc4b6d9d7b3de0a56382598bbd8eefd816be52cb",
+    "file": "AI 10 LLMs generated Articles.json",
+    "sha256": "387cb7b4bdc54b1ef8e4b45d08e7be8c48af1f58a61824dcd8f41da56fe86731",
+    "blob": "490594e1a683dfdd6b4aad11c34645ab3603e929"
+  },
+  "apt-human-polished.json": {
+    "repo": "Saleh-Almohaimeed/Ar-APT",
+    "ref": "bc4b6d9d7b3de0a56382598bbd8eefd816be52cb",
+    "file": "Ar-APT/AI Polished Texts/GPT4 50%.json",
+    "sha256": "5d1afee4d8eadb1b5d02f63c21558f8f0642d37cf79e5feff66197e27ac7d916",
+    "blob": "958424dbb3f0db4fd2a43a264471a1d2ee1fbb74"
+  },
+  "academic-ar.jsonl": {
+    "repo": "KFUPM-JRCAI/arabic-text-detection",
+    "ref": "997da71482e77627bb0b777223628e9b23b8b7c1",
+    "file": "generated_arabic_datasets/claude/arabic_abstracts_dataset/by_polishing_abstracts_abstracts_generation.jsonl",
+    "sha256": "af3dd76b0ca489c6f21c37f55ce62dcc8dd3e07271f5435f83580e20af3290cb",
+    "blob": "62715c5aaefa603c89297bf7789adbf3f2b57fb8"
+  },
+  "argugpt-ai.csv": {
+    "repo": "huhailinguist/ArguGPT",
+    "ref": "cfbd00e75b63db44756375cfc1ee4278f8cd2bf1",
+    "file": "data/argugpt/machine-test.csv",
+    "sha256": "2cdff95bf1f73de2ab8c6419f8934e0e6c42c47628e0f3c11d417fc1d725fc3b",
+    "blob": "5094c1cc2d9f008286c040248d015c15b221cae2"
+  },
+  "alpaca-recipe.txt": {
+    "repo": "ARBML/CIDAR",
+    "ref": "36b061b25d7ac44912bf4cab54bf44755ed2150c",
+    "file": "keywords/alpagasus_\u0648\u0635\u0641\u0629.txt",
+    "sha256": "0ab61cb270ae49db7d7e3eb7d366fe9875c945cc91336db2cae77658379a991c",
+    "blob": "36d78ee707136f54fed517218f48d8523d94db2d"
+  },
+  "alpaca-trans.txt": {
+    "repo": "ARBML/CIDAR",
+    "ref": "36b061b25d7ac44912bf4cab54bf44755ed2150c",
+    "file": "keywords/alpagasus_\u062a\u0631\u062c\u0645.txt",
+    "sha256": "7572a7f414beae96cbf967bf20d93d53e672dc0b026c269b5e58bd321c0188ae",
+    "blob": "59b24e3a73f0d28fe869bb226bc5b1435315cfb0"
+  }
+}

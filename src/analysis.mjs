@@ -1,7 +1,7 @@
 import { inspectFile } from "../research/media/index.mjs";
 import { verifyReferences } from "../research/media/citations.mjs";
 import { detect } from "../research/detector/detector.mjs";
-import { compareDocument } from "../research/similarity/engine.mjs";
+import { compareDocument, PUBLIC_SOURCES } from "../research/similarity/engine.mjs";
 import { maskPII, cleanEvidence } from "./privacy.mjs";
 import { Fault, now, stmt } from "./auth.mjs";
 export const wordCount = (s) =>
@@ -17,7 +17,22 @@ export async function getReport(env, p, id) {
     p.role,
   ).first();
   if (!row) throw new Fault(404, "not_found");
-  return JSON.parse(row.audit);
+  const report = JSON.parse(row.audit);
+  if (report.privacyVersion !== 4) {
+    report.text = maskPII(report.text);
+    report.forensics = cleanEvidence(report.forensics);
+    report.provenance = cleanEvidence(report.provenance);
+    report.citations = cleanEvidence(report.citations);
+    for (const match of report.similarity?.matches || []) {
+      if (match.sourceExcerpt) match.sourceExcerpt = maskPII(match.sourceExcerpt);
+    }
+    report.privacyVersion = 4;
+    await stmt(env,
+      "UPDATE documents SET body=?,audit=? WHERE id=? AND expires>? AND COALESCE(json_extract(audit,'$.privacyVersion'),0)<4",
+      report.text, JSON.stringify(report), id, now()
+    ).run();
+  }
+  return report;
 }
 export async function sources(env, p, omit = "") {
   const { results } = await stmt(
@@ -36,7 +51,7 @@ export async function sources(env, p, omit = "") {
       id: row.id,
       title: "Submission " + row.id.slice(0, 8),
       kind: "cohort",
-      text: row.text,
+      text: maskPII(row.text),
     });
   }
   return { members, limited: members.length < results.length };
@@ -44,10 +59,10 @@ export async function sources(env, p, omit = "") {
 export async function similarity(env, p, body, options, id) {
   const corpus = await sources(env, p, id);
   const out = compareDocument(body, corpus.members, options);
-  const memberById = new Map(corpus.members.map((m) => [m.id, m.text]));
+  const sourceById = new Map([...PUBLIC_SOURCES, ...corpus.members].map((m) => [m.id, m.text]));
   const matches = out.matches.map((m) => {
-    if (!memberById.has(m.sourceId)) return m;
-    const source = memberById.get(m.sourceId);
+    if (!sourceById.has(m.sourceId)) return m;
+    const source = sourceById.get(m.sourceId);
     // Disclose only the matched redacted passage, up to 400 characters.
     return {
       ...m,
@@ -129,6 +144,7 @@ export async function analyze(
     words = wordCount(text);
   const audit = {
     id,
+    privacyVersion: 4,
     created,
     expires: created + 7 * 86400,
     format: fmt,

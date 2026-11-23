@@ -166,5 +166,19 @@
     "file": "keywords/alpagasus_\u062a\u0631\u062c\u0645.txt",
     "sha256": "7572a7f414beae96cbf967bf20d93d53e672dc0b026c269b5e58bd321c0188ae",
     "blob": "59b24e3a73f0d28fe869bb226bc5b1435315cfb0"
+  },
+  "hl5-title.jsonl": {
+    "repo": "KFUPM-JRCAI/arabic-text-detection",
+    "ref": "997da71482e77627bb0b777223628e9b23b8b7c1",
+    "file": "generated_arabic_datasets/claude/arabic_abstracts_dataset/from_title_abstracts_generation.jsonl",
+    "sha256": "b5c1f391854c785c739d14f7d5f7ca4aa01b7a5afb513f5e2d7b965116780080",
+    "blob": "c0b4b35f01502fd96f4a88a72206bb8dfbb8c156"
+  },
+  "hl5-ood.csv": {
+    "repo": "huhailinguist/ArguGPT",
+    "ref": "cfbd00e75b63db44756375cfc1ee4278f8cd2bf1",
+    "file": "data/argugpt/machine-ood.csv",
+    "sha256": "a929905a1b2f4e3f1f206755c5a0f6cb4002c1a62b6fc59158cf79c8d260de86",
+    "blob": "057bff1d1bc2017f4c9be01b92c658a6a57d025d"
   }
 }

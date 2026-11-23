@@ -1,0 +1,80 @@
+{
+  "siteSourceCommit": "c5a2f9fbe7dcaa22db5106faf800778bb402e8bb",
+  "githubCommit": "ba4a02361de7926c582b45799a9d9d17c23e1548",
+  "model": "AIP-HL-3",
+  "startedUTC": "2026-11-23T19:56:53.021Z",
+  "finishedUTC": "2026-11-23T19:56:55.474Z",
+  "workerSHA256": "87b51f3fbfb7bbe2f7b0344f3c907e115708d9a976b72750f31e4700f9a53381",
+  "command": "npm test",
+  "exit": 0,
+  "integratedChecks": [
+    {
+      "name": "Health, distinct roles and protected routes",
+      "status": "passed"
+    },
+    {
+      "name": "Upload and persisted readback: docx",
+      "status": "passed"
+    },
+    {
+      "name": "Upload and persisted readback: pdf",
+      "status": "passed"
+    },
+    {
+      "name": "Upload and persisted readback: png",
+      "status": "passed"
+    },
+    {
+      "name": "Upload and persisted readback: jpeg",
+      "status": "passed"
+    },
+    {
+      "name": "Media provenance: embedded C2PA",
+      "status": "passed"
+    },
+    {
+      "name": "Arabic DOCX forensics and privacy",
+      "status": "passed"
+    },
+    {
+      "name": "JSON audit and bilingual downloadable PDF exports",
+      "status": "passed"
+    },
+    {
+      "name": "TXT indexing and duplicate in same cohort",
+      "status": "passed"
+    },
+    {
+      "name": "Published paper and quote exclusion switch",
+      "status": "passed"
+    },
+    {
+      "name": "Student, instructor and cross-course isolation",
+      "status": "passed"
+    },
+    {
+      "name": "Membership administration and evidence permissions",
+      "status": "passed"
+    },
+    {
+      "name": "Clarity edits, active time, bulk paste, replay and submission",
+      "status": "passed"
+    },
+    {
+      "name": "Invalid document and missing session",
+      "status": "passed"
+    },
+    {
+      "name": "Built Worker local 50-upload and report-readback batch",
+      "status": "passed"
+    },
+    {
+      "name": "Expired test rows and scheduled handler",
+      "status": "passed"
+    },
+    {
+      "name": "Logout invalidates saved session",
+      "status": "passed"
+    }
+  ]
+}

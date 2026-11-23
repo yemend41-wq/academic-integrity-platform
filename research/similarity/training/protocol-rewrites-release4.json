@@ -1,0 +1,8 @@
+{
+  "frozenUtc": "2026-11-23T20:02:17.201784+00:00",
+  "candidateSha256": "464314299993f2dad79ad5a8d6e341fd2677854d7e9449796a9edd750b2b2922",
+  "data": "Four corpora with existing hashes in research/detector/sources.json: KFUPM academic-ar.jsonl, Ar-APT apt-human-polished.json, Liang TOEFL GPT4 polished with original in prompt, Hewlett student essays simplified with original in prompt. Source is explicitly paired, no imputation by position.",
+  "selection": "64 unique original documents per cohort, lowest SHA-256 in UTF-8 order; use excerpts up to 300 words of each original and rewrite. Deduplicate on normalized source and exclude identical or empty source/rewrite. For each case compare 8 distinct original sources in same cohort, selecting seven distractors at fixed offsets from source hash rank.",
+  "metrics": "Which source is ranked first by number of covered words then sum of word-weighted match score? Ties or no hits count as misses. Compute coverage of words attributable to the correct source. No known passage-level boundaries, no false-positive claim.",
+  "analysis": "The engine version is frozen. Report all results, including decreases. Data were not used to fit or promote the similarity system. Upstream corpora were used separately for authorship research."
+}

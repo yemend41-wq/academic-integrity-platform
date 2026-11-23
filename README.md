@@ -13,3 +13,9 @@ dist/server/index.js is the Worker entry point. Bind a D1 database as DB. Apply 
 Raw upload bytes are held in request memory. Reports and draft history expire after seven days; schedule POST /api/retention/tick daily; verify /api/retention for the UTC epoch of the last completed purge. The trigger cannot change retention rules or access records. A D1 lease rate-limits cleanup. Configure LTI_PLATFORMS and LTI_SUBJECT_KEY only for an approved LMS registration. See research/lti/README.md.
 
 The public reference collection and correctness limits are described in research/similarity/NOTICE.md. Detector measurement denominators, split protocol and failed release gates are preserved in research/detector/card.json. Distribution notices for third-party code and fonts are retained under research/. No learner submissions, session tokens or evaluator credentials belong in source control.
+
+## Assessment release 4
+
+The bilingual public register at `/acceptance` lists the scope of each measured result. The signed-in model and system page includes the underlying research and the archived hosted runs. The detector remains AIP-HL-3. The frozen HL-5 challenger failed its machine-recall gate. See `research/detector/release4-study.json` and the two release-4 runs in `research/similarity/training/`.
+
+Run `npm test` for Worker integration and `npm run test:module-audit` for the real-file parsing, privacy and rendering checks. For end-to-end load, use `node scripts/release4-bench-local.mjs evidence/new-loopback.json release-4 AIP-HL-3` in a disposable local Worker or run `python scripts/release4-bench.py --help` for an authenticated hosted run. The public and loopback results have different acceptance scopes. The release-3 GitHub commit and hosted version 3 remain rollback references.

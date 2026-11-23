@@ -45,4 +45,5 @@ card={'version':'AIP-HL-3','purpose':'Experimental bilingual review signal in th
                           {'id':'AIP-HL-2','state':'English research challenger, failed release','record':'challenger-decision.json'},
                           {'id':'AIP-HL-3','state':'selected for experimental assessment, failed release','record':'arabic-challenger-decision.json'},
                           {'id':'AIP-HL-4-research','state':'rejected: insufficient sensitivity','record':'strict-holdout-summary.json'}]}
+card['release4']=load('release4-study.json')
 (root/'card.json').write_text(json.dumps(card,indent=2)+'\n')

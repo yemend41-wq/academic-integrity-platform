@@ -1,0 +1,128 @@
+{
+  "measuredUtc": "2026-11-23T20:03:24.069Z",
+  "engineSha256": "464314299993f2dad79ad5a8d6e341fd2677854d7e9449796a9edd750b2b2922",
+  "protocolSha256": "4e0ca7cc18d1347b32b705f121bcaa60e4e842ca2d386f479c6704da98b868f4",
+  "groups": [
+    {
+      "name": "Arabic academic abstracts",
+      "language": "ar",
+      "files": [
+        {
+          "file": "academic-ar.jsonl",
+          "sha256": "af3dd76b0ca489c6f21c37f55ce62dcc8dd3e07271f5435f83580e20af3290cb"
+        }
+      ],
+      "availableRows": 703,
+      "eligiblePairs": 701,
+      "evaluated": 64,
+      "evaluationIdsSha256": "9f7f0face88df29ded384dd9a8ae97650ac76b41ec6b7294b99386e19b11efe7",
+      "release3": {
+        "top1": 33,
+        "anyCorrect": 33,
+        "eligibleWords": 7932,
+        "attributedWords": 386,
+        "attributedFraction": 0.048663640948058494
+      },
+      "release4": {
+        "top1": 33,
+        "anyCorrect": 33,
+        "eligibleWords": 7932,
+        "attributedWords": 386,
+        "attributedFraction": 0.048663640948058494
+      }
+    },
+    {
+      "name": "Arabic press",
+      "language": "ar",
+      "files": [
+        {
+          "file": "apt-human-polished.json",
+          "sha256": "5d1afee4d8eadb1b5d02f63c21558f8f0642d37cf79e5feff66197e27ac7d916"
+        }
+      ],
+      "availableRows": 400,
+      "eligiblePairs": 400,
+      "evaluated": 64,
+      "evaluationIdsSha256": "a04b3eea29e966ce0ba39355675b9c3a01fff312ef08d1cb2fa934416614da38",
+      "release3": {
+        "top1": 63,
+        "anyCorrect": 63,
+        "eligibleWords": 10526,
+        "attributedWords": 4350,
+        "attributedFraction": 0.41326239787193614
+      },
+      "release4": {
+        "top1": 63,
+        "anyCorrect": 63,
+        "eligibleWords": 10526,
+        "attributedWords": 4379,
+        "attributedFraction": 0.41601748052441573
+      }
+    },
+    {
+      "name": "English TOEFL essays",
+      "language": "en",
+      "files": [
+        {
+          "file": "TOEFL_real_91.json",
+          "sha256": "d5e2bf0bd4831262d60aa936b2ac8e532bd3859067411288b6c22ed16867666b"
+        },
+        {
+          "file": "TOEFL_gpt4polished_91.json",
+          "sha256": "8dcbce862bc54259666c77d68ed43927af9d4cfd350c57ff1b250c21860256c6"
+        }
+      ],
+      "availableRows": 91,
+      "eligiblePairs": 77,
+      "evaluated": 64,
+      "evaluationIdsSha256": "c28c133e8a724c90dc10db18eb740496eac8376c31048907d02fc91ae2ad1e85",
+      "release3": {
+        "top1": 36,
+        "anyCorrect": 36,
+        "eligibleWords": 5813,
+        "attributedWords": 369,
+        "attributedFraction": 0.06347841045931532
+      },
+      "release4": {
+        "top1": 37,
+        "anyCorrect": 37,
+        "eligibleWords": 5813,
+        "attributedWords": 374,
+        "attributedFraction": 0.06433855152244969
+      }
+    },
+    {
+      "name": "English Hewlett essays",
+      "language": "en",
+      "files": [
+        {
+          "file": "HewlettStudentEssay_real_88.json",
+          "sha256": "6145e4e8bf36b780624626b31a783d7ca97696e1e14ae6d13c083b79da2f042d"
+        },
+        {
+          "file": "HewlettStudentEssay_GPTsimplify_88.json",
+          "sha256": "59fef9d557c689f1a508269b780f37bab548346d5033c455c3e211a99c1feba3"
+        }
+      ],
+      "availableRows": 88,
+      "eligiblePairs": 88,
+      "evaluated": 64,
+      "evaluationIdsSha256": "58abb072827a20f5c0ce909b0f83cbc37c956f52893e5b931e371425a8f4a3cf",
+      "release3": {
+        "top1": 42,
+        "anyCorrect": 43,
+        "eligibleWords": 7617,
+        "attributedWords": 695,
+        "attributedFraction": 0.09124327162925036
+      },
+      "release4": {
+        "top1": 42,
+        "anyCorrect": 43,
+        "eligibleWords": 7617,
+        "attributedWords": 713,
+        "attributedFraction": 0.09360640672180648
+      }
+    }
+  ],
+  "limits": "Only documented rewrite pairs are scored. Top-one retrieval of a known source differs from a plagiarism or authorship judgment. Positive pairs cannot estimate false positives. Coverage uses visible intervals from the first 300 whitespace-delimited words; span-level paraphrase truth was not provided."
+}

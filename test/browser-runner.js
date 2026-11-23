@@ -13,14 +13,19 @@ async function suite(width,lang){
  const testCase=async(name,fn)=>{const x=await fn();results.push({width,lang,name,status:'passed',...x});output.textContent=JSON.stringify(results,null,2)};
  const b=await (await fetch('/__qa/fixture')).blob();
  await testCase('Upload a real 3,000-word DOCX in rendered controls',async()=>{
+   const seed=await fetch('/api/analyze',{method:'POST',headers:{'x-format':'txt','x-index':'yes'},body:await (await fetch('/__qa/passage')).text()});
+   assert(seed.status===201,'seed real reference in isolated cohort');
    const d=doc(),file=new f.contentWindow.File([b],'public-text.docx',{type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
    const dt=new f.contentWindow.DataTransfer();dt.items.add(file);const input=d.querySelector('#file');input.files=dt.files;input.dispatchEvent(new f.contentWindow.Event('change',{bubbles:true}));
    d.querySelector('#upload').click();await waitFor(()=>d.querySelector('[data-tab="file"]'));
    assert(d.querySelector('.metric-grid').textContent.includes('3000'),'word count');const overflow=d.documentElement.scrollWidth-d.documentElement.clientWidth;assert(overflow<=2,'horizontal overflow '+overflow);return {sha256:await digest(await b.arrayBuffer()),overflow};
  });
  await testCase('Report tabs, exclusions, JSON and PDF controls',async()=>{
-   const d=doc();d.querySelector('#rq').click();d.querySelector('#refilter').click();await waitFor(()=>!d.querySelector('#refilter')?.disabled);
+   const d=doc();const linked=d.querySelector('a[data-evidence]');assert(linked,'missing linked matching passage');
+   linked.click();const pair=d.querySelector(linked.getAttribute('href'));assert(pair && pair.closest('details').open && pair.querySelector('blockquote').textContent.trim().length>20,'source passage open');
+   d.querySelector('#rq').click();d.querySelector('#refilter').click();await waitFor(()=>!d.querySelector('#refilter')?.disabled);
    for(const tab of ['writing','file','refs','matches']){d.querySelector('[data-tab="'+tab+'"]').click();assert(d.querySelector('#detail').textContent.trim(),'empty tab');}
+   assert(!d.querySelector('#rq').checked,'selected exclusions survived tab switch');
    const urls=[...d.querySelectorAll('a[download]')].map(a=>a.getAttribute('href'));assert(urls.length===2,'export controls');
    const responses=await Promise.all(urls.map(s=>fetch(s)));assert(responses.every(r=>r.ok),'export HTTP');const bytes=await responses[0].arrayBuffer();assert(new TextDecoder().decode(bytes.slice(0,5))==='%PDF-','PDF bytes');assert((await responses[1].json()).words===3000,'JSON content');return {pdfBytes:bytes.byteLength};
  });

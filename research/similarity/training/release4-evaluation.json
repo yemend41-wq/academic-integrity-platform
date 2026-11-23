@@ -1,0 +1,108 @@
+{
+  "measuredUtc": "2026-11-23T20:02:19.240Z",
+  "engineSha256": "464314299993f2dad79ad5a8d6e341fd2677854d7e9449796a9edd750b2b2922",
+  "baselineSha256": "42cc2388f4f5eac190e5acee372477ab156101a9164fc0da0394accd4daf9a4d",
+  "protocolSha256": "b94dc6cd80de85dfbc8512e3605809483ced4d0b503ef734e580b94190d1841e",
+  "publishedPDF": {
+    "sha256": "b196e33fcebb974fca4ec5e9563e0c1ca54ceb026426c98a9f3ead36d182e9b1",
+    "sourceId": "pyarabic",
+    "release3": {
+      "retrieved": true,
+      "eligibleWords": 1097,
+      "matchedWords": 837,
+      "coverage": 76.3
+    },
+    "release4": {
+      "retrieved": true,
+      "eligibleWords": 1097,
+      "matchedWords": 837,
+      "coverage": 76.3
+    }
+  },
+  "sourceAwareRetrieval": [
+    {
+      "track": "track1.ar-ar",
+      "language": "ar",
+      "rows": 250,
+      "inputSha256": "a4f24daa03def87b52769b3a5ea9fe5f8b66d2f06db2a6565395cb1575443e3e",
+      "goldSha256": "4a7ad1eb5219605ab09cd743727c4059acdf55df9ae7351b5df079cc47ae983e",
+      "release3": {
+        "highPairs": 41,
+        "positiveRetrieved": 6,
+        "lowPairs": 72,
+        "unrelatedFlagged": 0,
+        "top1": 6,
+        "meanTargetSentenceIoU": 0.1323396567299006,
+        "meanSourceSentenceIoU": 0.14111498257839722
+      },
+      "release4": {
+        "highPairs": 41,
+        "positiveRetrieved": 21,
+        "lowPairs": 72,
+        "unrelatedFlagged": 1,
+        "top1": 21,
+        "meanTargetSentenceIoU": 0.49819331526648597,
+        "meanSourceSentenceIoU": 0.5069686411149825
+      }
+    },
+    {
+      "track": "track5.en-en",
+      "language": "en",
+      "rows": 250,
+      "inputSha256": "8d493844c1010eb6b5d373e289b8d6ddc003e626bf8495976cc40c0a5f47414c",
+      "goldSha256": "a767d322cc3e78ff43f3c541a4fc0b9e0e5681f27c20de7eb9095fbb9072cf04",
+      "release3": {
+        "highPairs": 41,
+        "positiveRetrieved": 21,
+        "lowPairs": 61,
+        "unrelatedFlagged": 0,
+        "top1": 21,
+        "meanTargetSentenceIoU": 0.45175299470688657,
+        "meanSourceSentenceIoU": 0.4489444673633068
+      },
+      "release4": {
+        "highPairs": 41,
+        "positiveRetrieved": 36,
+        "lowPairs": 61,
+        "unrelatedFlagged": 0,
+        "top1": 36,
+        "meanTargetSentenceIoU": 0.8176066532434718,
+        "meanSourceSentenceIoU": 0.814798125899892
+      }
+    }
+  ],
+  "controlledVerbatim": {
+    "data": "Universal Dependencies, PUD, document-disjoint from multilingual embedding fit, compared to the known source. Exact five-token minimum.",
+    "sha256": "79decb6b7754799ee39eb908bf054835993b92d609c5681ef2d98847a06f3750",
+    "results": {
+      "release3": {
+        "en": {
+          "eligible": 167,
+          "correctSource": 162,
+          "bothBoundariesExact": 156
+        },
+        "ar": {
+          "eligible": 162,
+          "correctSource": 157,
+          "bothBoundariesExact": 148
+        }
+      },
+      "release4": {
+        "en": {
+          "eligible": 167,
+          "correctSource": 162,
+          "bothBoundariesExact": 156
+        },
+        "ar": {
+          "eligible": 162,
+          "correctSource": 157,
+          "bothBoundariesExact": 148
+        }
+      }
+    }
+  },
+  "spanMetric": "Mean intersection over union of UTF-16 positions in aligned target/source sentences, computed on all high pairs. A miss counts as zero. Whole-sentence STS alignments indicate semantic similarity; precise plagiarism spans are not annotated in this benchmark.",
+  "rankingMetric": "Unique first source by covered query word count, then word-weighted match score. Each query is compared to all five built-in documents plus its partner and up to 15 deterministic same-language distractor sources.",
+  "acceptanceGate": true,
+  "scope": "Same frozen SemEval files as release 3; previous aggregate scores were known. New source-ranking and span evaluation protocol. No unseen committee test or internet-wide retrieval claim."
+}

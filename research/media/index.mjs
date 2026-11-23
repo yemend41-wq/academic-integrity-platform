@@ -1,5 +1,6 @@
 import {zipEntries} from './zip.mjs';
 import {readProperties,wordXML} from './xml.mjs';
+import {visibilityStyles} from './word-visibility.mjs';
 import {png,jpeg} from './images.mjs';
 import {pdf} from './pdf.mjs';
 import {inspectManifest,missingCredential} from './c2pa.mjs';
@@ -23,7 +24,8 @@ function textSignals(text){
 async function docx(bytes){
   const entries=zipEntries(bytes);
   if(!entries.has('[Content_Types].xml')||!entries.has('word/document.xml'))throw new Error('Not a Word processing document');
-  const {text,data}=wordXML(entries.get('word/document.xml')());
+  const visibility=await visibilityStyles(entries.get('word/styles.xml')?.());
+  const {text,data}=wordXML(entries.get('word/document.xml')(),visibility);
   // Only metadata relevant to process is retained. Author identities, document
   // titles, organisations and directory paths are never placed into reports.
   const core=readProperties(entries.get('docProps/core.xml')?.(),['revision','created','modified','lastPrinted']);

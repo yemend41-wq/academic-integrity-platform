@@ -1,11 +1,11 @@
 import { Fault, json, now, readJSON, stmt } from "./auth.mjs";
-import { writer, upgradeHistory } from "../research/clarity/redaction.mjs";
+import { writer, upgradeHistory, PRIVACY_VERSION } from "../research/clarity/redaction.mjs";
 export const blank = () => ({
   revision: 0,
   text: "",
   events: [],
   activeMs: 0,
-  privacyVersion: 2,
+  privacyVersion: PRIVACY_VERSION,
 });
 // Preserve long redacted histories below the database row budget. A mask occupies
 // one UTF-16 unit but three UTF-8 bytes. Highly repetitive masks compress well.
@@ -95,7 +95,7 @@ export async function saveDraft(env, p, req) {
     edits.append(edit.text, { kind: edit.type, at: Date.now(), activeMs });
   }
   old.revision++;
-  old.privacyVersion = 2;
+  old.privacyVersion = PRIVACY_VERSION;
   old.lastEditId = body.editId || null;
   const value = await storedState(old);
   const saved = await stmt(

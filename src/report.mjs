@@ -27,13 +27,18 @@ export function pdfAudit(r, locale) {
     [l("Coverage", "النسبة")]: r.similarity.percentage + "%",
     [l("Eligible words", "الكلمات المشمولة")]: r.similarity.eligibleWords,
     [l("Matched words", "الكلمات المطابقة")]: r.similarity.matchedWords,
+    [l("Exclude quotes", "استبعاد الاقتباسات")]: r.options?.excludeQuotes,
+    [l("Exclude references", "استبعاد المراجع")]: r.options?.excludeReferences,
   });
   add(
     l("Source matches", "المصادر المطابقة"),
     (r.similarity.matches || []).map((m) => ({
       source: m.sourceTitle || m.sourceId,
       method: m.method,
-      excerpt: r.text.slice(m.start, m.end),
+      [l("Submission passage", "المقطع في المستند")]: r.text.slice(m.start, m.end),
+      [l("Source passage", "المقطع في المصدر")]: m.sourceExcerpt,
+      [l("Source character range", "موضع المقطع في المصدر")]: [m.sourceStart, m.sourceEnd],
+      [l("Published URL", "رابط المصدر المنشور")]: m.sourceUrl,
     })),
   );
   add(l("AI writing signals", "مؤشرات الكتابة المولّدة"), {

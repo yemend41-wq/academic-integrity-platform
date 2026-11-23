@@ -2,6 +2,7 @@ import {strict as assert} from 'node:assert';
 import {DatabaseSync} from 'node:sqlite';
 import {blank,getDraft,saveDraft} from '../../src/drafts.mjs';
 import {delta,maskPII} from '../../src/privacy.mjs';
+import {PRIVACY_VERSION} from './redaction.mjs';
 import {activeInterval,boundedBatch,editKind,projectEvents,reconciles,timeline} from './history.mjs';
 
 const db=new DatabaseSync(':memory:');
@@ -68,9 +69,20 @@ try{
  for(const rawText of oldFrames){const text=maskPII(rawText);legacy.events.push({...delta(legacy.text,text),at:1,kind:'type',activeMs:1,bulk:false});legacy.text=text;legacy.activeMs++;}
  db.prepare('INSERT INTO drafts VALUES (?,?,?,?)').run('pre-upgrade',legacy.revision,JSON.stringify(legacy),Math.floor(Date.now()/1000)+1200);
  const fixed=await getDraft(env,{id:'pre-upgrade'});
- same('legacy history converted and persisted with one optimistic revision increment',[fixed.revision,fixed.privacyVersion,fixed.events.length,db.prepare('SELECT revision FROM drafts WHERE owner=?').get('pre-upgrade').revision],[5,2,4,5]);
+ same('legacy history converted and persisted with one optimistic revision increment',[fixed.revision,fixed.privacyVersion,fixed.events.length,db.prepare('SELECT revision FROM drafts WHERE owner=?').get('pre-upgrade').revision],[5,PRIVACY_VERSION,4,5]);
  same('legacy partial values absent from every reconstructed historical frame',fixed.events.every((_,i)=>!/aval|example|@/.test(timeline(fixed.events)(i+1))),true);
  same('subsequent reads of legacy record do not rewrite again',(await getDraft(env,{id:'pre-upgrade'})).revision,5);
+ const versionTwo={revision:3,text:'',events:[],activeMs:0,privacyVersion:2};
+ const oldPhone=['Office +971 50', 'Office +971 50 847 1932', 'Department office open.'];
+ oldPhone.forEach((frame,i)=>{
+  versionTwo.events.push({...delta(versionTwo.text,frame),at:100+i,kind:'type',bulk:false,activeMs:100});
+  versionTwo.text=frame;versionTwo.activeMs+=100;
+ });
+ db.prepare('INSERT INTO drafts VALUES (?,?,?,?)').run('v2-phone',3,JSON.stringify(versionTwo),Math.floor(Date.now()/1000)+1200);
+ const currentPhone=await getDraft(env,{id:'v2-phone'}),frames=timeline(currentPhone.events);
+ same('v2 record whose final text contains no PII is rewritten exactly once',[(await getDraft(env,{id:'v2-phone'})).revision,currentPhone.privacyVersion],[4,PRIVACY_VERSION]);
+ same('earlier phone prefix and completed number disappear from every reconstructed frame',[frames(1),frames(2),frames(3)],['Office ████ ██','Office ████ ██ ███ ████',oldPhone[2]]);
+ same('migration preserves gesture metadata, time and SQLite privacy', [currentPhone.activeMs,currentPhone.events.map(e=>e.at),/971|847|1932/.test(db.prepare('SELECT state FROM drafts WHERE owner=?').get('v2-phone').state)],[300,[100,101,102],false]);
  const crowded={id:'qa-large-private-history'};
  const contactLines=('u@example.org '.repeat(5000)).trim();
  for(let i=0;i<11;i++)await saveDraft(env,crowded,request(i,[edit(i%2?'':contactLines,'replace',25)]));

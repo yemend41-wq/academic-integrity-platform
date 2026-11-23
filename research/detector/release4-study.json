@@ -1,0 +1,1278 @@
+{
+  "experiment": {
+    "control": [
+      {
+        "label": "Arabic original abstracts",
+        "lang": "ar",
+        "origin": "human",
+        "total": 400,
+        "eligible": 400,
+        "abstained": 0,
+        "excluded": 0,
+        "any": 34,
+        "numeric": 34,
+        "any_rate": 0.085,
+        "numeric_rate": 0.085,
+        "coverage": 1.0,
+        "any_ci95": [
+          0.061463,
+          0.116432
+        ],
+        "numeric_ci95": [
+          0.061463,
+          0.116432
+        ]
+      },
+      {
+        "label": "Arabic title-generated abstracts",
+        "lang": "ar",
+        "origin": "machine",
+        "total": 400,
+        "eligible": 400,
+        "abstained": 0,
+        "excluded": 0,
+        "any": 325,
+        "numeric": 325,
+        "any_rate": 0.8125,
+        "numeric_rate": 0.8125,
+        "coverage": 1.0,
+        "any_ci95": [
+          0.771344,
+          0.847711
+        ],
+        "numeric_ci95": [
+          0.771344,
+          0.847711
+        ]
+      },
+      {
+        "label": "ArguGPT OOD generation",
+        "lang": "en",
+        "origin": "machine",
+        "total": 400,
+        "eligible": 400,
+        "abstained": 0,
+        "excluded": 0,
+        "any": 35,
+        "numeric": 11,
+        "any_rate": 0.0875,
+        "numeric_rate": 0.0275,
+        "coverage": 1.0,
+        "any_ci95": [
+          0.063587,
+          0.119261
+        ],
+        "numeric_ci95": [
+          0.015424,
+          0.048565
+        ]
+      }
+    ],
+    "candidate": [
+      {
+        "label": "Arabic original abstracts",
+        "lang": "ar",
+        "origin": "human",
+        "total": 400,
+        "eligible": 400,
+        "abstained": 0,
+        "excluded": 0,
+        "any": 0,
+        "numeric": 0,
+        "any_rate": 0.0,
+        "numeric_rate": 0.0,
+        "coverage": 1.0,
+        "any_ci95": [
+          0.0,
+          0.009512
+        ],
+        "numeric_ci95": [
+          0.0,
+          0.009512
+        ]
+      },
+      {
+        "label": "Arabic title-generated abstracts",
+        "lang": "ar",
+        "origin": "machine",
+        "total": 400,
+        "eligible": 400,
+        "abstained": 0,
+        "excluded": 0,
+        "any": 0,
+        "numeric": 0,
+        "any_rate": 0.0,
+        "numeric_rate": 0.0,
+        "coverage": 1.0,
+        "any_ci95": [
+          0.0,
+          0.009512
+        ],
+        "numeric_ci95": [
+          0.0,
+          0.009512
+        ]
+      },
+      {
+        "label": "ArguGPT OOD generation",
+        "lang": "en",
+        "origin": "machine",
+        "total": 400,
+        "eligible": 400,
+        "abstained": 0,
+        "excluded": 0,
+        "any": 35,
+        "numeric": 11,
+        "any_rate": 0.0875,
+        "numeric_rate": 0.0275,
+        "coverage": 1.0,
+        "any_ci95": [
+          0.063587,
+          0.119261
+        ],
+        "numeric_ci95": [
+          0.015424,
+          0.048565
+        ]
+      }
+    ],
+    "candidate_model": "AIP-HL-5-research",
+    "active_model": "AIP-HL-3",
+    "passed": false,
+    "decision": "rejected",
+    "weights_sha256": "2f71374522f7347c8928f5ff6c98975f3b00d4e6c4edae5243b5c40062c5aed6",
+    "protocol_sha256": "45dbcdb7dff24efaf97f8d2ac9973a120b2f9d326df7202c06ffd0cf591e854e",
+    "source_counts": {
+      "ar": {
+        "source_records": 3000,
+        "screened": 519,
+        "overlap_excluded": 119,
+        "selected": 400
+      },
+      "en": {
+        "source_records": 500,
+        "screened": 400,
+        "overlap_excluded": 0,
+        "selected": 400
+      }
+    },
+    "manifest_sha256": "31413c0b108525492b5709dac54a560983bf0bcfbd04f5b6f6b5a6ba14b19118",
+    "groups": {
+      "train/AIRABIC/0": 190,
+      "train/AIRABIC/1": 146,
+      "train/ARCD/0": 347,
+      "train/Ar-APT/0": 400,
+      "train/Ar-APT/1": 360,
+      "calibration/o-qn/0": 771
+    }
+  },
+  "cohorts": [
+    {
+      "label": "Arabic original abstracts",
+      "lang": "ar",
+      "origin": "human",
+      "total": 400,
+      "eligible": 400,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 34,
+      "numeric": 34,
+      "any_rate": 0.085,
+      "numeric_rate": 0.085,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.061463,
+        0.116432
+      ],
+      "numeric_ci95": [
+        0.061463,
+        0.116432
+      ]
+    },
+    {
+      "label": "Arabic title-generated abstracts",
+      "lang": "ar",
+      "origin": "machine",
+      "total": 400,
+      "eligible": 400,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 325,
+      "numeric": 325,
+      "any_rate": 0.8125,
+      "numeric_rate": 0.8125,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.771344,
+        0.847711
+      ],
+      "numeric_ci95": [
+        0.771344,
+        0.847711
+      ]
+    },
+    {
+      "label": "ArguGPT OOD generation",
+      "lang": "en",
+      "origin": "machine",
+      "total": 400,
+      "eligible": 400,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 35,
+      "numeric": 11,
+      "any_rate": 0.0875,
+      "numeric_rate": 0.0275,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.063587,
+        0.119261
+      ],
+      "numeric_ci95": [
+        0.015424,
+        0.048565
+      ]
+    },
+    {
+      "label": "Course-project collection",
+      "lang": "ar",
+      "origin": "human",
+      "total": 849,
+      "eligible": 799,
+      "abstained": 49,
+      "excluded": 1,
+      "any": 239,
+      "numeric": 227,
+      "any_rate": 0.299124,
+      "numeric_rate": 0.284105,
+      "coverage": 0.942217,
+      "any_ci95": [
+        0.268398,
+        0.331772
+      ],
+      "numeric_ci95": [
+        0.253925,
+        0.316351
+      ]
+    },
+    {
+      "label": "Course-project collection, generated",
+      "lang": "ar",
+      "origin": "machine",
+      "total": 858,
+      "eligible": 812,
+      "abstained": 46,
+      "excluded": 0,
+      "any": 611,
+      "numeric": 603,
+      "any_rate": 0.752463,
+      "numeric_rate": 0.742611,
+      "coverage": 0.946387,
+      "any_ci95": [
+        0.721636,
+        0.780913
+      ],
+      "numeric_ci95": [
+        0.711447,
+        0.77149
+      ]
+    },
+    {
+      "label": "Ar-APT press",
+      "lang": "ar",
+      "origin": "human",
+      "total": 400,
+      "eligible": 400,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 59,
+      "numeric": 56,
+      "any_rate": 0.1475,
+      "numeric_rate": 0.14,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.116106,
+        0.1856
+      ],
+      "numeric_ci95": [
+        0.10941,
+        0.177439
+      ]
+    },
+    {
+      "label": "Ar-APT generated press",
+      "lang": "ar",
+      "origin": "machine",
+      "total": 400,
+      "eligible": 359,
+      "abstained": 1,
+      "excluded": 40,
+      "any": 263,
+      "numeric": 252,
+      "any_rate": 0.732591,
+      "numeric_rate": 0.70195,
+      "coverage": 0.997222,
+      "any_ci95": [
+        0.68452,
+        0.775736
+      ],
+      "numeric_ci95": [
+        0.652699,
+        0.746924
+      ]
+    },
+    {
+      "label": "KFUPM earlier abstracts",
+      "lang": "ar",
+      "origin": "human",
+      "total": 703,
+      "eligible": 701,
+      "abstained": 0,
+      "excluded": 2,
+      "any": 33,
+      "numeric": 32,
+      "any_rate": 0.047076,
+      "numeric_rate": 0.045649,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.033714,
+        0.065374
+      ],
+      "numeric_ci95": [
+        0.032519,
+        0.063732
+      ]
+    },
+    {
+      "label": "KFUPM abstracts polished by Claude",
+      "lang": "ar",
+      "origin": "assisted",
+      "total": 703,
+      "eligible": 703,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 383,
+      "numeric": 382,
+      "any_rate": 0.544808,
+      "numeric_rate": 0.543385,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.507852,
+        0.581277
+      ],
+      "numeric_ci95": [
+        0.506428,
+        0.579872
+      ]
+    },
+    {
+      "label": "Ar-APT polished press",
+      "lang": "ar",
+      "origin": "assisted",
+      "total": 400,
+      "eligible": 392,
+      "abstained": 8,
+      "excluded": 0,
+      "any": 77,
+      "numeric": 72,
+      "any_rate": 0.196429,
+      "numeric_rate": 0.183673,
+      "coverage": 0.98,
+      "any_ci95": [
+        0.160126,
+        0.238624
+      ],
+      "numeric_ci95": [
+        0.148475,
+        0.225012
+      ]
+    },
+    {
+      "label": "ANAD 2021 news",
+      "lang": "ar",
+      "origin": "human",
+      "total": 360,
+      "eligible": 358,
+      "abstained": 0,
+      "excluded": 2,
+      "any": 72,
+      "numeric": 35,
+      "any_rate": 0.201117,
+      "numeric_rate": 0.097765,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.162868,
+        0.245713
+      ],
+      "numeric_ci95": [
+        0.071138,
+        0.132934
+      ]
+    },
+    {
+      "label": "AlpaGasus Arabic machine-translated instruction and output",
+      "lang": "ar",
+      "origin": "machine",
+      "total": 222,
+      "eligible": 100,
+      "abstained": 122,
+      "excluded": 0,
+      "any": 6,
+      "numeric": 6,
+      "any_rate": 0.06,
+      "numeric_rate": 0.06,
+      "coverage": 0.45045,
+      "any_ci95": [
+        0.027786,
+        0.124768
+      ],
+      "numeric_ci95": [
+        0.027786,
+        0.124768
+      ]
+    },
+    {
+      "label": "UKP persuasive essays",
+      "lang": "en",
+      "origin": "human",
+      "total": 402,
+      "eligible": 399,
+      "abstained": 0,
+      "excluded": 3,
+      "any": 1,
+      "numeric": 0,
+      "any_rate": 0.002506,
+      "numeric_rate": 0.0,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.000443,
+        0.014058
+      ],
+      "numeric_ci95": [
+        0.0,
+        0.009536
+      ]
+    },
+    {
+      "label": "ArguGPT generated test essays",
+      "lang": "en",
+      "origin": "machine",
+      "total": 350,
+      "eligible": 350,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 22,
+      "numeric": 7,
+      "any_rate": 0.062857,
+      "numeric_rate": 0.02,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.041873,
+        0.093333
+      ],
+      "numeric_ci95": [
+        0.009721,
+        0.040701
+      ]
+    },
+    {
+      "label": "mage_test",
+      "lang": "en",
+      "origin": "machine",
+      "total": 300,
+      "eligible": 300,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 11,
+      "numeric": 5,
+      "any_rate": 0.036667,
+      "numeric_rate": 0.016667,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.020595,
+        0.064454
+      ],
+      "numeric_ci95": [
+        0.007139,
+        0.038415
+      ]
+    },
+    {
+      "label": "raid",
+      "lang": "en",
+      "origin": "machine",
+      "total": 1155,
+      "eligible": 1085,
+      "abstained": 0,
+      "excluded": 70,
+      "any": 581,
+      "numeric": 501,
+      "any_rate": 0.535484,
+      "numeric_rate": 0.461751,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.505735,
+        0.564983
+      ],
+      "numeric_ci95": [
+        0.432274,
+        0.491498
+      ]
+    },
+    {
+      "label": "mage_test",
+      "lang": "en",
+      "origin": "human",
+      "total": 300,
+      "eligible": 282,
+      "abstained": 0,
+      "excluded": 18,
+      "any": 4,
+      "numeric": 3,
+      "any_rate": 0.014184,
+      "numeric_rate": 0.010638,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.005529,
+        0.035897
+      ],
+      "numeric_ci95": [
+        0.003624,
+        0.030805
+      ]
+    },
+    {
+      "label": "raid",
+      "lang": "en",
+      "origin": "human",
+      "total": 183,
+      "eligible": 163,
+      "abstained": 0,
+      "excluded": 20,
+      "any": 5,
+      "numeric": 2,
+      "any_rate": 0.030675,
+      "numeric_rate": 0.01227,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.013172,
+        0.06979
+      ],
+      "numeric_ci95": [
+        0.003371,
+        0.043628
+      ]
+    },
+    {
+      "label": "mage_ood_gpt4",
+      "lang": "en",
+      "origin": "machine",
+      "total": 78,
+      "eligible": 78,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 1,
+      "numeric": 0,
+      "any_rate": 0.012821,
+      "numeric_rate": 0.0,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.002267,
+        0.069109
+      ],
+      "numeric_ci95": [
+        0.0,
+        0.046938
+      ]
+    },
+    {
+      "label": "mage_ood_gpt4",
+      "lang": "en",
+      "origin": "human",
+      "total": 72,
+      "eligible": 72,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 0,
+      "numeric": 0,
+      "any_rate": 0.0,
+      "numeric_rate": 0.0,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.0,
+        0.050651
+      ],
+      "numeric_ci95": [
+        0.0,
+        0.050651
+      ]
+    },
+    {
+      "label": "mage_ood_gpt4_para",
+      "lang": "en",
+      "origin": "human",
+      "total": 40,
+      "eligible": 38,
+      "abstained": 0,
+      "excluded": 2,
+      "any": 0,
+      "numeric": 0,
+      "any_rate": 0.0,
+      "numeric_rate": 0.0,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.0,
+        0.09181
+      ],
+      "numeric_ci95": [
+        0.0,
+        0.09181
+      ]
+    },
+    {
+      "label": "mage_ood_gpt4_para",
+      "lang": "en",
+      "origin": "machine",
+      "total": 110,
+      "eligible": 110,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 4,
+      "numeric": 2,
+      "any_rate": 0.036364,
+      "numeric_rate": 0.018182,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.01423,
+        0.089787
+      ],
+      "numeric_ci95": [
+        0.005,
+        0.06388
+      ]
+    },
+    {
+      "label": "esl_ellipse",
+      "lang": "en",
+      "origin": "human",
+      "total": 248,
+      "eligible": 248,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 1,
+      "numeric": 0,
+      "any_rate": 0.004032,
+      "numeric_rate": 0.0,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.000712,
+        0.022483
+      ],
+      "numeric_ci95": [
+        0.0,
+        0.015253
+      ]
+    },
+    {
+      "label": "esl_icnale",
+      "lang": "en",
+      "origin": "human",
+      "total": 80,
+      "eligible": 80,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 0,
+      "numeric": 0,
+      "any_rate": 0.0,
+      "numeric_rate": 0.0,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.0,
+        0.045818
+      ],
+      "numeric_ci95": [
+        0.0,
+        0.045818
+      ]
+    },
+    {
+      "label": "Non-native English TOEFL",
+      "lang": "en",
+      "origin": "human",
+      "total": 91,
+      "eligible": 90,
+      "abstained": 0,
+      "excluded": 1,
+      "any": 0,
+      "numeric": 0,
+      "any_rate": 0.0,
+      "numeric_rate": 0.0,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.0,
+        0.040936
+      ],
+      "numeric_ci95": [
+        0.0,
+        0.040936
+      ]
+    },
+    {
+      "label": "US eighth grade essays",
+      "lang": "en",
+      "origin": "human",
+      "total": 88,
+      "eligible": 88,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 0,
+      "numeric": 0,
+      "any_rate": 0.0,
+      "numeric_rate": 0.0,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.0,
+        0.041827
+      ],
+      "numeric_ci95": [
+        0.0,
+        0.041827
+      ]
+    },
+    {
+      "label": "US college application essays",
+      "lang": "en",
+      "origin": "human",
+      "total": 70,
+      "eligible": 70,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 0,
+      "numeric": 0,
+      "any_rate": 0.0,
+      "numeric_rate": 0.0,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.0,
+        0.052023
+      ],
+      "numeric_ci95": [
+        0.0,
+        0.052023
+      ]
+    },
+    {
+      "label": "course abstracts",
+      "lang": "en",
+      "origin": "human",
+      "total": 145,
+      "eligible": 145,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 3,
+      "numeric": 3,
+      "any_rate": 0.02069,
+      "numeric_rate": 0.02069,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.007061,
+        0.05906
+      ],
+      "numeric_ci95": [
+        0.007061,
+        0.05906
+      ]
+    },
+    {
+      "label": "Generated college essays",
+      "lang": "en",
+      "origin": "machine",
+      "total": 31,
+      "eligible": 31,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 0,
+      "numeric": 0,
+      "any_rate": 0.0,
+      "numeric_rate": 0.0,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.0,
+        0.110255
+      ],
+      "numeric_ci95": [
+        0.0,
+        0.110255
+      ]
+    },
+    {
+      "label": "Rewritten generated college essays",
+      "lang": "en",
+      "origin": "machine_rewritten",
+      "total": 31,
+      "eligible": 31,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 0,
+      "numeric": 0,
+      "any_rate": 0.0,
+      "numeric_rate": 0.0,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.0,
+        0.110255
+      ],
+      "numeric_ci95": [
+        0.0,
+        0.110255
+      ]
+    },
+    {
+      "label": "Generated abstracts",
+      "lang": "en",
+      "origin": "machine",
+      "total": 145,
+      "eligible": 141,
+      "abstained": 0,
+      "excluded": 4,
+      "any": 47,
+      "numeric": 44,
+      "any_rate": 0.333333,
+      "numeric_rate": 0.312057,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.260856,
+        0.414651
+      ],
+      "numeric_ci95": [
+        0.241421,
+        0.392662
+      ]
+    },
+    {
+      "label": "Rewritten generated abstracts",
+      "lang": "en",
+      "origin": "machine_rewritten",
+      "total": 145,
+      "eligible": 145,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 26,
+      "numeric": 26,
+      "any_rate": 0.17931,
+      "numeric_rate": 0.17931,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.125406,
+        0.249768
+      ],
+      "numeric_ci95": [
+        0.125406,
+        0.249768
+      ]
+    },
+    {
+      "label": "Simplified human essays",
+      "lang": "en",
+      "origin": "mixed",
+      "total": 88,
+      "eligible": 87,
+      "abstained": 1,
+      "excluded": 0,
+      "any": 3,
+      "numeric": 3,
+      "any_rate": 0.034483,
+      "numeric_rate": 0.034483,
+      "coverage": 0.988636,
+      "any_ci95": [
+        0.011796,
+        0.096541
+      ],
+      "numeric_ci95": [
+        0.011796,
+        0.096541
+      ]
+    },
+    {
+      "label": "Polished human essays",
+      "lang": "en",
+      "origin": "mixed",
+      "total": 91,
+      "eligible": 91,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 0,
+      "numeric": 0,
+      "any_rate": 0.0,
+      "numeric_rate": 0.0,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.0,
+        0.040504
+      ],
+      "numeric_ci95": [
+        0.0,
+        0.040504
+      ]
+    },
+    {
+      "label": "OPUS English–German–English round-trip spans",
+      "lang": "en",
+      "origin": "translated",
+      "total": 96,
+      "eligible": 55,
+      "abstained": 41,
+      "excluded": 0,
+      "any": 0,
+      "numeric": 0,
+      "any_rate": 0.0,
+      "numeric_rate": 0.0,
+      "coverage": 0.572917,
+      "any_ci95": [
+        0.0,
+        0.065285
+      ],
+      "numeric_ci95": [
+        0.0,
+        0.065285
+      ]
+    }
+  ],
+  "mixed": [
+    {
+      "lang": "ar",
+      "expected_percent": 25,
+      "documents": 25,
+      "numeric": 25,
+      "suppressed": 0,
+      "abstained": 0,
+      "mae_pp": 24.04,
+      "mae_bounds_all_scored_pp": [
+        24.04,
+        24.04
+      ]
+    },
+    {
+      "lang": "ar",
+      "expected_percent": 50,
+      "documents": 25,
+      "numeric": 25,
+      "suppressed": 0,
+      "abstained": 0,
+      "mae_pp": 22.42,
+      "mae_bounds_all_scored_pp": [
+        22.42,
+        22.42
+      ]
+    },
+    {
+      "lang": "ar",
+      "expected_percent": 75,
+      "documents": 25,
+      "numeric": 25,
+      "suppressed": 0,
+      "abstained": 0,
+      "mae_pp": 23.52,
+      "mae_bounds_all_scored_pp": [
+        23.52,
+        23.52
+      ]
+    },
+    {
+      "lang": "en",
+      "expected_percent": 25,
+      "documents": 21,
+      "numeric": 21,
+      "suppressed": 0,
+      "abstained": 0,
+      "mae_pp": 25.02,
+      "mae_bounds_all_scored_pp": [
+        25.02,
+        25.02
+      ]
+    },
+    {
+      "lang": "en",
+      "expected_percent": 50,
+      "documents": 21,
+      "numeric": 21,
+      "suppressed": 0,
+      "abstained": 0,
+      "mae_pp": 48.96,
+      "mae_bounds_all_scored_pp": [
+        48.96,
+        48.96
+      ]
+    },
+    {
+      "lang": "en",
+      "expected_percent": 75,
+      "documents": 21,
+      "numeric": 21,
+      "suppressed": 0,
+      "abstained": 0,
+      "mae_pp": 73.8,
+      "mae_bounds_all_scored_pp": [
+        73.8,
+        73.8
+      ]
+    }
+  ],
+  "arabic_length_groups": [
+    {
+      "label": "Ar-APT press / 192–383",
+      "lang": "ar",
+      "origin": "human",
+      "total": 180,
+      "eligible": 180,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 21,
+      "numeric": 18,
+      "any_rate": 0.116667,
+      "numeric_rate": 0.1,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.077586,
+        0.171768
+      ],
+      "numeric_ci95": [
+        0.064194,
+        0.152522
+      ]
+    },
+    {
+      "label": "Ar-APT press / 384+",
+      "lang": "ar",
+      "origin": "human",
+      "total": 25,
+      "eligible": 25,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 18,
+      "numeric": 18,
+      "any_rate": 0.72,
+      "numeric_rate": 0.72,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.524234,
+        0.857161
+      ],
+      "numeric_ci95": [
+        0.524234,
+        0.857161
+      ]
+    },
+    {
+      "label": "Ar-APT press / 96–191",
+      "lang": "ar",
+      "origin": "human",
+      "total": 172,
+      "eligible": 172,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 20,
+      "numeric": 20,
+      "any_rate": 0.116279,
+      "numeric_rate": 0.116279,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.076546,
+        0.172778
+      ],
+      "numeric_ci95": [
+        0.076546,
+        0.172778
+      ]
+    },
+    {
+      "label": "Ar-APT press / <96",
+      "lang": "ar",
+      "origin": "human",
+      "total": 23,
+      "eligible": 23,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 0,
+      "numeric": 0,
+      "any_rate": 0.0,
+      "numeric_rate": 0.0,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.0,
+        0.143117
+      ],
+      "numeric_ci95": [
+        0.0,
+        0.143117
+      ]
+    },
+    {
+      "label": "Course-project collection / 192–383",
+      "lang": "ar",
+      "origin": "human",
+      "total": 146,
+      "eligible": 146,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 54,
+      "numeric": 44,
+      "any_rate": 0.369863,
+      "numeric_rate": 0.30137,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.295829,
+        0.45057
+      ],
+      "numeric_ci95": [
+        0.232817,
+        0.380108
+      ]
+    },
+    {
+      "label": "Course-project collection / 384+",
+      "lang": "ar",
+      "origin": "human",
+      "total": 14,
+      "eligible": 14,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 5,
+      "numeric": 5,
+      "any_rate": 0.357143,
+      "numeric_rate": 0.357143,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.163447,
+        0.612356
+      ],
+      "numeric_ci95": [
+        0.163447,
+        0.612356
+      ]
+    },
+    {
+      "label": "Course-project collection / 96–191",
+      "lang": "ar",
+      "origin": "human",
+      "total": 518,
+      "eligible": 518,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 148,
+      "numeric": 146,
+      "any_rate": 0.285714,
+      "numeric_rate": 0.281853,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.2485,
+        0.326084
+      ],
+      "numeric_ci95": [
+        0.244825,
+        0.322093
+      ]
+    },
+    {
+      "label": "Course-project collection / <96",
+      "lang": "ar",
+      "origin": "human",
+      "total": 170,
+      "eligible": 121,
+      "abstained": 49,
+      "excluded": 0,
+      "any": 32,
+      "numeric": 32,
+      "any_rate": 0.264463,
+      "numeric_rate": 0.264463,
+      "coverage": 0.711765,
+      "any_ci95": [
+        0.194005,
+        0.349416
+      ],
+      "numeric_ci95": [
+        0.194005,
+        0.349416
+      ]
+    },
+    {
+      "label": "KFUPM abstracts / 192–383",
+      "lang": "ar",
+      "origin": "human",
+      "total": 45,
+      "eligible": 45,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 2,
+      "numeric": 2,
+      "any_rate": 0.044444,
+      "numeric_rate": 0.044444,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.012274,
+        0.148275
+      ],
+      "numeric_ci95": [
+        0.012274,
+        0.148275
+      ]
+    },
+    {
+      "label": "KFUPM abstracts / 96–191",
+      "lang": "ar",
+      "origin": "human",
+      "total": 444,
+      "eligible": 444,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 23,
+      "numeric": 22,
+      "any_rate": 0.051802,
+      "numeric_rate": 0.04955,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.034763,
+        0.076529
+      ],
+      "numeric_ci95": [
+        0.032947,
+        0.07388
+      ]
+    },
+    {
+      "label": "KFUPM abstracts / <96",
+      "lang": "ar",
+      "origin": "human",
+      "total": 212,
+      "eligible": 212,
+      "abstained": 0,
+      "excluded": 0,
+      "any": 8,
+      "numeric": 8,
+      "any_rate": 0.037736,
+      "numeric_rate": 0.037736,
+      "coverage": 1.0,
+      "any_ci95": [
+        0.019243,
+        0.072683
+      ],
+      "numeric_ci95": [
+        0.019243,
+        0.072683
+      ]
+    }
+  ],
+  "metric_notes": {
+    "confidence": "Two-sided 95% Wilson interval per eligible document. Author/topic dependence can widen uncertainty. Zero eligible returns null.",
+    "coverage": "Eligible divided by eligible plus abstained. New test row totals start after screening and the 400-record cap; experiment.source_counts reports earlier exclusions. Origins other than machine or human are descriptive signal rates.",
+    "mixtures": "Word proportions from real paired contiguous blocks; same pair at three ratios. Numeric MAE includes 0% and uses actual word count. A suppressed score contributes only possible [0,20] bounds to the all-scored interval.",
+    "scope": "New corpus and topic-screened evaluation; corpus labels as published. Individual author disjointness, independent committee data and cross-group fairness are unverified.",
+    "translation": "English round-trip observations are descriptive on translated human prose. Arabic back-translation of long-form generated prose has not been validated."
+  },
+  "display_policy": {
+    "checked": 1200,
+    "suppressed": 24,
+    "numberedPositive": 370,
+    "insufficient": 0
+  }
+}

@@ -624,3 +624,25 @@ pre {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.passage-link {
+  color: inherit;
+  text-decoration: underline dotted;
+  text-underline-offset: .18em;
+  box-decoration-break: clone;
+}
+.match-pair { border-inline-start: 3px solid #428076; padding: .7rem 1rem; margin: .8rem 0; }
+.match-pair p, .match-pair blockquote { margin: .35rem 0 .8rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+.match-pair:focus, .passage-link:focus-visible { outline: 2px solid #17685b; outline-offset: 3px; }
+.past-run { margin-block: 1.2rem; }
+.past-run > summary { font-weight: 650; }
+.grid > div, .grid > aside { min-width: 0; }
+.study-panel { margin-block-start: 1rem; }
+.study-panel details { margin-block: 1rem; }
+.table-scroll { overflow-x: auto; max-width: 100%; }
+.study-panel table { width: 100%; min-width: 36rem; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.study-panel th, .study-panel td { text-align: start; vertical-align: top; padding: .65rem; border-bottom: 1px solid #d8e2df; }
+.study-panel tbody small { color: #405650; }
+.public-register { width: min(65rem, 100%); margin: 2rem auto; padding-inline: 1rem; box-sizing: border-box; }
+.public-register .record { padding-block: 1rem; }
+.public-register .record p { line-height: 1.65; }

@@ -1,3 +1,4 @@
+import { studyPanel } from "./study.mjs";
 import { fileTerm } from "../research/media/labels.mjs";
 import { mountClarity } from "../research/clarity/editor.mjs";
 const $ = (s) => document.querySelector(s),
@@ -124,7 +125,9 @@ function signIn() {
     t("Password", "كلمة المرور") +
     '<input id="password" type="password" autocomplete="current-password" dir="ltr" required></label><button class="primary">' +
     t("Sign in", "دخول") +
-    '</button><p class="error" role="alert" id="sign-error"></p></form></main>';
+    '</button><a href="/acceptance?lang=' + (ar ? 'ar' : 'en') + '">' +
+    t("View acceptance results", "عرض نتائج التقييم") +
+    '</a><p class="error" role="alert" id="sign-error"></p></form></main>';
   $("#login").onsubmit = async (e) => {
     e.preventDefault();
     const b = e.target.querySelector("button");
@@ -432,15 +435,15 @@ function highlight(text, spans, mode) {
   const ids = [...new Set(spans.map((x) => x.sourceId))];
   let out = "",
     pos = 0;
-  for (const s of [...spans].sort((a, b) => a.start - b.start)) {
+  const order = spans.map((span, index) => ({ span, index }))
+    .sort((a, b) => a.span.start - b.span.start);
+  for (const { span: s, index } of order) {
     if (s.start < pos || s.end <= s.start || s.end > text.length) continue;
-    out +=
-      esc(text.slice(pos, s.start)) +
-      '<mark class="' +
-      (mode === "ai" ? "ai-mark" : "source" + (ids.indexOf(s.sourceId) % 4)) +
-      '">' +
-      esc(text.slice(s.start, s.end)) +
-      "</mark>";
+    const passage = esc(text.slice(s.start, s.end));
+    out += esc(text.slice(pos, s.start));
+    if (mode === "ai") out += '<mark class="ai-mark">' + passage + '</mark>';
+    else out += '<a class="passage-link source' + (ids.indexOf(s.sourceId) % 4) +
+      '" href="#match-' + index + '" data-evidence="' + index + '">' + passage + '</a>';
     pos = s.end;
   }
   return out + esc(text.slice(pos));
@@ -491,9 +494,17 @@ function renderReport(c, r) {
     "</a></div>";
   const detail = $("#detail");
   let activeSim = sim;
+  let applied = { ...r.options };
+  const filterSummary = () => t(
+    "Overlap divides matched words by eligible words. Excluding quotes or references removes those words from both counts. Exports retain the original saved settings.",
+    "تُحسب النسبة بقسمة الكلمات المطابقة على المشمولة. يحذف استبعاد الاقتباسات أو المراجع كلماتها من العدّين. تعرض ملفات التصدير الإعدادات الأصلية المحفوظة."
+  );
   const similarityView = () => {
     const matches = activeSim.matches || [],
       ids = [...new Set(matches.map((x) => x.sourceId))];
+    const indexOf = new Map(matches.map((m, i) => [m, i]));
+    const metric = c.querySelector(".metric strong");
+    if (metric) metric.textContent = activeSim.percentage + "%";
     detail.innerHTML =
       '<div class="settings"><label><input id="rq" type="checkbox">' +
       t("Exclude quotations", "استبعاد الاقتباسات") +
@@ -509,7 +520,7 @@ function renderReport(c, r) {
       esc(activeSim.eligibleWords) +
       " " +
       t("eligible words", "كلمة مشمولة") +
-      '</p><div class="grid"><div class="review-text" dir="auto">' +
+      '</p><p class="hint">' + filterSummary() + '</p><div class="grid"><div class="review-text" dir="auto">' +
       (highlight(r.text, matches, "sim") ||
         t("No extractable text", "لا يوجد نص قابل للاستخراج")) +
       "</div><aside><h3>" +
@@ -542,20 +553,18 @@ function renderReport(c, r) {
                 "</summary>" +
                 matches
                   .filter((x) => x.sourceId === id)
-                  .slice(0, 24)
-                  .map(
-                    (m) =>
-                      '<p dir="auto">' +
-                      esc(r.text.slice(m.start, m.end)) +
-                      " <small>" +
-                      esc(m.method) +
-                      "</small></p>" +
-                      (m.sourceExcerpt
-                        ? '<blockquote dir="auto">' +
-                          esc(m.sourceExcerpt) +
-                          "</blockquote>"
-                        : ""),
-                  )
+                  .map((match) => {
+                    const index = indexOf.get(match);
+                    const range = Number.isInteger(match.sourceStart) && Number.isInteger(match.sourceEnd)
+                      ? '<bdi>' + match.sourceStart + '–' + match.sourceEnd + '</bdi>' : '';
+                    return '<article class="match-pair" tabindex="-1" id="match-' + index + '"><strong>' +
+                      t("Submission passage", "المقطع في المستند") + '</strong><p dir="auto">' +
+                      esc(r.text.slice(match.start, match.end)) + '</p><strong>' +
+                      t("Source passage", "المقطع في المصدر") + '</strong><blockquote dir="auto">' +
+                      (esc(match.sourceExcerpt) || t("Excerpt unavailable in this saved report.", "لا يتوفر مقتطف المصدر في هذا التقرير المحفوظ.")) +
+                      '</blockquote><small>' + (match.method === "verbatim" ? t("Verbatim", "تطابق حرفي") : t("Paraphrase", "إعادة صياغة")) +
+                      ' · ' + t("Source offsets", "موضع المقطع في المصدر") + ' ' + range + '</small></article>';
+                  })
                   .join("") +
                 "</details></li>"
               );
@@ -567,8 +576,18 @@ function renderReport(c, r) {
       " " +
       t("cohort texts compared", "نصوص من المجموعة شملتها المقارنة") +
       "</small></aside></div>";
-    $("#rq").checked = r.options.excludeQuotes;
-    $("#rb").checked = r.options.excludeReferences;
+    $("#rq").checked = applied.excludeQuotes;
+    $("#rb").checked = applied.excludeReferences;
+    detail.querySelectorAll("[data-evidence]").forEach(link => {
+      link.onclick = event => {
+        event.preventDefault();
+        const evidence = detail.querySelector("#match-" + link.dataset.evidence);
+        if (!evidence) return;
+        evidence.closest("details").open = true;
+        evidence.focus();
+        evidence.scrollIntoView({block:"center"});
+      };
+    });
     btn("#refilter", async (e) => {
       const a = $("#rq").checked,
         b = $("#rb").checked;
@@ -582,9 +601,8 @@ function renderReport(c, r) {
             "&references=" +
             (b ? "exclude" : "include"),
         );
+        applied = { excludeQuotes: a, excludeReferences: b };
         similarityView();
-        $("#rq").checked = a;
-        $("#rb").checked = b;
       } catch (x) {
         notify(x.message);
         similarityView();
@@ -704,6 +722,11 @@ async function health(c, seq) {
   ]);
   if (seq !== navToken) return;
   const groups = d.model.groups || [];
+  const deferredEvidence = [];
+  const evidenceSection = (label, value) => {
+    const id = deferredEvidence.push(value) - 1;
+    return '<details data-observation="' + id + '"><summary>' + label + '</summary></details>';
+  };
   const checkList = (checks) =>
     checks
       .map(
@@ -729,11 +752,7 @@ async function health(c, seq) {
           esc(ar ? ch.detailsAr || ch.detail : ch.detail) +
           "</p>" +
           (ch.evidence
-            ? "<details><summary>" +
-              t("Run evidence", "بيانات التشغيل") +
-              "</summary>" +
-              tree(ch.evidence) +
-              "</details>"
+            ? evidenceSection(t("Run evidence", "بيانات التشغيل"), ch.evidence)
             : "") +
           "</div>",
       )
@@ -749,15 +768,14 @@ async function health(c, seq) {
     t("Test evidence", "نتائج الاختبار") +
     "</h2>" +
     [...d.runs, d.baseline]
-      .map(
-        (run) =>
-          '<h3 class="space">' +
-          esc(ar ? run.titleAr || run.title : run.title) +
-          "</h3>" +
-          checkList(run.checks || []),
-      )
+      .map((run, i) => {
+        const title = esc(ar ? run.titleAr || run.title : run.title);
+        const content = checkList(run.checks || []);
+        return i === 0 ? '<h3 class="space">' + title + '</h3>' + content
+          : '<details class="past-run"><summary>' + title + '</summary>' + content + '</details>';
+      })
       .join("") +
-    '</section></div><aside><section class="panel"><div class="inline"><h3>' +
+    '</section>' + studyPanel(d.model.release4, t, esc) + '</div><aside><section class="panel"><div class="inline"><h3>' +
     t("System health", "حالة النظام") +
     '</h3><span class="badge">' +
     t("Online", "متصل") +
@@ -816,6 +834,13 @@ async function health(c, seq) {
     "</summary>" +
     tree(d.lti) +
     "</details></section></aside></div>";
+  c.querySelectorAll("[data-observation]").forEach(el => {
+    el.ontoggle = () => {
+      if (!el.open) return;
+      el.insertAdjacentHTML("beforeend", tree(deferredEvidence[Number(el.dataset.observation)]));
+      el.ontoggle = null;
+    };
+  });
 }
 function members(c) {
   c.innerHTML =

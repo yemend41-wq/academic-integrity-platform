@@ -2,6 +2,7 @@ import {readFileSync,writeFileSync} from "node:fs";
 import {createHash} from "node:crypto";
 import {execFileSync} from "node:child_process";
 import {fileURLToPath} from "node:url";
+import {resolve} from "node:path";
 import {compareDocument} from "../engine.mjs";
 const rel=(s)=>new URL(s,import.meta.url);
 const digest=b=>createHash("sha256").update(b).digest("hex");
@@ -43,5 +44,6 @@ const pdf=fileURLToPath(rel("pyarabic-published.pdf"));
 const parsed=execFileSync("pdftotext",["-raw",pdf,"-"],{encoding:"utf8"});
 const result=compareDocument(parsed);
 const audit={fixture:{file:"pyarabic-published.pdf",sha256:digest(readFileSync(pdf)),parser:"pdftotext -raw",englishPaperMatched:result.matches.some(m=>m.sourceId==="pyarabic"),matchingIntervals:result.matches.filter(x=>x.sourceId==="pyarabic").length,eligibleWords:result.eligibleWords,coverageAllSources:result.percentage},benchmark:"SemEval 2017 Task 1, held-out Arabic (track 1) and English (track 5) sentence pairs. Positive: gold >=4/5; negative: gold <=1/5. Match is an interval attributed to the supplied partner. Includes all lengths. No thresholds fitted on these tracks.",tracks:rows};
-writeFileSync(rel("external-evaluation.json"),JSON.stringify(audit,null,2)+"\n");
+// Historical acceptance evidence remains pinned to its tested engine.
+if (process.argv[2]) writeFileSync(resolve(process.argv[2]),JSON.stringify(audit,null,2)+"\n",{flag:"wx"});
 console.log(JSON.stringify(audit));

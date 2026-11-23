@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-23T19:16:20.510Z",
+  "at": "2026-11-23T20:07:02.450Z",
   "environment": "Chrome via managed local preview; actual SQLite workspace and ephemeral test principal",
   "checks": [
     {
@@ -15,7 +15,7 @@
       "lang": "ar",
       "name": "Report tabs, exclusions, JSON and PDF controls",
       "status": "passed",
-      "pdfBytes": 213117
+      "pdfBytes": 78224
     },
     {
       "width": 390,
@@ -44,7 +44,7 @@
       "lang": "en",
       "name": "Report tabs, exclusions, JSON and PDF controls",
       "status": "passed",
-      "pdfBytes": 211447
+      "pdfBytes": 230076
     },
     {
       "width": 1240,

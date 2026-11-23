@@ -62,3 +62,30 @@ test("empty and completely excluded submissions",()=>{
    const r=run(x);assert.equal(r.eligibleWords,0);assert.equal(r.matches.length,0);
  }
 });
+
+test("short inflected sentences link to the corresponding source paragraph in both languages",()=>{
+  const examples = [
+    ["Sensors recorded vibrations.", "Sensors recording vibrations."],
+    ["تراقب المجسات درجات الحرارة.", "تراقب مجسات درجات الحرارة."],
+  ];
+  for (const [original, rewrite] of examples) {
+    const reference = "⚙\n" + original + "\nUnrelated lunar observations.";
+    const query = "📝\n" + rewrite;
+    const matches = run(query,[source("bounded",reference)]).matches;
+    const hit = matches.find(m=>m.sourceId==="bounded");
+    assert.equal(hit.method,"paraphrase");
+    assert.equal(query.slice(hit.start,hit.end),rewrite.slice(0,-1));
+    assert.equal(reference.slice(hit.sourceStart,hit.sourceEnd),original.slice(0,-1));
+  }
+});
+test("semantic alignment keeps numerical and negation guards, including Persian numerals",()=>{
+  const original = source("counts","تراقب المجسات ۱۲ هزة.");
+  const matches = s => run(s,[original]).matches.filter(m=>m.sourceId==="counts");
+  assert.ok(matches("تراقب مجسات ١٢ هزة.").length>0);
+  assert.equal(matches("تراقب مجسات ١٥ هزة.").length,0);
+  assert.equal(matches("لا تراقب مجسات ١٢ هزة.").length,0);
+});
+test("short sentences require at least two separate informative alignment keys",()=>{
+  const r=run("The student is there.",[source("common","There was a student.")]);
+  assert.equal(r.matches.filter(m=>m.sourceId==="common").length,0);
+});

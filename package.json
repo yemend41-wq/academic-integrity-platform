@@ -6,7 +6,8 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "dev": "node scripts/dev.mjs",
-    "test": "npm run build && node --test research/detector/detector.test.mjs research/similarity/test.mjs research/media/tests/media.test.mjs && node research/clarity/test.mjs && node research/lti/test.mjs && node research/bench/integration.mjs"
+    "test": "npm run build && node --test test/benchmark-access.mjs research/detector/detector.test.mjs research/similarity/test.mjs research/media/tests/media.test.mjs && node research/clarity/test.mjs && node research/lti/test.mjs && node research/bench/integration.mjs",
+    "test:module-audit": "node test/module-audit-release4.mjs"
   },
   "devDependencies": {
     "esbuild": "0.25.12",

@@ -85,6 +85,18 @@ await check('Health, distinct roles and protected routes',async()=>{
   assert.equal((await request('/api/login',{method:'POST',data:{username:'candidate',password:secret()},sensitive:true})).status,401);
   return {roles,unauthenticated:401,badCredentials:401,secureHttpOnlyCookies:true};
 });
+await check('Public bilingual assessment, no private report access', async () => {
+  for (const [lang, title] of [['ar','سجل قبول الإصدار الرابع'],['en','Release 4 acceptance register']]) {
+    const response = await worker.fetch(new Request(origin + '/acceptance?lang=' + lang),env,{});
+    assert.equal(response.status,200);
+    const page = await response.text();
+    assert.ok(page.includes(title) && page.includes('AIP-HL-3'));
+    assert.ok(page.includes('ArguGPT') && !page.includes('sourceSha256'));
+    assert.equal(response.headers.get('content-type'),'text/html; charset=utf-8');
+  }
+  assert.equal((await request('/api/health/details')).status,401);
+  return {publicLocales:['ar','en'],privateDetailsHttp:401};
+});
 for(const fmt of ['docx','pdf','png','jpeg']){
   await check('Upload and persisted readback: '+fmt,async()=>{
     const bytes=fixtures[fmt];

@@ -12,12 +12,14 @@ import {
   addMember,
   purge,
 } from "./auth.mjs";
+import { publicAcceptance } from "./acceptance.mjs";
 import { analyze, getReport, similarity } from "./analysis.mjs";
 import { getDraft, saveDraft } from "./drafts.mjs";
 import { pdfAudit } from "./report.mjs";
 import { handleLti } from "../research/lti/lti.mjs";
 import modelEvidence from "../research/detector/card.json";
 import ltiEvidence from "../research/lti/evidence.json";
+import assessment from "../evidence/acceptance-release-4.json";
 import baseline from "../evidence/initial.json";
 import { asset } from "./web-assets.mjs";
 const allowed = ["docx", "pdf", "png", "jpg", "jpeg", "txt"];
@@ -33,6 +35,8 @@ export async function route(req, env, ctx = {}) {
         onLaunch: (p) => openSession(env, p, true),
       })) || json({ error: "not_found" }, 404)
     );
+  if (path === "/acceptance" && m === "GET")
+    return publicAcceptance(assessment, modelEvidence, u.searchParams.get("lang") || "ar");
   if (!path.startsWith("/api/"))
     return m === "GET"
       ? asset(path)
@@ -48,6 +52,9 @@ export async function route(req, env, ctx = {}) {
     await stmt(env, "SELECT id FROM documents LIMIT 1").first();
     return json({
       service: "Mizan",
+      assessment: assessment.id,
+      model: modelEvidence.version,
+      analysisFingerprint: __ENGINE_REVISION__,
       status: "online",
       database: "reachable",
       dbMs: Date.now() - start,
@@ -110,12 +117,12 @@ export async function route(req, env, ctx = {}) {
       model: modelEvidence,
       lti: ltiEvidence,
       baseline,
-      runs: (
+      runs: [assessment, ...(
         await stmt(
           env,
           "SELECT data FROM evidence_runs ORDER BY id DESC LIMIT 12",
         ).all()
-      ).results.map((x) => JSON.parse(x.data)),
+      ).results.map((x) => JSON.parse(x.data)).filter(x => x.id !== assessment.id)],
     });
   }
   if (path === "/api/evidence" && m === "POST") {

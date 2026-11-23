@@ -1,0 +1,1367 @@
+{
+  "testedAt": "2026-11-23T20:28:48.794982+00:00",
+  "referenceRun": "evidence/release4-baseline-unit.json",
+  "id": "zz-release-4",
+  "title": "Release 4 · scope of acceptance",
+  "titleAr": "الإصدار الرابع · سجل القبول",
+  "model": "AIP-HL-3",
+  "checks": [
+    {
+      "name": "Hybrid source and span retrieval",
+      "ar": "استرجاع المصدر وتحديد المقطع",
+      "status": "partial",
+      "detail": "Top-ranked correct sources: Arabic 21/41 and English 36/41. The benchmark uses high-similarity sentence pairs.",
+      "detailsAr": "استُرجع المصدر الصحيح أولًا في 21 من 41 زوجًا عربيًا و36 من 41 زوجًا إنجليزيًا. يقيس الاختبار تشابه الجمل، وتبقى إعادة الصياغة الواسعة تحديًا.",
+      "evidence": {
+        "implementation": "research/similarity/engine.mjs + src/analysis.mjs",
+        "test": "research/similarity/training/evaluate-release4.mjs",
+        "record": "research/similarity/training/release4-evaluation.json",
+        "observations": {
+          "sentencePairs": {
+            "measuredUtc": "2026-11-23T20:02:19.240Z",
+            "engineSha256": "464314299993f2dad79ad5a8d6e341fd2677854d7e9449796a9edd750b2b2922",
+            "baselineSha256": "42cc2388f4f5eac190e5acee372477ab156101a9164fc0da0394accd4daf9a4d",
+            "protocolSha256": "b94dc6cd80de85dfbc8512e3605809483ced4d0b503ef734e580b94190d1841e",
+            "publishedPDF": {
+              "sha256": "b196e33fcebb974fca4ec5e9563e0c1ca54ceb026426c98a9f3ead36d182e9b1",
+              "sourceId": "pyarabic",
+              "release3": {
+                "retrieved": true,
+                "eligibleWords": 1097,
+                "matchedWords": 837,
+                "coverage": 76.3
+              },
+              "release4": {
+                "retrieved": true,
+                "eligibleWords": 1097,
+                "matchedWords": 837,
+                "coverage": 76.3
+              }
+            },
+            "sourceAwareRetrieval": [
+              {
+                "track": "track1.ar-ar",
+                "language": "ar",
+                "rows": 250,
+                "inputSha256": "a4f24daa03def87b52769b3a5ea9fe5f8b66d2f06db2a6565395cb1575443e3e",
+                "goldSha256": "4a7ad1eb5219605ab09cd743727c4059acdf55df9ae7351b5df079cc47ae983e",
+                "release3": {
+                  "highPairs": 41,
+                  "positiveRetrieved": 6,
+                  "lowPairs": 72,
+                  "unrelatedFlagged": 0,
+                  "top1": 6,
+                  "meanTargetSentenceIoU": 0.1323396567299006,
+                  "meanSourceSentenceIoU": 0.14111498257839722
+                },
+                "release4": {
+                  "highPairs": 41,
+                  "positiveRetrieved": 21,
+                  "lowPairs": 72,
+                  "unrelatedFlagged": 1,
+                  "top1": 21,
+                  "meanTargetSentenceIoU": 0.49819331526648597,
+                  "meanSourceSentenceIoU": 0.5069686411149825
+                }
+              },
+              {
+                "track": "track5.en-en",
+                "language": "en",
+                "rows": 250,
+                "inputSha256": "8d493844c1010eb6b5d373e289b8d6ddc003e626bf8495976cc40c0a5f47414c",
+                "goldSha256": "a767d322cc3e78ff43f3c541a4fc0b9e0e5681f27c20de7eb9095fbb9072cf04",
+                "release3": {
+                  "highPairs": 41,
+                  "positiveRetrieved": 21,
+                  "lowPairs": 61,
+                  "unrelatedFlagged": 0,
+                  "top1": 21,
+                  "meanTargetSentenceIoU": 0.45175299470688657,
+                  "meanSourceSentenceIoU": 0.4489444673633068
+                },
+                "release4": {
+                  "highPairs": 41,
+                  "positiveRetrieved": 36,
+                  "lowPairs": 61,
+                  "unrelatedFlagged": 0,
+                  "top1": 36,
+                  "meanTargetSentenceIoU": 0.8176066532434718,
+                  "meanSourceSentenceIoU": 0.814798125899892
+                }
+              }
+            ],
+            "controlledVerbatim": {
+              "data": "Universal Dependencies, PUD, document-disjoint from multilingual embedding fit, compared to the known source. Exact five-token minimum.",
+              "sha256": "79decb6b7754799ee39eb908bf054835993b92d609c5681ef2d98847a06f3750",
+              "results": {
+                "release3": {
+                  "en": {
+                    "eligible": 167,
+                    "correctSource": 162,
+                    "bothBoundariesExact": 156
+                  },
+                  "ar": {
+                    "eligible": 162,
+                    "correctSource": 157,
+                    "bothBoundariesExact": 148
+                  }
+                },
+                "release4": {
+                  "en": {
+                    "eligible": 167,
+                    "correctSource": 162,
+                    "bothBoundariesExact": 156
+                  },
+                  "ar": {
+                    "eligible": 162,
+                    "correctSource": 157,
+                    "bothBoundariesExact": 148
+                  }
+                }
+              }
+            },
+            "spanMetric": "Mean intersection over union of UTF-16 positions in aligned target/source sentences, computed on all high pairs. A miss counts as zero. Whole-sentence STS alignments indicate semantic similarity; precise plagiarism spans are not annotated in this benchmark.",
+            "rankingMetric": "Unique first source by covered query word count, then word-weighted match score. Each query is compared to all five built-in documents plus its partner and up to 15 deterministic same-language distractor sources.",
+            "acceptanceGate": true,
+            "scope": "Same frozen SemEval files as release 3; previous aggregate scores were known. New source-ranking and span evaluation protocol. No unseen committee test or internet-wide retrieval claim."
+          },
+          "documentRewrites": {
+            "measuredUtc": "2026-11-23T20:03:24.069Z",
+            "engineSha256": "464314299993f2dad79ad5a8d6e341fd2677854d7e9449796a9edd750b2b2922",
+            "protocolSha256": "4e0ca7cc18d1347b32b705f121bcaa60e4e842ca2d386f479c6704da98b868f4",
+            "groups": [
+              {
+                "name": "Arabic academic abstracts",
+                "language": "ar",
+                "files": [
+                  {
+                    "file": "academic-ar.jsonl",
+                    "sha256": "af3dd76b0ca489c6f21c37f55ce62dcc8dd3e07271f5435f83580e20af3290cb"
+                  }
+                ],
+                "availableRows": 703,
+                "eligiblePairs": 701,
+                "evaluated": 64,
+                "evaluationIdsSha256": "9f7f0face88df29ded384dd9a8ae97650ac76b41ec6b7294b99386e19b11efe7",
+                "release3": {
+                  "top1": 33,
+                  "anyCorrect": 33,
+                  "eligibleWords": 7932,
+                  "attributedWords": 386,
+                  "attributedFraction": 0.048663640948058494
+                },
+                "release4": {
+                  "top1": 33,
+                  "anyCorrect": 33,
+                  "eligibleWords": 7932,
+                  "attributedWords": 386,
+                  "attributedFraction": 0.048663640948058494
+                }
+              },
+              {
+                "name": "Arabic press",
+                "language": "ar",
+                "files": [
+                  {
+                    "file": "apt-human-polished.json",
+                    "sha256": "5d1afee4d8eadb1b5d02f63c21558f8f0642d37cf79e5feff66197e27ac7d916"
+                  }
+                ],
+                "availableRows": 400,
+                "eligiblePairs": 400,
+                "evaluated": 64,
+                "evaluationIdsSha256": "a04b3eea29e966ce0ba39355675b9c3a01fff312ef08d1cb2fa934416614da38",
+                "release3": {
+                  "top1": 63,
+                  "anyCorrect": 63,
+                  "eligibleWords": 10526,
+                  "attributedWords": 4350,
+                  "attributedFraction": 0.41326239787193614
+                },
+                "release4": {
+                  "top1": 63,
+                  "anyCorrect": 63,
+                  "eligibleWords": 10526,
+                  "attributedWords": 4379,
+                  "attributedFraction": 0.41601748052441573
+                }
+              },
+              {
+                "name": "English TOEFL essays",
+                "language": "en",
+                "files": [
+                  {
+                    "file": "TOEFL_real_91.json",
+                    "sha256": "d5e2bf0bd4831262d60aa936b2ac8e532bd3859067411288b6c22ed16867666b"
+                  },
+                  {
+                    "file": "TOEFL_gpt4polished_91.json",
+                    "sha256": "8dcbce862bc54259666c77d68ed43927af9d4cfd350c57ff1b250c21860256c6"
+                  }
+                ],
+                "availableRows": 91,
+                "eligiblePairs": 77,
+                "evaluated": 64,
+                "evaluationIdsSha256": "c28c133e8a724c90dc10db18eb740496eac8376c31048907d02fc91ae2ad1e85",
+                "release3": {
+                  "top1": 36,
+                  "anyCorrect": 36,
+                  "eligibleWords": 5813,
+                  "attributedWords": 369,
+                  "attributedFraction": 0.06347841045931532
+                },
+                "release4": {
+                  "top1": 37,
+                  "anyCorrect": 37,
+                  "eligibleWords": 5813,
+                  "attributedWords": 374,
+                  "attributedFraction": 0.06433855152244969
+                }
+              },
+              {
+                "name": "English Hewlett essays",
+                "language": "en",
+                "files": [
+                  {
+                    "file": "HewlettStudentEssay_real_88.json",
+                    "sha256": "6145e4e8bf36b780624626b31a783d7ca97696e1e14ae6d13c083b79da2f042d"
+                  },
+                  {
+                    "file": "HewlettStudentEssay_GPTsimplify_88.json",
+                    "sha256": "59fef9d557c689f1a508269b780f37bab548346d5033c455c3e211a99c1feba3"
+                  }
+                ],
+                "availableRows": 88,
+                "eligiblePairs": 88,
+                "evaluated": 64,
+                "evaluationIdsSha256": "58abb072827a20f5c0ce909b0f83cbc37c956f52893e5b931e371425a8f4a3cf",
+                "release3": {
+                  "top1": 42,
+                  "anyCorrect": 43,
+                  "eligibleWords": 7617,
+                  "attributedWords": 695,
+                  "attributedFraction": 0.09124327162925036
+                },
+                "release4": {
+                  "top1": 42,
+                  "anyCorrect": 43,
+                  "eligibleWords": 7617,
+                  "attributedWords": 713,
+                  "attributedFraction": 0.09360640672180648
+                }
+              }
+            ],
+            "limits": "Only documented rewrite pairs are scored. Top-one retrieval of a known source differs from a plagiarism or authorship judgment. Positive pairs cannot estimate false positives. Coverage uses visible intervals from the first 300 whitespace-delimited words; span-level paraphrase truth was not provided."
+          }
+        }
+      }
+    },
+    {
+      "name": "Human false-alert rate and machine recall",
+      "ar": "إنذارات النصوص البشرية وحساسية الكشف",
+      "status": "failed",
+      "detail": "The deployed detector exceeded the 1% limit on independent human cohorts. Numeric alerts and all alerts are counted separately on the model card.",
+      "detailsAr": "تجاوز الكاشف حد 1% على مجموعات بشرية مستقلة. تعرض بطاقة النموذج عدد الإنذارات الرقمية وجميع الإشارات، بما فيها النسب المحجوبة.",
+      "evidence": {
+        "implementation": "research/detector/detector.mjs",
+        "test": "research/detector/release4-protocol.json",
+        "record": "research/detector/card.json",
+        "observations": {
+          "model": "AIP-HL-3",
+          "acceptance": {
+            "false_positive_rate_below_one_percent": "failed",
+            "production_release": false,
+            "fairness_certified": false,
+            "committee_blind_test": "not_run",
+            "paraphrase_resilience": "not_established",
+            "backtranslation_resilience": "not_established"
+          },
+          "frozenExperiment": {
+            "control": [
+              {
+                "label": "Arabic original abstracts",
+                "lang": "ar",
+                "origin": "human",
+                "total": 400,
+                "eligible": 400,
+                "abstained": 0,
+                "excluded": 0,
+                "any": 34,
+                "numeric": 34,
+                "any_rate": 0.085,
+                "numeric_rate": 0.085,
+                "coverage": 1.0,
+                "any_ci95": [
+                  0.061463,
+                  0.116432
+                ],
+                "numeric_ci95": [
+                  0.061463,
+                  0.116432
+                ]
+              },
+              {
+                "label": "Arabic title-generated abstracts",
+                "lang": "ar",
+                "origin": "machine",
+                "total": 400,
+                "eligible": 400,
+                "abstained": 0,
+                "excluded": 0,
+                "any": 325,
+                "numeric": 325,
+                "any_rate": 0.8125,
+                "numeric_rate": 0.8125,
+                "coverage": 1.0,
+                "any_ci95": [
+                  0.771344,
+                  0.847711
+                ],
+                "numeric_ci95": [
+                  0.771344,
+                  0.847711
+                ]
+              },
+              {
+                "label": "ArguGPT OOD generation",
+                "lang": "en",
+                "origin": "machine",
+                "total": 400,
+                "eligible": 400,
+                "abstained": 0,
+                "excluded": 0,
+                "any": 35,
+                "numeric": 11,
+                "any_rate": 0.0875,
+                "numeric_rate": 0.0275,
+                "coverage": 1.0,
+                "any_ci95": [
+                  0.063587,
+                  0.119261
+                ],
+                "numeric_ci95": [
+                  0.015424,
+                  0.048565
+                ]
+              }
+            ],
+            "candidate": [
+              {
+                "label": "Arabic original abstracts",
+                "lang": "ar",
+                "origin": "human",
+                "total": 400,
+                "eligible": 400,
+                "abstained": 0,
+                "excluded": 0,
+                "any": 0,
+                "numeric": 0,
+                "any_rate": 0.0,
+                "numeric_rate": 0.0,
+                "coverage": 1.0,
+                "any_ci95": [
+                  0.0,
+                  0.009512
+                ],
+                "numeric_ci95": [
+                  0.0,
+                  0.009512
+                ]
+              },
+              {
+                "label": "Arabic title-generated abstracts",
+                "lang": "ar",
+                "origin": "machine",
+                "total": 400,
+                "eligible": 400,
+                "abstained": 0,
+                "excluded": 0,
+                "any": 0,
+                "numeric": 0,
+                "any_rate": 0.0,
+                "numeric_rate": 0.0,
+                "coverage": 1.0,
+                "any_ci95": [
+                  0.0,
+                  0.009512
+                ],
+                "numeric_ci95": [
+                  0.0,
+                  0.009512
+                ]
+              },
+              {
+                "label": "ArguGPT OOD generation",
+                "lang": "en",
+                "origin": "machine",
+                "total": 400,
+                "eligible": 400,
+                "abstained": 0,
+                "excluded": 0,
+                "any": 35,
+                "numeric": 11,
+                "any_rate": 0.0875,
+                "numeric_rate": 0.0275,
+                "coverage": 1.0,
+                "any_ci95": [
+                  0.063587,
+                  0.119261
+                ],
+                "numeric_ci95": [
+                  0.015424,
+                  0.048565
+                ]
+              }
+            ],
+            "candidate_model": "AIP-HL-5-research",
+            "active_model": "AIP-HL-3",
+            "passed": false,
+            "decision": "rejected",
+            "weights_sha256": "2f71374522f7347c8928f5ff6c98975f3b00d4e6c4edae5243b5c40062c5aed6",
+            "protocol_sha256": "45dbcdb7dff24efaf97f8d2ac9973a120b2f9d326df7202c06ffd0cf591e854e",
+            "source_counts": {
+              "ar": {
+                "source_records": 3000,
+                "screened": 519,
+                "overlap_excluded": 119,
+                "selected": 400
+              },
+              "en": {
+                "source_records": 500,
+                "screened": 400,
+                "overlap_excluded": 0,
+                "selected": 400
+              }
+            },
+            "manifest_sha256": "31413c0b108525492b5709dac54a560983bf0bcfbd04f5b6f6b5a6ba14b19118",
+            "groups": {
+              "train/AIRABIC/0": 190,
+              "train/AIRABIC/1": 146,
+              "train/ARCD/0": 347,
+              "train/Ar-APT/0": 400,
+              "train/Ar-APT/1": 360,
+              "calibration/o-qn/0": 771
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Mixtures, paraphrasing and back-translation",
+      "ar": "النصوص المختلطة وإعادة الصياغة والترجمة العكسية",
+      "status": "partial",
+      "detail": "Results depend on genre and text transformation. Consult the model card for mixed-text error, coverage and abstentions.",
+      "detailsAr": "تختلف النتائج حسب نوع النص وطريقة تحويله. تعرض البطاقة قياسات النص المختلط وحدودها. يبقى اختبار اللجنة المستقل مفتوحًا.",
+      "evidence": {
+        "implementation": "research/detector/inference.mjs",
+        "test": "research/detector/evaluate.mjs + translations.mjs",
+        "record": "research/detector/card.json",
+        "observations": {
+          "mixed": [
+            {
+              "lang": "ar",
+              "expected_percent": 25,
+              "documents": 25,
+              "numeric": 25,
+              "suppressed": 0,
+              "abstained": 0,
+              "mae_pp": 24.04,
+              "mae_bounds_all_scored_pp": [
+                24.04,
+                24.04
+              ]
+            },
+            {
+              "lang": "ar",
+              "expected_percent": 50,
+              "documents": 25,
+              "numeric": 25,
+              "suppressed": 0,
+              "abstained": 0,
+              "mae_pp": 22.42,
+              "mae_bounds_all_scored_pp": [
+                22.42,
+                22.42
+              ]
+            },
+            {
+              "lang": "ar",
+              "expected_percent": 75,
+              "documents": 25,
+              "numeric": 25,
+              "suppressed": 0,
+              "abstained": 0,
+              "mae_pp": 23.52,
+              "mae_bounds_all_scored_pp": [
+                23.52,
+                23.52
+              ]
+            },
+            {
+              "lang": "en",
+              "expected_percent": 25,
+              "documents": 21,
+              "numeric": 21,
+              "suppressed": 0,
+              "abstained": 0,
+              "mae_pp": 25.02,
+              "mae_bounds_all_scored_pp": [
+                25.02,
+                25.02
+              ]
+            },
+            {
+              "lang": "en",
+              "expected_percent": 50,
+              "documents": 21,
+              "numeric": 21,
+              "suppressed": 0,
+              "abstained": 0,
+              "mae_pp": 48.96,
+              "mae_bounds_all_scored_pp": [
+                48.96,
+                48.96
+              ]
+            },
+            {
+              "lang": "en",
+              "expected_percent": 75,
+              "documents": 21,
+              "numeric": 21,
+              "suppressed": 0,
+              "abstained": 0,
+              "mae_pp": 73.8,
+              "mae_bounds_all_scored_pp": [
+                73.8,
+                73.8
+              ]
+            }
+          ],
+          "limits": {
+            "confidence": "Two-sided 95% Wilson interval per eligible document. Author/topic dependence can widen uncertainty. Zero eligible returns null.",
+            "coverage": "Eligible divided by eligible plus abstained. New test row totals start after screening and the 400-record cap; experiment.source_counts reports earlier exclusions. Origins other than machine or human are descriptive signal rates.",
+            "mixtures": "Word proportions from real paired contiguous blocks; same pair at three ratios. Numeric MAE includes 0% and uses actual word count. A suppressed score contributes only possible [0,20] bounds to the all-scored interval.",
+            "scope": "New corpus and topic-screened evaluation; corpus labels as published. Individual author disjointness, independent committee data and cross-group fairness are unverified.",
+            "translation": "English round-trip observations are descriptive on translated human prose. Arabic back-translation of long-form generated prose has not been validated."
+          }
+        }
+      }
+    },
+    {
+      "name": "Word, PDF, PNG and JPEG · local fixtures",
+      "ar": "تحليل Word وPDF وPNG وJPEG · ملفات محلية",
+      "status": "passed",
+      "detail": "Known revision text and inherited styles matched the fixture. PDF text and image structure were checked.",
+      "detailsAr": "وافق النص الظاهر والتنسيق الموروث ملف Word المعلوم؛ واستُخرج النص الثنائي من PDF وفُحصت بنية الصورتين.",
+      "evidence": {
+        "implementation": "research/media/index.mjs",
+        "test": "node test/module-audit-release4.mjs",
+        "record": "evidence/module-audit-release4.json",
+        "observations": {
+          "environment": "Local Work Node v24.22.3; application analysis, draft, PDF, and persistence functions, in-memory SQLite; no HTTP hosting SLA",
+          "started": "2026-11-23T20:06:48.171Z",
+          "fixtures": {
+            "revisions.docx": {
+              "bytes": 38208,
+              "sha256": "626c32de0bffbffcf6c996edbfd49468cc753ee805c026606b655440cc2a4da4"
+            },
+            "bilingual-text.pdf": {
+              "bytes": 177256,
+              "sha256": "a8aace26013c4d8b9ac75742dc25eb15bd5956dcb815030630d82d969a1fe885"
+            },
+            "geometry.png": {
+              "bytes": 489,
+              "sha256": "e0e1a7502e3325b1776dc61168a36150f3ad22bc41b057002ae021dfc90912c1"
+            },
+            "geometry.jpg": {
+              "bytes": 1348,
+              "sha256": "cdba474f2f8069b266415466370c9572c588b702e0009d4929f72486cc292ddb"
+            },
+            "official-CA.jpg": {
+              "bytes": 166864,
+              "sha256": "e71bff58fc57640803e6e65f7534e2fb0c2f99018c85276cc14b30f04427cc76"
+            }
+          },
+          "checks": [
+            {
+              "name": "OOXML visible text, revisions, metadata and inherited styles",
+              "status": "passed",
+              "detail": {
+                "hiddenRuns": 3,
+                "whiteRuns": 2,
+                "trackedInsertions": 1,
+                "trackedDeletions": 1,
+                "editingMinutes": 17,
+                "coreRevision": "4",
+                "visibleMarkers": [
+                  "PREVIOUS_FORMAT_VISIBLE",
+                  "TOGGLED_VISIBLE",
+                  "DIRECT_VISIBLE",
+                  "PARAGRAPH_OVERRIDE_VISIBLE",
+                  "NEW_INSERTION",
+                  "MOVE_NEW"
+                ],
+                "excludedMarkers": [
+                  "MOVE_OLD",
+                  "OLD_DELETION",
+                  "INHERITED_HIDDEN",
+                  "INHERITED_WHITE",
+                  "PARAGRAPH_HIDDEN"
+                ],
+                "dimensions": [
+                  {
+                    "widthMm": 215.9,
+                    "heightMm": 279.4
+                  }
+                ]
+              }
+            },
+            {
+              "name": "PDF text in two scripts and physical page size",
+              "status": "passed",
+              "detail": {
+                "pages": 1,
+                "pageSizes": [
+                  {
+                    "widthPt": 595.28,
+                    "heightPt": 841.89
+                  }
+                ],
+                "fontFamilies": [
+                  "sans-serif"
+                ],
+                "provenance": {
+                  "status": "no_document_level_manifest_found",
+                  "signature": "not_checked",
+                  "assetBinding": "not_checked",
+                  "trust": "not_evaluated",
+                  "scope": "catalog AF and named content credential attachments"
+                }
+              }
+            },
+            {
+              "name": "Unsigned media dimensions and actual chunk and segment records",
+              "status": "passed",
+              "detail": {
+                "png": {
+                  "IHDR": 1,
+                  "tEXt": 1,
+                  "IDAT": 1,
+                  "IEND": 1
+                },
+                "jpeg": {
+                  "APP0": 1,
+                  "0xDB": 2,
+                  "0xC0": 1,
+                  "0xC4": 4,
+                  "0xDA": 1
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "C2PA signature and asset binding · local fixtures",
+      "ar": "صحة توقيع C2PA وارتباطه بالملف · ملفات محلية",
+      "status": "passed",
+      "detail": "The signed original and controlled modified asset were distinguished. Independent certificate trust was not evaluated.",
+      "detailsAr": "ميّز الفحص بين الأصل الموقّع والملف المعدّل. لم يُختبر اعتماد سلسلة الشهادات من جهة ثقة مستقلة.",
+      "evidence": {
+        "implementation": "research/media/c2pa.mjs",
+        "test": "node test/module-audit-release4.mjs",
+        "record": "evidence/module-audit-release4.json",
+        "observations": {
+          "environment": "Local Work Node v24.22.3; application analysis, draft, PDF, and persistence functions, in-memory SQLite; no HTTP hosting SLA",
+          "started": "2026-11-23T20:06:48.171Z",
+          "fixtures": {
+            "revisions.docx": {
+              "bytes": 38208,
+              "sha256": "626c32de0bffbffcf6c996edbfd49468cc753ee805c026606b655440cc2a4da4"
+            },
+            "bilingual-text.pdf": {
+              "bytes": 177256,
+              "sha256": "a8aace26013c4d8b9ac75742dc25eb15bd5956dcb815030630d82d969a1fe885"
+            },
+            "geometry.png": {
+              "bytes": 489,
+              "sha256": "e0e1a7502e3325b1776dc61168a36150f3ad22bc41b057002ae021dfc90912c1"
+            },
+            "geometry.jpg": {
+              "bytes": 1348,
+              "sha256": "cdba474f2f8069b266415466370c9572c588b702e0009d4929f72486cc292ddb"
+            },
+            "official-CA.jpg": {
+              "bytes": 166864,
+              "sha256": "e71bff58fc57640803e6e65f7534e2fb0c2f99018c85276cc14b30f04427cc76"
+            }
+          },
+          "checks": [
+            {
+              "name": "C2PA signed asset and a controlled metadata-only edit",
+              "status": "passed",
+              "detail": {
+                "original": {
+                  "signature": "verified_with_embedded_leaf",
+                  "binding": "match",
+                  "assertions": "match",
+                  "trust": "not_evaluated"
+                },
+                "edited": {
+                  "signature": "verified_with_embedded_leaf",
+                  "binding": "mismatch",
+                  "assertions": "match",
+                  "trust": "not_evaluated"
+                },
+                "changedInputSHA256": "d8bdc686b5d83f3693c60edeb10956c79c432dfad22ab7b981b370faf255ff81"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Masked index and PDF/JSON exports · local fixtures",
+      "ar": "حجب الهوية في الفهرس وتصدير PDF وJSON · ملفات محلية",
+      "status": "passed",
+      "detail": "Checked stored text/index, JSON and both rendered PDFs.",
+      "detailsAr": "فُحصت بيانات التخزين والفهرس وJSON، وفُتح تقريران بالعربية والإنجليزية ورُسمت صفحاتهما.",
+      "evidence": {
+        "implementation": "src/privacy.mjs + src/report.mjs",
+        "test": "node test/module-audit-release4.mjs",
+        "record": "evidence/module-audit-release4.json",
+        "observations": {
+          "environment": "Local Work Node v24.22.3; application analysis, draft, PDF, and persistence functions, in-memory SQLite; no HTTP hosting SLA",
+          "started": "2026-11-23T20:06:48.171Z",
+          "fixtures": {
+            "revisions.docx": {
+              "bytes": 38208,
+              "sha256": "626c32de0bffbffcf6c996edbfd49468cc753ee805c026606b655440cc2a4da4"
+            },
+            "bilingual-text.pdf": {
+              "bytes": 177256,
+              "sha256": "a8aace26013c4d8b9ac75742dc25eb15bd5956dcb815030630d82d969a1fe885"
+            },
+            "geometry.png": {
+              "bytes": 489,
+              "sha256": "e0e1a7502e3325b1776dc61168a36150f3ad22bc41b057002ae021dfc90912c1"
+            },
+            "geometry.jpg": {
+              "bytes": 1348,
+              "sha256": "cdba474f2f8069b266415466370c9572c588b702e0009d4929f72486cc292ddb"
+            },
+            "official-CA.jpg": {
+              "bytes": 166864,
+              "sha256": "e71bff58fc57640803e6e65f7534e2fb0c2f99018c85276cc14b30f04427cc76"
+            }
+          },
+          "checks": [
+            {
+              "name": "PII removed from source, stored index, JSON and file properties",
+              "status": "passed",
+              "detail": {
+                "maskedCodeUnits": 40,
+                "inspectionPassed": true,
+                "SQLiteReadback": true
+              }
+            },
+            {
+              "name": "PDF audit en generated, reopened and rendered",
+              "status": "passed",
+              "detail": {
+                "pages": 6,
+                "logicalFields": 199,
+                "renderedAllPages": true,
+                "localeTitleFound": true,
+                "unmaskedTestIdentifiersAbsent": true,
+                "bytes": 92149,
+                "sha256": "bb1dd3ab9bba6f7b00d37ed29a00b82db14a7acf56fc76fd5c7a53b138538418"
+              }
+            },
+            {
+              "name": "PDF audit ar generated, reopened and rendered",
+              "status": "passed",
+              "detail": {
+                "pages": 6,
+                "logicalFields": 199,
+                "renderedAllPages": true,
+                "localeTitleFound": true,
+                "unmaskedTestIdentifiersAbsent": true,
+                "bytes": 93831,
+                "sha256": "341f8a75c31f8c6537b0ee30731b1bda858a5b9ad286d155d289ed7b7c01bbd1"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Clarity replay and active time · local fixtures",
+      "ar": "إعادة الكتابة وزمن النشاط في Clarity · ملفات محلية",
+      "status": "passed",
+      "detail": "Reconstructed the known input sequence and independently checked active time.",
+      "detailsAr": "أعيد تسلسل التحرير المعروف، وفُحص احتساب زمن النشاط واستبعاد التوقف.",
+      "evidence": {
+        "implementation": "src/drafts.mjs + research/clarity/redaction.mjs",
+        "test": "node test/module-audit-release4.mjs",
+        "record": "evidence/module-audit-release4.json",
+        "observations": {
+          "environment": "Local Work Node v24.22.3; application analysis, draft, PDF, and persistence functions, in-memory SQLite; no HTTP hosting SLA",
+          "started": "2026-11-23T20:06:48.171Z",
+          "fixtures": {
+            "revisions.docx": {
+              "bytes": 38208,
+              "sha256": "626c32de0bffbffcf6c996edbfd49468cc753ee805c026606b655440cc2a4da4"
+            },
+            "bilingual-text.pdf": {
+              "bytes": 177256,
+              "sha256": "a8aace26013c4d8b9ac75742dc25eb15bd5956dcb815030630d82d969a1fe885"
+            },
+            "geometry.png": {
+              "bytes": 489,
+              "sha256": "e0e1a7502e3325b1776dc61168a36150f3ad22bc41b057002ae021dfc90912c1"
+            },
+            "geometry.jpg": {
+              "bytes": 1348,
+              "sha256": "cdba474f2f8069b266415466370c9572c588b702e0009d4929f72486cc292ddb"
+            },
+            "official-CA.jpg": {
+              "bytes": 166864,
+              "sha256": "e71bff58fc57640803e6e65f7534e2fb0c2f99018c85276cc14b30f04427cc76"
+            }
+          },
+          "checks": [
+            {
+              "name": "Clarity known typing, long idle period, paste and replacement",
+              "status": "passed",
+              "detail": {
+                "inputGestureMs": [
+                  1000,
+                  1750,
+                  24000,
+                  24800
+                ],
+                "elapsedGapBeforePasteMs": 22250,
+                "activeMs": 1550,
+                "bulkPastes": 1,
+                "frameDigests": [
+                  "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+                  "463816d07097e1a7cf27b86cf03082ee49f6ce2d87663cd27a24d7254a83e76a",
+                  "2252028cdd2c28e91fe78d89c186325af4e7002a675026a2ca72cae5ae82e812",
+                  "5f504f7470143746e3e2b0868b4787a217326a3aa5efc248f73e6cd5ad854a0f",
+                  "4216e18395d84702c4b6a86c342761589af423b195830a55168119316932fc64"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Live citation registries",
+      "ar": "التحقق الحي من سجلات المراجع",
+      "status": "passed",
+      "detail": "The published service distinguished genuine DOI and ISBN, a missing DOI, and a bad ISBN checksum.",
+      "detailsAr": "تحققت الخدمة المنشورة من DOI وISBN صحيحين، وميّزت مرجع DOI غير موجود ورقم ISBN غير صالح حسابيًا.",
+      "evidence": {
+        "implementation": "research/media/citations.mjs",
+        "test": "test/module-audit-release4.mjs",
+        "record": "evidence/module-audit-release4.json",
+        "observations": {
+          "local": [
+            {
+              "id": "10.1038/nature12373",
+              "expected": "verified",
+              "actual": "registry_unavailable",
+              "result": "unverified",
+              "registry": "Crossref / DOI Handle System",
+              "attempts": [
+                {
+                  "registry": "Crossref",
+                  "outcome": "timeout"
+                },
+                {
+                  "registry": "DOI Handle System",
+                  "outcome": "timeout"
+                }
+              ]
+            },
+            {
+              "id": "10.99999/mizan-no-record-2026",
+              "expected": "not_found",
+              "actual": "registry_unavailable",
+              "result": "unverified",
+              "registry": "Crossref / DOI Handle System",
+              "attempts": [
+                {
+                  "registry": "Crossref",
+                  "outcome": "timeout"
+                },
+                {
+                  "registry": "DOI Handle System",
+                  "outcome": "timeout"
+                }
+              ]
+            },
+            {
+              "id": "9780306406157",
+              "expected": "verified",
+              "actual": "registry_unavailable",
+              "result": "unverified",
+              "registry": "Open Library / Crossref / Google Books",
+              "attempts": [
+                {
+                  "registry": "Open Library",
+                  "outcome": "timeout"
+                },
+                {
+                  "registry": "Crossref",
+                  "outcome": "timeout"
+                },
+                {
+                  "registry": "Google Books",
+                  "outcome": "timeout"
+                }
+              ]
+            },
+            {
+              "id": "9780306406158",
+              "expected": "invalid_checksum",
+              "actual": "invalid_checksum",
+              "result": "passed",
+              "registry": null,
+              "attempts": []
+            }
+          ],
+          "hosted": [
+            {
+              "kind": "doi",
+              "id": "10.1038/nature12373",
+              "status": "verified",
+              "registry": "Crossref",
+              "title": "Nanometre-scale thermometry in a living cell",
+              "attempts": [
+                {
+                  "registry": "Crossref",
+                  "outcome": "response",
+                  "httpStatus": 200
+                }
+              ],
+              "checkedAt": 1795465725661
+            },
+            {
+              "kind": "doi",
+              "id": "10.99999/mizan-evaluation-missing-2026",
+              "status": "not_found",
+              "registry": "DOI Handle System",
+              "attempts": [
+                {
+                  "registry": "Crossref",
+                  "outcome": "non_json_response",
+                  "httpStatus": 404
+                },
+                {
+                  "registry": "DOI Handle System",
+                  "outcome": "response",
+                  "httpStatus": 404
+                }
+              ],
+              "checkedAt": 1795465725785
+            },
+            {
+              "kind": "isbn",
+              "id": "9780306406157",
+              "status": "verified",
+              "registry": "Open Library",
+              "matchedISBN": "9780306406157",
+              "title": "Error-correction coding for digital communications",
+              "attempts": [
+                {
+                  "registry": "Open Library",
+                  "outcome": "response",
+                  "httpStatus": 200
+                }
+              ],
+              "checkedAt": 1795465725671
+            },
+            {
+              "kind": "isbn",
+              "id": "9780306406158",
+              "status": "invalid_checksum",
+              "registry": null
+            }
+          ],
+          "at": "2026-11-23T20:28:48.794982+00:00"
+        }
+      }
+    },
+    {
+      "name": "Indexed upload load · isolated HTTPS",
+      "ar": "أداء الرفع مع الفهرسة · HTTPS معزول",
+      "status": "passed",
+      "detail": "Fifty distinct learners on loopback TLS. Each retrieved its full report, peer reads were separately checked.",
+      "detailsAr": "رفع خمسون حسابًا عبر HTTPS محلي معزول؛ تحققت الأداة من تطابق تقرير كل حساب ومنع الزملاء من قراءته.",
+      "evidence": {
+        "implementation": "src/worker.mjs + src/analysis.mjs",
+        "test": "scripts/release4-bench-local.mjs",
+        "record": "evidence/release4-candidate-loopback.json",
+        "observations": {
+          "utc": "2026-11-23T20:04:51.343+00:00",
+          "release3": {
+            "requested": 50,
+            "verifiedReports": 50,
+            "errors": 0,
+            "under15Seconds": 50,
+            "p95Ms": 2535.08,
+            "maxMs": 2687.4,
+            "formats": {
+              "docx": 25,
+              "pdf": 25
+            }
+          },
+          "release4": {
+            "requested": 50,
+            "verifiedReports": 50,
+            "errors": 0,
+            "under15Seconds": 50,
+            "p95Ms": 2485.16,
+            "maxMs": 2625.83,
+            "formats": {
+              "docx": 25,
+              "pdf": 25
+            }
+          },
+          "initialIndex": {
+            "cohortDocuments": 3,
+            "publishedSources": 5
+          },
+          "singles": {
+            "requested": 2,
+            "verifiedReports": 2,
+            "errors": 0,
+            "under15Seconds": 2,
+            "p95Ms": 161.97,
+            "maxMs": 161.97,
+            "formats": {
+              "docx": 1,
+              "pdf": 1
+            }
+          },
+          "peerReads": {
+            "404": 50
+          }
+        }
+      }
+    },
+    {
+      "name": "Permissions, retention and saved reports · local Worker",
+      "ar": "الصلاحيات والحذف الدوري والتقارير المحفوظة · محلي",
+      "status": "passed",
+      "detail": "The built Worker was exercised with SQLite and the local scheduled hook. Hosted uptime and actual scheduler execution require separate evidence.",
+      "detailsAr": "اختُبر المعالج المبني مع SQLite، واستُدعيت دالة الحذف محليًا. يبقى تشغيل الجدولة على الاستضافة واستمرارية الخدمة قياسين منفصلين.",
+      "evidence": {
+        "implementation": "src/auth.mjs + src/worker.mjs",
+        "test": "research/bench/integration.mjs",
+        "record": "research/bench/integration-results.json",
+        "observations": {
+          "started": "2026-11-23T20:23:38.989Z",
+          "runtime": "v24.22.3",
+          "checks": [
+            {
+              "name": "Health, distinct roles and protected routes",
+              "status": "passed"
+            },
+            {
+              "name": "Public bilingual assessment, no private report access",
+              "status": "passed"
+            },
+            {
+              "name": "Upload and persisted readback: docx",
+              "status": "passed"
+            },
+            {
+              "name": "Upload and persisted readback: pdf",
+              "status": "passed"
+            },
+            {
+              "name": "Upload and persisted readback: png",
+              "status": "passed"
+            },
+            {
+              "name": "Upload and persisted readback: jpeg",
+              "status": "passed"
+            },
+            {
+              "name": "Media provenance: embedded C2PA",
+              "status": "passed"
+            },
+            {
+              "name": "Arabic DOCX forensics and privacy",
+              "status": "passed"
+            },
+            {
+              "name": "JSON audit and bilingual downloadable PDF exports",
+              "status": "passed"
+            },
+            {
+              "name": "TXT indexing and duplicate in same cohort",
+              "status": "passed"
+            },
+            {
+              "name": "Published paper and quote exclusion switch",
+              "status": "passed"
+            },
+            {
+              "name": "Student, instructor and cross-course isolation",
+              "status": "passed"
+            },
+            {
+              "name": "Membership administration and evidence permissions",
+              "status": "passed"
+            },
+            {
+              "name": "Clarity edits, active time, bulk paste, replay and submission",
+              "status": "passed"
+            },
+            {
+              "name": "Invalid document and missing session",
+              "status": "passed"
+            },
+            {
+              "name": "Built Worker local 50-upload and report-readback batch",
+              "status": "passed"
+            },
+            {
+              "name": "Expired test rows and scheduled handler",
+              "status": "passed"
+            },
+            {
+              "name": "Logout invalidates saved session",
+              "status": "passed"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Public HTTPS load and 3,000-word latency",
+      "ar": "أداء الرابط العام تحت الحمل",
+      "status": "passed",
+      "detail": "Public HTTPS. 3,000 words indexed, Word 1.03s and PDF 6.50s individually. 50/50 full reports retrieved, 50/50 uploads below 15s, p95 12.43s and maximum 12.51s. 50/50 peer reads denied.",
+      "detailsAr": "على الرابط العام مع الفهرسة، استغرق مستند Word من 3,000 كلمة 1.03 ثانية وPDF 6.50 ثانية. استُرجع 50 من 50 تقريرًا، واكتملت 50 عملية في أقل من 15 ثانية. المئين 95 بلغ 12.43 ثانية والأبطأ 12.51 ثانية. رُفضت قراءة تقارير الزملاء في 50 من 50 محاولة.",
+      "evidence": {
+        "implementation": "src/worker.mjs + src/analysis.mjs",
+        "test": "scripts/release4-bench.py",
+        "record": "evidence/release4-authenticated-public-load.json",
+        "observations": {
+          "startedUTC": "2026-11-23T20:25:23.735+00:00",
+          "finishedUTC": "2026-11-23T20:28:19.519+00:00",
+          "releaseUnderTest": "appgprj_6b048b46ee948191aa48609a6dba0fcb~appgver_3cb81cff19648191b7d0de5371033b15",
+          "health": {
+            "service": {
+              "service": "Mizan",
+              "assessment": "zz-release-4",
+              "model": "AIP-HL-3",
+              "analysisFingerprint": "d853e1cccc80143108ed141bd0fd49d35ed5c08b5432369e77e6f75364b27c75",
+              "status": "online",
+              "database": "reachable",
+              "dbMs": 184,
+              "at": "2026-11-23T20:25:32.071Z"
+            },
+            "retention": {
+              "lastSuccess": 1795461108,
+              "retentionDays": 7
+            }
+          },
+          "distinctAuthenticatedStudents": 50,
+          "indexBeforeLoad": {
+            "cohortDocuments": 3,
+            "publishedSources": 5
+          },
+          "clientStartSpreadMs": 31.75,
+          "loadSummary": {
+            "requested": 50,
+            "verifiedReports": 50,
+            "errors": 0,
+            "under15Seconds": 50,
+            "p95Ms": 12432.42,
+            "maxMs": 12510.07,
+            "formats": {
+              "docx": 25,
+              "pdf": 25
+            }
+          },
+          "crossStudentReadbackHttp": {
+            "404": 50
+          },
+          "singlesSummary": {
+            "requested": 2,
+            "verifiedReports": 2,
+            "errors": 0,
+            "under15Seconds": 2,
+            "p95Ms": 6500.26,
+            "maxMs": 6500.26,
+            "formats": {
+              "docx": 1,
+              "pdf": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Mobile and desktop committee journey",
+      "ar": "رحلة اللجنة على الهاتف والحاسوب",
+      "status": "partial",
+      "detail": "Responsive browser checks and physical-device acceptance are separate observations.",
+      "detailsAr": "تختبر المحاكاة عرض الهاتف والحاسوب. يتطلب اعتماد رحلة الهاتف الحقيقي تنفيذها على الجهاز والرابط المنشور.",
+      "evidence": {
+        "implementation": "ui/client.mjs + ui/studio.css",
+        "test": "test/browser-runner.js",
+        "record": "evidence/local-browser.json",
+        "observations": {
+          "at": "2026-11-23T20:07:02.450Z",
+          "environment": "Chrome via managed local preview; actual SQLite workspace and ephemeral test principal",
+          "checks": [
+            {
+              "width": 390,
+              "lang": "ar",
+              "name": "Upload a real 3,000-word DOCX in rendered controls",
+              "status": "passed",
+              "sha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+              "overflow": 0
+            },
+            {
+              "width": 390,
+              "lang": "ar",
+              "name": "Report tabs, exclusions, JSON and PDF controls",
+              "status": "passed",
+              "pdfBytes": 78224
+            },
+            {
+              "width": 390,
+              "lang": "ar",
+              "name": "Clarity entry, paste, save, playback and submission",
+              "status": "passed",
+              "lastRevision": 2
+            },
+            {
+              "width": 390,
+              "lang": "ar",
+              "name": "Submissions, model card and health",
+              "status": "passed",
+              "overflow": 0
+            },
+            {
+              "width": 1240,
+              "lang": "en",
+              "name": "Upload a real 3,000-word DOCX in rendered controls",
+              "status": "passed",
+              "sha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+              "overflow": 0
+            },
+            {
+              "width": 1240,
+              "lang": "en",
+              "name": "Report tabs, exclusions, JSON and PDF controls",
+              "status": "passed",
+              "pdfBytes": 230076
+            },
+            {
+              "width": 1240,
+              "lang": "en",
+              "name": "Clarity entry, paste, save, playback and submission",
+              "status": "passed",
+              "lastRevision": 4
+            },
+            {
+              "width": 1240,
+              "lang": "en",
+              "name": "Submissions, model card and health",
+              "status": "passed",
+              "overflow": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Institutional LTI 1.3 launch",
+      "ar": "الإطلاق المؤسسي عبر LTI 1.3",
+      "status": "unverified",
+      "detail": "Local protocol tests exist. An end-to-end university launch requires a registered LMS.",
+      "detailsAr": "توجد نتائج محلية لاختبار البروتوكول. يتطلب إثبات الإطلاق الجامعي منصة تعليم مسجلة لدى الجامعة.",
+      "evidence": {
+        "implementation": "research/lti/lti.mjs",
+        "test": "research/lti/test.mjs",
+        "record": "research/lti/evidence.json",
+        "observations": {
+          "protocolTestsPassed": 16
+        }
+      }
+    },
+    {
+      "name": "Committee workspace · public HTTPS",
+      "ar": "مساحة اللجنة على الرابط العام",
+      "status": "passed",
+      "detail": "9/9 checks passed for the committee workspace. See the individual outcomes.",
+      "detailsAr": "اجتازت مساحة اللجنة 9 من 9 فحوص عبر HTTPS. يبيّن السجل نتيجة كل فحص منفصل.",
+      "evidence": {
+        "implementation": "src/worker.mjs + src/auth.mjs",
+        "test": "scripts/live-checks.py",
+        "record": "evidence/release4-committee-functions.json",
+        "observations": {
+          "at": "2026-11-23T20:28:48.794982+00:00",
+          "checks": [
+            {
+              "name": "Evaluator login on public HTTPS",
+              "status": "passed",
+              "detail": "Evaluator logged in and authenticated identity was read back."
+            },
+            {
+              "name": "Experimental model identity",
+              "status": "passed",
+              "detail": "Final assessment classifier identity verified from the returned report."
+            },
+            {
+              "name": "Published paper source retrieval",
+              "status": "passed",
+              "detail": "Correct journal paper linked in the returned report."
+            },
+            {
+              "name": "Arabic document forensics and masking",
+              "status": "passed",
+              "detail": "Arabic DOCX inspected and visible test identifiers masked."
+            },
+            {
+              "name": "Authentic C2PA JPEG",
+              "status": "passed",
+              "detail": "Signed JPEG parsed, with separate signature, asset binding and trust fields."
+            },
+            {
+              "name": "Known OOXML signals",
+              "status": "passed",
+              "detail": "Uploaded binary and retrieved persisted report."
+            },
+            {
+              "name": "Clarity four edits and persistent report",
+              "status": "passed",
+              "detail": "Four sequential bilingual edits persisted, replayed and submitted over HTTPS, with personal identifiers masked."
+            },
+            {
+              "name": "External DOI/ISBN lookup",
+              "status": "passed",
+              "detail": "Genuine DOI/ISBN, invented DOI and checksum error distinguished."
+            },
+            {
+              "name": "JSON and bilingual PDF export",
+              "status": "passed",
+              "detail": "The committee account downloaded JSON and two parseable PDF audits."
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,15 +1,23 @@
 // Redact before indexing, retention and export. Mask by UTF-16 length to retain offsets.
 const identifierPatterns = [
   /[\w.+%-]+@[\w.-]+\.[A-Za-z]{2,}/gu,
-  /\b(?:784[- ]?\d{4}[- ]?\d{7}[- ]?\d|(?:\+|00)(?:971|968|966|965|974|973|967)[\d ()-]{7,15}\d)\b/gu,
+  /(?<![\p{L}\d])784[- ]?\d{4}[- ]?\d{7}[- ]?\d(?!\d)/gu,
+  /(?<!\d)(?:\+|00)(?:971|968|966|965|974|973|967)(?:[ ()-]*\d){8,9}(?![0-9])/gu,
   /(?:Student\s*(?:ID|Number)|University\s*ID|الرقم\s*الجامعي|رقم\s*الطالب)\s*[:#\-]?\s*[A-Z\d٠-٩-]{4,22}/giu,
   /(?:^|\n)(?:Name|Student\s*Name|اسم الطالب(?:ة)?|الاسم)\s*[:：]\s*[^\n]{1,100}/giu,
   /(?:\+\d{1,3}[ -]?)?(?:\(\d{3}\)[ -]?\d{3}[ -]?\d{4}|\b05\d[ -]?\d{3}[ -]?\d{4}\b)/gu,
 ];
 export function maskPII(text) {
-  return identifierPatterns.reduce(
-    (s, re) => s.replace(re, (match) => match.replace(/[^\s]/g, "█")),
-    String(text),
+  const original = String(text);
+  const normalized = original.replace(/[٠-٩۰-۹]/g, digit =>
+    String(digit.charCodeAt(0) % 16)
+  );
+  let masked = normalized;
+  for (const pattern of identifierPatterns)
+    masked = masked.replace(pattern, value => value.replace(/[^\s]/g, "█"));
+  if (normalized === original) return masked;
+  return original.replace(/[^\s]/g, (value, index) =>
+    masked[index] === "█" ? "█" : value
   );
 }
 export function cleanEvidence(value, key = "") {

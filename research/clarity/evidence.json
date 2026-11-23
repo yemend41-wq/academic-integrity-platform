@@ -1,7 +1,7 @@
 {
-  "executed_at": "2026-11-23T19:08:18.096Z",
+  "executed_at": "2026-11-23T20:03:40.170Z",
   "environment": "Node 24, real draft API functions and SQLite; independently exercised shared playback helpers",
-  "passed": 25,
+  "passed": 28,
   "checks": [
     "typing and interval classification",
     "focused short gaps count; initial and idle gaps excluded",
@@ -26,6 +26,9 @@
     "legacy history converted and persisted with one optimistic revision increment",
     "legacy partial values absent from every reconstructed historical frame",
     "subsequent reads of legacy record do not rewrite again",
+    "v2 record whose final text contains no PII is rewritten exactly once",
+    "earlier phone prefix and completed number disappear from every reconstructed frame",
+    "migration preserves gesture metadata, time and SQLite privacy",
     "large redacted history remains under storage limit with compact persistence",
     "packed historical masks round-trip with unchanged text, timing and revision count"
   ],

@@ -1,0 +1,310 @@
+{
+  "id": "production-functions",
+  "title": "Public HTTPS functional checks",
+  "titleAr": "اختبارات الوظائف عبر الرابط العام",
+  "origin": "https://mizan-integrity-studio.yemend41.chatgpt.site",
+  "at": "2026-11-23T20:28:48.794982+00:00",
+  "checks": [
+    {
+      "name": "Evaluator login on public HTTPS",
+      "ar": "دخول حساب اللجنة عبر HTTPS",
+      "status": "passed",
+      "detail": "Evaluator logged in and authenticated identity was read back.",
+      "evidence": {
+        "role": "instructor",
+        "loginHTTP": 200,
+        "profileHTTP": 200
+      },
+      "seconds": 6.672
+    },
+    {
+      "name": "Experimental model identity",
+      "ar": "هوية نموذج التقييم المنشور",
+      "status": "passed",
+      "detail": "Final assessment classifier identity verified from the returned report.",
+      "evidence": {
+        "model": "AIP-HL-3",
+        "sha256": "4a952e040d6561bd6f6c09777c49903103c1b6b6218c028d6f8957f81874a1b0"
+      },
+      "seconds": 1.658
+    },
+    {
+      "name": "Published paper source retrieval",
+      "ar": "استرجاع مصدر بحث منشور",
+      "status": "passed",
+      "detail": "Correct journal paper linked in the returned report.",
+      "evidence": {
+        "format": "pdf",
+        "sha256": "b196e33fcebb974fca4ec5e9563e0c1ca54ceb026426c98a9f3ead36d182e9b1",
+        "words": 2772,
+        "reportId": "8cc83c6c-42cb-499e-91fd-09b233958df7",
+        "similarity": 76.3,
+        "matchedPassages": 23
+      },
+      "seconds": 2.483
+    },
+    {
+      "name": "Arabic document forensics and masking",
+      "ar": "فحص مستند عربي وحجب المعرّفات",
+      "status": "passed",
+      "detail": "Arabic DOCX inspected and visible test identifiers masked.",
+      "evidence": {
+        "format": "docx",
+        "sha256": "6d8f40db085a82126c3117aef677fc5f5cfd2276cc4b18fe52c8588be12a7f6c",
+        "words": 78,
+        "reportId": "412a84a2-cebe-414d-8830-026f96e59cab",
+        "forensics": {
+          "paragraphCount": 9,
+          "trackedInsertions": 0,
+          "trackedDeletions": 0,
+          "hiddenTextRuns": 1,
+          "whiteTextRuns": 1,
+          "rsidDiversity": 5,
+          "paraIdDiversity": 7,
+          "pageSizes": [
+            {
+              "widthMm": 215.9,
+              "heightMm": 279.4
+            }
+          ],
+          "fonts": [],
+          "hexColors": [
+            "#FFFFFF"
+          ],
+          "core": {
+            "revision": "3",
+            "created": "2026-01-01T00:00:00Z",
+            "modified": "2026-01-01T00:00:00Z"
+          },
+          "app": {
+            "TotalTime": "0",
+            "Pages": "1",
+            "Words": "0",
+            "Characters": "0",
+            "Application": "Microsoft Macintosh Word",
+            "Paragraphs": "0",
+            "AppVersion": "14.0000"
+          },
+          "editingMinutes": 0,
+          "embeddedMediaCount": 0,
+          "embeddedMediaScanned": 0,
+          "embeddedMedia": [],
+          "zeroWidthCharacters": 1,
+          "bidiControls": 0,
+          "mixedLatinCyrillicWords": 0,
+          "usSpellingTokens": 2,
+          "ukSpellingTokens": 2,
+          "byteLength": 37327
+        }
+      },
+      "seconds": 1.248
+    },
+    {
+      "name": "Authentic C2PA JPEG",
+      "ar": "صورة JPEG بتوقيع C2PA",
+      "status": "passed",
+      "detail": "Signed JPEG parsed, with separate signature, asset binding and trust fields.",
+      "evidence": {
+        "format": "jpeg",
+        "sha256": "e71bff58fc57640803e6e65f7534e2fb0c2f99018c85276cc14b30f04427cc76",
+        "words": 0,
+        "reportId": "f1c67d82-e1cd-488d-94c5-9b00acc728a0",
+        "provenance": {
+          "status": "manifest_read",
+          "signature": "verified_with_embedded_leaf",
+          "assetBinding": "match",
+          "assertionHashes": "match",
+          "trust": "not_evaluated",
+          "manifestCount": 1,
+          "assertions": [
+            "c2pa.thumbnail.claim.jpeg",
+            "c2pa.thumbnail.ingredient.jpeg",
+            "c2pa.ingredient",
+            "stds.schema-org.CreativeWork",
+            "c2pa.actions",
+            "c2pa.hash.data"
+          ]
+        }
+      },
+      "seconds": 1.203
+    },
+    {
+      "name": "Known OOXML signals",
+      "ar": "مؤشرات Word المعلومة",
+      "status": "passed",
+      "detail": "Uploaded binary and retrieved persisted report.",
+      "evidence": {
+        "format": "docx",
+        "sha256": "f6050dd65c5a0985dd5c24f67c656612b4ebbe6192b6ebbd9bc9df046db42c2d",
+        "words": 31,
+        "reportId": "a90f251a-ddf7-4ba8-97ab-5e23a5d6934d",
+        "signals": {
+          "hiddenTextRuns": 1,
+          "whiteTextRuns": 1,
+          "zeroWidthCharacters": 1
+        }
+      },
+      "seconds": 1.191
+    },
+    {
+      "name": "Clarity four edits and persistent report",
+      "ar": "حفظ أربع مراجعات وتحليلها",
+      "status": "passed",
+      "detail": "Four sequential bilingual edits persisted, replayed and submitted over HTTPS, with personal identifiers masked.",
+      "evidence": {
+        "frames": 4,
+        "activeMs": 2600,
+        "bulkPastes": 1
+      },
+      "seconds": 2.188
+    },
+    {
+      "name": "External DOI/ISBN lookup",
+      "ar": "التحقق الحي من DOI وISBN",
+      "status": "passed",
+      "detail": "Genuine DOI/ISBN, invented DOI and checksum error distinguished.",
+      "evidence": {
+        "observations": [
+          {
+            "kind": "doi",
+            "id": "10.1038/nature12373",
+            "status": "verified",
+            "registry": "Crossref",
+            "title": "Nanometre-scale thermometry in a living cell",
+            "attempts": [
+              {
+                "registry": "Crossref",
+                "outcome": "response",
+                "httpStatus": 200
+              }
+            ],
+            "checkedAt": 1795465725661
+          },
+          {
+            "kind": "doi",
+            "id": "10.99999/mizan-evaluation-missing-2026",
+            "status": "not_found",
+            "registry": "DOI Handle System",
+            "attempts": [
+              {
+                "registry": "Crossref",
+                "outcome": "non_json_response",
+                "httpStatus": 404
+              },
+              {
+                "registry": "DOI Handle System",
+                "outcome": "response",
+                "httpStatus": 404
+              }
+            ],
+            "checkedAt": 1795465725785
+          },
+          {
+            "kind": "isbn",
+            "id": "9780306406157",
+            "status": "verified",
+            "registry": "Open Library",
+            "matchedISBN": "9780306406157",
+            "title": "Error-correction coding for digital communications",
+            "attempts": [
+              {
+                "registry": "Open Library",
+                "outcome": "response",
+                "httpStatus": 200
+              }
+            ],
+            "checkedAt": 1795465725671
+          },
+          {
+            "kind": "isbn",
+            "id": "9780306406158",
+            "status": "invalid_checksum",
+            "registry": null
+          }
+        ]
+      },
+      "seconds": 1.019
+    },
+    {
+      "name": "JSON and bilingual PDF export",
+      "ar": "تنزيل JSON وتقريري PDF",
+      "status": "passed",
+      "detail": "The committee account downloaded JSON and two parseable PDF audits.",
+      "evidence": {
+        "files": [
+          {
+            "locale": "ar",
+            "pages": 2,
+            "bytes": 60681,
+            "sha256": "c57d9010d7a4d27ea00e270df8f1e184799dafde51437b45115fcaa3505c4588"
+          },
+          {
+            "locale": "en",
+            "pages": 2,
+            "bytes": 59217,
+            "sha256": "9e4190603142c8d48d54ab0fadfb7aa861cd60ee922812b5dd447e67d154fefd"
+          }
+        ]
+      },
+      "seconds": 2.39
+    }
+  ],
+  "registryObservations": [
+    {
+      "kind": "doi",
+      "id": "10.1038/nature12373",
+      "status": "verified",
+      "registry": "Crossref",
+      "title": "Nanometre-scale thermometry in a living cell",
+      "attempts": [
+        {
+          "registry": "Crossref",
+          "outcome": "response",
+          "httpStatus": 200
+        }
+      ],
+      "checkedAt": 1795465725661
+    },
+    {
+      "kind": "doi",
+      "id": "10.99999/mizan-evaluation-missing-2026",
+      "status": "not_found",
+      "registry": "DOI Handle System",
+      "attempts": [
+        {
+          "registry": "Crossref",
+          "outcome": "non_json_response",
+          "httpStatus": 404
+        },
+        {
+          "registry": "DOI Handle System",
+          "outcome": "response",
+          "httpStatus": 404
+        }
+      ],
+      "checkedAt": 1795465725785
+    },
+    {
+      "kind": "isbn",
+      "id": "9780306406157",
+      "status": "verified",
+      "registry": "Open Library",
+      "matchedISBN": "9780306406157",
+      "title": "Error-correction coding for digital communications",
+      "attempts": [
+        {
+          "registry": "Open Library",
+          "outcome": "response",
+          "httpStatus": 200
+        }
+      ],
+      "checkedAt": 1795465725671
+    },
+    {
+      "kind": "isbn",
+      "id": "9780306406158",
+      "status": "invalid_checksum",
+      "registry": null
+    }
+  ]
+}

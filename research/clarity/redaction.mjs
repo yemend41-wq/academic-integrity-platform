@@ -1,4 +1,5 @@
 import {delta,maskPII} from '../../src/privacy.mjs';
+export const PRIVACY_VERSION=3;
 
 // Each piece points to the exact insertion which introduced its UTF-16 units.
 // Editing one origin also masks those units in every replay frame that inherited them.
@@ -53,15 +54,15 @@ function pushRange(list,pos){
  if(tail?.[1]===pos)tail[1]++;
  else list.push([pos,pos+1]);
 }
-function ranges(before,raw,masked,legacy,kind){
+function ranges(before,raw,masked,legacy,kind,alignment){
  const back=[],sticky=[];
  if(!before.includes('█')&&!masked.includes('█'))return {back,sticky};
  // Equal prefixes/suffixes retain their character provenance. A blocked unit is
  // a wildcard only within a non-whitespace token, including after partial deletion.
  const equal=(a,b)=>a===b||(a==='█'&&/\S/.test(b))||(legacy&&b==='█'&&/\S/.test(a));
  const n=Math.min(before.length,raw.length);let left=0,right=0;
- while(left<n&&equal(before[left],raw[left]))left++;
- while(right<n-left&&equal(before[before.length-1-right],raw[raw.length-1-right]))right++;
+ while(left<n&&equal(alignment[left],raw[left]))left++;
+ while(right<n-left&&equal(alignment[alignment.length-1-right],raw[raw.length-1-right]))right++;
  const record=(i,j)=>{
   if(masked[j]==='█' && before[i]!=='█' && /\S/.test(before[i]))pushRange(back,i);
   else if(before[i]==='█'&&masked[j]!=='█'&&/\S/.test(masked[j]))pushRange(sticky,j);
@@ -77,11 +78,14 @@ function ranges(before,raw,masked,legacy,kind){
  return {back,sticky};
 }
 export function writer(state){
- let origins=null,canonical=false;
+ let origins=null,canonical=false,previousInput=null;
  return {
-  append(raw,meta,legacy=false){
-   const masked=legacy?raw:maskPII(raw);
-   const {back,sticky}=ranges(state.text,raw,masked,legacy,meta.kind);
+  append(raw,meta,legacy=false,keepEvent=legacy){
+   const masked=maskPII(raw);
+   // Within the batch, raw adjacent inputs establish exact character ancestry.
+   // The previous input is kept only in this request's memory.
+   const {back,sticky}=ranges(state.text,raw,masked,legacy,meta.kind,previousInput??state.text);
+   previousInput=raw;
    if(back.length){
     origins ||= new Origins(state.events);
     origins.scrub(state.events,back);
@@ -91,7 +95,7 @@ export function writer(state){
    if(sticky.length)canonical=true;
    const next=sticky.length?maskRanges(masked,sticky):masked;
    const change=delta(state.text,next);
-   if(!change.remove&&!change.insert&&!legacy)return;
+   if(!change.remove&&!change.insert&&!keepEvent)return;
    // Existing event metadata can be replayed without storing its original string.
    const event={...change,kind:meta.kind,bulk:meta.bulk??(meta.kind==='paste'&&change.insert.length>=40),at:meta.at,activeMs:meta.activeMs};
    origins?.add(event,state.events.length);
@@ -100,15 +104,16 @@ export function writer(state){
   requiresCanonical:()=>canonical
  };
 }
-// Legacy rows already containing block masks may retain typed prefixes before the first
-// match. Rebuild their deltas once, preserving event order and timestamps.
+// Existing rows can contain a newly recognized identifier only in an older
+// frame. Replay every delta once under the current policy, including rows
+// whose previous policy never emitted a block mask.
 export function upgradeHistory(old){
- if(old.privacyVersion===2 || !old.events.some(e=>e.insert.includes('█')))return null;
- const state={...old,text:'',events:[],activeMs:0,privacyVersion:2};
+ if(old.privacyVersion>=PRIVACY_VERSION)return null;
+ const state={...old,text:'',events:[],activeMs:0,privacyVersion:PRIVACY_VERSION};
  const w=writer(state);let original='';
  for(const e of old.events){
   original=original.slice(0,e.start)+e.insert+original.slice(e.start+e.remove);
-  w.append(original,e,true);
+  w.append(original,e,(old.privacyVersion??1)<2,true);
  }
  return state;
 }

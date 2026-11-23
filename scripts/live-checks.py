@@ -20,7 +20,7 @@ pwd=getpass.getpass('Evaluator credential: ')
 def clock():return datetime.now(timezone.utc).isoformat()
 client=httpx.Client(base_url=origin,timeout=35,follow_redirects=False)
 def auth():
- r=client.post('/api/login',json={'username':'evaluator','password':pwd});assertok(r.status_code==200,r.status_code)
+ r=client.post('/api/login',json={'username': sys.argv[2] if len(sys.argv)>2 else 'evaluator','password':pwd});assertok(r.status_code==200,r.status_code)
  me=client.get('/api/me');assertok(me.json()['role']=='instructor');return dict(detail='Evaluator logged in and authenticated identity was read back.',role=me.json()['role'],loginHTTP=r.status_code,profileHTTP=me.status_code)
 record('Evaluator login on public HTTPS','دخول حساب اللجنة عبر HTTPS',auth)
 def uploaded(content,fmt):
@@ -52,7 +52,26 @@ def exports():
   r=client.get(urls+'/pdf?lang='+lang);assertok(r.status_code==200,r.status_code);pdf=PdfReader(io.BytesIO(r.content),strict=True);assertok(len(pdf.pages)>0 and d['id'] in ''.join(p.extract_text() for p in pdf.pages))
   runs.append(dict(locale=lang,pages=len(pdf.pages),bytes=len(r.content),sha256=hashlib.sha256(r.content).hexdigest()))
  return dict(detail='The committee account downloaded JSON and two parseable PDF audits.',files=runs)
+def structured_docx():
+ d,v=filetest('research/media/tests/fixtures/bilingual-forensics.docx','docx')
+ assertok(d['forensics'].get('zeroWidthCharacters',0)>0)
+ return dict(**v,signals={k:d['forensics'].get(k) for k in ('hiddenTextRuns','whiteTextRuns','zeroWidthCharacters')})
+def draft_history():
+ current=client.get('/api/draft'); current.raise_for_status(); before=current.json()
+ if before['text']: raise ValueError('Existing workspace draft; test skipped to preserve it.')
+ edits=[{'text':'Evaluation sample','type':'type','activeMs':0},
+        {'text':'Evaluation sample: qa@','type':'type','activeMs':1100},
+        {'text':'Evaluation sample: qa@example.org','type':'type','activeMs':600},
+        {'text':'Evaluation sample: qa@example.org. راجع الباحث التعديلات في المسودة وأعاد ترتيب الفقرات بعد قراءة الأدلة المتاحة.','type':'paste','activeMs':900}]
+ r=client.post('/api/draft',json={'revision':before['revision'],'events':edits});r.raise_for_status()
+ d=client.get('/api/draft').json();frame='';history=[]
+ for event in d['events']:
+  frame=frame[:event['start']]+event['insert']+frame[event['start']+event['remove']:];history.append(frame)
+ assertok(frame==d['text'] and all('qa@' not in f for f in history) and '█' in frame and any(e['bulk'] for e in d['events']))
+ r=client.post('/api/draft/submit',json={'revision':d['revision'],'index':False});r.raise_for_status()
+ audit=r.json();assertok(audit['text']==frame and audit['telemetry']['bulkPastes']==1)
+ return dict(detail='Four sequential bilingual edits persisted, replayed and submitted over HTTPS, with personal identifiers masked.',frames=len(history),activeMs=audit['telemetry']['activeMs'],bulkPastes=1)
 if checks[0]['status']=='passed':
- for en,ar,fn in [('Experimental model identity','هوية نموذج التقييم المنشور',typescore),('Published paper source retrieval','استرجاع مصدر بحث منشور',paper),('Arabic document forensics and masking','فحص مستند عربي وحجب المعرّفات',anonym),('Authentic C2PA JPEG','صورة JPEG بتوقيع C2PA',linked),('External DOI/ISBN lookup','التحقق الحي من DOI وISBN',citations),('JSON and bilingual PDF export','تنزيل JSON وتقريري PDF',exports)]:record(en,ar,fn)
+ for en,ar,fn in [('Experimental model identity','هوية نموذج التقييم المنشور',typescore),('Published paper source retrieval','استرجاع مصدر بحث منشور',paper),('Arabic document forensics and masking','فحص مستند عربي وحجب المعرّفات',anonym),('Authentic C2PA JPEG','صورة JPEG بتوقيع C2PA',linked),('Known OOXML signals','مؤشرات Word المعلومة',structured_docx),('Clarity four edits and persistent report','حفظ أربع مراجعات وتحليلها',draft_history),('External DOI/ISBN lookup','التحقق الحي من DOI وISBN',citations),('JSON and bilingual PDF export','تنزيل JSON وتقريري PDF',exports)]:record(en,ar,fn)
 result=dict(id='production-functions',title='Public HTTPS functional checks',titleAr='اختبارات الوظائف عبر الرابط العام',origin=origin,at=clock(),checks=checks,registryObservations=refs)
 Path(sys.argv[1]).write_text(json.dumps(result,indent=2,ensure_ascii=False))

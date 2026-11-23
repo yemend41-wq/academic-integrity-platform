@@ -1,9 +1,9 @@
 {
   "scope": "Local built ESM Worker, Node Fetch API, real SQLite adapter. One process, no external HTTP or hosted D1. Timings are not public SLAs.",
   "runtime": "v24.22.3",
-  "started": "2026-11-23T19:16:51.273Z",
-  "finished": "2026-11-23T19:16:53.742Z",
-  "builtBundleSha256": "1766449eca9bb7e31867ef6f6797f656eac383d052ad2e8746d611924ffbfe92",
+  "started": "2026-11-23T20:29:28.664Z",
+  "finished": "2026-11-23T20:29:31.388Z",
+  "builtBundleSha256": "665fa33ae31e05c7c23124962d007bef9177e4680d27388039806e3b7cb521f9",
   "fixtures": [
     {
       "file": "melville-3000.docx",
@@ -33,7 +33,19 @@
         "badCredentials": 401,
         "secureHttpOnlyCookies": true
       },
-      "ms": 20.385
+      "ms": 23.014
+    },
+    {
+      "name": "Public bilingual assessment, no private report access",
+      "status": "passed",
+      "detail": {
+        "publicLocales": [
+          "ar",
+          "en"
+        ],
+        "privateDetailsHttp": 401
+      },
+      "ms": 1.665
     },
     {
       "name": "Upload and persisted readback: docx",
@@ -42,11 +54,11 @@
         "format": "docx",
         "inputSha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
         "words": 3000,
-        "reportId": "b561a5fe-bb5b-4a5d-94fa-16b96399e384",
-        "uploadMs": 112.885,
+        "reportId": "538dbf95-5ff4-4156-9acc-0b4dc90a9cf5",
+        "uploadMs": 136.965,
         "persistedEqual": true
       },
-      "ms": 116.134
+      "ms": 139.497
     },
     {
       "name": "Upload and persisted readback: pdf",
@@ -55,11 +67,11 @@
         "format": "pdf",
         "inputSha256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
         "words": 3000,
-        "reportId": "15e57733-9ff3-4752-8405-026213a500b3",
-        "uploadMs": 191.422,
+        "reportId": "10fcf3b3-c7f7-410d-bc01-f5c6de96619d",
+        "uploadMs": 180.406,
         "persistedEqual": true
       },
-      "ms": 193.772
+      "ms": 182.31
     },
     {
       "name": "Upload and persisted readback: png",
@@ -68,11 +80,11 @@
         "format": "png",
         "inputSha256": "e0e1a7502e3325b1776dc61168a36150f3ad22bc41b057002ae021dfc90912c1",
         "words": 0,
-        "reportId": "edc1ea85-1728-40cf-98af-3111c06ff8f4",
-        "uploadMs": 1.43,
+        "reportId": "890a3f04-c6a5-40e8-aff5-d7ca5fa583ad",
+        "uploadMs": 1.52,
         "persistedEqual": true
       },
-      "ms": 2.274
+      "ms": 2.276
     },
     {
       "name": "Upload and persisted readback: jpeg",
@@ -81,11 +93,11 @@
         "format": "jpeg",
         "inputSha256": "cdba474f2f8069b266415466370c9572c588b702e0009d4929f72486cc292ddb",
         "words": 0,
-        "reportId": "a79c982e-6475-48e6-b241-ac7974399d0c",
-        "uploadMs": 1.018,
+        "reportId": "3d3b6826-f088-4843-8d33-bcffc31219ee",
+        "uploadMs": 1.069,
         "persistedEqual": true
       },
-      "ms": 1.804
+      "ms": 1.869
     },
     {
       "name": "Media provenance: embedded C2PA",
@@ -94,9 +106,9 @@
         "inputSha256": "e71bff58fc57640803e6e65f7534e2fb0c2f99018c85276cc14b30f04427cc76",
         "status": "manifest_read",
         "trust": "not_evaluated",
-        "reportId": "0d4ac70b-a332-4265-a54f-05b39086b488"
+        "reportId": "0686e264-595c-4ac1-adf1-3d26cd75b93f"
       },
-      "ms": 6.3
+      "ms": 7.081
     },
     {
       "name": "Arabic DOCX forensics and privacy",
@@ -110,7 +122,7 @@
         "uniqueParagraphIds": 7,
         "maskedInDatabase": true
       },
-      "ms": 9.301
+      "ms": 34.675
     },
     {
       "name": "JSON audit and bilingual downloadable PDF exports",
@@ -120,32 +132,32 @@
         "pdf": [
           {
             "language": "en",
-            "bytes": 71225,
+            "bytes": 71965,
             "pages": 4,
-            "sha256": "4dc7707508bd4d2204eb86e56aabe02b89f578e4276864ed0f8e0ef1e99f2cd0",
+            "sha256": "f52c6327c3f70b95ffe0c04f5a0f19e16d7b1debcb5a6ca4d86b715173ac7978",
             "reportIdFound": true
           },
           {
             "language": "ar",
-            "bytes": 72803,
+            "bytes": 73556,
             "pages": 4,
-            "sha256": "3b1bc8a13ed8557b559ca42814294581477b15f5b6fe14ed854a1b881bb32ca5",
+            "sha256": "5e362f288f9df305c7760d6b4ceae3a9fce13d8afce400a3e8145fd088359385",
             "reportIdFound": true
           }
         ]
       },
-      "ms": 380.392
+      "ms": 353.993
     },
     {
       "name": "TXT indexing and duplicate in same cohort",
       "status": "passed",
       "detail": {
-        "first": "78900184-4e0a-45a3-81fd-cb931347c1aa",
-        "second": "2ff9246e-6880-4467-9ce1-836b3f9535ee",
+        "first": "0e2d0eb4-2116-4265-a3f4-ef605bcc79a8",
+        "second": "365e11d8-0f65-4c34-828d-93a4fb23be24",
         "coverage": 100,
         "method": "verbatim"
       },
-      "ms": 3.928
+      "ms": 5.326
     },
     {
       "name": "Published paper and quote exclusion switch",
@@ -155,7 +167,7 @@
         "excludedWords": 0,
         "includedCoverage": 100
       },
-      "ms": 30.443
+      "ms": 18.647
     },
     {
       "name": "Student, instructor and cross-course isolation",
@@ -167,7 +179,7 @@
         "adminOtherCourse": 404,
         "indexSegregated": true
       },
-      "ms": 5.881
+      "ms": 4.635
     },
     {
       "name": "Membership administration and evidence permissions",
@@ -177,7 +189,7 @@
         "adminCreated": 201,
         "duplicate": 409
       },
-      "ms": 50.644
+      "ms": 46.348
     },
     {
       "name": "Clarity edits, active time, bulk paste, replay and submission",
@@ -188,9 +200,9 @@
         "replayedSnapshots": 2,
         "bulkPastes": 1,
         "staleSave": 409,
-        "reportId": "015a7f22-1935-4dec-b98a-dca599c442d3"
+        "reportId": "61861648-3018-49d9-947a-e387ce5ab624"
       },
-      "ms": 4.136
+      "ms": 3.423
     },
     {
       "name": "Invalid document and missing session",
@@ -200,7 +212,7 @@
         "anonymous": 401,
         "empty": 422
       },
-      "ms": 1.396
+      "ms": 1.092
     },
     {
       "name": "Built Worker local 50-upload and report-readback batch",
@@ -214,13 +226,13 @@
         },
         "accounts": 1,
         "localSingleProcess": true,
-        "wallMs": 1634.83,
-        "p50Ms": 623.178,
-        "p95Ms": 1559.577,
-        "maxMs": 1607.136,
+        "wallMs": 1890.8,
+        "p50Ms": 814.088,
+        "p95Ms": 1826.606,
+        "maxMs": 1867.136,
         "under15s": 50
       },
-      "ms": 1634.952
+      "ms": 1890.905
     },
     {
       "name": "Expired test rows and scheduled handler",
@@ -231,7 +243,7 @@
         "removedDrafts": 1,
         "handler": "manually invoked bundled scheduled hook; production schedule not exercised"
       },
-      "ms": 1.243
+      "ms": 1.317
     },
     {
       "name": "Logout invalidates saved session",
@@ -239,7 +251,7 @@
       "detail": {
         "afterLogout": 401
       },
-      "ms": 0.789
+      "ms": 0.664
     }
   ],
   "raw": [
@@ -248,9 +260,9 @@
       "method": "GET",
       "path": "/api/health",
       "status": 200,
-      "bytes": 101,
-      "ms": 3.294,
-      "bodySha256": "dc52cd98f865ececc9e08fae3c3ee115ca3ac9453a3646f5748e9366f0396cb3"
+      "bytes": 237,
+      "ms": 4.022,
+      "bodySha256": "e04fdb39b1a50fe25a5cfc294fcd693194ac647a64f8e1bf087f06ac775e107b"
     },
     {
       "check": "Health, distinct roles and protected routes",
@@ -258,7 +270,7 @@
       "path": "/api/reports",
       "status": 401,
       "bytes": 26,
-      "ms": 0.645,
+      "ms": 0.609,
       "bodySha256": "6b2f8c11f53e3118c6afc3ee803150d35863a875779c0fcf116381748395f2a1",
       "error": "login_required"
     },
@@ -268,7 +280,7 @@
       "path": "/api/login",
       "status": 200,
       "bytes": 80,
-      "ms": 7.395
+      "ms": 7.952
     },
     {
       "check": "Health, distinct roles and protected routes",
@@ -276,7 +288,7 @@
       "path": "/api/me",
       "status": 200,
       "bytes": 80,
-      "ms": 0.74,
+      "ms": 0.577,
       "bodySha256": "3cc05c59e445e914f24d8c237c41a7a836ce964f4549dc22a76ae7ddb84dd1a7"
     },
     {
@@ -285,7 +297,7 @@
       "path": "/api/login",
       "status": 200,
       "bytes": 75,
-      "ms": 1.008
+      "ms": 0.895
     },
     {
       "check": "Health, distinct roles and protected routes",
@@ -293,7 +305,7 @@
       "path": "/api/me",
       "status": 200,
       "bytes": 75,
-      "ms": 0.406,
+      "ms": 0.41,
       "bodySha256": "2d120b23a6568cef1187c12788de00d0fd8984c31b7c9d75c7face3c051ee426"
     },
     {
@@ -302,7 +314,7 @@
       "path": "/api/login",
       "status": 200,
       "bytes": 77,
-      "ms": 0.843
+      "ms": 0.9
     },
     {
       "check": "Health, distinct roles and protected routes",
@@ -310,7 +322,7 @@
       "path": "/api/me",
       "status": 200,
       "bytes": 77,
-      "ms": 0.403,
+      "ms": 0.946,
       "bodySha256": "7d97aa82e70f68a26ade377e55f70b5353b4661073602110eeb251ce6cce9be1"
     },
     {
@@ -319,7 +331,7 @@
       "path": "/api/login",
       "status": 200,
       "bytes": 83,
-      "ms": 0.91
+      "ms": 1.076
     },
     {
       "check": "Health, distinct roles and protected routes",
@@ -327,7 +339,7 @@
       "path": "/api/me",
       "status": 200,
       "bytes": 83,
-      "ms": 0.368,
+      "ms": 1.053,
       "bodySha256": "06857f1bb7f09510dd3560a5ed97acaba4dcf0e26b2f56add384dc906188b923"
     },
     {
@@ -336,179 +348,189 @@
       "path": "/api/login",
       "status": 401,
       "bytes": 25,
-      "ms": 0.57,
+      "ms": 0.876,
       "error": "invalid_login"
     },
     {
+      "check": "Public bilingual assessment, no private report access",
+      "method": "GET",
+      "path": "/api/health/details",
+      "status": 401,
+      "bytes": 26,
+      "ms": 0.11,
+      "bodySha256": "6b2f8c11f53e3118c6afc3ee803150d35863a875779c0fcf116381748395f2a1",
+      "error": "login_required"
+    },
+    {
       "check": "Upload and persisted readback: docx",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27227,
-      "ms": 112.885,
-      "bodySha256": "61b25e0c424e98c986df33c63f283e3dd04093984d4db95afb47706fe3e3e7a5"
+      "bytes": 27246,
+      "ms": 136.965,
+      "bodySha256": "14b97f39f2bddf8dc8af8f272a154060e9cc834cf3b06cb86e27a0be63ee92d5"
     },
     {
       "check": "Upload and persisted readback: docx",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27227,
-      "ms": 1.213,
-      "bodySha256": "61b25e0c424e98c986df33c63f283e3dd04093984d4db95afb47706fe3e3e7a5"
+      "bytes": 27246,
+      "ms": 0.817,
+      "bodySha256": "14b97f39f2bddf8dc8af8f272a154060e9cc834cf3b06cb86e27a0be63ee92d5"
     },
     {
       "check": "Upload and persisted readback: pdf",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34288,
-      "ms": 191.422,
-      "bodySha256": "deb896a1d39778fb37398cede3b6287cda8207a544b5dc7d114f7b54f4de9743"
+      "bytes": 34307,
+      "ms": 180.406,
+      "bodySha256": "aab4e94a60cf298669a9625f9b44b58b1a633a0013a8cd8533b9e29df9cce294"
     },
     {
       "check": "Upload and persisted readback: pdf",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34288,
-      "ms": 1.226,
-      "bodySha256": "deb896a1d39778fb37398cede3b6287cda8207a544b5dc7d114f7b54f4de9743"
+      "bytes": 34307,
+      "ms": 0.871,
+      "bodySha256": "aab4e94a60cf298669a9625f9b44b58b1a633a0013a8cd8533b9e29df9cce294"
     },
     {
       "check": "Upload and persisted readback: png",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 2574,
-      "ms": 1.43,
-      "bodySha256": "a6c85fb357258596c1824c596fef0aa46a67dce57ff723b3eb2ed8ceb40c7c67"
+      "bytes": 2593,
+      "ms": 1.52,
+      "bodySha256": "93bbd473e3623caa214a8d282db80afa3e36c335d569d68c3f3b781818d0a535"
     },
     {
       "check": "Upload and persisted readback: png",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 2574,
-      "ms": 0.501,
-      "bodySha256": "a6c85fb357258596c1824c596fef0aa46a67dce57ff723b3eb2ed8ceb40c7c67"
+      "bytes": 2593,
+      "ms": 0.497,
+      "bodySha256": "93bbd473e3623caa214a8d282db80afa3e36c335d569d68c3f3b781818d0a535"
     },
     {
       "check": "Upload and persisted readback: jpeg",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 2621,
-      "ms": 1.018,
-      "bodySha256": "f4e3b8e70bedba1b7ebdb98529cb3649a53ad6c07d944c4940207698a35326aa"
+      "bytes": 2640,
+      "ms": 1.069,
+      "bodySha256": "f38adcc75422e9b8e1835fb0a7fe5b2edb881ccd8ad1974579bc55bc2be5a70f"
     },
     {
       "check": "Upload and persisted readback: jpeg",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 2621,
-      "ms": 0.3,
-      "bodySha256": "f4e3b8e70bedba1b7ebdb98529cb3649a53ad6c07d944c4940207698a35326aa"
+      "bytes": 2640,
+      "ms": 0.452,
+      "bodySha256": "f38adcc75422e9b8e1835fb0a7fe5b2edb881ccd8ad1974579bc55bc2be5a70f"
     },
     {
       "check": "Media provenance: embedded C2PA",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 2833,
-      "ms": 5.929,
-      "bodySha256": "aa77d1eb68a5b8c5e8cc96eaf75b2afde14af2593bbf3694e2cc54ce41adbdfd"
+      "bytes": 2852,
+      "ms": 6.638,
+      "bodySha256": "808c1c35b7e049cd3fbed8f2c52540960b470a6f7113db8f20edee750b312cb0"
     },
     {
       "check": "Arabic DOCX forensics and privacy",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 4446,
-      "ms": 8.854,
-      "bodySha256": "6ac508f335be3e05968ec66289b860339df3b3748adfbdcb8ddb3757ec36ded3"
+      "bytes": 4466,
+      "ms": 34.216,
+      "bodySha256": "ac73d615fdb873f0e312b210bcf189f019fb065b239ec1888c1ac9fd0384e2d9"
     },
     {
       "check": "JSON audit and bilingual downloadable PDF exports",
       "method": "GET",
       "path": "/api/reports/{report_id}/json",
       "status": 200,
-      "bytes": 4446,
-      "ms": 0.455,
-      "bodySha256": "6ac508f335be3e05968ec66289b860339df3b3748adfbdcb8ddb3757ec36ded3"
+      "bytes": 4466,
+      "ms": 0.392,
+      "bodySha256": "ac73d615fdb873f0e312b210bcf189f019fb065b239ec1888c1ac9fd0384e2d9"
     },
     {
       "check": "JSON audit and bilingual downloadable PDF exports",
       "method": "GET",
       "path": "/api/reports/{report_id}/pdf?lang=en",
       "status": 200,
-      "bytes": 71225,
-      "ms": 24.5,
-      "bodySha256": "4dc7707508bd4d2204eb86e56aabe02b89f578e4276864ed0f8e0ef1e99f2cd0"
+      "bytes": 71965,
+      "ms": 27.294,
+      "bodySha256": "f52c6327c3f70b95ffe0c04f5a0f19e16d7b1debcb5a6ca4d86b715173ac7978"
     },
     {
       "check": "JSON audit and bilingual downloadable PDF exports",
       "method": "GET",
       "path": "/api/reports/{report_id}/pdf?lang=ar",
       "status": 200,
-      "bytes": 72803,
-      "ms": 15.493,
-      "bodySha256": "3b1bc8a13ed8557b559ca42814294581477b15f5b6fe14ed854a1b881bb32ca5"
+      "bytes": 73556,
+      "ms": 15.139,
+      "bodySha256": "5e362f288f9df305c7760d6b4ceae3a9fce13d8afce400a3e8145fd088359385"
     },
     {
       "check": "TXT indexing and duplicate in same cohort",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 2410,
-      "ms": 2.043,
-      "bodySha256": "53a14dac8461f0f985fc9722b42b641edb138e04372c3ec2ee1e2c612d27d5f0"
+      "bytes": 2429,
+      "ms": 3.393,
+      "bodySha256": "73cd807f914d6233c782dd55edb36e2c4f64b8be5dbb91e11106e6bdbf1c29a2"
     },
     {
       "check": "TXT indexing and duplicate in same cohort",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 2830,
-      "ms": 1.356,
-      "bodySha256": "836e6926002ab4cbbb8088ed78b0d2a7ee97c76cf77f0f7f6a75ab1b911c28bd"
+      "bytes": 2849,
+      "ms": 1.284,
+      "bodySha256": "5e6573c67f5c2c09f20ca1f2ddeab653887cb136225c64761352a4139d31acd2"
     },
     {
       "check": "Published paper and quote exclusion switch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 2794,
-      "ms": 2.558,
-      "bodySha256": "670323463e7988b9dfe8eed14dc49637b337b034f6aecfba508afe74dca8b18a"
+      "bytes": 2973,
+      "ms": 0.868,
+      "bodySha256": "fe8621a38e507699b680801c04ff8ce53dff551dee147339912eedc91f4e40e7"
     },
     {
       "check": "Published paper and quote exclusion switch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 2605,
-      "ms": 1.318,
-      "bodySha256": "7e51e48539e0983fae5b46fc83ada9fbc68b7af773153f1b7f9026464010984a"
+      "bytes": 2624,
+      "ms": 0.92,
+      "bodySha256": "e193e101fa570ecd535c13639c3487b7bb4e605cc53caf70f697436198304a43"
     },
     {
       "check": "Published paper and quote exclusion switch",
       "method": "GET",
       "path": "/api/reports/{report_id}/similarity?quotes=include",
       "status": 200,
-      "bytes": 2186,
-      "ms": 26.144,
-      "bodySha256": "1b597105d8e10ea2422306b1338af85fbe41bdd0d7fa587111587c409dccbc01"
+      "bytes": 2346,
+      "ms": 16.419,
+      "bodySha256": "9d50035d8a5edd85072817b5cfa40872a50a59aed8115204bed94685c368ab92"
     },
     {
       "check": "Student, instructor and cross-course isolation",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 2410,
-      "ms": 2.247,
-      "bodySha256": "53a14dac8461f0f985fc9722b42b641edb138e04372c3ec2ee1e2c612d27d5f0"
+      "bytes": 2429,
+      "ms": 0.556,
+      "bodySha256": "73cd807f914d6233c782dd55edb36e2c4f64b8be5dbb91e11106e6bdbf1c29a2"
     },
     {
       "check": "Student, instructor and cross-course isolation",
@@ -516,7 +538,7 @@
       "path": "/api/reports/{report_id}",
       "status": 404,
       "bytes": 21,
-      "ms": 0.369,
+      "ms": 0.294,
       "bodySha256": "d2dfdc9511fbeaa0701d1f8730f4989313b062ca1b61a2bd8bed8f4f5d654b5d",
       "error": "not_found"
     },
@@ -526,7 +548,7 @@
       "path": "/api/reports/{report_id}",
       "status": 404,
       "bytes": 21,
-      "ms": 0.26,
+      "ms": 0.245,
       "bodySha256": "d2dfdc9511fbeaa0701d1f8730f4989313b062ca1b61a2bd8bed8f4f5d654b5d",
       "error": "not_found"
     },
@@ -536,7 +558,7 @@
       "path": "/api/reports",
       "status": 200,
       "bytes": 27,
-      "ms": 0.428,
+      "ms": 0.315,
       "bodySha256": "0d543f924379f2dc8589e924c7b3a20afb4b199518b8e8b539a3c45805704337"
     },
     {
@@ -544,9 +566,9 @@
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 2411,
-      "ms": 1.62,
-      "bodySha256": "48996aac62e618b01c37dd2b1bfdf22a5b5355a6f046195538eb9ef580dd8ab5"
+      "bytes": 2430,
+      "ms": 2.353,
+      "bodySha256": "321cdb0f9bf69462a7806ff6721d59b7de913315b84c3c23fe163482993f8700"
     },
     {
       "check": "Student, instructor and cross-course isolation",
@@ -554,7 +576,7 @@
       "path": "/api/reports/{report_id}",
       "status": 404,
       "bytes": 21,
-      "ms": 0.369,
+      "ms": 0.389,
       "bodySha256": "d2dfdc9511fbeaa0701d1f8730f4989313b062ca1b61a2bd8bed8f4f5d654b5d",
       "error": "not_found"
     },
@@ -564,7 +586,7 @@
       "path": "/api/members",
       "status": 403,
       "bytes": 21,
-      "ms": 0.418,
+      "ms": 0.498,
       "bodySha256": "2815fee6edc3716bd6c85027399f06e03168706e7fcac786ecf0c66e6190843f",
       "error": "forbidden"
     },
@@ -574,7 +596,7 @@
       "path": "/api/evidence",
       "status": 403,
       "bytes": 21,
-      "ms": 0.252,
+      "ms": 0.24,
       "bodySha256": "2815fee6edc3716bd6c85027399f06e03168706e7fcac786ecf0c66e6190843f",
       "error": "forbidden"
     },
@@ -584,7 +606,7 @@
       "path": "/api/members",
       "status": 403,
       "bytes": 21,
-      "ms": 0.253,
+      "ms": 0.257,
       "bodySha256": "2815fee6edc3716bd6c85027399f06e03168706e7fcac786ecf0c66e6190843f",
       "error": "forbidden"
     },
@@ -594,7 +616,7 @@
       "path": "/api/evidence",
       "status": 403,
       "bytes": 21,
-      "ms": 0.359,
+      "ms": 0.231,
       "bodySha256": "2815fee6edc3716bd6c85027399f06e03168706e7fcac786ecf0c66e6190843f",
       "error": "forbidden"
     },
@@ -604,7 +626,7 @@
       "path": "/api/members",
       "status": 201,
       "bytes": 91,
-      "ms": 16.354
+      "ms": 15.317
     },
     {
       "check": "Membership administration and evidence permissions",
@@ -612,7 +634,7 @@
       "path": "/api/login",
       "status": 200,
       "bytes": 104,
-      "ms": 14.818
+      "ms": 14.669
     },
     {
       "check": "Membership administration and evidence permissions",
@@ -620,7 +642,7 @@
       "path": "/api/members",
       "status": 409,
       "bytes": 26,
-      "ms": 17.542,
+      "ms": 14.539,
       "bodySha256": "fa8914b9d0539f7dbf85ffa59ceef7821e0d37986239dfd1a293c56a3a34c737",
       "error": "username_taken"
     },
@@ -630,8 +652,8 @@
       "path": "/api/draft",
       "status": 200,
       "bytes": 68,
-      "ms": 0.503,
-      "bodySha256": "b3652416437194d2cf9f2632e016f77470ce19e1a8aa1ab3e997443e4205f3b3"
+      "ms": 0.371,
+      "bodySha256": "589abd221430321fc97ce196b92f2f2b342b5d9dd26bb7073783ea68dc4eccea"
     },
     {
       "check": "Clarity edits, active time, bulk paste, replay and submission",
@@ -639,7 +661,7 @@
       "path": "/api/draft",
       "status": 200,
       "bytes": 66,
-      "ms": 1.146,
+      "ms": 0.855,
       "bodySha256": "0d21f4cafe2f1607fdcb33ef8161f05c81b8a1114498f007e055a27068dc3a3c"
     },
     {
@@ -648,7 +670,7 @@
       "path": "/api/draft",
       "status": 409,
       "bytes": 26,
-      "ms": 0.565,
+      "ms": 0.488,
       "bodySha256": "c15804c24ce8c73d21c54a7913fa9fd92201461796476968d3e3c82266d50c6e",
       "error": "draft_conflict"
     },
@@ -658,17 +680,17 @@
       "path": "/api/draft",
       "status": 200,
       "bytes": 486,
-      "ms": 0.264,
-      "bodySha256": "e06755ac5c548f57f3ddaac665cf23c9a3030df680521ad2e74e37aaad4a3b0a"
+      "ms": 0.254,
+      "bodySha256": "dd67c2ec57cf5839a75a813734b17e94fafa60a36624d26281d3421894ba60fe"
     },
     {
       "check": "Clarity edits, active time, bulk paste, replay and submission",
       "method": "POST",
       "path": "/api/draft/submit",
       "status": 201,
-      "bytes": 2869,
-      "ms": 1.02,
-      "bodySha256": "c4d14f4541f0dce8bfa2223558f5f1b2470ddefec89544ade2c10e873a2a6070"
+      "bytes": 2888,
+      "ms": 0.939,
+      "bodySha256": "7f400d5b702ed52c07505f326e0f7750348d4d72ffd5815a8d5301e0aef2c008"
     },
     {
       "check": "Invalid document and missing session",
@@ -676,7 +698,7 @@
       "path": "/api/analyze",
       "status": 422,
       "bytes": 32,
-      "ms": 0.626,
+      "ms": 0.538,
       "bodySha256": "f5075e3251dacff7c6e9ea71cdd50aabf45eb8ce150332d9fbabb38136183cbd",
       "error": "unsupported_document"
     },
@@ -686,7 +708,7 @@
       "path": "/api/analyze",
       "status": 401,
       "bytes": 26,
-      "ms": 0.153,
+      "ms": 0.101,
       "bodySha256": "6b2f8c11f53e3118c6afc3ee803150d35863a875779c0fcf116381748395f2a1",
       "error": "login_required"
     },
@@ -696,7 +718,7 @@
       "path": "/api/analyze",
       "status": 422,
       "bytes": 26,
-      "ms": 0.255,
+      "ms": 0.209,
       "bodySha256": "2627be43d54fc5dc340f7767b7f64990652f238a65d426147b2c217d6d9e14e1",
       "error": "empty_document"
     },
@@ -705,900 +727,900 @@
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 42.066,
-      "bodySha256": "e9d91b77d3613418c1c555863270e4818b18b218c3749d605aefa7e9a6bff597"
+      "bytes": 27349,
+      "ms": 212.269,
+      "bodySha256": "ea926798ddf487fe4cc2cafa21ca387b6d2cd5c6fef6b16d9e9a6c310cddda65"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 70.079,
-      "bodySha256": "27599c8b978d17a3424311018be5580d350310d5fb3478467381addfe6e638b0"
+      "bytes": 27349,
+      "ms": 238.829,
+      "bodySha256": "fe97d2d84c761f264bddc1952113971d1ca184382031a6089327ac5435160256"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 93.478,
-      "bodySha256": "f924aea038a30f4e599979c262c389538437c6509239e1833fba66f4809860cf"
+      "bytes": 27349,
+      "ms": 260.903,
+      "bodySha256": "8a41660efb28319fdae004057ec4014a54614d0267b81a0e9a13ca8a074e7aaa"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 116.613,
-      "bodySha256": "11f3d3fc5827baf2d7bd01f7f9c189d618a16efde212ca86e6633058f16ef604"
+      "bytes": 27349,
+      "ms": 285,
+      "bodySha256": "644deb29bec8e008f87c4e9284251be75c5e825a306ec9c2eb0c72892b42cb8f"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 140.24,
-      "bodySha256": "5238a4cbac8c4cc13a99699f172637d1f4d64535398055b100795a83990aa2d7"
+      "bytes": 27349,
+      "ms": 305.269,
+      "bodySha256": "3e6806a7a7880c3ba9c01ec505e2d981d5e56156c31aa9349882c1f385d58e14"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 162.549,
-      "bodySha256": "8446ef0815b1fc0b466a27f0ea1653b19a31103f554d92946efe6c85d44ddecf"
+      "bytes": 27349,
+      "ms": 326.67,
+      "bodySha256": "2b6f0828426ef4abb25ab1256d390c1492407e5e0e8fe694ee9af0e638d1b841"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 183.736,
-      "bodySha256": "ccc3d941fd23bfa46522b6f18c55d36349270633d16e5dbab4bb0455405adbc2"
+      "bytes": 27349,
+      "ms": 352.813,
+      "bodySha256": "fb3afd195a465018ca1aff386384552f3a4c2022ce0eb11192bae7b9972bfc54"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 204.818,
-      "bodySha256": "aa771e7d3683164316e350ae7f815d6d433736e7103896623a2134c15b6fd18e"
+      "bytes": 27349,
+      "ms": 418.523,
+      "bodySha256": "2305117400fafab408c0b2ffd99f1130cbf055d9a17fde6a409fddd374bbfdc8"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 231.59,
-      "bodySha256": "282185605bd9742cb92058a259cd4061670e1b142c4b5fdff2902fb9d9a00b08"
+      "bytes": 27349,
+      "ms": 476.164,
+      "bodySha256": "e84fee5c1c6dbd430f331759782f6d412b6862a5a63dfa8154188592d8c107ef"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 259.521,
-      "bodySha256": "b68638bac3329945410ab4d95576374624ee92e185b521437a5c03a2ccfa8dc2"
+      "bytes": 27349,
+      "ms": 502.582,
+      "bodySha256": "4ea2ff3edfb978fb98c32b94e7c7aa5b675f6ccb74aaef7864416040a41fc1b0"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 279.031,
-      "bodySha256": "d75b22d3303a889a8ddd7798ff01109b18d23debf6e8dc62ad2d1a6c89ddce0f"
+      "bytes": 27349,
+      "ms": 522.85,
+      "bodySha256": "c6efe8362e253bf377531228316e7b7c2ee772cdcd9a9248ee83d0aa2d03c3d7"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 298.308,
-      "bodySha256": "e51da834bc04a74641e9e306edb61a0fe06a96faac19e29b187a70d72203468c"
+      "bytes": 27349,
+      "ms": 543.439,
+      "bodySha256": "0e13ae6a009f437cb424a32e97dbca334fdda639dcc6ce4cc01282f5920297e0"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 319.651,
-      "bodySha256": "1a2d093c57631dd451f61e1ee436f6ea23304b82289c1c012711288bf4a28195"
+      "bytes": 27349,
+      "ms": 563.229,
+      "bodySha256": "87ebeda5825cf191f8d242891b62c9bf97435eb30826aaecf07434261ec7df4e"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 348.202,
-      "bodySha256": "bdcc79267c2e44f83e26dd08cae113330bdee42de34d9261fb1572564d98369c"
+      "bytes": 27349,
+      "ms": 582.54,
+      "bodySha256": "801b3d3a569428a2a1ee5df16b04e43ff67b56fc545ba039c2bf7c3a20967b88"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 376.226,
-      "bodySha256": "66ee0654a15ebb3327403bee4cd531c7df31e5b22b63eb1c34053715b07353f5"
+      "bytes": 27349,
+      "ms": 603.063,
+      "bodySha256": "8f9bd48427ea9d27f7aa89c7daf16c924f27da437fb0992550fe42b37f04c608"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 401.072,
-      "bodySha256": "4a2029f8550164906afbf5c192b22c1de7ad8f0a4409559696bc43562649c4e9"
+      "bytes": 27349,
+      "ms": 623.238,
+      "bodySha256": "59448ef571cab504bce8aaced7ea9766edf486b4c00371c623ac9bf6ee5c53b1"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 421.221,
-      "bodySha256": "c2b557fa4188f8a190b685286fa4ad74de0b8fec36ee8dfdacf9e05a17f8a4af"
+      "bytes": 27349,
+      "ms": 642.671,
+      "bodySha256": "1b3b699a8c75f7d24de239abb6777f04ee1a8e3da9a24baa287540e0879ae1de"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 439.094,
-      "bodySha256": "6d1038c48004450e57d19e4055976f23afcb461ffc76c2a5a49a031107e7d82c"
+      "bytes": 27349,
+      "ms": 662.46,
+      "bodySha256": "568a13f64b380c161516084685b59787d84143908229faa45614619c6039c3c7"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 461.767,
-      "bodySha256": "2a6bfd19bc6d8b3805a9e5e547091cdc08b096d51593b1518e56739cfbca3eaa"
+      "bytes": 27349,
+      "ms": 681.482,
+      "bodySha256": "35bae23853d2bc4967574a291ad6f1758a8f39a6eaaee2e4c4506c640d92efc2"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 485.66,
-      "bodySha256": "39f8f456279dd0fff981fc0bcc32363918c11e712bdd55cae31e1373a851b26a"
+      "bytes": 27349,
+      "ms": 701.534,
+      "bodySha256": "078af9d4fba4f69251b8146e530fb201742bc7d00626a60c6891166134e6da1e"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 511.472,
-      "bodySha256": "f624cc09a6a900a3dbe39a0e471799e72496e8dd8d9a860427a236df5f9c38fd"
+      "bytes": 27349,
+      "ms": 725.379,
+      "bodySha256": "986956a8a55cabc032e8540002188f72475fbc366886be587a448b20d2870239"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 540.449,
-      "bodySha256": "3636d86608abbdd331b992f66c013dc2bb6089334c7ac8ac6dda53c6e0d280fe"
+      "bytes": 27349,
+      "ms": 746.551,
+      "bodySha256": "188bad27b5adb2cb7a76a5e676ed77d4efce8ad6bf12adf1e44a86d990f879ba"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 568.935,
-      "bodySha256": "ca7437d86e110f7b29ce153712932853d0ffb021b325b52cad739e83b6eb3b2a"
+      "bytes": 27349,
+      "ms": 766.81,
+      "bodySha256": "6a07664bac76671093669cb0f2fc4fdec55e8d7b9882db3aeb03cea85bec1a42"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 597.833,
-      "bodySha256": "da9b68cf1adbf60c9785a9d4d269aae1b217a0a8ea3cf3814f07ef6fb8749aa3"
+      "bytes": 27349,
+      "ms": 786.603,
+      "bodySha256": "edb9fbec7681c198d778c545702daa86b7e891508a94633fadd6f583f719b14e"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 27329,
-      "ms": 623.178,
-      "bodySha256": "2d500d3e5c340323660f0fe4ed0fecc67708c9eb6a62c2ec0f1c638a729579e8"
+      "bytes": 27349,
+      "ms": 814.088,
+      "bodySha256": "06efdb653abd0e48d318c4b4ce00f4102568db2e7e78ef2d7f52096ca8d9054d"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 584.985,
-      "bodySha256": "e9d91b77d3613418c1c555863270e4818b18b218c3749d605aefa7e9a6bff597"
+      "bytes": 27349,
+      "ms": 606.006,
+      "bodySha256": "ea926798ddf487fe4cc2cafa21ca387b6d2cd5c6fef6b16d9e9a6c310cddda65"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 559.386,
-      "bodySha256": "27599c8b978d17a3424311018be5580d350310d5fb3478467381addfe6e638b0"
+      "bytes": 27349,
+      "ms": 589.183,
+      "bodySha256": "fe97d2d84c761f264bddc1952113971d1ca184382031a6089327ac5435160256"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 536.843,
-      "bodySha256": "f924aea038a30f4e599979c262c389538437c6509239e1833fba66f4809860cf"
+      "bytes": 27349,
+      "ms": 574.659,
+      "bodySha256": "8a41660efb28319fdae004057ec4014a54614d0267b81a0e9a13ca8a074e7aaa"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 514.589,
-      "bodySha256": "11f3d3fc5827baf2d7bd01f7f9c189d618a16efde212ca86e6633058f16ef604"
+      "bytes": 27349,
+      "ms": 559.013,
+      "bodySha256": "644deb29bec8e008f87c4e9284251be75c5e825a306ec9c2eb0c72892b42cb8f"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 491.863,
-      "bodySha256": "5238a4cbac8c4cc13a99699f172637d1f4d64535398055b100795a83990aa2d7"
+      "bytes": 27349,
+      "ms": 544.178,
+      "bodySha256": "3e6806a7a7880c3ba9c01ec505e2d981d5e56156c31aa9349882c1f385d58e14"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 470.362,
-      "bodySha256": "8446ef0815b1fc0b466a27f0ea1653b19a31103f554d92946efe6c85d44ddecf"
+      "bytes": 27349,
+      "ms": 527.606,
+      "bodySha256": "2b6f0828426ef4abb25ab1256d390c1492407e5e0e8fe694ee9af0e638d1b841"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 450.054,
-      "bodySha256": "ccc3d941fd23bfa46522b6f18c55d36349270633d16e5dbab4bb0455405adbc2"
+      "bytes": 27349,
+      "ms": 506.676,
+      "bodySha256": "fb3afd195a465018ca1aff386384552f3a4c2022ce0eb11192bae7b9972bfc54"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 432.728,
-      "bodySha256": "aa771e7d3683164316e350ae7f815d6d433736e7103896623a2134c15b6fd18e"
+      "bytes": 27349,
+      "ms": 445.92,
+      "bodySha256": "2305117400fafab408c0b2ffd99f1130cbf055d9a17fde6a409fddd374bbfdc8"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 406.846,
-      "bodySha256": "282185605bd9742cb92058a259cd4061670e1b142c4b5fdff2902fb9d9a00b08"
+      "bytes": 27349,
+      "ms": 393.06,
+      "bodySha256": "e84fee5c1c6dbd430f331759782f6d412b6862a5a63dfa8154188592d8c107ef"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 379.491,
-      "bodySha256": "b68638bac3329945410ab4d95576374624ee92e185b521437a5c03a2ccfa8dc2"
+      "bytes": 27349,
+      "ms": 371.912,
+      "bodySha256": "4ea2ff3edfb978fb98c32b94e7c7aa5b675f6ccb74aaef7864416040a41fc1b0"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 360.447,
-      "bodySha256": "d75b22d3303a889a8ddd7798ff01109b18d23debf6e8dc62ad2d1a6c89ddce0f"
+      "bytes": 27349,
+      "ms": 357.332,
+      "bodySha256": "c6efe8362e253bf377531228316e7b7c2ee772cdcd9a9248ee83d0aa2d03c3d7"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 341.448,
-      "bodySha256": "e51da834bc04a74641e9e306edb61a0fe06a96faac19e29b187a70d72203468c"
+      "bytes": 27349,
+      "ms": 340.77,
+      "bodySha256": "0e13ae6a009f437cb424a32e97dbca334fdda639dcc6ce4cc01282f5920297e0"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 320.519,
-      "bodySha256": "1a2d093c57631dd451f61e1ee436f6ea23304b82289c1c012711288bf4a28195"
+      "bytes": 27349,
+      "ms": 325.14,
+      "bodySha256": "87ebeda5825cf191f8d242891b62c9bf97435eb30826aaecf07434261ec7df4e"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 292.844,
-      "bodySha256": "bdcc79267c2e44f83e26dd08cae113330bdee42de34d9261fb1572564d98369c"
+      "bytes": 27349,
+      "ms": 310.469,
+      "bodySha256": "801b3d3a569428a2a1ee5df16b04e43ff67b56fc545ba039c2bf7c3a20967b88"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 265.28,
-      "bodySha256": "66ee0654a15ebb3327403bee4cd531c7df31e5b22b63eb1c34053715b07353f5"
+      "bytes": 27349,
+      "ms": 296.309,
+      "bodySha256": "8f9bd48427ea9d27f7aa89c7daf16c924f27da437fb0992550fe42b37f04c608"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 241.046,
-      "bodySha256": "4a2029f8550164906afbf5c192b22c1de7ad8f0a4409559696bc43562649c4e9"
+      "bytes": 27349,
+      "ms": 283.46,
+      "bodySha256": "59448ef571cab504bce8aaced7ea9766edf486b4c00371c623ac9bf6ee5c53b1"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 221.498,
-      "bodySha256": "c2b557fa4188f8a190b685286fa4ad74de0b8fec36ee8dfdacf9e05a17f8a4af"
+      "bytes": 27349,
+      "ms": 268.482,
+      "bodySha256": "1b3b699a8c75f7d24de239abb6777f04ee1a8e3da9a24baa287540e0879ae1de"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 204.149,
-      "bodySha256": "6d1038c48004450e57d19e4055976f23afcb461ffc76c2a5a49a031107e7d82c"
+      "bytes": 27349,
+      "ms": 253.091,
+      "bodySha256": "568a13f64b380c161516084685b59787d84143908229faa45614619c6039c3c7"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 181.836,
-      "bodySha256": "2a6bfd19bc6d8b3805a9e5e547091cdc08b096d51593b1518e56739cfbca3eaa"
+      "bytes": 27349,
+      "ms": 239.325,
+      "bodySha256": "35bae23853d2bc4967574a291ad6f1758a8f39a6eaaee2e4c4506c640d92efc2"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 158.337,
-      "bodySha256": "39f8f456279dd0fff981fc0bcc32363918c11e712bdd55cae31e1373a851b26a"
+      "bytes": 27349,
+      "ms": 223.051,
+      "bodySha256": "078af9d4fba4f69251b8146e530fb201742bc7d00626a60c6891166134e6da1e"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 132.771,
-      "bodySha256": "f624cc09a6a900a3dbe39a0e471799e72496e8dd8d9a860427a236df5f9c38fd"
+      "bytes": 27349,
+      "ms": 203.278,
+      "bodySha256": "986956a8a55cabc032e8540002188f72475fbc366886be587a448b20d2870239"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 104.369,
-      "bodySha256": "3636d86608abbdd331b992f66c013dc2bb6089334c7ac8ac6dda53c6e0d280fe"
+      "bytes": 27349,
+      "ms": 185.988,
+      "bodySha256": "188bad27b5adb2cb7a76a5e676ed77d4efce8ad6bf12adf1e44a86d990f879ba"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 76.326,
-      "bodySha256": "ca7437d86e110f7b29ce153712932853d0ffb021b325b52cad739e83b6eb3b2a"
+      "bytes": 27349,
+      "ms": 169.647,
+      "bodySha256": "6a07664bac76671093669cb0f2fc4fdec55e8d7b9882db3aeb03cea85bec1a42"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 48.096,
-      "bodySha256": "da9b68cf1adbf60c9785a9d4d269aae1b217a0a8ea3cf3814f07ef6fb8749aa3"
+      "bytes": 27349,
+      "ms": 155.244,
+      "bodySha256": "edb9fbec7681c198d778c545702daa86b7e891508a94633fadd6f583f719b14e"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 27329,
-      "ms": 23.35,
-      "bodySha256": "2d500d3e5c340323660f0fe4ed0fecc67708c9eb6a62c2ec0f1c638a729579e8"
+      "bytes": 27349,
+      "ms": 131.479,
+      "bodySha256": "06efdb653abd0e48d318c4b4ce00f4102568db2e7e78ef2d7f52096ca8d9054d"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34391,
-      "ms": 951.676,
-      "bodySha256": "ce38e0eb632420c9302fbdeff7000bbb49fa249f8d193f08d9b2519740daf704"
+      "bytes": 34411,
+      "ms": 1219.559,
+      "bodySha256": "15a627195ce92b02bb60190af8dfdcb4f8078cf00713fe6feb5ce952b6d5d2f0"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34391,
-      "ms": 970.57,
-      "bodySha256": "a5a4e72c40ec87428459c90539eacb622b6720cdb188b830447b0230358362c4"
+      "bytes": 34411,
+      "ms": 1299.501,
+      "bodySha256": "d49a32e48e6467bdc324f763e99ec4b64ade6f8661e8f295858883f3dfb5c068"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34391,
-      "ms": 989.509,
-      "bodySha256": "3ed2fc5eef17b502c66555bc1cd35aeda1450b7119a59684565992324c24f342"
+      "bytes": 34411,
+      "ms": 1367.707,
+      "bodySha256": "b264033321720f00644c5da00b8a66ed8b2a0975937d2f6137e318ebc236d545"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34391,
-      "ms": 1008.217,
-      "bodySha256": "344603eae7c39a05bd88d031e093bd87210abfb299bf630bbc4508805848eb94"
+      "bytes": 34411,
+      "ms": 1390.887,
+      "bodySha256": "ea53584eb4df8912510dccbcc82841620d61e18ebf461bc8ad3ca7cda5fbd455"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34391,
-      "ms": 1027.062,
-      "bodySha256": "96afbbaef6f9ac1f7d8ad2bce41028305edef68f344c43477ff5c68b52df9100"
+      "bytes": 34411,
+      "ms": 1443.794,
+      "bodySha256": "c1962493102754d5561967c18b3647b4694a1ff30150032793e3c288896560d9"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34391,
-      "ms": 1046.617,
-      "bodySha256": "37301f3d71e6e9820dfb605381e9dd40518c8b22a4b78007771e873298c782be"
+      "bytes": 34411,
+      "ms": 1467.768,
+      "bodySha256": "fdbd989dd34988fc2d6c7766f478511c6a755d637860c7d64ea9a9da01f6bfa1"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34391,
-      "ms": 1066.633,
-      "bodySha256": "833279c61162ae92e81b43e9ce2596b00a78174e2498deb6da24acaf0457c5bb"
+      "bytes": 34411,
+      "ms": 1488.758,
+      "bodySha256": "4dab37b62eff8a217a5a4b5ffd4a5e472ac25acd1086e5a34a992303eef339c6"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34391,
-      "ms": 1085.091,
-      "bodySha256": "e53ef66e30217d58bb281279d1ebed9aca213da2939af8e9040648493e58013f"
+      "bytes": 34411,
+      "ms": 1511.773,
+      "bodySha256": "0cdb6d323c45e83f6d86129f374694a8d909a10beb390689cc19214995ec562f"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34391,
-      "ms": 1104.564,
-      "bodySha256": "0a093b78b0ac3244894ec7f165c2acfeaf5969ed0600ef52cb206fe810d78770"
+      "bytes": 34411,
+      "ms": 1532.112,
+      "bodySha256": "39e0a3539407887ad1cb03dbc1b09261acf14537b04e6e770c666015473deb3a"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34391,
-      "ms": 1122.753,
-      "bodySha256": "5797cae486b8bfae73daebb7652caa668ea410031345396a137de9f9a5d0e74b"
+      "bytes": 34411,
+      "ms": 1554.269,
+      "bodySha256": "c7170d069311aa316fac167a65cfa56b6906645f2e9437206c7ea4ab8b9097b3"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34391,
-      "ms": 1140.022,
-      "bodySha256": "391b527dd112784304f3f779d9f8a626ec65dc420a75c7993237d4f305756d47"
+      "bytes": 34411,
+      "ms": 1575.456,
+      "bodySha256": "8c3115203c05b14a902c45126bd3d2eca5b9481e7a344b1d2ac58f51df7b4036"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34391,
-      "ms": 1158.113,
-      "bodySha256": "156ae81af3c41a3e8482b4df3f7524361e7cf3f55d49118163167f78d744a5b7"
+      "bytes": 34411,
+      "ms": 1596.749,
+      "bodySha256": "8e40908c7f1648f3ef624c11acc19390ead97dd879dec80b6f6e0b679c37e66f"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34391,
-      "ms": 1176.927,
-      "bodySha256": "9bc25466b526773a6e7a77694e0c5c3d1992295b1bb687ef5f49e8ba87861353"
+      "bytes": 34411,
+      "ms": 1619.144,
+      "bodySha256": "ff5469eed30e58bea35156294202030862915464254547145a01add7c41ede74"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34391,
-      "ms": 1202.898,
-      "bodySha256": "667c6991b7f8d96a3851a80a2723101d7ec56007dd20a9310498b40646ed2505"
+      "bytes": 34411,
+      "ms": 1639.912,
+      "bodySha256": "311b2e535302d97bea3d8f25464c42f5c467e41bf50cb144d1c4cce6741fa3cb"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34391,
-      "ms": 1227.005,
-      "bodySha256": "a1e5ddfa19c8aa0560bb42ffdccee29ba0264887f36dcee4e6c7c468566cb93d"
+      "bytes": 34411,
+      "ms": 1660.868,
+      "bodySha256": "3dd09cda0da48c76fd7af8d54573ea7393337597840857e4831dfc09fe32e675"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34391,
-      "ms": 1250.417,
-      "bodySha256": "f54c3ab4d732a42ee761b7f3ad8099571f686edb82348256763cc6c99c27ffbf"
+      "bytes": 34411,
+      "ms": 1681.901,
+      "bodySha256": "9823b4facc61258880a54c964048b9885c41f225226231ab6f18e85dbb409ba9"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34391,
-      "ms": 1274.213,
-      "bodySha256": "bda30d3fddf205ad16d484ba861b21cbcfcbaa71ceb8d6d9a137a11d4eedde20"
+      "bytes": 34411,
+      "ms": 1703.144,
+      "bodySha256": "d8c14b74ed8729e6b1c1a54a19b53abf93c4fbb0bbed695138836fd79a8ed01c"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34391,
-      "ms": 1293.037,
-      "bodySha256": "0261dc502b755ed7370687b68ee8aa3c2b64d24b53731ab8485e34ac8e609232"
+      "bytes": 34411,
+      "ms": 1724.787,
+      "bodySha256": "626cd0d0def3df744bc091e23048a8b882bec49091c0b7d0992e5f929f3179ca"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34391,
-      "ms": 1346.293,
-      "bodySha256": "c79a82459a98ed20f457f581f48786a041deda1d866e6fa5beb58c69bf5e74b5"
+      "bytes": 34411,
+      "ms": 1744.069,
+      "bodySha256": "44f2f28f9c508feb86b311696923d2ee04c6143dcfc4c1e825f50f4d0dedf7fe"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34391,
-      "ms": 1401.863,
-      "bodySha256": "c59e4368e7fdda94f657ca605b3c1e78b458b8e0bd9ce3442bdbe84d433c9b3b"
+      "bytes": 34411,
+      "ms": 1765.282,
+      "bodySha256": "aeba01e33037f8c38e0d08ba13e5f308827bcd576b1ce1bc8b1a8e7846f09ae6"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34392,
-      "ms": 1512.112,
-      "bodySha256": "d477576a9c4581df5c9f5a22f3c9cd99422bb8f7b94e5eb72894f0b52a1db60a"
+      "bytes": 34411,
+      "ms": 1785.42,
+      "bodySha256": "c7fc647dc6b16b42be673439e3ac20f40964201b7ac181f5d8963c875422b56f"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34392,
-      "ms": 1535.885,
-      "bodySha256": "af0193b0a86b3494aa9bd1e593881f0ae659673173ab97660223efed0d821248"
+      "bytes": 34411,
+      "ms": 1805.015,
+      "bodySha256": "e256835ea0329d5bd8fd169f8cfd0f22ae9d5ad8282df2443ced1228529ad3b8"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34392,
-      "ms": 1559.577,
-      "bodySha256": "6438ea7597f74dbf0c5b2c3ee5297a783523fd9e1d34140f4b434fab24cfeaa8"
+      "bytes": 34411,
+      "ms": 1826.606,
+      "bodySha256": "48a0ab4d3aa2bac7c2d5ef6d8d9c1a1afcbc2861e00152b7a21f52c4ed175bc1"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34392,
-      "ms": 1577.247,
-      "bodySha256": "5212a53f4dec964d34162f8882a573323a53d9f749e8913fa18d19ec9ab7ac2d"
+      "bytes": 34411,
+      "ms": 1846.336,
+      "bodySha256": "91b2d3cd7118d589e88571b6d4a83b4378445aa1bcad711926bd1fbe8fff15d7"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "POST",
       "path": "/api/analyze",
       "status": 201,
-      "bytes": 34392,
-      "ms": 1607.136,
-      "bodySha256": "b22dabdb0a75d86d2bcd45fa353796c9fad3abbac371e37dc62330718ceed1df"
+      "bytes": 34411,
+      "ms": 1867.136,
+      "bodySha256": "d8b15c2718e759dcbf1e7b6ad422853f42f69f819934d9baa96d458f2f03bdc8"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34391,
-      "ms": 660.231,
-      "bodySha256": "ce38e0eb632420c9302fbdeff7000bbb49fa249f8d193f08d9b2519740daf704"
+      "bytes": 34411,
+      "ms": 652.145,
+      "bodySha256": "15a627195ce92b02bb60190af8dfdcb4f8078cf00713fe6feb5ce952b6d5d2f0"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34391,
-      "ms": 641.853,
-      "bodySha256": "a5a4e72c40ec87428459c90539eacb622b6720cdb188b830447b0230358362c4"
+      "bytes": 34411,
+      "ms": 572.458,
+      "bodySha256": "d49a32e48e6467bdc324f763e99ec4b64ade6f8661e8f295858883f3dfb5c068"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34391,
-      "ms": 624.078,
-      "bodySha256": "3ed2fc5eef17b502c66555bc1cd35aeda1450b7119a59684565992324c24f342"
+      "bytes": 34411,
+      "ms": 505.261,
+      "bodySha256": "b264033321720f00644c5da00b8a66ed8b2a0975937d2f6137e318ebc236d545"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34391,
-      "ms": 606.203,
-      "bodySha256": "344603eae7c39a05bd88d031e093bd87210abfb299bf630bbc4508805848eb94"
+      "bytes": 34411,
+      "ms": 482.695,
+      "bodySha256": "ea53584eb4df8912510dccbcc82841620d61e18ebf461bc8ad3ca7cda5fbd455"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34391,
-      "ms": 587.949,
-      "bodySha256": "96afbbaef6f9ac1f7d8ad2bce41028305edef68f344c43477ff5c68b52df9100"
+      "bytes": 34411,
+      "ms": 430.327,
+      "bodySha256": "c1962493102754d5561967c18b3647b4694a1ff30150032793e3c288896560d9"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34391,
-      "ms": 568.956,
-      "bodySha256": "37301f3d71e6e9820dfb605381e9dd40518c8b22a4b78007771e873298c782be"
+      "bytes": 34411,
+      "ms": 406.905,
+      "bodySha256": "fdbd989dd34988fc2d6c7766f478511c6a755d637860c7d64ea9a9da01f6bfa1"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34391,
-      "ms": 550.169,
-      "bodySha256": "833279c61162ae92e81b43e9ce2596b00a78174e2498deb6da24acaf0457c5bb"
+      "bytes": 34411,
+      "ms": 386.462,
+      "bodySha256": "4dab37b62eff8a217a5a4b5ffd4a5e472ac25acd1086e5a34a992303eef339c6"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34391,
-      "ms": 532.3,
-      "bodySha256": "e53ef66e30217d58bb281279d1ebed9aca213da2939af8e9040648493e58013f"
+      "bytes": 34411,
+      "ms": 364.345,
+      "bodySha256": "0cdb6d323c45e83f6d86129f374694a8d909a10beb390689cc19214995ec562f"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34391,
-      "ms": 513.633,
-      "bodySha256": "0a093b78b0ac3244894ec7f165c2acfeaf5969ed0600ef52cb206fe810d78770"
+      "bytes": 34411,
+      "ms": 344.528,
+      "bodySha256": "39e0a3539407887ad1cb03dbc1b09261acf14537b04e6e770c666015473deb3a"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34391,
-      "ms": 496.249,
-      "bodySha256": "5797cae486b8bfae73daebb7652caa668ea410031345396a137de9f9a5d0e74b"
+      "bytes": 34411,
+      "ms": 322.775,
+      "bodySha256": "c7170d069311aa316fac167a65cfa56b6906645f2e9437206c7ea4ab8b9097b3"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34391,
-      "ms": 479.529,
-      "bodySha256": "391b527dd112784304f3f779d9f8a626ec65dc420a75c7993237d4f305756d47"
+      "bytes": 34411,
+      "ms": 302.015,
+      "bodySha256": "8c3115203c05b14a902c45126bd3d2eca5b9481e7a344b1d2ac58f51df7b4036"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34391,
-      "ms": 462.052,
-      "bodySha256": "156ae81af3c41a3e8482b4df3f7524361e7cf3f55d49118163167f78d744a5b7"
+      "bytes": 34411,
+      "ms": 281.375,
+      "bodySha256": "8e40908c7f1648f3ef624c11acc19390ead97dd879dec80b6f6e0b679c37e66f"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34391,
-      "ms": 443.957,
-      "bodySha256": "9bc25466b526773a6e7a77694e0c5c3d1992295b1bb687ef5f49e8ba87861353"
+      "bytes": 34411,
+      "ms": 259.542,
+      "bodySha256": "ff5469eed30e58bea35156294202030862915464254547145a01add7c41ede74"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34391,
-      "ms": 418.73,
-      "bodySha256": "667c6991b7f8d96a3851a80a2723101d7ec56007dd20a9310498b40646ed2505"
+      "bytes": 34411,
+      "ms": 239.438,
+      "bodySha256": "311b2e535302d97bea3d8f25464c42f5c467e41bf50cb144d1c4cce6741fa3cb"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34391,
-      "ms": 395.399,
-      "bodySha256": "a1e5ddfa19c8aa0560bb42ffdccee29ba0264887f36dcee4e6c7c468566cb93d"
+      "bytes": 34411,
+      "ms": 219.068,
+      "bodySha256": "3dd09cda0da48c76fd7af8d54573ea7393337597840857e4831dfc09fe32e675"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34391,
-      "ms": 372.659,
-      "bodySha256": "f54c3ab4d732a42ee761b7f3ad8099571f686edb82348256763cc6c99c27ffbf"
+      "bytes": 34411,
+      "ms": 198.58,
+      "bodySha256": "9823b4facc61258880a54c964048b9885c41f225226231ab6f18e85dbb409ba9"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34391,
-      "ms": 349.578,
-      "bodySha256": "bda30d3fddf205ad16d484ba861b21cbcfcbaa71ceb8d6d9a137a11d4eedde20"
+      "bytes": 34411,
+      "ms": 177.84,
+      "bodySha256": "d8c14b74ed8729e6b1c1a54a19b53abf93c4fbb0bbed695138836fd79a8ed01c"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34391,
-      "ms": 331.39,
-      "bodySha256": "0261dc502b755ed7370687b68ee8aa3c2b64d24b53731ab8485e34ac8e609232"
+      "bytes": 34411,
+      "ms": 157.006,
+      "bodySha256": "626cd0d0def3df744bc091e23048a8b882bec49091c0b7d0992e5f929f3179ca"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34391,
-      "ms": 279.951,
-      "bodySha256": "c79a82459a98ed20f457f581f48786a041deda1d866e6fa5beb58c69bf5e74b5"
+      "bytes": 34411,
+      "ms": 138.189,
+      "bodySha256": "44f2f28f9c508feb86b311696923d2ee04c6143dcfc4c1e825f50f4d0dedf7fe"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34391,
-      "ms": 225.536,
-      "bodySha256": "c59e4368e7fdda94f657ca605b3c1e78b458b8e0bd9ce3442bdbe84d433c9b3b"
+      "bytes": 34411,
+      "ms": 117.492,
+      "bodySha256": "aeba01e33037f8c38e0d08ba13e5f308827bcd576b1ce1bc8b1a8e7846f09ae6"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34392,
-      "ms": 115.466,
-      "bodySha256": "d477576a9c4581df5c9f5a22f3c9cd99422bb8f7b94e5eb72894f0b52a1db60a"
+      "bytes": 34411,
+      "ms": 97.87,
+      "bodySha256": "c7fc647dc6b16b42be673439e3ac20f40964201b7ac181f5d8963c875422b56f"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34392,
-      "ms": 93.104,
-      "bodySha256": "af0193b0a86b3494aa9bd1e593881f0ae659673173ab97660223efed0d821248"
+      "bytes": 34411,
+      "ms": 78.998,
+      "bodySha256": "e256835ea0329d5bd8fd169f8cfd0f22ae9d5ad8282df2443ced1228529ad3b8"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34392,
-      "ms": 69.8,
-      "bodySha256": "6438ea7597f74dbf0c5b2c3ee5297a783523fd9e1d34140f4b434fab24cfeaa8"
+      "bytes": 34411,
+      "ms": 57.996,
+      "bodySha256": "48a0ab4d3aa2bac7c2d5ef6d8d9c1a1afcbc2861e00152b7a21f52c4ed175bc1"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34392,
-      "ms": 52.769,
-      "bodySha256": "5212a53f4dec964d34162f8882a573323a53d9f749e8913fa18d19ec9ab7ac2d"
+      "bytes": 34411,
+      "ms": 39.06,
+      "bodySha256": "91b2d3cd7118d589e88571b6d4a83b4378445aa1bcad711926bd1fbe8fff15d7"
     },
     {
       "check": "Built Worker local 50-upload and report-readback batch",
       "method": "GET",
       "path": "/api/reports/{report_id}",
       "status": 200,
-      "bytes": 34392,
-      "ms": 23.198,
-      "bodySha256": "b22dabdb0a75d86d2bcd45fa353796c9fad3abbac371e37dc62330718ceed1df"
+      "bytes": 34411,
+      "ms": 18.875,
+      "bodySha256": "d8b15c2718e759dcbf1e7b6ad422853f42f69f819934d9baa96d458f2f03bdc8"
     },
     {
       "check": "Expired test rows and scheduled handler",
@@ -1606,7 +1628,7 @@
       "path": "/api/reports/{report_id}",
       "status": 404,
       "bytes": 21,
-      "ms": 0.38,
+      "ms": 0.388,
       "bodySha256": "d2dfdc9511fbeaa0701d1f8730f4989313b062ca1b61a2bd8bed8f4f5d654b5d",
       "error": "not_found"
     },
@@ -1616,8 +1638,8 @@
       "path": "/api/draft",
       "status": 200,
       "bytes": 68,
-      "ms": 0.217,
-      "bodySha256": "b3652416437194d2cf9f2632e016f77470ce19e1a8aa1ab3e997443e4205f3b3"
+      "ms": 0.257,
+      "bodySha256": "589abd221430321fc97ce196b92f2f2b342b5d9dd26bb7073783ea68dc4eccea"
     },
     {
       "check": "Logout invalidates saved session",
@@ -1625,7 +1647,7 @@
       "path": "/api/logout",
       "status": 200,
       "bytes": 11,
-      "ms": 0.369,
+      "ms": 0.293,
       "bodySha256": "4062edaf750fb8074e7e83e0c9028c94e32468a8b6f1614774328ef045150f93"
     },
     {
@@ -1634,7 +1656,7 @@
       "path": "/api/me",
       "status": 401,
       "bytes": 26,
-      "ms": 0.308,
+      "ms": 0.254,
       "bodySha256": "6b2f8c11f53e3118c6afc3ee803150d35863a875779c0fcf116381748395f2a1",
       "error": "login_required"
     }

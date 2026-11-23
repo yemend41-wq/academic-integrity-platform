@@ -1,0 +1,100 @@
+{
+  "checkedUTC": "2026-11-23T20:35:19.423855+00:00",
+  "origin": "https://mizan-integrity-studio.yemend41.chatgpt.site",
+  "siteSource": "1ed9b3e284b7bec03a2678860aa733257d1e02c5",
+  "version": 6,
+  "scope": "Public endpoints and bilingual register contents. Separate records document the authenticated load and committee tests.",
+  "checks": [
+    {
+      "path": "/",
+      "http": 200,
+      "status": "passed",
+      "responseSHA256": "1efed77f15f1f3f2e8a03538694f93c816b7cde5cd5ccbcf317817b1d423b81c",
+      "detail": {}
+    },
+    {
+      "path": "/api/health",
+      "http": 200,
+      "status": "passed",
+      "responseSHA256": "5c0a8ddd0801d3e8f354a7df4fe248f1c849266ebc5922965d7269ac918928cc",
+      "detail": {
+        "service": "Mizan",
+        "assessment": "zz-release-4",
+        "model": "AIP-HL-3",
+        "analysisFingerprint": "d853e1cccc80143108ed141bd0fd49d35ed5c08b5432369e77e6f75364b27c75",
+        "status": "online",
+        "database": "reachable",
+        "dbMs": 183,
+        "at": "2026-11-23T20:35:19.405Z"
+      }
+    },
+    {
+      "path": "/acceptance?lang=ar",
+      "http": 200,
+      "status": "passed",
+      "responseSHA256": "89dd7b3cee8fdb41d6d4f3aa5349c688ee139258abb78e68fe9a7ed4b9ea38cf",
+      "detail": {
+        "lang": "ar",
+        "heading": "سجل قبول الإصدار الرابع",
+        "acceptanceRows": 14,
+        "cohortRows": 35,
+        "hasEvaluationLogin": true
+      }
+    },
+    {
+      "path": "/acceptance?lang=en",
+      "http": 200,
+      "status": "passed",
+      "responseSHA256": "1c2eabaabaeba4ea061a9c1064d3084235eb2f71f7e2eb11145db52d3c01a924",
+      "detail": {
+        "lang": "en",
+        "heading": "Release 4 acceptance register",
+        "acceptanceRows": 14,
+        "cohortRows": 35,
+        "hasEvaluationLogin": true
+      }
+    },
+    {
+      "path": "/api/retention",
+      "http": 200,
+      "status": "passed",
+      "responseSHA256": "23eb69353af96caf7463b0d41f73e59f27c81689518125a7a6fe1452a198ea6d",
+      "detail": {
+        "lastSuccess": 1795461108,
+        "retentionDays": 7
+      }
+    },
+    {
+      "path": "/api/me",
+      "http": 401,
+      "status": "passed",
+      "responseSHA256": "6b2f8c11f53e3118c6afc3ee803150d35863a875779c0fcf116381748395f2a1",
+      "detail": {}
+    },
+    {
+      "path": "/api/reports",
+      "http": 401,
+      "status": "passed",
+      "responseSHA256": "6b2f8c11f53e3118c6afc3ee803150d35863a875779c0fcf116381748395f2a1",
+      "detail": {}
+    },
+    {
+      "path": "/lti/config",
+      "http": 200,
+      "status": "passed",
+      "responseSHA256": "a9f8c9194d14d08e390b6d1cadee122741237dade2c6522b12196009e1d7cd46",
+      "detail": {
+        "format": "application/json",
+        "fields": [
+          "version",
+          "message_type",
+          "initiate_login_uri",
+          "redirect_uri",
+          "target_link_uri",
+          "registered_platforms",
+          "launch_presentation"
+        ]
+      }
+    }
+  ]
+}

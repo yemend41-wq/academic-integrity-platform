@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import esbuild from "esbuild";
 import { mkdir, readFile, writeFile, copyFile } from "node:fs/promises";
 const client = await esbuild.build({
@@ -25,6 +26,10 @@ await writeFile(
     JSON.stringify(files) +
     ';\nexport function asset(path){const f=files[path];return f?new Response(f[1],{headers:{"Content-Type":f[0]}}):new Response("Not found",{status:404});}\n',
 );
+const fingerprint = createHash("sha256");
+for (const path of ["src/analysis.mjs", "research/detector/inference.mjs", "research/detector/detector.mjs", "research/detector/weights.mjs", "research/similarity/engine.mjs", "research/similarity/model.mjs", "research/similarity/sources.mjs"]) {
+  fingerprint.update(path + "\0").update(await readFile(path)).update("\0");
+}
 await esbuild.build({
   entryPoints: ["src/worker.mjs"],
   bundle: true,
@@ -36,6 +41,6 @@ await esbuild.build({
   outfile: "dist/server/index.js",
   legalComments: "none",
   logLevel: "warning",
-  define: { "process.versions.node": "undefined" },
+  define: { "process.versions.node": "undefined", __ENGINE_REVISION__: JSON.stringify(fingerprint.digest("hex")) },
 });
 await copyFile(".openai/hosting.json", "dist/.openai/hosting.json");

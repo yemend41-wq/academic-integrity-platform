@@ -1,0 +1,14 @@
+{
+  "registeredUtc": "2026-11-23T19:59:21.219445+00:00",
+  "release": "4",
+  "benchmark": "SemEval 2017 STS Task 1 official tracks 1 and 5. Existing release-3 aggregate results are known. Files are locked by the published release-3 digests. No development using the sentences or pair-level errors.",
+  "ranking": "For each high pair (gold >=4), retrieve its partner among up to 16 sources: the true source and 15 deterministic distractors from other input rows. Keep all lengths. Rank sources by matched query words, then match strength. For each low pair (gold <=1), measure whether the paired source is flagged in isolation against the built-in index.",
+  "boundaries": "Wrap each partner in unrelated prefix and suffix paragraphs and query in a fixed unrelated prefix. Annotated target and source intervals are the complete word-to-word sentence extents of the aligned pair. They are structural sentence boundaries, not manually annotated verbatim or derivative passages. Average IoU for the best correctly attributed interval; count misses as zero. Separately measure known copy offsets for both languages on PUD source groups excluded from bilingual LSA training.",
+  "candidate": {
+    "scope": "Keep the deployed exact five-gram, lexical/dense semantic scoring, quantitative claim and negation guards. Add a conservative light-inflection token alignment alternative; use corpus-independent rules. Score sentence spans from 3 tokens with two distinct informative matches. Enable sparse screening by inflection keys. Use no trained or adjusted thresholds on these tests.",
+    "short": "With a shorter unique content set of 2 or 3, require all shorter tokens to match and Dice >= 0.80.",
+    "long": "With at least 4 unique content words in the shorter sentence, require >= 3 shared tokens and Dice >= 0.70.",
+    "regressionGate": "Accept only if gains in Arabic high-pair retrieval, non-decreasing English high-pair retrieval, no more than one additional low-pair flag per language, no decline in either language on source-aware macro span overlap. Report every failure."
+  },
+  "limits": "STS measures similarity, including short sentences and translated material. It is not proof of plagiarism, institutional corpus coverage, or Arabic student essay accuracy."
+}

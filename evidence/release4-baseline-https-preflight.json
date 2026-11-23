@@ -1,0 +1,29 @@
+{
+  "origin": "https://mizan-integrity-studio.yemend41.chatgpt.site",
+  "releaseUnderTest": "408674ec2ca3cd2193704e8ba308daf4d5f27797",
+  "requiredModel": "AIP-HL-3",
+  "startedUTC": "2026-11-23T20:00:28.957+00:00",
+  "client": {
+    "httpx": "0.28.1",
+    "python": "3.12.14",
+    "httpVersion": "HTTP/1.1",
+    "hardwareOrServerRegion": "not independently measured"
+  },
+  "workload": "One 300-word indexed excerpt; sequential indexed DOCX/PDF followed by 50 synchronized uploads, 25 per format, same published 3000-word excerpt. Concurrent readback uses the owner session.",
+  "health": {
+    "service": {
+      "service": "Mizan",
+      "status": "online",
+      "database": "reachable",
+      "dbMs": 202,
+      "at": "2026-11-23T20:00:36.180Z"
+    },
+    "retention": {
+      "lastSuccess": 1795461108,
+      "retentionDays": 7
+    }
+  },
+  "status": "unverified",
+  "reason": "public_preflight_only_no_authenticated_uploads",
+  "finishedUTC": "2026-11-23T20:00:36.465+00:00"
+}

@@ -58,7 +58,7 @@ const commonConcept = new Map();
 for (const [n, group] of lexicalGroups.entries()) for (const word of group.trim().split(/\s+/)) commonConcept.set(normalize(word), n);
 
 function normalize(s) {
-  return s.normalize("NFKD").toLowerCase().replace(/\p{M}/gu,"").replaceAll("ـ","").replaceAll("ى","ي").replace(/[٠-٩]/g,c=>String(c.charCodeAt(0)-1632));
+  return s.normalize("NFKD").toLowerCase().replace(/\p{M}/gu,"").replaceAll("ـ","").replaceAll("ى","ي").replace(/[٠-٩]/g,c=>String(c.charCodeAt(0)-1632)).replace(/[۰-۹]/g,c=>String(c.charCodeAt(0)-1776));
 }
 function lookup(term) {
   const variants = [term];
@@ -71,6 +71,46 @@ function lookup(term) {
     if (term.length>4 && term.endsWith("s")) variants.push(term.slice(0,-1));
   }
   return variants;
+}
+// Alignment keys are used only for semantic screening. Exact offsets and exact tokens
+// stay untouched. Stemming is deliberately light to avoid collapsing short Arabic roots.
+const alignmentStop = new Set([...stopwords, "as", "by", "while", "there", "being",
+  "some", "also", "into", "then", "وهو", "وهي", "وقد", "هناك", "يقوم", "تقوم"]);
+function alignmentKey(term, variants, concept) {
+  if (alignmentStop.has(term) || /^\d+$/.test(term) || term.length < 2) return null;
+  if (concept !== undefined) return "concept:" + commonConcept.get(concept);
+  if (/^[a-z]+$/.test(term)) {
+    let stem = term;
+    if (stem.length > 4 && stem.endsWith("ies")) stem = stem.slice(0, -3) + "y";
+    else if (stem.length > 4 && /(?:ches|shes|xes|sses|zes)$/.test(stem)) stem = stem.slice(0, -2);
+    else if (stem.length > 3 && /[^su]s$/.test(stem)) stem = stem.slice(0, -1);
+    else if (stem.length > 4 && /(?:ing|ed)$/.test(stem)) {
+      stem = stem.replace(/(?:ing|ed)$/, "").replace(/([^aeiou])\1$/, "$1");
+    }
+    if (stem.length >= 4) stem = stem.replace(/e$/, "");
+    return alignmentStop.has(stem) ? null : stem;
+  }
+  if (!/^[\u0621-\u064a]+$/u.test(term)) return term;
+  // Strip an article or attached conjunction only in forms with a substantial residue.
+  let stem = term.replace(/^(?:وبال|وفال|ولل|وال|فال|بال|كال|لل|ال)(?=.{3})/u, "");
+  if (stem === term) stem = stem.replace(/^و(?=.{3})/u, "");
+  if (alignmentStop.has(stem)) return null;
+  const stableSense = variants.find(v => senses[v]?.length === 1);
+  if (stableSense) return "sense:" + senses[stableSense][0];
+  stem = stem.replace(/(?:يات|يون|يين|ات|ان|ون|ين|ها|هم|هن|نا|ة)$/u,
+    (ending, offset) => offset >= 3 ? "" : ending);
+  return stem;
+}
+function alignmentScore(a, b) {
+  const short = a.keys.size <= b.keys.size ? a.keys : b.keys;
+  const long = short === a.keys ? b.keys : a.keys;
+  if (short.size < 2) return 0;
+  let hits = 0;
+  for (const key of short) if (long.has(key)) hits++;
+  const dice = 2 * hits / (short.size + long.size);
+  const supported = short.size < 4 ? hits === short.size && dice >= 0.80
+    : hits >= 3 && dice >= 0.70;
+  return supported ? dice : 0;
 }
 function ranges(text, options) {
   const found = [];
@@ -116,14 +156,16 @@ function sentenceRanges(t) {
   for(let a=0;a<t.length;) {
     let b=a+1;
     while(b<t.length && !t[b].sentenceBreak && t[b].group===t[a].group && b-a<48) b++;
-    if(b-a>=5) intervals.push([a,b]);
+    const besideExclusion = (a > 0 && t[a-1].group !== t[a].group) ||
+      (b < t.length && t[b-1].group !== t[b].group);
+    if (b - a >= (besideExclusion ? 5 : 3)) intervals.push([a,b]);
     a=b;
   }
   return intervals;
 }
 function add(map, k, val=1) { map.set(k,Math.max(map.get(k)||0,val)); }
 function vector(t, a, b) {
-  const bag = new Map(), numbers=[], v=new Float32Array(dimensions);
+  const bag = new Map(), keys = new Set(), numbers=[], v=new Float32Array(dimensions);
   let neg=false, content=0, known=0;
   for(let i=a;i<b;i++) {
     const k=t[i].key;
@@ -133,6 +175,8 @@ function vector(t, a, b) {
     content++;
     const vv=lookup(k);
     const canonical = vv.find(w=>commonConcept.has(w));
+    const alignment = alignmentKey(k, vv, canonical);
+    if (alignment) keys.add(alignment);
     const lemma=vv.find(w=>senses[w]);
     const base=canonical || lemma || vv.at(-1);
     add(bag,"w:"+base,0.8);
@@ -149,7 +193,7 @@ function vector(t, a, b) {
   for(const n of v) norm+=n*n;
   norm=Math.sqrt(norm)||1;
   for(let k=0;k<dimensions;k++) v[k]/=norm;
-  return {a,b,bag,v,numbers:numbers.sort().join("/"),neg,coverage:known/Math.max(1,content)};
+  return {a,b,bag,keys,v,numbers:numbers.sort().join("/"),neg,coverage:known/Math.max(1,content)};
 }
 function build(source, options) {
   const text=source.text, t=tokenize(text,ranges(text,options)), grams=new Map();
@@ -182,6 +226,8 @@ function longest(q,i,source,positions) {
 }
 function semanticScore(a,b) {
   if(a.neg!==b.neg || a.numbers!==b.numbers || Math.max(a.b-a.a,b.b-b.a)>2.1*Math.min(a.b-a.a,b.b-b.a)) return 0;
+  const aligned = alignmentScore(a, b);
+  if (Math.min(a.b-a.a,b.b-b.a) < 5) return aligned;
   let inter=0, normA=0, normB=0, anchors=0;
   for(const [k,w] of a.bag) {
     normA+=w*w;
@@ -190,11 +236,11 @@ function semanticScore(a,b) {
   for(const w of b.bag.values()) normB+=w*w;
   const lexical=inter/(Math.sqrt(normA*normB)||1);
   let dense=0;for(let i=0;i<dimensions;i++)dense+=a.v[i]*b.v[i];
-  if(anchors<3 && (anchors<2||dense<0.94||Math.min(a.coverage,b.coverage)<0.70)) return 0;
+  if(anchors<3 && (anchors<2||dense<0.94||Math.min(a.coverage,b.coverage)<0.70)) return aligned;
   // Semantic evidence requires lexical support. A small fitted model alone is unreliable on short passages.
   const value=0.78*lexical+0.22*Math.max(0,dense);
-  if((lexical>=0.72 && anchors>=4) || (value>=0.67 && lexical>=0.51 && dense>=0.78)) return Math.max(value,lexical);
-  return 0;
+  if((lexical>=0.72 && anchors>=4) || (value>=0.67 && lexical>=0.51 && dense>=0.78)) return Math.max(value,lexical,aligned);
+  return aligned;
 }
 
 /** All indices are UTF-16 offsets into the redacted text passed by the caller. */
@@ -228,19 +274,23 @@ export function compareDocument(text, cohortSources=[], settings={}) {
   }
   // Candidate screening by posting lists avoids scanning every sentence in every upload.
   let postings;
+  function* postingKeys(sentence) {
+    yield* sentence.bag.keys();
+    for (const key of sentence.keys) yield "align:" + key;
+  }
   for(const [a,b] of sentenceRanges(q)) {
     if(exactCovered.subarray(a,b).some(Boolean)) continue;
     if(!postings){
       postings=new Map();
       for(const source of corpus) for(const sentence of source.sentences) {
         const entry={source,sentence};
-        for(const key of sentence.bag.keys()){
+        for(const key of postingKeys(sentence)){
           const list=postings.get(key);if(list)list.push(entry);else postings.set(key,[entry]);
         }
       }
     }
     const query=vector(q,a,b), entries=new Map();
-    for(const k of query.bag.keys()) {
+    for(const k of postingKeys(query)) {
       const list=postings.get(k);if(!list)continue;
       for(const item of list) entries.set(item,(entries.get(item)||0)+1);
     }

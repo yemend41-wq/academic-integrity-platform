@@ -30,3 +30,21 @@ Run `node --test research/similarity/test.mjs` to check five-gram exact matching
 `node research/similarity/training/test-external.mjs` evaluates official SemEval 2017 STS Task 1 tracks 1 (Arabic–Arabic) and 5 (English–English) and independently extracts the JOSS fixture via Poppler. The script fetches the original, SHA-256-locked sentence and gold-score files from a [public mirror](https://github.com/yaushian/mSimCSE/tree/main/data/Sts2017). An offline run can provide the same files beside the script with filenames `track1.ar-ar.input.tmp`, `track1.ar-ar.gs.tmp`, `track5.en-en.input.tmp`, `track5.en-en.gs.tmp`. The project distributes aggregate findings, not the benchmark sentences. [SemEval 2017 Task 1, data and tools](https://alt.qcri.org/semeval2017/task1/index.php?id=data-and-tools).
 
 All 500 pairs were read. Gold scores at least 4/5 represent high similarity; scores at most 1/5 represent low similarity. Intermediate cases do not enter either count. A positive result means at least one displayed interval identifies the supplied comparison text. With thresholds fixed before first reading these labels, matching on high-similarity pairs reached 6/41 Arabic and 21/41 English. Matches on low-similarity pairs were 0/72 Arabic and 0/61 English. Short sentences and broad substitutions are especially difficult under the conservative evidence rules. These aggregates measure source retrieval; the separate AI detector evaluates human authorship.
+
+## Release 4 source-aware evaluation
+
+The deployed engine adds a light inflection-alignment channel to its original exact, bilingual dense and lexical channels. Normalization for alignment leaves the displayed text and its UTF-16 positions intact. Short sentences need two distinct informative anchors. The existing quantitative and negation disagreement guards and exclusion boundaries remain active. The normalized Persian digits join the Arabic-Indic and Western digit forms.
+
+The predeclared rules and SHA-locked test protocols are in `training/protocol-release4.json` and `training/protocol-rewrites-release4.json`. The release-3 totals were known during development. No pair-level test errors or test labels were used to select release-4 thresholds. `training/release4-evaluation.json` records the original and candidate side by side, including rank-one retrieval among distractors, the negative-pair flag count and mean source/target span overlap. Five built-in texts are always present in addition to the supplied source pool. The source and query boundaries for STS are the word extents of each semantically aligned sentence, not annotated plagiarism boundaries. The PUD exact-copy checks measure known source and target boundaries under the active quote and bibliography filters. The published JOSS fixture supplies an end-to-end PDF extraction comparison.
+
+The experiments in `training/release4-rewrites.json` use independently sourced, paired changes to English student essays and Arabic academic abstracts and press articles. Upstream files and SHA-256 values are listed in `../detector/sources.json`. A document's title or file position does not establish its source. KFUPM and Ar-APT supply explicit original/rewrite fields. For Liang's TOEFL and Hewlett corpora the original has to match uniquely inside the revision prompt. These positive pairs measure source identification, with no negative-paper false-positive estimate.
+
+To reproduce from the repository root, point BASELINE at a separate release-3 checkout's `research/similarity/engine.mjs`. The harness verifies its hash. Supply the four official STS test files with the cache filenames documented above in STS_DIR. For the rewrite evaluation supply original JSON/JSONL bytes at the filenames in detector/sources.json under CORPORA_DIR. Run:
+
+```sh
+node --test research/similarity/test.mjs
+node research/similarity/training/evaluate-release4.mjs "$STS_DIR" "$BASELINE"
+node research/similarity/training/evaluate-rewrites-release4.mjs "$CORPORA_DIR" "$BASELINE"
+```
+
+Both release-4 harnesses regenerate their dedicated evidence JSON. The older single-pair script prints its result and accepts an optional new output path. The archived release-3 report stays fixed for baseline comparisons.

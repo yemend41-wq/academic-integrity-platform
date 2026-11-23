@@ -2,6 +2,7 @@ const encoder = new TextEncoder();
 const builtinRoles = {
   evaluator: ["instructor", "committee"],
   registrar: ["admin", "committee"],
+  "review-panel": ["instructor", "committee-review"],
   candidate: ["student", "committee"],
   "qa-affiliate": ["student", "other-course"],
 };
@@ -59,6 +60,13 @@ export async function readJSON(request, limit = 8192) {
     throw new Fault(400, "invalid_json");
   }
 }
+function activeBenchmark(env) {
+  if (!env.BENCHMARK_ACCESS) return null;
+  const config = JSON.parse(env.BENCHMARK_ACCESS);
+  if (!/^[a-f0-9]{12}$/.test(config.run) || !/^[a-f0-9]{64}$/.test(config.verifier)) return null;
+  if (!Number.isSafeInteger(config.until) || config.until <= now() || config.until > now() + 86400) return null;
+  return config;
+}
 export async function openSession(env, principal, redirect = false) {
   const raw = token();
   await stmt(
@@ -66,7 +74,7 @@ export async function openSession(env, principal, redirect = false) {
     "INSERT INTO sessions(token,principal,expires) VALUES(?,?,?)",
     await hash(raw),
     JSON.stringify(principal),
-    now() + 28800,
+    Math.min(now() + 28800, principal.validUntil || Infinity),
   ).run();
   const headers = {
     "Set-Cookie":
@@ -96,7 +104,9 @@ export async function who(env, req) {
     now(),
   ).first();
   if (!rec) throw new Fault(401, "login_required");
-  return JSON.parse(rec.principal);
+  const principal = JSON.parse(rec.principal);
+  if (principal.benchmark && activeBenchmark(env)?.run !== principal.benchmark) throw new Fault(401, "login_required");
+  return principal;
 }
 export async function logout(env, req) {
   const raw = cookie(req);
@@ -141,8 +151,14 @@ async function derive(p, salt) {
   );
 }
 export async function addMember(env, req, actor) {
-  if (actor.role !== "admin") throw new Fault(403, "forbidden");
+  if (!["admin", "test-provisioner"].includes(actor.role)) throw new Fault(403, "forbidden");
   const { username, role, testRun } = await readJSON(req);
+  if (actor.role === "test-provisioner") {
+    const config = activeBenchmark(env);
+    if (!config || actor.benchmark !== config.run || testRun !== config.run || role !== "student" ||
+        typeof username !== "string" || !new RegExp("^load-" + config.run + "-(?:[0-9]|[1-4][0-9])$").test(username))
+      throw new Fault(403, "forbidden");
+  }
   if (
     testRun !== undefined &&
     (!/^[a-z0-9]{8,20}$/.test(testRun) || role !== "student")
@@ -151,7 +167,7 @@ export async function addMember(env, req, actor) {
   if (
     typeof username !== "string" ||
     !/^[a-z][a-z\d-]{3,31}$/.test(username) ||
-    Object.hasOwn(builtinRoles, username) ||
+    (username === "benchmark-provisioner" || Object.hasOwn(builtinRoles, username)) ||
     !["student", "instructor"].includes(role)
   )
     throw new Fault(400, "invalid_member");
@@ -161,11 +177,11 @@ export async function addMember(env, req, actor) {
     env,
     "INSERT OR IGNORE INTO members(username,identity,cohort,role,verifier,expires) VALUES(?,?,?,?,?,?)",
     username,
-    crypto.randomUUID(),
+    actor.role === "test-provisioner" ? "bench:" + testRun + ":" + crypto.randomUUID() : crypto.randomUUID(),
     testRun ? "bench-" + testRun : actor.cohort,
     role,
     salt + ":" + (await derive(password, salt)),
-    testRun ? now() + 86400 : 0,
+    testRun ? Math.min(now() + 86400, actor.validUntil || Infinity) : 0,
   ).run();
   if (!result.meta.changes) throw new Fault(409, "username_taken");
   return json({ username, password, role }, 201);
@@ -193,9 +209,13 @@ export async function login(env, req) {
   if (hit.attempts > 80) throw new Fault(429, "too_many_logins");
   let principal,
     ok = false;
-  if (Object.hasOwn(builtinRoles, username)) {
+  const benchmark = activeBenchmark(env);
+  if (username === "benchmark-provisioner") {
+    ok = benchmark && eq(await hash(password), benchmark.verifier);
+    if (ok) principal = { id: "provision-" + benchmark.run, role: "test-provisioner", cohort: "bench-" + benchmark.run, source: "workspace", benchmark: benchmark.run, validUntil: benchmark.until };
+  } else if (Object.hasOwn(builtinRoles, username)) {
     const verifiers = JSON.parse(env.ACCOUNT_VERIFIERS || "{}");
-    ok = eq(await hash(password), verifiers[username]);
+    ok = eq(await hash(password), username === "review-panel" ? env.REVIEW_PANEL_VERIFIER : verifiers[username]);
     const [role, cohort] = builtinRoles[username];
     principal = { id: username, role, cohort, source: "workspace" };
   } else {
@@ -207,12 +227,15 @@ export async function login(env, req) {
     ).first();
     const [salt, digest] = (user?.verifier || "constant-nonmember:").split(":");
     ok = eq(await derive(password, salt), digest);
+    if (user?.identity.startsWith("bench:") && (!benchmark || !user.identity.startsWith("bench:" + benchmark.run + ":"))) ok = false;
     if (user)
       principal = {
         id: user.identity,
         role: user.role,
         cohort: user.cohort,
         source: "workspace",
+        ...(user.expires ? {validUntil:user.expires} : {}),
+        ...(benchmark && user.cohort === "bench-" + benchmark.run ? {benchmark:benchmark.run} : {}),
       };
   }
   if (!principal || !ok) throw new Fault(401, "invalid_login");

@@ -73,5 +73,39 @@ add('Institutional LTI 1.3 launch','الإطلاق المؤسسي عبر LTI 1.3
     'Local protocol tests exist. An end-to-end university launch requires a registered LMS.',
     'توجد نتائج محلية لاختبار البروتوكول. يتطلب إثبات الإطلاق الجامعي منصة تعليم مسجلة لدى الجامعة.',
     'research/lti/lti.mjs','research/lti/test.mjs','research/lti/evidence.json',{'protocolTestsPassed':read('research/lti/evidence.json')['passed']})
-out={'testedAt':audit['finished'],'referenceRun':base_path,'id':'zz-release-4','title':'Release 4 · scope of acceptance','titleAr':'الإصدار الرابع · سجل القبول','model':model['version'],'checks':checks}
+hosted_path = Path("evidence/release4-authenticated-public-load.json")
+committee_path = Path("evidence/release4-committee-functions.json")
+if hosted_path.exists():
+    hosted = read(hosted_path)
+    run = next(c for c in checks if c['name']=='Public HTTPS load and 3,000-word latency')
+    stats = hosted.get('loadSummary', {})
+    singles = hosted.get('singles', [])
+    if len(singles) == 2 and stats.get('verifiedReports') is not None and stats.get('p95Ms') is not None:
+        n, fast = stats['verifiedReports'], stats['under15Seconds']
+        p95, slowest = stats['p95Ms']/1000, stats['maxMs']/1000
+        docx, pdf = [r['uploadToCompleteReportMs']/1000 for r in singles]
+        denied = hosted.get('crossStudentReadbackHttp', {}).get('404', 0)
+        run.update(status=hosted['status'],
+          detail=f"Public HTTPS. 3,000 words indexed, Word {docx:.2f}s and PDF {pdf:.2f}s individually. {n}/50 full reports retrieved, {fast}/50 uploads below 15s, p95 {p95:.2f}s and maximum {slowest:.2f}s. {denied}/50 peer reads denied.",
+          detailsAr=f"على الرابط العام مع الفهرسة، استغرق مستند Word من 3,000 كلمة {docx:.2f} ثانية وPDF {pdf:.2f} ثانية. استُرجع {n} من 50 تقريرًا، واكتملت {fast} عملية في أقل من 15 ثانية. المئين 95 بلغ {p95:.2f} ثانية والأبطأ {slowest:.2f} ثانية. رُفضت قراءة تقارير الزملاء في {denied} من 50 محاولة.")
+        run['evidence'].update(record=str(hosted_path),observations={
+            k:hosted.get(k) for k in ('startedUTC','finishedUTC','releaseUnderTest','health','distinctAuthenticatedStudents','indexBeforeLoad','clientStartSpreadMs','loadSummary','crossStudentReadbackHttp','singlesSummary')})
+if committee_path.exists():
+    committee = read(committee_path)
+    by_name={c['name']:c for c in committee['checks']}
+    citation=next(c for c in checks if c['name']=='Live citation registries')
+    observed=by_name.get('External DOI/ISBN lookup')
+    if observed and observed['status']=='passed':
+        citation.update(status='passed',detail='The published service distinguished genuine DOI and ISBN, a missing DOI, and a bad ISBN checksum.',detailsAr='تحققت الخدمة المنشورة من DOI وISBN صحيحين، وميّزت مرجع DOI غير موجود ورقم ISBN غير صالح حسابيًا.')
+    citation['evidence']['observations']={'local':audit['registry'],'hosted':committee['registryObservations'],'at':committee['at']}
+    if by_name:
+        count=sum(c['status']=='passed' for c in by_name.values())
+        add('Committee workspace · public HTTPS','مساحة اللجنة على الرابط العام',
+            'passed' if count==len(by_name) else 'partial',
+            f'{count}/{len(by_name)} checks passed for the committee workspace. See the individual outcomes.',
+            f'اجتازت مساحة اللجنة {count} من {len(by_name)} فحوص عبر HTTPS. يبيّن السجل نتيجة كل فحص منفصل.',
+            'src/worker.mjs + src/auth.mjs','scripts/live-checks.py',str(committee_path),
+            {'at':committee['at'],'checks':[{'name':c['name'],'status':c['status'],'detail':c['detail']} for c in by_name.values()]})
+tested_at=max([audit['finished']] + ([hosted['finishedUTC']] if hosted_path.exists() else []) + ([committee['at']] if committee_path.exists() else []))
+out={'testedAt':tested_at,'referenceRun':base_path,'id':'zz-release-4','title':'Release 4 · scope of acceptance','titleAr':'الإصدار الرابع · سجل القبول','model':model['version'],'checks':checks}
 Path('evidence/acceptance-release-4.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n')

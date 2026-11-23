@@ -1,5 +1,5 @@
 {
-  "testedAt": "2026-11-23T20:06:54.736Z",
+  "testedAt": "2026-11-23T20:28:48.794982+00:00",
   "referenceRun": "evidence/release4-baseline-unit.json",
   "id": "zz-release-4",
   "title": "Release 4 · scope of acceptance",
@@ -861,78 +861,139 @@
     {
       "name": "Live citation registries",
       "ar": "التحقق الحي من سجلات المراجع",
-      "status": "partial",
-      "detail": "Invalid checksum was identified; registry outages produced a distinct unavailable outcome. Public relaunch testing remains open.",
-      "detailsAr": "كُشف رقم ISBN غير صالح حسابيًا. عند تعذّر السجل الخارجي ظهر سبب مستقل. تبقى إعادة فحص السجلات من الإصدار المنشور مطلوبة.",
+      "status": "passed",
+      "detail": "The published service distinguished genuine DOI and ISBN, a missing DOI, and a bad ISBN checksum.",
+      "detailsAr": "تحققت الخدمة المنشورة من DOI وISBN صحيحين، وميّزت مرجع DOI غير موجود ورقم ISBN غير صالح حسابيًا.",
       "evidence": {
         "implementation": "research/media/citations.mjs",
         "test": "test/module-audit-release4.mjs",
         "record": "evidence/module-audit-release4.json",
-        "observations": [
-          {
-            "id": "10.1038/nature12373",
-            "expected": "verified",
-            "actual": "registry_unavailable",
-            "result": "unverified",
-            "registry": "Crossref / DOI Handle System",
-            "attempts": [
-              {
-                "registry": "Crossref",
-                "outcome": "timeout"
-              },
-              {
-                "registry": "DOI Handle System",
-                "outcome": "timeout"
-              }
-            ]
-          },
-          {
-            "id": "10.99999/mizan-no-record-2026",
-            "expected": "not_found",
-            "actual": "registry_unavailable",
-            "result": "unverified",
-            "registry": "Crossref / DOI Handle System",
-            "attempts": [
-              {
-                "registry": "Crossref",
-                "outcome": "timeout"
-              },
-              {
-                "registry": "DOI Handle System",
-                "outcome": "timeout"
-              }
-            ]
-          },
-          {
-            "id": "9780306406157",
-            "expected": "verified",
-            "actual": "registry_unavailable",
-            "result": "unverified",
-            "registry": "Open Library / Crossref / Google Books",
-            "attempts": [
-              {
-                "registry": "Open Library",
-                "outcome": "timeout"
-              },
-              {
-                "registry": "Crossref",
-                "outcome": "timeout"
-              },
-              {
-                "registry": "Google Books",
-                "outcome": "timeout"
-              }
-            ]
-          },
-          {
-            "id": "9780306406158",
-            "expected": "invalid_checksum",
-            "actual": "invalid_checksum",
-            "result": "passed",
-            "registry": null,
-            "attempts": []
-          }
-        ]
+        "observations": {
+          "local": [
+            {
+              "id": "10.1038/nature12373",
+              "expected": "verified",
+              "actual": "registry_unavailable",
+              "result": "unverified",
+              "registry": "Crossref / DOI Handle System",
+              "attempts": [
+                {
+                  "registry": "Crossref",
+                  "outcome": "timeout"
+                },
+                {
+                  "registry": "DOI Handle System",
+                  "outcome": "timeout"
+                }
+              ]
+            },
+            {
+              "id": "10.99999/mizan-no-record-2026",
+              "expected": "not_found",
+              "actual": "registry_unavailable",
+              "result": "unverified",
+              "registry": "Crossref / DOI Handle System",
+              "attempts": [
+                {
+                  "registry": "Crossref",
+                  "outcome": "timeout"
+                },
+                {
+                  "registry": "DOI Handle System",
+                  "outcome": "timeout"
+                }
+              ]
+            },
+            {
+              "id": "9780306406157",
+              "expected": "verified",
+              "actual": "registry_unavailable",
+              "result": "unverified",
+              "registry": "Open Library / Crossref / Google Books",
+              "attempts": [
+                {
+                  "registry": "Open Library",
+                  "outcome": "timeout"
+                },
+                {
+                  "registry": "Crossref",
+                  "outcome": "timeout"
+                },
+                {
+                  "registry": "Google Books",
+                  "outcome": "timeout"
+                }
+              ]
+            },
+            {
+              "id": "9780306406158",
+              "expected": "invalid_checksum",
+              "actual": "invalid_checksum",
+              "result": "passed",
+              "registry": null,
+              "attempts": []
+            }
+          ],
+          "hosted": [
+            {
+              "kind": "doi",
+              "id": "10.1038/nature12373",
+              "status": "verified",
+              "registry": "Crossref",
+              "title": "Nanometre-scale thermometry in a living cell",
+              "attempts": [
+                {
+                  "registry": "Crossref",
+                  "outcome": "response",
+                  "httpStatus": 200
+                }
+              ],
+              "checkedAt": 1795465725661
+            },
+            {
+              "kind": "doi",
+              "id": "10.99999/mizan-evaluation-missing-2026",
+              "status": "not_found",
+              "registry": "DOI Handle System",
+              "attempts": [
+                {
+                  "registry": "Crossref",
+                  "outcome": "non_json_response",
+                  "httpStatus": 404
+                },
+                {
+                  "registry": "DOI Handle System",
+                  "outcome": "response",
+                  "httpStatus": 404
+                }
+              ],
+              "checkedAt": 1795465725785
+            },
+            {
+              "kind": "isbn",
+              "id": "9780306406157",
+              "status": "verified",
+              "registry": "Open Library",
+              "matchedISBN": "9780306406157",
+              "title": "Error-correction coding for digital communications",
+              "attempts": [
+                {
+                  "registry": "Open Library",
+                  "outcome": "response",
+                  "httpStatus": 200
+                }
+              ],
+              "checkedAt": 1795465725671
+            },
+            {
+              "kind": "isbn",
+              "id": "9780306406158",
+              "status": "invalid_checksum",
+              "registry": null
+            }
+          ],
+          "at": "2026-11-23T20:28:48.794982+00:00"
+        }
       }
     },
     {
@@ -1004,7 +1065,7 @@
         "test": "research/bench/integration.mjs",
         "record": "research/bench/integration-results.json",
         "observations": {
-          "started": "2026-11-23T20:08:31.407Z",
+          "started": "2026-11-23T20:23:38.989Z",
           "runtime": "v24.22.3",
           "checks": [
             {
@@ -1086,15 +1147,66 @@
     {
       "name": "Public HTTPS load and 3,000-word latency",
       "ar": "أداء الرابط العام تحت الحمل",
-      "status": "unverified",
-      "detail": "Release 3 has a public 50-account run. A release 4 public run is required for a release 4 SLA.",
-      "detailsAr": "يتوفر اختبار عام سابق لخمسين حسابًا على الإصدار الثالث. يتطلب اعتماد زمن الإصدار الرابع جولة عامة بحسابات مستقلة.",
+      "status": "passed",
+      "detail": "Public HTTPS. 3,000 words indexed, Word 1.03s and PDF 6.50s individually. 50/50 full reports retrieved, 50/50 uploads below 15s, p95 12.43s and maximum 12.51s. 50/50 peer reads denied.",
+      "detailsAr": "على الرابط العام مع الفهرسة، استغرق مستند Word من 3,000 كلمة 1.03 ثانية وPDF 6.50 ثانية. استُرجع 50 من 50 تقريرًا، واكتملت 50 عملية في أقل من 15 ثانية. المئين 95 بلغ 12.43 ثانية والأبطأ 12.51 ثانية. رُفضت قراءة تقارير الزملاء في 50 من 50 محاولة.",
       "evidence": {
         "implementation": "src/worker.mjs + src/analysis.mjs",
         "test": "scripts/release4-bench.py",
-        "record": "evidence/https-50-final.json",
+        "record": "evidence/release4-authenticated-public-load.json",
         "observations": {
-          "release3PublicP95Ms": 8427.95
+          "startedUTC": "2026-11-23T20:25:23.735+00:00",
+          "finishedUTC": "2026-11-23T20:28:19.519+00:00",
+          "releaseUnderTest": "appgprj_6b048b46ee948191aa48609a6dba0fcb~appgver_3cb81cff19648191b7d0de5371033b15",
+          "health": {
+            "service": {
+              "service": "Mizan",
+              "assessment": "zz-release-4",
+              "model": "AIP-HL-3",
+              "analysisFingerprint": "d853e1cccc80143108ed141bd0fd49d35ed5c08b5432369e77e6f75364b27c75",
+              "status": "online",
+              "database": "reachable",
+              "dbMs": 184,
+              "at": "2026-11-23T20:25:32.071Z"
+            },
+            "retention": {
+              "lastSuccess": 1795461108,
+              "retentionDays": 7
+            }
+          },
+          "distinctAuthenticatedStudents": 50,
+          "indexBeforeLoad": {
+            "cohortDocuments": 3,
+            "publishedSources": 5
+          },
+          "clientStartSpreadMs": 31.75,
+          "loadSummary": {
+            "requested": 50,
+            "verifiedReports": 50,
+            "errors": 0,
+            "under15Seconds": 50,
+            "p95Ms": 12432.42,
+            "maxMs": 12510.07,
+            "formats": {
+              "docx": 25,
+              "pdf": 25
+            }
+          },
+          "crossStudentReadbackHttp": {
+            "404": 50
+          },
+          "singlesSummary": {
+            "requested": 2,
+            "verifiedReports": 2,
+            "errors": 0,
+            "under15Seconds": 2,
+            "p95Ms": 6500.26,
+            "maxMs": 6500.26,
+            "formats": {
+              "docx": 1,
+              "pdf": 1
+            }
+          }
         }
       }
     },
@@ -1186,6 +1298,68 @@
         "record": "research/lti/evidence.json",
         "observations": {
           "protocolTestsPassed": 16
+        }
+      }
+    },
+    {
+      "name": "Committee workspace · public HTTPS",
+      "ar": "مساحة اللجنة على الرابط العام",
+      "status": "passed",
+      "detail": "9/9 checks passed for the committee workspace. See the individual outcomes.",
+      "detailsAr": "اجتازت مساحة اللجنة 9 من 9 فحوص عبر HTTPS. يبيّن السجل نتيجة كل فحص منفصل.",
+      "evidence": {
+        "implementation": "src/worker.mjs + src/auth.mjs",
+        "test": "scripts/live-checks.py",
+        "record": "evidence/release4-committee-functions.json",
+        "observations": {
+          "at": "2026-11-23T20:28:48.794982+00:00",
+          "checks": [
+            {
+              "name": "Evaluator login on public HTTPS",
+              "status": "passed",
+              "detail": "Evaluator logged in and authenticated identity was read back."
+            },
+            {
+              "name": "Experimental model identity",
+              "status": "passed",
+              "detail": "Final assessment classifier identity verified from the returned report."
+            },
+            {
+              "name": "Published paper source retrieval",
+              "status": "passed",
+              "detail": "Correct journal paper linked in the returned report."
+            },
+            {
+              "name": "Arabic document forensics and masking",
+              "status": "passed",
+              "detail": "Arabic DOCX inspected and visible test identifiers masked."
+            },
+            {
+              "name": "Authentic C2PA JPEG",
+              "status": "passed",
+              "detail": "Signed JPEG parsed, with separate signature, asset binding and trust fields."
+            },
+            {
+              "name": "Known OOXML signals",
+              "status": "passed",
+              "detail": "Uploaded binary and retrieved persisted report."
+            },
+            {
+              "name": "Clarity four edits and persistent report",
+              "status": "passed",
+              "detail": "Four sequential bilingual edits persisted, replayed and submitted over HTTPS, with personal identifiers masked."
+            },
+            {
+              "name": "External DOI/ISBN lookup",
+              "status": "passed",
+              "detail": "Genuine DOI/ISBN, invented DOI and checksum error distinguished."
+            },
+            {
+              "name": "JSON and bilingual PDF export",
+              "status": "passed",
+              "detail": "The committee account downloaded JSON and two parseable PDF audits."
+            }
+          ]
         }
       }
     }

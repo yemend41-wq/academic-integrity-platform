@@ -1,0 +1,73 @@
+{
+  "at": "2026-11-23T20:34:42.366294+00:00",
+  "origin": "https://mizan-integrity-studio.yemend41.chatgpt.site",
+  "checks": [
+    {
+      "name": "Temporary provisioner disabled",
+      "status": "passed",
+      "http": 401
+    },
+    {
+      "name": "Committee private login",
+      "status": "passed",
+      "http": 200,
+      "profileHttp": 200
+    },
+    {
+      "name": "Published analyzer matches measured analyzer",
+      "status": "passed",
+      "analysisFingerprint": "d853e1cccc80143108ed141bd0fd49d35ed5c08b5432369e77e6f75364b27c75",
+      "model": "AIP-HL-3"
+    },
+    {
+      "name": "3,000-word DOCX upload and saved JSON",
+      "status": "passed",
+      "sha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+      "uploadHttp": 201,
+      "readbackHttp": 200
+    },
+    {
+      "name": "ar PDF export",
+      "status": "passed",
+      "pages": 4,
+      "responseSha256": "de5d545ea945d95a0716edfd763c6aec05aa89997ad7fdf9f638d3549c6c449c"
+    },
+    {
+      "name": "en PDF export",
+      "status": "passed",
+      "pages": 4,
+      "responseSha256": "0a28a390d50e4e856168a45c2f86771da4d46aa0c77c15f29cefd14cc572247b"
+    },
+    {
+      "name": "3,000-word PDF upload and saved JSON",
+      "status": "passed",
+      "sha256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+      "uploadHttp": 201,
+      "readbackHttp": 200
+    },
+    {
+      "name": "Committee logout",
+      "status": "passed"
+    }
+  ],
+  "completedUTC": "2026-11-23T20:34:55.889047+00:00",
+  "siteSource": "1ed9b3e284b7bec03a2678860aa733257d1e02c5",
+  "hostingVersion": 6,
+  "environmentRevision": 4,
+  "revocationHistory": [
+    {
+      "environmentRevision": 3,
+      "action": "Removed the optional benchmark binding and deployed version 6",
+      "observedLoginHTTP": 200,
+      "expectedHTTP": 401,
+      "status": "failed"
+    },
+    {
+      "environmentRevision": 4,
+      "action": "Replaced the benchmark runtime value with explicit inactive configuration and deployed the same version",
+      "observedLoginHTTP": 401,
+      "expectedHTTP": 401,
+      "status": "passed"
+    }
+  ]
+}

@@ -1,8 +1,14 @@
-import concurrent.futures, datetime, hashlib,json
+import argparse, concurrent.futures, datetime, hashlib,json
 from pathlib import Path
 import httpx
 from lxml import html as markup
 origin='https://mizan-integrity-studio.yemend41.chatgpt.site'
+parser=argparse.ArgumentParser()
+parser.add_argument('--version',type=int,required=True)
+parser.add_argument('--site-source',required=True)
+parser.add_argument('--out',type=Path,required=True)
+args=parser.parse_args()
+expected_register=json.loads(Path('evidence/acceptance-release-4.json').read_text())
 with httpx.Client(base_url=origin,timeout=30) as c:
  def get(path):
   res=c.get(path);return res.status_code,res
@@ -17,7 +23,11 @@ with httpx.Client(base_url=origin,timeout=30) as c:
   elif path.startswith('/acceptance'):
    html=markup.fromstring(res.content.decode('utf-8'));locale=path[-2:];rows=html.xpath('//main//article')
    detail={'lang':html.get('lang'),'heading':html.xpath('//h1')[0].text_content(),'acceptanceRows':len(rows),'cohortRows':len(html.xpath('(//section[contains(@class,"study-panel")]//table)[1]/tbody/tr')),'hasEvaluationLogin':bool(html.xpath('//a[@href="/#acceptance"]'))}
-   ok=ok and locale==detail['lang'] and len(rows)==13 and detail['cohortRows']==35 and detail['hasEvaluationLogin']
+   for node,check in zip(rows,expected_register['checks']):
+    label=check['ar'] if locale=='ar' else check['name']
+    detail_text=check['detailsAr'] if locale=='ar' else check['detail']
+    ok=ok and label in node.text_content() and detail_text in node.text_content()
+   ok=ok and locale==detail['lang'] and len(rows)==len(expected_register['checks']) and detail['cohortRows']==35 and detail['hasEvaluationLogin']
   elif path=='/api/retention':
    detail=res.json();ok=ok and detail.get('retentionDays')==7 and bool(detail.get('lastSuccess'))
   elif path=='/lti/config':
@@ -26,6 +36,6 @@ with httpx.Client(base_url=origin,timeout=30) as c:
    ok=ok and '/studio.js' in res.text
   checks.append(dict(path=path,http=status,status='passed' if ok else 'failed',responseSHA256=hashlib.sha256(res.content).hexdigest(),detail=detail))
 print([(x['path'],x['http'],x['status']) for x in checks])
-d=dict(checkedUTC=datetime.datetime.now(datetime.timezone.utc).isoformat(),origin=origin,siteSource='28d811b879831655f3559b933ea9f677315c76cb',version=4,scope='Anonymous public endpoints; no claimed authenticated committee or public load retest.',checks=checks)
-Path('evidence/release4-publication.json').write_text(json.dumps(d,indent=2,ensure_ascii=False)+'\n')
+d=dict(checkedUTC=datetime.datetime.now(datetime.timezone.utc).isoformat(),origin=origin,siteSource=args.site_source,version=args.version,scope='Public endpoints and bilingual register contents. Separate records document the authenticated load and committee tests.',checks=checks)
+with args.out.open('x',encoding='utf-8') as f: f.write(json.dumps(d,indent=2,ensure_ascii=False)+'\n')
 assert all(x['status']=='passed' for x in checks)

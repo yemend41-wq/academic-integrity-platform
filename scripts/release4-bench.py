@@ -86,7 +86,8 @@ async def exercise(args, result, client_args, credential):
         require(profile == identity and isinstance(profile.get("role"), str), "provisioner_identity")
         result["provisionerRole"] = profile["role"]
 
-        key = secrets.token_hex(6)
+        key = profile.get("benchmark") if profile["role"] == "test-provisioner" else secrets.token_hex(6)
+        require(isinstance(key,str) and bool(re.fullmatch(r"[0-9a-f]{12}",key)), "invalid_benchmark_cohort")
         cohort = "bench-" + key
         gate = asyncio.Semaphore(5)
         clients = []

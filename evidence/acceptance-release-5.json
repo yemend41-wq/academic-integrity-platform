@@ -2,7 +2,7 @@
   "id": "zz-release-5",
   "title": "Release 5 acceptance register",
   "titleAr": "سجل قبول الإصدار الخامس",
-  "testedAt": "2026-11-23T21:29:17.980Z",
+  "testedAt": "2026-11-23T21:32:56.774888+00:00",
   "model": "AIP-HL-3",
   "checks": [
     {
@@ -152,13 +152,13 @@
       "name": "Mobile and desktop committee journey",
       "ar": "رحلة اللجنة على الهاتف والحاسوب",
       "status": "partial",
-      "detail": "Browser controls and downloads: 20/20 passed in local Chromium at 390 px and 1240 px. The owner exercised two real Android uploads, analysis and both language PDF downloads. On-device JSON opening and a physical rerun after the PDF correction remain unconfirmed. Arabic PDF rendering, mixed identifiers and selected-text checks passed on regenerated test files.",
-      "detailsAr": "اجتازت الواجهة والتنزيلات 20/20 فحصًا في Chromium بعرضَي 390 و1240 بكسل. أثبت المستخدم على Android رفع مستندين وتحليلهما وتنزيل PDF باللغتين. يبقى فتح JSON على الهاتف وإعادة التجربة عليه بعد إصلاح PDF غير متحققين. اجتاز تصدير PDF العربي فحص المحاذاة ونسخ النص المختلط والمعرّفات على ملفات أعيد توليدها.",
-      "verifiedAt": "2026-11-23T21:29:17.980Z",
+      "detail": "Browser controls and downloads: 20/20 passed in local Chromium at 390 px and 1240 px. The owner exercised two real Android uploads, analysis and both language PDF downloads. On-device JSON opening and a physical rerun after the PDF correction remain unconfirmed. Arabic PDF rendering, mixed identifiers and selected-text checks passed on regenerated test files. Four PDFs freshly exported over public HTTPS from a new DOCX and a publisher PDF passed checks in three readers. Each preserved its report ID and language, and every page rendered.",
+      "detailsAr": "اجتازت الواجهة والتنزيلات 20/20 فحصًا في Chromium بعرضَي 390 و1240 بكسل. أثبت المستخدم على Android رفع مستندين وتحليلهما وتنزيل PDF باللغتين. يبقى فتح JSON على الهاتف وإعادة التجربة عليه بعد إصلاح PDF غير متحققين. اجتاز تصدير PDF العربي فحص المحاذاة ونسخ النص المختلط والمعرّفات على ملفات أعيد توليدها. وجرى تنزيل أربعة تقارير جديدة عبر HTTPS من مستند Word وورقة بحثية بصيغة PDF. قرأتها ثلاثة برامج، وحافظت على المعرّف واللغة، وفُتحت جميع صفحاتها.",
+      "verifiedAt": "2026-11-23T21:32:32.598012+00:00",
       "evidence": {
         "implementation": "ui/client.mjs + ui/studio.css",
         "test": "test/browser-runner.js",
-        "record": "evidence/release5-browser.json + evidence/release5-android.json + evidence/release5-pdf-rtl.json"
+        "record": "evidence/release5-browser.json + evidence/release5-android.json + evidence/release5-pdf-rtl.json + evidence/release5-live-pdf.json"
       }
     },
     {
@@ -180,11 +180,11 @@
       "status": "passed",
       "detail": "Current public functional checks passed: 10/10.",
       "detailsAr": "اجتازت مساحة اللجنة على الإصدار المنشور 10/10 فحصًا.",
-      "verifiedAt": "2026-11-23T21:09:59.569713+00:00",
+      "verifiedAt": "2026-11-23T21:32:56.774888+00:00",
       "evidence": {
         "implementation": "src/worker.mjs + src/auth.mjs",
         "test": "scripts/release5-committee.py",
-        "record": "evidence/release5-committee.json"
+        "record": "evidence/release5-final-committee.json"
       }
     }
   ]

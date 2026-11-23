@@ -1,4 +1,4 @@
-import { displayedOverlap, sourceScope, writingExplanation } from "./report-interpretation.mjs";
+import { displayedOverlap, sourceScope, writingExplanation, writingLabel, confidenceNote, pageCoverage } from "./report-interpretation.mjs";
 import { writingPassages } from "./writing-passages.mjs";
 import { mountBlindPanel } from "./blind-panel.mjs";
 import { independentPanel } from "./independent-study.mjs";
@@ -453,6 +453,7 @@ function highlight(text, spans, mode) {
   return out + esc(text.slice(pos));
 }
 function renderReport(c, r) {
+  const writingText = r.writingText ?? r.text;
   const sim = r.similarity,
     det = r.detector;
   c.innerHTML =
@@ -464,7 +465,7 @@ function renderReport(c, r) {
     '<div class="metric-grid">' +
     [
       [displayedOverlap(sim, ar), t("Source overlap", "التشابه مع المصادر")],
-      [det.display ?? "—", t("AI writing signal", "مؤشّر الكتابة المولّدة"), writingExplanation(det, ar)],
+      [writingLabel(det, ar), t("AI writing signal", "مؤشّر الكتابة المولّدة"), writingExplanation(det, ar)],
       [r.words, t("Extracted words", "الكلمات المستخرجة")],
     ]
       .map(
@@ -611,6 +612,14 @@ function renderReport(c, r) {
       }
     });
   };
+  function renderParagraphs(evidence) {
+    const unit = evidence.unit === "text_block" ? t("Extracted text blocks","كتل النص المستخرج") : t("Paragraphs","الفقرات");
+    return '<details class="record"><summary>'+unit+' · <bdi>'+evidence.total+'</bdi></summary>'+
+      '<table><thead><tr><th>#</th><th>'+t("Eligible words","كلمات مؤهلة")+'</th><th>'+t("Selected words","كلمات للمراجعة")+
+      '</th></tr></thead><tbody>'+evidence.rows.map(row=>'<tr><td><button type="button" class="plain" data-writing-block="'+row.number+'">'+row.number+'</button></td><td>'+row.eligibleWords+'</td><td>'+
+      row.selectedWords+'</td></tr>').join('')+'</tbody></table>'+
+      (evidence.total>evidence.rows.length ? '<p>'+t("First 120 blocks shown.","يعرض الجدول أول 120 كتلة.")+'</p>' : '')+'<div class="review-text" data-block-preview dir="auto" aria-live="polite"></div></details>';
+  }
   const tab = (k) => {
     c.querySelectorAll("[data-tab]").forEach((b) =>
       b.classList.toggle("active", b.dataset.tab === k),
@@ -627,8 +636,11 @@ function renderReport(c, r) {
         ) +
         '</p><p class="hint">' +
         esc(writingExplanation(det, ar)) +
+        '</p><p class="hint">' + esc(confidenceNote(ar)) + ' <a href="/model-card?lang=' + (ar?"ar":"en") + '">'+ t("Model card","بطاقة النموذج") + '</a>' +
         '</p><p class="hint">' + t("Eligible words", "الكلمات المؤهلة") + ' · <bdi>' + esc(det.eligibleWords) + '</bdi>. ' +
         t("The percentage is the share of eligible words in selected segments.", "تعبّر النسبة عن حصة الكلمات المؤهلة الواقعة في المقاطع التي حدّدها الكاشف.") + '</p>' +
+        (pageCoverage(det.review, ar) ? '<p class="hint">'+esc(pageCoverage(det.review, ar))+'</p>' : '') +
+        (det.review?.paragraphs ? renderParagraphs(det.review.paragraphs) : '') +
         (det.status === "analyzed" && det.segments?.some(s => s.flagged) ? '<label class="field">' +
           t("Blue highlighting", "عرض التظليل الأزرق") + '<select data-writing-level><option value="sentences">' +
           t("Sentences", "الجمل") + '</option><option value="passages">' + t("Contiguous passages", "المقاطع المتصلة") +
@@ -636,9 +648,18 @@ function renderReport(c, r) {
       const displaySpans = () => {
         const segments = det.status === "analyzed" ? det.segments || [] : [];
         const spans = detail.querySelector("[data-writing-level]")?.value === "passages" ?
-          writingPassages(r.text, segments) : segments.filter(s => s.flagged);
-        detail.querySelector("[data-writing-text]").innerHTML = highlight(r.text, spans, "ai");
+          writingPassages(writingText, segments) : segments.filter(s => s.flagged);
+        detail.querySelector("[data-writing-text]").innerHTML = highlight(writingText, spans, "ai");
       };
+      detail.querySelectorAll("[data-writing-block]").forEach(button=>{
+        button.onclick=()=>{
+          const row=det.review.paragraphs.rows.find(item=>item.number===Number(button.dataset.writingBlock));
+          if (!row) return;
+          const spans=det.segments.filter(s=>s.flagged && s.end>row.start && s.start<row.end)
+            .map(s=>({start:Math.max(s.start,row.start)-row.start,end:Math.min(s.end,row.end)-row.start}));
+          detail.querySelector("[data-block-preview]").innerHTML=highlight(writingText.slice(row.start,row.end),spans,"ai");
+        };
+      });
       const level = detail.querySelector("[data-writing-level]");
       if (level) level.onchange = displaySpans;
       displaySpans();
@@ -763,7 +784,7 @@ async function health(c, seq) {
     t("Acceptance register", "سجل القبول") +
     "</div><h2>" +
     t("Test evidence", "نتائج الاختبار") +
-    "</h2>" +
+    '</h2><p><a href="/detector-study?lang='+(ar?'ar':'en')+'">'+t("Bilingual detector comparison","المقارنة التجريبية بين كواشف الكتابة")+'</a></p>' +
     [...d.runs, d.baseline]
       .map((run, i) => {
         const title = esc(ar ? run.titleAr || run.title : run.title);

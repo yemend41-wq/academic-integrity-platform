@@ -2,8 +2,7 @@ import {tokenize,windows,units,scoredWindow} from './features.mjs';
 
 
 export function createDetector(models,version) {
- return function detect(text) {
-  const words=tokenize(text);
+ return function detect(text, words=tokenize(text)) {
   const scores=windows(words).map(w=>({...w,score:w.lang?scoredWindow(models[w.lang],words,w):null}));
   let cursor=0, eligibleWords=0, flaggedWords=0;
   const segments=[];

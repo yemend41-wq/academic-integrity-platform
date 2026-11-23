@@ -19,7 +19,7 @@ export function publicAcceptance(assessment, model, language) {
   const html='<!doctype html><html lang="'+(ar?"ar":"en")+'" dir="'+(ar?"rtl":"ltr")+'"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/studio.css"><title>'+title+' · Mizan</title></head><body>'+
     '<header><a class="brand" href="/">Mizan · ميزان</a><a class="plain" href="/acceptance?lang='+(ar?"en":"ar")+'">'+(ar?"English":"العربية")+'</a></header>'+
     '<main class="public-register"><div class="page-head"><div class="eyebrow"><bdi>'+escape(model.version)+'</bdi></div>'+heading+
-    '<a href="/#acceptance">'+t("Evaluator workspace","الدخول إلى مساحة اللجنة")+'</a> · <a href="/model-card?lang='+(ar?"ar":"en")+'">'+t("Model card","بطاقة النموذج")+'</a> · <a href="/health?lang='+(ar?"ar":"en")+'">'+t("Live health","حالة الخدمة الآن")+'</a> · <a href="/acceptance.json" download>'+t("Download acceptance record","تنزيل سجل القبول")+'</a></div>'+
+    '<a href="/detector-study?lang='+(ar?'ar':'en')+'">'+t('Detector evaluation','تقييم الكاشف')+'</a> · <a href="/#acceptance">'+t("Evaluator workspace","الدخول إلى مساحة اللجنة")+'</a> · <a href="/model-card?lang='+(ar?"ar":"en")+'">'+t("Model card","بطاقة النموذج")+'</a> · <a href="/health?lang='+(ar?"ar":"en")+'">'+t("Live health","حالة الخدمة الآن")+'</a> · <a href="/acceptance.json" download>'+t("Download acceptance record","تنزيل سجل القبول")+'</a></div>'+
     '<section class="panel">'+rows+'</section>'+independentPanel(model.release5,t,escape)+studyPanel(model.release4,t,escape)+'</main></body></html>';
   return new Response(html,{headers:{"Content-Type":"text/html; charset=utf-8","Cache-Control":"no-store"}});
 }
@@ -42,7 +42,7 @@ export function publicReviewPage(kind, model, language, health) {
   const title = kind === "health" ? t("System health", "صحة النظام") : t("Writing detector model card", "بطاقة نموذج كشف الكتابة");
   const link = (path, label) => '<a href="' + path + '?lang=' + locale + '">' + label + '</a>';
   const header = '<header><a class="brand" href="/">Mizan · ميزان</a><a href="/'+kind+'?lang='+(ar?'en':'ar')+'">'+(ar?'English':'العربية')+'</a></header>';
-  const nav = '<p>' + link('/acceptance',t('Acceptance register','سجل القبول')) + ' · ' + (kind==='health'?link('/model-card',t('Model card','بطاقة النموذج')):link('/health',t('System health','صحة النظام'))) + '</p>';
+  const nav = '<p>' + link('/detector-study',t('Technical evaluation','التقرير التقني للكاشف')) + ' · ' + link('/acceptance',t('Acceptance register','سجل القبول')) + ' · ' + (kind==='health'?link('/model-card',t('Model card','بطاقة النموذج')):link('/health',t('System health','صحة النظام'))) + '</p>';
   let body;
   if (kind === "health") {
     const rows = [

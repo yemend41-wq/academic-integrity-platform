@@ -24,6 +24,11 @@ async function suite(width,lang){
    const d=doc();const linked=d.querySelector('a[data-evidence]');assert(linked,'missing linked matching passage');
    linked.click();const pair=d.querySelector(linked.getAttribute('href'));assert(pair && pair.closest('details').open && pair.querySelector('blockquote').textContent.trim().length>20,'source passage open');
    d.querySelector('#rq').click();d.querySelector('#refilter').click();await waitFor(()=>!d.querySelector('#refilter')?.disabled);
+   d.querySelector('[data-tab="writing"]').click();
+   assert(d.querySelector('#detail a[href^="/model-card"]'),'missing confidence evidence link');
+   const block=d.querySelector('[data-writing-block]');
+   assert(block,'missing paragraph evidence');block.closest('details').open=true;block.click();
+   assert(d.querySelector('[data-block-preview]').textContent.trim().length>20,'paragraph reading view empty');
    for(const tab of ['writing','file','refs','matches']){d.querySelector('[data-tab="'+tab+'"]').click();assert(d.querySelector('#detail').textContent.trim(),'empty tab');}
    assert(!d.querySelector('#rq').checked,'selected exclusions survived tab switch');
    const urls=[...d.querySelectorAll('a[download]')].map(a=>a.getAttribute('href'));

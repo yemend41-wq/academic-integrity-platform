@@ -1,0 +1,20 @@
+{
+  "measurement": "local, known-input functional QA; no authorship labels",
+  "fixtureAgreement": {
+    "paragraphs": 6,
+    "unvocalizedExactParagraphs": 6,
+    "fullyVocalizedExactParagraphs": 3,
+    "ambiguousVowelMarksOmitted": 9,
+    "sourceExpectedTokens": 76,
+    "legacyTokens": 89,
+    "candidateTokens": 76,
+    "tokenOrderExact": true,
+    "everyTokenUsesOwnUtf16Offsets": true,
+    "changedDescriptionLabels": 11,
+    "writingInvariantUnderAlternativeLabels": true
+  },
+  "primaryByteExact": {
+    "files": 16,
+    "knownComparisonOutputs": 10
+  }
+}

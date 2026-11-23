@@ -1,0 +1,34 @@
+{
+  "alternate.docx": {
+    "file": "959254d99c326d586b0c57a26367cbf76afda473f9711c0df1679cf0d2fe3204",
+    "legacyText": "177dd12ad4c77491833415ce03f636f3c82e698c9f44753cb7499d6e6c945c1d"
+  },
+  "bilingual.docx": {
+    "file": "34af8661b4bfbcae2f7a144c317b3313235ff9e228e3fbbab0701dd31f60657b",
+    "legacyText": "0786cf5db035eaa106be912e28becb10fc5218635d50155949aa3c7e8cb64f48"
+  },
+  "breaks.docx": {
+    "file": "af9fdcd997730c53c3738939c4d3111668d39ba73d3083433b8e5bb0b45416cf",
+    "legacyText": "7af8e9fba3ae363cb19b82b43991d07fe9450124ee53077e3bb893ec8e5f9626"
+  },
+  "textbox.docx": {
+    "file": "9326ec8fe97c86fd64062bcc81a5d7118080dd8d92aaa4734472db321635e80f",
+    "legacyText": "6ddba9903aed5d8a2921d2ea316f9f3ed54a44fba47375525fe0dc7b358b53e4"
+  },
+  "bilingual.pdf": {
+    "file": "eadf9964ca14225034ed30c8108d542523474439f068663ccea6ae7cab54b2b3",
+    "legacyText": "b955b3f3435ecf516b750789509f3d749a90697072933a5e9c0c5f32e27aa091"
+  },
+  "scan.pdf": {
+    "file": "14be5d06a313cad936ce89bf71cde8d11a1d672ea8883681a17c6ee25e1f4ecb",
+    "legacyText": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "hybrid.pdf": {
+    "file": "865631bd99ecec75b4858bd408dd27f367e2a542957e1811e0c0c53658db936e",
+    "legacyText": "3f6b31579431ad5be163825e61c45d4a50a9717fa82cc4c961f17e7cb1b9f4b3"
+  },
+  "bilingual-alt-label.pdf": {
+    "file": "868d744c24698b9b3e1dd71b2c2c65c73fa46cc54d021c5fdbf109e7a9139227",
+    "legacyText": "b955b3f3435ecf516b750789509f3d749a90697072933a5e9c0c5f32e27aa091"
+  }
+}

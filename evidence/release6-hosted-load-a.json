@@ -1,0 +1,102 @@
+{
+  "startedUTC": "2026-11-23T22:21:27.930+00:00",
+  "finishedUTC": "2026-11-23T22:24:21.466+00:00",
+  "status": "passed",
+  "requiredModel": "AIP-HL-3",
+  "workload": "One 300-word indexed excerpt; sequential indexed DOCX/PDF followed by 50 synchronized uploads, 25 per format, same published 3000-word excerpt. Concurrent readback uses the owner session.",
+  "client": {
+    "httpx": "0.28.1",
+    "python": "3.12.14",
+    "httpVersion": "HTTP/1.1",
+    "hardwareOrServerRegion": "not independently measured"
+  },
+  "distinctAuthenticatedStudents": 50,
+  "indexSeed": {
+    "words": 300,
+    "sha256": "98360e35ec4cfe6fccf1f12229b004217f0bf6414a6c0262117ccc81ce43047d",
+    "cohortFilesBeforeSeed": 0,
+    "preexistingPublishedSources": 5
+  },
+  "indexBeforeLoad": {
+    "cohortDocuments": 3,
+    "publishedSources": 5
+  },
+  "clientStartSpreadMs": 35.71,
+  "singlesSummary": {
+    "requested": 2,
+    "verifiedReports": 2,
+    "errors": 0,
+    "under15Seconds": 2,
+    "p95Ms": 6399.64,
+    "maxMs": 6399.64,
+    "formats": {
+      "docx": 1,
+      "pdf": 1
+    }
+  },
+  "loadSummary": {
+    "requested": 50,
+    "verifiedReports": 50,
+    "errors": 0,
+    "under15Seconds": 50,
+    "p95Ms": 7922.18,
+    "maxMs": 8101.02,
+    "formats": {
+      "docx": 25,
+      "pdf": 25
+    }
+  },
+  "crossStudentReadbackHttp": {
+    "404": 50
+  },
+  "concurrentBatchThroughFinalReadbackMs": 8687.06,
+  "environment": "public HTTPS",
+  "analysisFingerprint": "4160591029aea016ae9d034b50f429bf4e16ca6d3688c278ebe4aa95b9a4551c",
+  "singles": [
+    {
+      "format": "docx",
+      "inputSha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+      "uploadToCompleteReportMs": 824.99,
+      "verified": true
+    },
+    {
+      "format": "pdf",
+      "inputSha256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+      "uploadToCompleteReportMs": 6399.64,
+      "verified": true
+    }
+  ],
+  "inputsByFormat": {
+    "docx": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+    "pdf": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7"
+  },
+  "uploadStatusCounts": {
+    "201": 50
+  },
+  "distinctWorkload": {
+    "startedUTC": "2026-11-23T22:24:07.002989+00:00",
+    "finishedUTC": "2026-11-23T22:24:21.444084+00:00",
+    "sourceSHA256": "baf9b04fcf6e0008f30eaaa6697277751448c1070b20175e0082f28cbb161fd3",
+    "uniqueVerified": 50,
+    "verifiedUnder15s": 50,
+    "failed": 0,
+    "peerReadHTTP": {
+      "404": 50
+    },
+    "p95Ms": 8191.59,
+    "maxMs": 8396.34,
+    "status": "passed",
+    "uniqueInputTexts": 50,
+    "formats": {
+      "docx": 25,
+      "pdf": 25
+    },
+    "sourceRangeCompared": [
+      42,
+      42
+    ],
+    "selectedIndexWindowLimited": 50,
+    "fixtureDigest": "c7309886d49fafdf51e442cd158f37acd2305a91cfc995b55eb7c9021b869818"
+  },
+  "publicEvidenceFormat": 1
+}

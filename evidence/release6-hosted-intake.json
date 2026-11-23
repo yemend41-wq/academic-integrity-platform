@@ -1,0 +1,77 @@
+{
+  "startedUTC": "2026-11-23T22:29:34.412706+00:00",
+  "cases": [
+    {
+      "fixture": "bilingual.docx",
+      "http": 201,
+      "storedJSON": true,
+      "preservedSimilarityInput": true,
+      "status": "insufficient",
+      "pagesWithLetters": null
+    },
+    {
+      "fixture": "bilingual.pdf",
+      "http": 201,
+      "storedJSON": true,
+      "preservedSimilarityInput": true,
+      "status": "insufficient",
+      "pagesWithLetters": 1
+    },
+    {
+      "fixture": "bilingual-alt-label.pdf",
+      "http": 201,
+      "storedJSON": true,
+      "preservedSimilarityInput": true,
+      "status": "insufficient",
+      "pagesWithLetters": 1
+    },
+    {
+      "fixture": "alternate.docx",
+      "http": 201,
+      "storedJSON": true,
+      "preservedSimilarityInput": true,
+      "status": "insufficient",
+      "pagesWithLetters": null
+    },
+    {
+      "fixture": "textbox.docx",
+      "http": 201,
+      "storedJSON": true,
+      "preservedSimilarityInput": true,
+      "status": "insufficient",
+      "pagesWithLetters": null
+    },
+    {
+      "fixture": "hybrid.pdf",
+      "http": 201,
+      "storedJSON": true,
+      "preservedSimilarityInput": true,
+      "status": "insufficient",
+      "pagesWithLetters": 1
+    },
+    {
+      "fixture": "scan.pdf",
+      "http": 201,
+      "storedJSON": true,
+      "preservedSimilarityInput": true,
+      "status": "unavailable",
+      "pagesWithLetters": 0
+    }
+  ],
+  "source": "Author-created public QA files; no student/authorship data.",
+  "exports": {
+    "ar": {
+      "pages": 4,
+      "pdfOpened": true,
+      "bytes": 206986
+    },
+    "en": {
+      "pages": 4,
+      "pdfOpened": true,
+      "bytes": 89333
+    }
+  },
+  "analysisFingerprint": "9bf90be4ac51ac1f2e46890eaba33ff0fe34c1ed88a274eafc84bece928e188e",
+  "status": "passed",
+  "finishedUTC": "2026-11-23T22:29:49.169864+00:00"
+}

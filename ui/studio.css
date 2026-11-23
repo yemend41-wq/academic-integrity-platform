@@ -656,3 +656,7 @@ pre {
 .report-id { overflow-wrap: anywhere; user-select: all; }
 
 .metric .metric-note{display:block;font-size:.86rem;line-height:1.5;margin-top:.55rem;color:var(--ink,#163831)}
+.study-scroll { overflow-x:auto; margin-block:1rem; }
+.study-scroll table { border-collapse:collapse; font-variant-numeric:tabular-nums; }
+.study-scroll th,.study-scroll td { white-space:nowrap; padding:.45rem .65rem; border-bottom:1px solid var(--line); text-align:start; }
+@media print { .study-scroll { overflow:visible; } .study-scroll table { font-size:8pt; } .study-scroll th,.study-scroll td { white-space:normal; padding:2pt; } }

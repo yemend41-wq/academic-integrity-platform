@@ -13,6 +13,8 @@ import {
   purge,
 } from "./auth.mjs";
 import { publicAcceptance, publicRegister, publicReviewPage } from "./acceptance.mjs";
+import {technicalPage, classificationMetrics, wilson} from "./detector-study.mjs";
+import detectorStudy from "../evidence/detector-release-6.json";
 import { analyze, getReport, similarity, blindWritingScore } from "./analysis.mjs";
 import { getDraft, saveDraft } from "./drafts.mjs";
 import { pdfAudit } from "./report.mjs";
@@ -21,7 +23,7 @@ import previousCard from "../research/detector/card.json";
 import independentStudies from "../evidence/release5-model-studies.json";
 const modelEvidence = {...previousCard,release5:independentStudies};
 import ltiEvidence from "../research/lti/evidence.json";
-import assessment from "../evidence/acceptance-release-5.json";
+import assessment from "../evidence/acceptance-release-6.json";
 import baseline from "../evidence/initial.json";
 import { asset } from "./web-assets.mjs";
 const allowed = ["docx", "pdf", "png", "jpg", "jpeg", "txt"];
@@ -37,6 +39,8 @@ export async function route(req, env, ctx = {}) {
         onLaunch: (p) => openSession(env, p, true),
       })) || json({ error: "not_found" }, 404)
     );
+  if (path === "/detector-study" && m === "GET") return technicalPage(detectorStudy,u.searchParams.get("lang"));
+  if (path === "/detector-study.json" && m === "GET") return json({...detectorStudy,studies:detectorStudy.studies.map(s=>({...s,rows:s.rows.map(row=>({...row,...classificationMetrics(row),fprCI95:wilson(row.fp,row.fp+row.tn)}))}))},200,{"content-disposition":'attachment; filename="Mizan-detector-study.json"'});
   if (path === "/model-card" && m === "GET")
     return publicReviewPage("model-card", modelEvidence, u.searchParams.get("lang"));
   if (path === "/health" && m === "GET") {

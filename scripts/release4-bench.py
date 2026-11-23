@@ -24,6 +24,7 @@ import httpx
 PROJECT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT / "research" / "bench"))
 import benchmark as fixture
+import distinct as distinct_load
 
 WIDTH = 50
 EXPECTED_HTTP = 201
@@ -103,6 +104,7 @@ async def exercise(args, result, client_args, credential):
                 require(user == me and me["cohort"] == cohort and me["role"] == "student", "student_identity_or_isolation")
                 return client, me["id"]
 
+        varied_cases = distinct_load.fixtures(args.distinct_source) if args.distinct_source else None
         try:
             setup = await asyncio.gather(*(student(i) for i in range(WIDTH)), return_exceptions=True)
             for item in setup:
@@ -173,6 +175,8 @@ async def exercise(args, result, client_args, credential):
             gates = (result["loadSummary"]["verifiedReports"] == WIDTH, isolation.count(404) == WIDTH,
                      result["loadSummary"]["under15Seconds"] == WIDTH, result["singlesSummary"]["under15Seconds"] == len(singles))
             result["status"] = "passed" if all(gates) else "failed"
+            if varied_cases:
+                result["distinctWorkload"] = await distinct_load.run([c for c, _ in setup], varied_cases, args.model)
         finally:
             await asyncio.gather(*(c.aclose() for c in clients))
 
@@ -187,6 +191,7 @@ def main():
     parser.add_argument("--worker-sha256", help="Known digest of the local Worker bundle, verified by the local runner")
     parser.add_argument("--preflight-only", action="store_true")
     parser.add_argument("--prompt", action="store_true")
+    parser.add_argument("--distinct-source", type=Path, help="Also exercise 50 different indexed passages from the pinned full Melville text on the same sessions.")
     parser.add_argument("--local-ca", type=Path)
     args = parser.parse_args()
     if not fixture.origin_allowed(args.origin) or urlsplit(args.origin).scheme != "https":

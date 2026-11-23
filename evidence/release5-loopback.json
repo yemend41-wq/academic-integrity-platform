@@ -1,0 +1,78 @@
+{
+  "startedUTC": "2026-11-23T21:00:45.131+00:00",
+  "finishedUTC": "2026-11-23T21:00:50.200+00:00",
+  "status": "passed",
+  "requiredModel": "AIP-HL-3",
+  "workload": "One 300-word indexed excerpt; sequential indexed DOCX/PDF followed by 50 synchronized uploads, 25 per format, same published 3000-word excerpt. Concurrent readback uses the owner session.",
+  "client": {
+    "httpx": "0.28.1",
+    "python": "3.12.14",
+    "httpVersion": "HTTP/1.1",
+    "hardwareOrServerRegion": "not independently measured"
+  },
+  "localWorkerSha256": "688ae925a09165ed701e7f0bffd5c2e49f3f65cb63e972c8b558e3de40314632",
+  "distinctAuthenticatedStudents": 50,
+  "indexSeed": {
+    "words": 300,
+    "sha256": "98360e35ec4cfe6fccf1f12229b004217f0bf6414a6c0262117ccc81ce43047d",
+    "cohortFilesBeforeSeed": 0,
+    "preexistingPublishedSources": 5
+  },
+  "indexBeforeLoad": {
+    "cohortDocuments": 3,
+    "publishedSources": 5
+  },
+  "clientStartSpreadMs": 31.77,
+  "singlesSummary": {
+    "requested": 2,
+    "verifiedReports": 2,
+    "errors": 0,
+    "under15Seconds": 2,
+    "p95Ms": 198.66,
+    "maxMs": 198.66,
+    "formats": {
+      "docx": 1,
+      "pdf": 1
+    }
+  },
+  "loadSummary": {
+    "requested": 50,
+    "verifiedReports": 50,
+    "errors": 0,
+    "under15Seconds": 50,
+    "p95Ms": 2441.52,
+    "maxMs": 2615.7,
+    "formats": {
+      "docx": 25,
+      "pdf": 25
+    }
+  },
+  "crossStudentReadbackHttp": {
+    "404": 50
+  },
+  "concurrentBatchThroughFinalReadbackMs": 2706.15,
+  "environment": "isolated local HTTPS",
+  "analysisFingerprint": "ab7348672aacd049ab2b7b614b15fee909fb139302fa9007cd04236e8b5bb3dd",
+  "singles": [
+    {
+      "format": "docx",
+      "inputSha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+      "uploadToCompleteReportMs": 99.0,
+      "verified": true
+    },
+    {
+      "format": "pdf",
+      "inputSha256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+      "uploadToCompleteReportMs": 198.66,
+      "verified": true
+    }
+  ],
+  "inputsByFormat": {
+    "docx": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+    "pdf": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7"
+  },
+  "uploadStatusCounts": {
+    "201": 50
+  },
+  "publicEvidenceFormat": 1
+}

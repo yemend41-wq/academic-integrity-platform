@@ -1,0 +1,170 @@
+{
+  "at": "2026-11-23T21:29:17.980Z",
+  "environment": "Chrome via managed local preview; actual SQLite workspace and ephemeral test principal",
+  "checks": [
+    {
+      "width": 390,
+      "lang": "ar",
+      "name": "Upload a real 3,000-word DOCX in rendered controls",
+      "status": "passed",
+      "sha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+      "overflow": 0
+    },
+    {
+      "width": 390,
+      "lang": "ar",
+      "name": "Report tabs, exclusions, JSON and PDF controls",
+      "status": "passed",
+      "pdfCount": 2,
+      "jsonOpened": true
+    },
+    {
+      "width": 390,
+      "lang": "ar",
+      "name": "Clarity entry, paste, save, playback and submission",
+      "status": "passed",
+      "lastRevision": 2
+    },
+    {
+      "width": 390,
+      "lang": "ar",
+      "name": "Submissions, model card and health",
+      "status": "passed",
+      "overflow": 0
+    },
+    {
+      "width": 390,
+      "lang": "ar",
+      "name": "Sealed blind panel on the actual document",
+      "status": "passed",
+      "files": 1,
+      "viewports": [
+        375
+      ],
+      "sealedBeforeScoring": true
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "name": "Upload a real 3,000-word DOCX in rendered controls",
+      "status": "passed",
+      "sha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+      "overflow": 0
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "name": "Report tabs, exclusions, JSON and PDF controls",
+      "status": "passed",
+      "pdfCount": 2,
+      "jsonOpened": true
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "name": "Clarity entry, paste, save, playback and submission",
+      "status": "passed",
+      "lastRevision": 4
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "name": "Submissions, model card and health",
+      "status": "passed",
+      "overflow": 0
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "name": "Sealed blind panel on the actual document",
+      "status": "passed",
+      "files": 1,
+      "viewports": [
+        375
+      ],
+      "sealedBeforeScoring": true
+    },
+    {
+      "width": 1240,
+      "lang": "en",
+      "name": "Upload a real 3,000-word DOCX in rendered controls",
+      "status": "passed",
+      "sha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+      "overflow": 0
+    },
+    {
+      "width": 1240,
+      "lang": "en",
+      "name": "Report tabs, exclusions, JSON and PDF controls",
+      "status": "passed",
+      "pdfCount": 2,
+      "jsonOpened": true
+    },
+    {
+      "width": 1240,
+      "lang": "en",
+      "name": "Clarity entry, paste, save, playback and submission",
+      "status": "passed",
+      "lastRevision": 6
+    },
+    {
+      "width": 1240,
+      "lang": "en",
+      "name": "Submissions, model card and health",
+      "status": "passed",
+      "overflow": 0
+    },
+    {
+      "width": 1240,
+      "lang": "en",
+      "name": "Sealed blind panel on the actual document",
+      "status": "passed",
+      "files": 1,
+      "viewports": [
+        1225
+      ],
+      "sealedBeforeScoring": true
+    },
+    {
+      "width": 1240,
+      "lang": "ar",
+      "name": "Upload a real 3,000-word DOCX in rendered controls",
+      "status": "passed",
+      "sha256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+      "overflow": 0
+    },
+    {
+      "width": 1240,
+      "lang": "ar",
+      "name": "Report tabs, exclusions, JSON and PDF controls",
+      "status": "passed",
+      "pdfCount": 2,
+      "jsonOpened": true
+    },
+    {
+      "width": 1240,
+      "lang": "ar",
+      "name": "Clarity entry, paste, save, playback and submission",
+      "status": "passed",
+      "lastRevision": 8
+    },
+    {
+      "width": 1240,
+      "lang": "ar",
+      "name": "Submissions, model card and health",
+      "status": "passed",
+      "overflow": 0
+    },
+    {
+      "width": 1240,
+      "lang": "ar",
+      "name": "Sealed blind panel on the actual document",
+      "status": "passed",
+      "files": 1,
+      "viewports": [
+        1225
+      ],
+      "sealedBeforeScoring": true
+    }
+  ]
+}

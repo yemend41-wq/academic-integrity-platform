@@ -1,0 +1,318 @@
+{
+  "startedUTC": "2026-11-23T21:18:16.217Z",
+  "engineSHA256": "2aa1bef50e161ba761d2f221580e1fbb274c282ee8a32a851ad2305f63c0eaf9",
+  "pudSHA256": "79decb6b7754799ee39eb908bf054835993b92d609c5681ef2d98847a06f3750",
+  "publishedPdfSHA256": "b196e33fcebb974fca4ec5e9563e0c1ca54ceb026426c98a9f3ead36d182e9b1",
+  "source": "Public paper registry and Universal Dependencies PUD document groups outside bilingual fit",
+  "scope": "Direct production comparison module, public inputs only. No network, private phone text or authorship labels in these checks.",
+  "checks": [
+    {
+      "language": "ar",
+      "label": "Published paper passage",
+      "querySHA256": "0c47b2db92ae4a878eb3224f7db50d00d35fde2196c9e38a83f3a5b1d30347bf",
+      "upperBoundWordCount": 12,
+      "eligibleWords": 12,
+      "distinctMatchedWords": 12,
+      "percentage": 100,
+      "excludedQuotations": true,
+      "excludedReferences": true,
+      "verifiedPassages": 1,
+      "presentedSourceCount": 1,
+      "sourceTypeCounts": {
+        "paper": 1,
+        "cohort": 0
+      }
+    },
+    {
+      "language": "ar",
+      "label": "Two overlapping cohort sources and a duplicate body",
+      "querySHA256": "e44595e7b0fa3e3acfc0479862fbe5a378d0b0c81c6bfe2dc128465b8a03cedb",
+      "upperBoundWordCount": 25,
+      "eligibleWords": 25,
+      "distinctMatchedWords": 20,
+      "percentage": 80,
+      "excludedQuotations": true,
+      "excludedReferences": true,
+      "verifiedPassages": 2,
+      "presentedSourceCount": 2,
+      "sourceTypeCounts": {
+        "paper": 0,
+        "cohort": 2
+      }
+    },
+    {
+      "language": "ar",
+      "label": "Identical duplicate bodies",
+      "querySHA256": "ff75303b9323986e10e700d44f685c12bd6a0e0fc7f004ce7798ba9f4562c77e",
+      "upperBoundWordCount": 13,
+      "eligibleWords": 13,
+      "distinctMatchedWords": 13,
+      "percentage": 100,
+      "excludedQuotations": true,
+      "excludedReferences": true,
+      "verifiedPassages": 1,
+      "presentedSourceCount": 1,
+      "sourceTypeCounts": {
+        "paper": 0,
+        "cohort": 1
+      }
+    },
+    {
+      "language": "ar",
+      "label": "New unrelated eligible text",
+      "querySHA256": "173e612193cbd0a4b2db67d79b95c255da42db65b3807c31e426b37bb90679c2",
+      "upperBoundWordCount": 5,
+      "eligibleWords": 5,
+      "distinctMatchedWords": 0,
+      "percentage": 0,
+      "excludedQuotations": true,
+      "excludedReferences": true,
+      "verifiedPassages": 0,
+      "presentedSourceCount": 0,
+      "sourceTypeCounts": {
+        "paper": 0,
+        "cohort": 0
+      }
+    },
+    {
+      "language": "ar",
+      "label": "Same passage occurs twice in different query positions",
+      "querySHA256": "e79dcd1bb58cb90d1581c9cf0ad10117b1fc812a1e60f44b5163a87d3025802b",
+      "upperBoundWordCount": 26,
+      "eligibleWords": 26,
+      "distinctMatchedWords": 26,
+      "percentage": 100,
+      "excludedQuotations": true,
+      "excludedReferences": true,
+      "verifiedPassages": 2,
+      "presentedSourceCount": 1,
+      "sourceTypeCounts": {
+        "paper": 0,
+        "cohort": 2
+      }
+    },
+    {
+      "language": "ar",
+      "label": "Quoted and bibliography copies",
+      "querySHA256": "7ef98b06e371a36087de432dceb7648111535348f4000341dbb2095a04a3abd4",
+      "upperBoundWordCount": 48,
+      "eligibleWords": 19,
+      "distinctMatchedWords": 14,
+      "percentage": 73.7,
+      "excludedQuotations": true,
+      "excludedReferences": true,
+      "verifiedPassages": 1,
+      "presentedSourceCount": 1,
+      "sourceTypeCounts": {
+        "paper": 0,
+        "cohort": 1
+      }
+    },
+    {
+      "language": "ar",
+      "label": "Quoted and bibliography copies",
+      "querySHA256": "7ef98b06e371a36087de432dceb7648111535348f4000341dbb2095a04a3abd4",
+      "upperBoundWordCount": 48,
+      "eligibleWords": 34,
+      "distinctMatchedWords": 28,
+      "percentage": 82.4,
+      "excludedQuotations": true,
+      "excludedReferences": false,
+      "verifiedPassages": 2,
+      "presentedSourceCount": 1,
+      "sourceTypeCounts": {
+        "paper": 0,
+        "cohort": 2
+      }
+    },
+    {
+      "language": "ar",
+      "label": "Quoted and bibliography copies",
+      "querySHA256": "7ef98b06e371a36087de432dceb7648111535348f4000341dbb2095a04a3abd4",
+      "upperBoundWordCount": 48,
+      "eligibleWords": 33,
+      "distinctMatchedWords": 28,
+      "percentage": 84.8,
+      "excludedQuotations": false,
+      "excludedReferences": true,
+      "verifiedPassages": 2,
+      "presentedSourceCount": 1,
+      "sourceTypeCounts": {
+        "paper": 0,
+        "cohort": 2
+      }
+    },
+    {
+      "language": "ar",
+      "label": "Quoted and bibliography copies",
+      "querySHA256": "7ef98b06e371a36087de432dceb7648111535348f4000341dbb2095a04a3abd4",
+      "upperBoundWordCount": 48,
+      "eligibleWords": 48,
+      "distinctMatchedWords": 42,
+      "percentage": 87.5,
+      "excludedQuotations": false,
+      "excludedReferences": false,
+      "verifiedPassages": 3,
+      "presentedSourceCount": 1,
+      "sourceTypeCounts": {
+        "paper": 0,
+        "cohort": 3
+      }
+    },
+    {
+      "language": "en",
+      "label": "Published paper passage",
+      "querySHA256": "56c263ac75169cbc15c5824360a1080593f3634ce3c7b98f1d323b6ea0116eb6",
+      "upperBoundWordCount": 12,
+      "eligibleWords": 12,
+      "distinctMatchedWords": 12,
+      "percentage": 100,
+      "excludedQuotations": true,
+      "excludedReferences": true,
+      "verifiedPassages": 1,
+      "presentedSourceCount": 1,
+      "sourceTypeCounts": {
+        "paper": 1,
+        "cohort": 0
+      }
+    },
+    {
+      "language": "en",
+      "label": "Two overlapping cohort sources and a duplicate body",
+      "querySHA256": "fc5cc2d8c8163f6855716f52871abba4574e0afd9724bdbab0bb9c06a6bb6129",
+      "upperBoundWordCount": 25,
+      "eligibleWords": 25,
+      "distinctMatchedWords": 20,
+      "percentage": 80,
+      "excludedQuotations": true,
+      "excludedReferences": true,
+      "verifiedPassages": 2,
+      "presentedSourceCount": 2,
+      "sourceTypeCounts": {
+        "paper": 0,
+        "cohort": 2
+      }
+    },
+    {
+      "language": "en",
+      "label": "Identical duplicate bodies",
+      "querySHA256": "5f994654c00456dff057cae6723848f7f59a0ebcd1b621f6971611b0b9295b8f",
+      "upperBoundWordCount": 13,
+      "eligibleWords": 13,
+      "distinctMatchedWords": 13,
+      "percentage": 100,
+      "excludedQuotations": true,
+      "excludedReferences": true,
+      "verifiedPassages": 1,
+      "presentedSourceCount": 1,
+      "sourceTypeCounts": {
+        "paper": 0,
+        "cohort": 1
+      }
+    },
+    {
+      "language": "en",
+      "label": "New unrelated eligible text",
+      "querySHA256": "532442daa4f5a6551be8389b312f724dccc85d5528d82a72bcf11d7932a09870",
+      "upperBoundWordCount": 5,
+      "eligibleWords": 5,
+      "distinctMatchedWords": 0,
+      "percentage": 0,
+      "excludedQuotations": true,
+      "excludedReferences": true,
+      "verifiedPassages": 0,
+      "presentedSourceCount": 0,
+      "sourceTypeCounts": {
+        "paper": 0,
+        "cohort": 0
+      }
+    },
+    {
+      "language": "en",
+      "label": "Same passage occurs twice in different query positions",
+      "querySHA256": "b276a1d033e82f8cbb6a2d421c8a43f7ccaafcc08455704461e0aad83eb63a88",
+      "upperBoundWordCount": 26,
+      "eligibleWords": 26,
+      "distinctMatchedWords": 26,
+      "percentage": 100,
+      "excludedQuotations": true,
+      "excludedReferences": true,
+      "verifiedPassages": 2,
+      "presentedSourceCount": 1,
+      "sourceTypeCounts": {
+        "paper": 0,
+        "cohort": 2
+      }
+    },
+    {
+      "language": "en",
+      "label": "Quoted and bibliography copies",
+      "querySHA256": "f2a6de21c0f4b2cb6929f034d706e336b9309b67ad915a6a891da381834a9261",
+      "upperBoundWordCount": 48,
+      "eligibleWords": 19,
+      "distinctMatchedWords": 14,
+      "percentage": 73.7,
+      "excludedQuotations": true,
+      "excludedReferences": true,
+      "verifiedPassages": 1,
+      "presentedSourceCount": 1,
+      "sourceTypeCounts": {
+        "paper": 0,
+        "cohort": 1
+      }
+    },
+    {
+      "language": "en",
+      "label": "Quoted and bibliography copies",
+      "querySHA256": "f2a6de21c0f4b2cb6929f034d706e336b9309b67ad915a6a891da381834a9261",
+      "upperBoundWordCount": 48,
+      "eligibleWords": 34,
+      "distinctMatchedWords": 28,
+      "percentage": 82.4,
+      "excludedQuotations": true,
+      "excludedReferences": false,
+      "verifiedPassages": 2,
+      "presentedSourceCount": 1,
+      "sourceTypeCounts": {
+        "paper": 0,
+        "cohort": 2
+      }
+    },
+    {
+      "language": "en",
+      "label": "Quoted and bibliography copies",
+      "querySHA256": "f2a6de21c0f4b2cb6929f034d706e336b9309b67ad915a6a891da381834a9261",
+      "upperBoundWordCount": 48,
+      "eligibleWords": 33,
+      "distinctMatchedWords": 28,
+      "percentage": 84.8,
+      "excludedQuotations": false,
+      "excludedReferences": true,
+      "verifiedPassages": 2,
+      "presentedSourceCount": 1,
+      "sourceTypeCounts": {
+        "paper": 0,
+        "cohort": 2
+      }
+    },
+    {
+      "language": "en",
+      "label": "Quoted and bibliography copies",
+      "querySHA256": "f2a6de21c0f4b2cb6929f034d706e336b9309b67ad915a6a891da381834a9261",
+      "upperBoundWordCount": 48,
+      "eligibleWords": 48,
+      "distinctMatchedWords": 42,
+      "percentage": 87.5,
+      "excludedQuotations": false,
+      "excludedReferences": false,
+      "verifiedPassages": 3,
+      "presentedSourceCount": 1,
+      "sourceTypeCounts": {
+        "paper": 0,
+        "cohort": 3
+      }
+    }
+  ],
+  "status": "passed",
+  "completedUTC": "2026-11-23T21:18:16.480Z"
+}

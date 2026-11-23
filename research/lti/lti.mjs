@@ -11,6 +11,19 @@ const now = () => Math.floor(Date.now() / 1000);
 const ttl = 600;
 const alphabet = /^[a-zA-Z0-9_-]+$/;
 const textField = (v, max=1024) => typeof v === 'string' && v.length > 0 && v.length <= max;
+// Keep only a supported UI language from a signed launch, never the full user profile.
+function launchLanguage(claims) {
+  const requested = [claims[CLAIM + 'launch_presentation']?.locale, claims.locale];
+  for (const locale of requested) {
+    if (!textField(locale, 100)) continue;
+    try {
+      const language = new Intl.Locale(locale).language;
+      if (language === 'ar' || language === 'en') return language;
+    } catch {
+      // The locale is optional. An invalid language tag cannot invalidate a course launch.
+    }
+  }
+}
 function base64url(bytes) {
   return btoa(String.fromCharCode(...new Uint8Array(bytes))).replaceAll('+','-').replaceAll('/','_').replace(/=+$/,'');
 }
@@ -152,6 +165,8 @@ async function launch(req,env,platforms,origin,onLaunch) {
   const consumed=await env.DB.prepare('DELETE FROM lti_handshakes WHERE state_hash=? AND expires_at>=? RETURNING state_hash').bind(stateHash,now()).first();
   if(!consumed)fail('launch_state_inactive',401);
   const principal={id:'lti-'+id,role,cohort:'lti-'+cohort,source:'lti'};
+  const locale = launchLanguage(c);
+  if (locale) principal.locale = locale;
   const result=onLaunch? await onLaunch(principal):json(principal);
   const response=new Response(result.body,result);
   response.headers.append('Set-Cookie',cookie(state,'',0));
@@ -166,7 +181,9 @@ export async function handleLti(req, env, {onLaunch}={}) {
     const platforms=registry(env);
     if(pathname==='/lti/config'){
       if(req.method!=='GET')fail('method_not_allowed',405);
-      return json({version:'1.3.0',message_type:'LtiResourceLinkRequest',initiate_login_uri:origin+'/lti/login',redirect_uri:origin+'/lti/launch',target_link_uri:origin+'/lti/launch',registered_platforms:platforms.length,launch_presentation:'new_window'});
+      return json({version:'1.3.0',message_type:'LtiResourceLinkRequest',registration_mode:'manual',
+        initiate_login_uri:origin+'/lti/login',redirect_uri:origin+'/lti/launch',target_link_uri:origin+'/lti/launch',
+        registered_platforms:platforms.length,launch_presentation:'new_window',document_target:'window'});
     }
     if(!platforms.length) fail('lti_platform_registration_required',503);
     if(pathname==='/lti/login')return await login(req,env,platforms,origin);

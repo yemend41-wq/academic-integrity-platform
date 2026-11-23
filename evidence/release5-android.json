@@ -1,0 +1,56 @@
+{
+  "verifiedUTC": "2026-11-23T21:20:11.826020+00:00",
+  "scope": "Two Android uploads and analyses attested by the owner with screenshots and two authentic bilingual PDF export pairs. PDF arithmetic independently recounted. Physical JSON opening and ground-truth authorship were not reported. No identifiers or text retained here.",
+  "reports": [
+    {
+      "format": "pdf",
+      "physicalPublicAndroidByOwner": true,
+      "pdfExportsOpened": {
+        "ar": 9,
+        "en": 9
+      },
+      "totalWords": 1218,
+      "eligibleSimilarityWords": 984,
+      "matchedWords": 979,
+      "overlapPercent": 99.5,
+      "matchedSourceCount": 2,
+      "matchedCohortSources": 2,
+      "methods": {
+        "verbatim": 5
+      },
+      "submissionPassageWordCounts": [
+        37,
+        187,
+        242,
+        244,
+        269
+      ],
+      "excludeQuotes": true,
+      "excludeReferences": true,
+      "detectorDisplay": "0%",
+      "detectorEligible": 1170,
+      "authorshipLabel": "unknown"
+    },
+    {
+      "format": "pdf",
+      "physicalPublicAndroidByOwner": true,
+      "pdfExportsOpened": {
+        "ar": 5,
+        "en": 5
+      },
+      "totalWords": 2943,
+      "eligibleSimilarityWords": 2594,
+      "matchedWords": 0,
+      "overlapPercent": 0.0,
+      "matchedSourceCount": 0,
+      "matchedCohortSources": 0,
+      "methods": {},
+      "submissionPassageWordCounts": [],
+      "excludeQuotes": true,
+      "excludeReferences": true,
+      "detectorDisplay": "*%",
+      "detectorEligible": 2435,
+      "authorshipLabel": "unknown"
+    }
+  ]
+}

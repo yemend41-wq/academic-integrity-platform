@@ -15,9 +15,12 @@ for run in info['summaries']:
     path = out/(lang+'.pdf')
     reader = PdfReader(path, strict=True)
     assert len(reader.pages) > 1
-    content = b'\n'.join(p.get_contents().get_data() for p in reader.pages)
+    root = reader.trailer['/Root']
+    assert root['/Lang'] == lang and all(page.get('/Lang') == lang for page in reader.pages)
+    blocks = [item.get_object() for part in root['/StructTreeRoot']['/K'] for item in part.get_object()['/K']]
+    text_lines = [str(node.get('/ActualText') or node['/Alt']) for node in blocks]
     def actual(s):
-        return (b'FEFF'+s.encode('utf-16-be').hex().encode()).lower() in content.lower()
+        return s in text_lines
     assert actual(info['sourceSHA256'])
     assert actual('PDF_EXPORT_END')
     title = 'Academic integrity audit' if lang=='en' else 'تقرير تدقيق النزاهة الأكاديمية'
@@ -35,7 +38,7 @@ for run in info['summaries']:
         assert len(set(bitmap.samples)) > 10
         assert actual(('صفحة' if lang=='ar' else 'Page')+' '+str(index+1)+(' من ' if lang=='ar' else ' / ')+str(len(doc)))
         # Text must remain inside the paper. Both engines can extract text with
-        # different bidi serialization; the logical ActualText was checked above.
+        # different line breaks. Structured reading-order text was checked separately above.
         for w in page.get_text('words'):
             assert -2 <= w[0] <= w[2] <= page.rect.width + 2, (index,w)
             assert -2 <= w[1] <= w[3] <= page.rect.height + 2, (index,w)

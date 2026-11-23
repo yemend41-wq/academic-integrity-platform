@@ -89,3 +89,17 @@ test("short sentences require at least two separate informative alignment keys",
   const r=run("The student is there.",[source("common","There was a student.")]);
   assert.equal(r.matches.filter(m=>m.sourceId==="common").length,0);
 });
+
+test("inflection-weighted alignment returns a paired source interval for inspection", () => {
+  const cited = "The cargo vessel anchored near the basalt pier.";
+  const changed = "A vessel unloaded cargo at the old basalt pier.";
+  const query = "🚢\n" + changed;
+  const sourceText = "🔭\n" + cited;
+  const matched = run(query, [source("harbour", sourceText)]).matches.find(m => m.sourceId === "harbour");
+  assert.ok(matched);
+  assert.equal(matched.method, "paraphrase");
+  assert.equal(query.slice(matched.start, matched.end), changed.slice(0, -1));
+  assert.equal(sourceText.slice(matched.sourceStart, matched.sourceEnd), cited.slice(0, -1));
+  assert.equal(run("«" + changed + "»", [source("harbour", sourceText)]).eligibleWords, 0);
+  assert.ok(!run("A vessel never unloaded cargo at the old basalt pier.", [source("harbour", sourceText)]).matches.some(m => m.sourceId === "harbour"));
+});

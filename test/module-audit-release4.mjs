@@ -27,9 +27,16 @@ from pymupdf import open as open_pdf
 path,locale,doc_id=sys.argv[1:]
 doc=PdfReader(path,strict=True)
 logical=[]
-for p in doc.pages:
- for hexstr in re.findall(rb'/ActualText\\s*<([a-fA-F0-9]+)>',p.get_contents().get_data()):
-  logical.append(bytes.fromhex(hexstr.decode()).decode('utf-16'))
+root=doc.trailer['/Root']
+if '/StructTreeRoot' in root:
+ for part in root['/StructTreeRoot']['/K']:
+  for child in part.get_object()['/K']:
+   block=child.get_object()
+   logical.append(str(block.get('/ActualText') or block.get('/Alt') or ''))
+else:
+ for p in doc.pages:
+  for hexstr in re.findall(rb'/ActualText\\s*<([a-fA-F0-9]+)>',p.get_contents().get_data()):
+   logical.append(bytes.fromhex(hexstr.decode()).decode('utf-16'))
 text='\\n'.join(logical)
 title='Academic integrity audit' if locale=='en' else 'تقرير تدقيق النزاهة الأكاديمية'
 assert title in text and doc_id in text and len(doc.pages)>0
@@ -146,6 +153,6 @@ try{
 evidence.finished=new Date().toISOString();
 const versionedFiles=['research/media/index.mjs','research/media/xml.mjs','research/media/word-visibility.mjs','research/media/citations.mjs','research/media/c2pa.mjs','research/clarity/history.mjs','research/clarity/redaction.mjs','src/privacy.mjs','src/analysis.mjs','src/drafts.mjs','src/report.mjs','test/module-audit-release4.mjs','research/media/tests/make-revision-fixture.py'];
 evidence.sourceSha256=Object.fromEntries(await Promise.all(versionedFiles.map(async f=>[f,sha(await readFile(f))])));
-await writeFile('evidence/module-audit-release4.json',JSON.stringify(evidence,null,2)+'\n');
+await writeFile(process.env.MIZAN_MODULE_EVIDENCE || 'evidence/module-audit-release4.json',JSON.stringify(evidence,null,2)+'\n');
 console.log(evidence.checks.map(({name,status})=>[status,name]));console.log(evidence.registry.map(({id,result,actual})=>[id,result,actual]));
 if(evidence.checks.some(r=>r.status==='failed')||evidence.registry.some(r=>r.result==='failed'))process.exitCode=1;

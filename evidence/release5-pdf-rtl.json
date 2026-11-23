@@ -1,0 +1,237 @@
+{
+  "checkedUTC": "2026-11-23T21:27:53.712832+00:00",
+  "versions": {
+    "PyMuPDF": "1.26.6",
+    "pypdf": "6.21.4",
+    "Poppler": "pdftotext version 25.03.0"
+  },
+  "scope": "Deterministic bilingual audit fixture using real embedded glyphs, before and after. Normalization uses NFC and whitespace folding and discards bidi format controls. All scalar order checks precede any drawing comparison.",
+  "implementationSHA256": "645e7427cb2d33ad0ccbe41a40905646d5e99e49ca6a70d5d028cc41b7eb9e93",
+  "before": {
+    "ar": {
+      "pdfSHA256": "9b2c84e7405d77e6659954c3adc1d26fb422a07d219938dcc831251198cffc47",
+      "pages": 1,
+      "catalogLanguage": null,
+      "pageLanguages": [
+        null
+      ],
+      "readingDirection": null,
+      "structuredExactMixedSentence": false,
+      "PopplerStructuredMixedSentence": false,
+      "uprightTextMatrices": 20,
+      "fontEmbedded": true,
+      "ordinaryExtraction": {
+        "PyMuPDF": {
+          "title": false,
+          "id": false,
+          "timestamp": false,
+          "model": true,
+          "url": true,
+          "mixedSentence": false
+        },
+        "pypdf": {
+          "title": true,
+          "id": true,
+          "timestamp": true,
+          "model": true,
+          "url": true,
+          "mixedSentence": false
+        },
+        "PopplerPdftotext": {
+          "title": false,
+          "id": true,
+          "timestamp": true,
+          "model": true,
+          "url": true,
+          "mixedSentence": false
+        }
+      },
+      "position": {
+        "numeric": {
+          "xMinPt": 45.0,
+          "xMaxPt": 72.98
+        },
+        "model": {
+          "xMinPt": 45.0,
+          "xMaxPt": 91.74
+        },
+        "url": {
+          "xMinPt": 45.0,
+          "xMaxPt": 309.63
+        }
+      }
+    },
+    "en": {
+      "pdfSHA256": "617c005c4fdfae9491f4e56f9160ea4df81e8d44cdc4359df9fc3f2cf7251deb",
+      "pages": 1,
+      "catalogLanguage": null,
+      "pageLanguages": [
+        null
+      ],
+      "readingDirection": null,
+      "structuredExactMixedSentence": false,
+      "PopplerStructuredMixedSentence": false,
+      "uprightTextMatrices": 18,
+      "fontEmbedded": true,
+      "ordinaryExtraction": {
+        "PyMuPDF": {
+          "title": true,
+          "id": true,
+          "timestamp": true,
+          "model": true,
+          "url": true,
+          "mixedSentence": true
+        },
+        "pypdf": {
+          "title": true,
+          "id": true,
+          "timestamp": true,
+          "model": true,
+          "url": true,
+          "mixedSentence": false
+        },
+        "PopplerPdftotext": {
+          "title": true,
+          "id": true,
+          "timestamp": true,
+          "model": true,
+          "url": true,
+          "mixedSentence": false
+        }
+      },
+      "position": {
+        "numeric": {
+          "xMinPt": 45.0,
+          "xMaxPt": 72.98
+        },
+        "model": {
+          "xMinPt": 45.0,
+          "xMaxPt": 91.74
+        },
+        "url": {
+          "xMinPt": 45.0,
+          "xMaxPt": 309.63
+        }
+      }
+    }
+  },
+  "after": {
+    "ar": {
+      "pdfSHA256": "c0d77c5ef005133f9cc4db332f209cb1cc13b1d230b2d8ec61c2a5e715f2bcad",
+      "pages": 1,
+      "catalogLanguage": "ar",
+      "pageLanguages": [
+        "ar"
+      ],
+      "readingDirection": "/R2L",
+      "structuredExactMixedSentence": true,
+      "PopplerStructuredMixedSentence": true,
+      "uprightTextMatrices": 265,
+      "fontEmbedded": true,
+      "ordinaryExtraction": {
+        "PyMuPDF": {
+          "title": true,
+          "id": true,
+          "timestamp": true,
+          "model": true,
+          "url": true,
+          "mixedSentence": true
+        },
+        "pypdf": {
+          "title": true,
+          "id": true,
+          "timestamp": true,
+          "model": true,
+          "url": true,
+          "mixedSentence": true
+        },
+        "PopplerPdftotext": {
+          "title": true,
+          "id": true,
+          "timestamp": true,
+          "model": true,
+          "url": true,
+          "mixedSentence": true
+        }
+      },
+      "position": {
+        "numeric": {
+          "xMinPt": 522.29,
+          "xMaxPt": 550.27
+        },
+        "model": {
+          "xMinPt": 503.54,
+          "xMaxPt": 550.28
+        },
+        "url": {
+          "xMinPt": 285.66,
+          "xMaxPt": 550.29
+        }
+      }
+    },
+    "en": {
+      "pdfSHA256": "3d7ed38f53a5edac3764ce4ded19bb84028e8d9eb30fd663a646ecc5ca4c2f2e",
+      "pages": 1,
+      "catalogLanguage": "en",
+      "pageLanguages": [
+        "en"
+      ],
+      "readingDirection": "/L2R",
+      "structuredExactMixedSentence": true,
+      "PopplerStructuredMixedSentence": true,
+      "uprightTextMatrices": 58,
+      "fontEmbedded": true,
+      "ordinaryExtraction": {
+        "PyMuPDF": {
+          "title": true,
+          "id": true,
+          "timestamp": true,
+          "model": true,
+          "url": true,
+          "mixedSentence": true
+        },
+        "pypdf": {
+          "title": true,
+          "id": true,
+          "timestamp": true,
+          "model": true,
+          "url": true,
+          "mixedSentence": true
+        },
+        "PopplerPdftotext": {
+          "title": true,
+          "id": true,
+          "timestamp": true,
+          "model": true,
+          "url": true,
+          "mixedSentence": false
+        }
+      },
+      "position": {
+        "numeric": {
+          "xMinPt": 45.0,
+          "xMaxPt": 72.98
+        },
+        "model": {
+          "xMinPt": 45.0,
+          "xMaxPt": 91.74
+        },
+        "url": {
+          "xMinPt": 45.0,
+          "xMaxPt": 309.63
+        }
+      }
+    }
+  },
+  "suppliedBeforeFilesAggregate": {
+    "arabicAudits": 2,
+    "englishAudits": 2,
+    "copiedArabicTitlePyMuPDF": 0,
+    "copiedArabicTitlePypdf": 2,
+    "copiedArabicTitlePoppler": 0,
+    "documentedLanguage": 0
+  },
+  "rasterHeadingInkOverlap": 0.9927,
+  "limitation": "Poppler plain-text geometry can reorder whole Arabic and Latin runs in an English-dominant page. The tagged PDF reading order and the independent MuPDF and pypdf extractions retain the complete logical sentence. Raw glyph-order extraction is not a logical-text mode.",
+  "result": "passed specified RTL, technical identifier, reading-order, raster and page-language checks"
+}

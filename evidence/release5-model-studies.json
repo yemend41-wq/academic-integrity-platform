@@ -1,0 +1,81 @@
+{
+  "active": "AIP-HL-3",
+  "testedAt": "2026-11-23T21:01:54.704972+00:00",
+  "scope": "High-level counts from the independent pure-text reference groups. Underlying records remain with the study custodian.",
+  "models": [
+    {
+      "id": "AIP-HL-3",
+      "deployed": true,
+      "pure": [
+        {
+          "language": "ar",
+          "kind": "human",
+          "total": 400,
+          "eligible": 400,
+          "numeric": 15,
+          "any": 34,
+          "abstained": 0,
+          "numericCI": [
+            0.0229,
+            0.0609
+          ],
+          "anyCI": [
+            0.0615,
+            0.1164
+          ]
+        },
+        {
+          "language": "ar",
+          "kind": "machine",
+          "total": 400,
+          "eligible": 400,
+          "numeric": 299,
+          "any": 310,
+          "abstained": 0,
+          "numericCI": [
+            0.7027,
+            0.7876
+          ],
+          "anyCI": [
+            0.7316,
+            0.8132
+          ]
+        },
+        {
+          "language": "en",
+          "kind": "human",
+          "total": 400,
+          "eligible": 400,
+          "numeric": 1,
+          "any": 3,
+          "abstained": 0,
+          "numericCI": [
+            0.0004,
+            0.014
+          ],
+          "anyCI": [
+            0.0026,
+            0.0218
+          ]
+        },
+        {
+          "language": "en",
+          "kind": "machine",
+          "total": 400,
+          "eligible": 400,
+          "numeric": 51,
+          "any": 61,
+          "abstained": 0,
+          "numericCI": [
+            0.0983,
+            0.1638
+          ],
+          "anyCI": [
+            0.1206,
+            0.191
+          ]
+        }
+      ]
+    }
+  ]
+}

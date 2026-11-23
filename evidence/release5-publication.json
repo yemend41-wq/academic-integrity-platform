@@ -1,0 +1,87 @@
+{
+  "checkedUTC": "2026-11-23T21:32:51.701740+00:00",
+  "origin": "https://mizan-integrity-studio.yemend41.chatgpt.site",
+  "hostingVersion": 8,
+  "siteSource": "69d794127e0e8a0c91319bb04d0545f188bff91b",
+  "checks": [
+    {
+      "path": "/",
+      "http": 200,
+      "status": "passed"
+    },
+    {
+      "path": "/acceptance.json",
+      "http": 200,
+      "statusCounts": {
+        "partial": 3,
+        "failed": 1,
+        "passed": 9,
+        "unverified": 1
+      },
+      "status": "passed"
+    },
+    {
+      "path": "/api/health",
+      "http": 200,
+      "analysisFingerprint": "ab7348672aacd049ab2b7b614b15fee909fb139302fa9007cd04236e8b5bb3dd",
+      "model": "AIP-HL-3",
+      "status": "passed"
+    },
+    {
+      "path": "/api/retention",
+      "http": 200,
+      "retentionDays": 7,
+      "status": "passed"
+    },
+    {
+      "path": "/api/me",
+      "http": 401,
+      "status": "passed"
+    },
+    {
+      "path": "/api/reports",
+      "http": 401,
+      "status": "passed"
+    },
+    {
+      "path": "/lti/config",
+      "http": 200,
+      "registeredUniversityPlatforms": 0,
+      "status": "passed"
+    },
+    {
+      "path": "/health?lang=ar",
+      "http": 200,
+      "status": "passed"
+    },
+    {
+      "path": "/health?lang=en",
+      "http": 200,
+      "status": "passed"
+    },
+    {
+      "path": "/model-card?lang=ar",
+      "http": 200,
+      "researchTables": 15,
+      "status": "passed"
+    },
+    {
+      "path": "/model-card?lang=en",
+      "http": 200,
+      "researchTables": 15,
+      "status": "passed"
+    },
+    {
+      "path": "/acceptance?lang=ar",
+      "http": 200,
+      "rows": 14,
+      "status": "passed"
+    },
+    {
+      "path": "/acceptance?lang=en",
+      "http": 200,
+      "rows": 14,
+      "status": "passed"
+    }
+  ]
+}

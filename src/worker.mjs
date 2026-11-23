@@ -12,14 +12,16 @@ import {
   addMember,
   purge,
 } from "./auth.mjs";
-import { publicAcceptance } from "./acceptance.mjs";
-import { analyze, getReport, similarity } from "./analysis.mjs";
+import { publicAcceptance, publicRegister, publicReviewPage } from "./acceptance.mjs";
+import { analyze, getReport, similarity, blindWritingScore } from "./analysis.mjs";
 import { getDraft, saveDraft } from "./drafts.mjs";
 import { pdfAudit } from "./report.mjs";
 import { handleLti } from "../research/lti/lti.mjs";
-import modelEvidence from "../research/detector/card.json";
+import previousCard from "../research/detector/card.json";
+import independentStudies from "../evidence/release5-model-studies.json";
+const modelEvidence = {...previousCard,release5:independentStudies};
 import ltiEvidence from "../research/lti/evidence.json";
-import assessment from "../evidence/acceptance-release-4.json";
+import assessment from "../evidence/acceptance-release-5.json";
 import baseline from "../evidence/initial.json";
 import { asset } from "./web-assets.mjs";
 const allowed = ["docx", "pdf", "png", "jpg", "jpeg", "txt"];
@@ -35,8 +37,18 @@ export async function route(req, env, ctx = {}) {
         onLaunch: (p) => openSession(env, p, true),
       })) || json({ error: "not_found" }, 404)
     );
+  if (path === "/model-card" && m === "GET")
+    return publicReviewPage("model-card", modelEvidence, u.searchParams.get("lang"));
+  if (path === "/health" && m === "GET") {
+    const start = Date.now();
+    let ok = true;
+    try { await stmt(env, "SELECT 1 FROM documents LIMIT 1").first(); } catch { ok = false; }
+    return publicReviewPage("health", modelEvidence, u.searchParams.get("lang"), {ok, ms:Date.now()-start, at:new Date().toISOString()});
+  }
   if (path === "/acceptance" && m === "GET")
     return publicAcceptance(assessment, modelEvidence, u.searchParams.get("lang") || "ar");
+  if (path === "/acceptance.json" && m === "GET")
+    return json(publicRegister(assessment, modelEvidence), 200, {"content-disposition":'attachment; filename="Mizan-acceptance.json"'});
   if (!path.startsWith("/api/"))
     return m === "GET"
       ? asset(path)
@@ -163,6 +175,14 @@ export async function route(req, env, ctx = {}) {
       201,
     );
   }
+  if (path === "/api/panel/score" && m === "POST") {
+    if (p.role !== "instructor" && p.role !== "admin") throw new Fault(403, "forbidden");
+    const format = (req.headers.get("x-format") || "").toLowerCase();
+    if (!["txt", "docx", "pdf"].includes(format)) throw new Fault(415, "unsupported_document");
+    const bytes = await bounded(req, 8 * 1024 * 1024);
+    if (!bytes.length) throw new Fault(422, "empty_document");
+    return json({...await blindWritingScore(bytes, format), analysisFingerprint: __ENGINE_REVISION__});
+  }
   if (path === "/api/analyze" && m === "POST") {
     const kind = (req.headers.get("x-format") || "").toLowerCase();
     if (!allowed.includes(kind)) throw new Fault(415, "unsupported_document");
@@ -214,7 +234,7 @@ export async function route(req, env, ctx = {}) {
           headers: {
             "content-type": "application/pdf",
             "content-disposition":
-              'attachment; filename="Mizan-' + r.id + '.pdf"',
+              'attachment; filename="Mizan-' + r.id + '-' + (u.searchParams.get("lang") === "ar" ? "ar" : "en") + '.pdf"',
           },
         },
       );

@@ -1,0 +1,11 @@
+{
+  "ar.csv": ["https://huggingface.co/datasets/CogniSAL/ARATECT/resolve/baeb5867218b0f56a16ee99145502c32e6bdeabd/train_aratect.csv", "aec8a5ddada59a1f14c2be37c584e14b43f9290dcd0b27f11f80fd1bcea217e4"],
+  "ar-qa.jsonl": ["https://huggingface.co/datasets/Bekhouche/HalluTruthQA-4K/resolve/e6e2b14733effc8da7b87fa79230a20cc4b7336b/test.jsonl", "b68f179e951af131132f713b8786712088d3d6fbfde3e05080b8765078e50d33"],
+  "za-ar.json": ["https://huggingface.co/datasets/UniversalCEFR/zaebuc_ar/resolve/a51e514d016a1014e023bfdedab0b3cc7c4610d9/zaebuc-ar.json", "a702f821eb967e3a31bedf50064af0bdaf5995ea8b28589018c47dd312130fcb"],
+  "za.xml": ["https://raw.githubusercontent.com/fadhleryani/blacklab_zaebuc_corpus/10e52b695006713b7c624d8e35f776228d5ae8a7/data/zaebuc_written_sample.xml", "1b03614ab055fc936fc11ae14334908bc93696ef40a8986fcda349368d877260"],
+  "gpa-ai.json": ["https://huggingface.co/datasets/julianzy/GPABenchmark/resolve/f5deaaed1096f2df9f1deb9dbff642fcf5f934ec/GPABenchmark/HSS_TASK1/gpt.json", "f32f0edd098ab2e7fb4ff7d59d111b49b8d062335ea833e6af52150a09ab8eeb"],
+  "gpa-human.json": ["https://huggingface.co/datasets/julianzy/GPABenchmark/resolve/f5deaaed1096f2df9f1deb9dbff642fcf5f934ec/GPABenchmark/HSS_TASK1/hum.json", "d8f9c236ddcb0ba3e52b8c8d8b64cad1812331ea38486aaa382206ea5bd0b527"],
+  "gpa-polished.json": ["https://huggingface.co/datasets/julianzy/GPABenchmark/resolve/f5deaaed1096f2df9f1deb9dbff642fcf5f934ec/GPABenchmark/HSS_TASK3/gpt.json", "f9dc63caee00e7f8e12ca20c02cfc64ff05201e071a47fb545b00bb7250448df"],
+  "gpa-original-polished.json": ["https://huggingface.co/datasets/julianzy/GPABenchmark/resolve/f5deaaed1096f2df9f1deb9dbff642fcf5f934ec/GPABenchmark/HSS_TASK3/hum.json", "815325ab0f851ad4aefb0931f8c1aad798f5bc2424747dfa387821283c6e1804"],
+  "qa-validated.jsonl": ["https://huggingface.co/datasets/QCRI/ArabicCulturalQA/resolve/f0fe5d736f4e3a49d454f3ccfacc42d26200484f/oeq_with_edits/test.jsonl", "e860436bc336fc920a6683d378b0a8412981a234eb4a48f63fab1e454646bbfa"]
+}

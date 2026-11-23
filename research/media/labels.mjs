@@ -1,6 +1,8 @@
 // Human-readable vocabulary for file-evidence keys and statuses. Keep API keys
 // stable in JSON exports, and translate only at the presentation boundary.
 const arabic={
+  writingReconstructedPages:"صفحات أُعيد ترتيب نصّها للكاشف",writingLayoutErrors:"تعذّر تحسين ترتيب النص في صفحات",
+  pagesWithLetters:"صفحات تحتوي على حروف مستخرجة",
   matchedISBN:'الرقم الدولي المطابق',titleAmbiguous:'تختلف العناوين في السجلات المطابقة',matched_publisher_snapshot:'مطابق لبيانات الناشر المفهرسة؛ تعذّر تأكيد السجل الحي',invalid_identifier:'صيغة المعرّف غير صالحة',publisherSource:'المصدر لدى الناشر',publisherCheckedOn:'تاريخ فحص بيانات الناشر',registryStatus:'حالة الفحص الحي',attempts:'محاولات الاستعلام',registry:'السجل',outcome:'نتيجة الاتصال',httpStatus:'رمز استجابة HTTP',deadline:'انتهت المهلة العامة',timeout:'انتهت مهلة الاتصال',network_error:'تعذّر إنشاء الاتصال',http_error:'استجابة خطأ من الخدمة أو البوابة',non_json_response:'لم يُرجع المسار بيانات JSON',body_limit:'تجاوزت الاستجابة حد القراءة',empty_response:'استجابة فارغة',response:'استجابة بيانات',
   format:'الصيغة',status:'الحالة',signature:'توقيع الادعاء',scope:'نطاق الفحص',assetBinding:'ارتباط التوقيع بمحتوى الملف',assertionHashes:'بصمات الإثباتات',trust:'الثقة في جهة التوقيع',
   manifestCount:'عدد سجلات المنشأ',assertions:'الإثباتات',byteLength:'حجم الملف بالبايت',revision:'رقم المراجعة',created:'تاريخ الإنشاء',modified:'آخر تعديل',

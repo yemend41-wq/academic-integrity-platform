@@ -22,8 +22,9 @@ def aggregate(data):
             varied=data["distinctWorkload"]
             report["distinctWorkload"]=subset(varied,"startedUTC finishedUTC sourceSHA256 uniqueVerified verifiedUnder15s failed peerReadHTTP p95Ms maxMs status")
             cases=varied["observations"]
+            index_sizes=[r["indexObserved"] for r in cases if r.get("verified")]
             report["distinctWorkload"].update(uniqueInputTexts=len({r["textSHA256"] for r in cases}),formats=dict(Counter(r["format"] for r in cases)),
-                sourceRangeCompared=[min(r["indexObserved"] for r in cases if r.get("verified")),max(r["indexObserved"] for r in cases if r.get("verified"))],
+                sourceRangeCompared=[min(index_sizes),max(index_sizes)] if index_sizes else None,
                 selectedIndexWindowLimited=sum(bool(r.get("indexWindowLimited")) for r in cases),
                 fixtureDigest=hashlib.sha256("\n".join(r["inputSHA256"] for r in cases).encode()).hexdigest())
     elif "raw" in data and "builtBundleSha256" in data:

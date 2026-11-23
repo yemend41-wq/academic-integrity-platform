@@ -1,0 +1,27 @@
+{
+  "frozen_utc": "2026-11-23T22:11:57.977249+00:00",
+  "scorer_sha256": "55916e07a0cba22cdc9bcf5ce28098471be47da6f0a39633053597e5dccc0e8e",
+  "case_labels_seen": false,
+  "study": "pretrained external detector, zero target-domain fitting",
+  "selection": "One fixed checkpoint per language; no target-corpus threshold or posterior calibration.",
+  "english": {
+    "upstream": "openai-community/roberta-base-openai-detector",
+    "upstream_revision": "6cba99c003b711c7fe94f8a3aa2be35a792cb6fa",
+    "conversion": "onnx-community/roberta-base-openai-detector-ONNX",
+    "revision": "54895bd11f34b47a01369d25b2255224717409b8",
+    "license": "MIT upstream; public derivative credits upstream",
+    "weights_sha256": "d9c0412c0e1976fbee55b9a254b652b9293e79033c9737b22d85ecf1114697cf",
+    "bytes": 125855421,
+    "class1_definition": "Fake at index 0; positive means model predicts machine generation."
+  },
+  "arabic": {
+    "model": "sabaridsnfuji/arabic-ai-text-detector",
+    "revision": "0009be99cbe558eab59350308dd58082f58ff14d",
+    "license": "Apache-2.0 declared by publisher",
+    "base": "aubmindlab/bert-base-arabertv2",
+    "weights_sha256": "427fc06a9459475cc6100b7d2b5e2222f4d9be585b6a541c430c0d739fa6bba6",
+    "bytes": 540803072,
+    "class1_definition": "AI at index 1 per publisher model_info and explicit model-card prediction code."
+  },
+  "windows": "254 content wordpieces plus two special markers, 192 stride, anchored final window, native tokenizer, all content included. Empty-token input alone abstains. Use adjacent-center midpoint partitions over all wordpieces to weight per-window softmax P(machine) in document mean. Fixed inclusive threshold >=0.5; no parameter selection. Segment values are window evidence in Unicode code-point offsets, not sentence probabilities."
+}

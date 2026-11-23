@@ -12,6 +12,7 @@ export function readXML(bytes,handlers){
     const attrs=Object.create(null);
     for(const v of Object.values(n.attributes)){if(v.prefix!=='xmlns')attrs[v.local]=v.value;}
     const node={name:n.local,uri:n.uri,a:attrs};
+    if (handlers.namespaces) node.namespaces=n.ns;
     stack.push(node); handlers.open?.(node,stack);
   };
   parser.ontext=t=>handlers.text?.(t,stack.at(-1),stack);

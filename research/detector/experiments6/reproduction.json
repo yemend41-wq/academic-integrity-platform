@@ -1,0 +1,41 @@
+{
+  "recordedAt": "2026-11-23T22:19:59+00:00",
+  "scorerCommit": "be212d94e2705dc7ff1f2713b5b1818f5724bf86",
+  "method": "Independent clean output directory, reread the pinned upstream files, reconstruct partitions, refit coefficients and thresholds, compare historical predictions from the locked heads by source and class.",
+  "python": "3.12.14",
+  "node": "v24.22.3",
+  "verifiedFiles": {
+    "manifest.json": {
+      "publishedSha256": "afcba368f9c3b6b84f167b3a06d3afacb92e7c5033e41259ff087f94390ab5bd",
+      "reproducedSha256": "afcba368f9c3b6b84f167b3a06d3afacb92e7c5033e41259ff087f94390ab5bd",
+      "equal": true
+    },
+    "weights.json": {
+      "publishedSha256": "013cb1a52a29c5bc3af2e59e628bef8fb58568ac0c9739e06343dedfcb5e8cb6",
+      "reproducedSha256": "013cb1a52a29c5bc3af2e59e628bef8fb58568ac0c9739e06343dedfcb5e8cb6",
+      "equal": true
+    },
+    "lock.json": {
+      "publishedSha256": "2633b15dbe98d6b355b1c0a2b09586a809cbb08f589bfa170c1fe145060d8c4a",
+      "reproducedSha256": "2633b15dbe98d6b355b1c0a2b09586a809cbb08f589bfa170c1fe145060d8c4a",
+      "equal": true
+    }
+  },
+  "reproducedDevelopmentSha256": "d2d2662d7f186a0a13cbd5e6aae1d2fb976fe32ecd7ffdbbe83609ffa50a074f",
+  "samples": {
+    "Confirmation-R5": {
+      "files": 4400,
+      "sha256": "533a5da6d143b88ef1ccc5ab79c4825092117ceebe428ba2b96e3cfe182bd053"
+    },
+    "Mixture-R5": {
+      "files": 4576,
+      "sha256": "aafa293bd0a9d993f7ca32354b536024f986bd6bbb3296c80b87a86295b7e412"
+    },
+    "Legacy-R4": {
+      "files": 1200,
+      "sha256": "4d0697c67a8d8b8b1309f4eebcd922b9c953b874e8bb99f82d7a573056825f86"
+    }
+  },
+  "identicalHistoricalCohortRows": 105,
+  "privacy": "Only corpus fingerprints, settings and aggregates are retained in this record."
+}

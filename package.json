@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "dev": "node scripts/dev.mjs",
-    "test": "npm run build && node --test test/benchmark-access.mjs test/blind-panel.mjs test/report-interpretation.mjs research/detector/detector.test.mjs research/similarity/test.mjs research/media/tests/media.test.mjs && node research/clarity/test.mjs && node research/lti/test.mjs && node research/bench/integration.mjs",
+    "test": "npm run build && node --test test/writing-evidence.mjs test/benchmark-access.mjs test/blind-panel.mjs test/report-interpretation.mjs research/detector/detector.test.mjs research/similarity/test.mjs research/media/tests/media.test.mjs research/media/tests/writing-intake.test.mjs && node research/clarity/test.mjs && node research/lti/test.mjs && node research/bench/integration.mjs",
     "test:module-audit": "node test/module-audit-release4.mjs"
   },
   "devDependencies": {

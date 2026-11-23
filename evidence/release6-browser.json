@@ -1,0 +1,86 @@
+{
+  "at": "2026-11-23T22:14:02.929Z",
+  "environment": "Chrome via managed local preview; actual SQLite workspace and ephemeral test principal",
+  "checks": [
+    {
+      "name": "Upload a real 3,000-word DOCX in rendered controls",
+      "status": "passed"
+    },
+    {
+      "name": "Report tabs, exclusions, JSON and PDF controls",
+      "status": "passed"
+    },
+    {
+      "name": "Clarity entry, paste, save, playback and submission",
+      "status": "passed"
+    },
+    {
+      "name": "Submissions, model card and health",
+      "status": "passed"
+    },
+    {
+      "name": "Sealed blind panel on the actual document",
+      "status": "passed"
+    },
+    {
+      "name": "Upload a real 3,000-word DOCX in rendered controls",
+      "status": "passed"
+    },
+    {
+      "name": "Report tabs, exclusions, JSON and PDF controls",
+      "status": "passed"
+    },
+    {
+      "name": "Clarity entry, paste, save, playback and submission",
+      "status": "passed"
+    },
+    {
+      "name": "Submissions, model card and health",
+      "status": "passed"
+    },
+    {
+      "name": "Sealed blind panel on the actual document",
+      "status": "passed"
+    },
+    {
+      "name": "Upload a real 3,000-word DOCX in rendered controls",
+      "status": "passed"
+    },
+    {
+      "name": "Report tabs, exclusions, JSON and PDF controls",
+      "status": "passed"
+    },
+    {
+      "name": "Clarity entry, paste, save, playback and submission",
+      "status": "passed"
+    },
+    {
+      "name": "Submissions, model card and health",
+      "status": "passed"
+    },
+    {
+      "name": "Sealed blind panel on the actual document",
+      "status": "passed"
+    },
+    {
+      "name": "Upload a real 3,000-word DOCX in rendered controls",
+      "status": "passed"
+    },
+    {
+      "name": "Report tabs, exclusions, JSON and PDF controls",
+      "status": "passed"
+    },
+    {
+      "name": "Clarity entry, paste, save, playback and submission",
+      "status": "passed"
+    },
+    {
+      "name": "Submissions, model card and health",
+      "status": "passed"
+    },
+    {
+      "name": "Sealed blind panel on the actual document",
+      "status": "passed"
+    }
+  ]
+}

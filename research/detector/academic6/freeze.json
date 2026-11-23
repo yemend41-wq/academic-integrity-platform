@@ -1,0 +1,18 @@
+{
+  "protocolSHA256": "f606d861d0ad09aa3e75c72f4445bbc768a8595bd6682a17ac3d6aeb8e1c524d",
+  "sourceRegistrySHA256": "2ccaaa5288e40413d6a3506ea6f35313fed9baf36fa337bca928f16c20e73043",
+  "inputFiles": {
+    "all-input.jsonl": "ddb56177823433dc558f55593d8108a603be62beff86a139fcb75f9a7a5e415a",
+    "primary-input.jsonl": "c1e81a6212b675ac060cd142858717553809022059eced6ffef6e62bed6b0968",
+    "truth.jsonl": "66bd9d7f58713afc4c4ca5c8d4e1193ce4bb2efa58fd502c423ed606f02737b5"
+  },
+  "maskedInputs": {
+    "sealed-primary.jsonl": "c1e81a6212b675ac060cd142858717553809022059eced6ffef6e62bed6b0968",
+    "sealed-all.jsonl": "ddb56177823433dc558f55593d8108a603be62beff86a139fcb75f9a7a5e415a"
+  },
+  "privacyModified": 0,
+  "selected": 987,
+  "primary": 512,
+  "verifiedMixedParagraphs": 480,
+  "archivedOverlappingDonorVariants": 0
+}

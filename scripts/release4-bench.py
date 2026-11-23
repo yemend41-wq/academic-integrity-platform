@@ -177,6 +177,8 @@ async def exercise(args, result, client_args, credential):
             result["status"] = "passed" if all(gates) else "failed"
             if varied_cases:
                 result["distinctWorkload"] = await distinct_load.run([c for c, _ in setup], varied_cases, args.model)
+                if result["distinctWorkload"]["status"] != "passed":
+                    result["status"] = "failed"
         finally:
             await asyncio.gather(*(c.aclose() for c in clients))
 

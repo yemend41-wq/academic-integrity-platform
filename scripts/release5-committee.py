@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--out", required=True, type=Path)
 parser.add_argument("--model", required=True)
+parser.add_argument("--release", default="zz-release-5")
 args = parser.parse_args()
 password = getpass.getpass("Committee credential: ") if sys.stdin.isatty() else sys.stdin.readline().strip()
 now = lambda: datetime.now(timezone.utc).isoformat()
@@ -43,7 +44,7 @@ with args.out.open("x", encoding="utf-8") as out, httpx.Client(base_url=ORIGIN, 
         response = client.post("/api/login", json={"username":"review-panel","password":password})
         require(response.status_code==200 and client.get("/api/me").json().get("cohort")=="committee-review", "Committee sign-in failed")
         health = client.get("/api/health").json()
-        require(health.get("assessment")=="zz-release-5" and health.get("model")==args.model,"Wrong deployed version")
+        require(health.get("assessment")==args.release and health.get("model")==args.model,"Wrong deployed version")
         record["analysisFingerprint"]=health["analysisFingerprint"]
         return {"http":response.status_code,"model":health["model"],"assessment":health["assessment"]}
 

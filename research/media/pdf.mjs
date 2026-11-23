@@ -1,3 +1,4 @@
+import {writingPdfPage} from './pdf-writing.mjs';
 import {inspectManifest,missingCredential} from './c2pa.mjs';
 let enginePromise;
 function engine(){
@@ -49,12 +50,19 @@ export async function pdf(bytes){
   try{
     doc=await task.promise;
     if(doc.numPages>150)throw new Error('PDF page limit (150)');
-    const pages=[],sizes=[],fonts=new Set(),meta=await doc.getMetadata();
-    let chars=0;
+    const pages=[],writingPages=[],sizes=[],fonts=new Set(),meta=await doc.getMetadata();
+    let chars=0, repaired=0, layoutFallbacks=0;
     for(let n=1;n<=doc.numPages;n++){
       const p=await doc.getPage(n),v=p.getViewport({scale:1}),tc=await p.getTextContent();
       const text=pageText(tc.items);
       if((chars+=text.length)>500000)throw new Error('PDF text limit');
+      let writing = null;
+      if (n <= 20 && /\p{Script=Arabic}/u.test(text)) {
+        try { writing = (await writingPdfPage(p,pdfjs.OPS,text)).writingText; }
+        catch { layoutFallbacks++; }
+      }
+      if (writing !== null) repaired++;
+      writingPages.push(writing ?? text);
       pages.push(text);sizes.push({widthPt:+v.width.toFixed(2),heightPt:+v.height.toFixed(2)});
       for(const style of Object.values(tc.styles))if(style.fontFamily)fonts.add(style.fontFamily);
       p.cleanup();
@@ -75,7 +83,7 @@ export async function pdf(bytes){
     const baseFonts=[...tailText.matchAll(/\/BaseFont\s*\/([A-Za-z0-9_+.\-]{1,100})/g)].map(m=>m[1]);
     const software=(String(info.Producer||'')+' '+String(info.Creator||'')).toLowerCase();
     const generator=['reportlab','pymupdf','itext','pdftex','luatex','microsoft word','libreoffice','acrobat','quartz','skia'].find(v=>software.includes(v))||null;
-    return {format:'PDF',text:pages.join('\n\n'),forensics:{pageCount:doc.numPages,pageSizes:sizes,fontFamilies:[...fonts],visibleBaseFontNames:[...new Set(baseFonts)].slice(0,64),generatorFamily:generator,version:info.PDFFormatVersion,
+    return {format:'PDF',text:pages.join('\n\n'),writingText:repaired?writingPages.join('\n\n'):null,forensics:{pageCount:doc.numPages,writingReconstructedPages:repaired,writingLayoutErrors:layoutFallbacks,pagesWithLetters:pages.filter(s=>/\p{L}/u.test(s)).length,pageSizes:sizes,fontFamilies:[...fonts],visibleBaseFontNames:[...new Set(baseFonts)].slice(0,64),generatorFamily:generator,version:info.PDFFormatVersion,
       creationDate:info.CreationDate||null,modificationDate:info.ModDate||null,hasAcroForm:!!info.IsAcroFormPresent,
       attachmentCount:attachments.length,xrefMarkers:count(/(?:^|[\r\n])xref[\r\n]/g),endOfFileMarkers:count(/%%EOF/g),
       embeddedFileStreams:count(/\/Type\s*\/EmbeddedFile\b/g),imageObjectMarkers:count(/\/Subtype\s*\/Image\b/g)},

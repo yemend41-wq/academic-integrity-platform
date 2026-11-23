@@ -1,0 +1,27 @@
+{
+  "bilingual": [
+    "قرأ الفريق تقرير المختبر AIP-203 في يوم 23-11-2026 ثم راجع دقة القراءات.",
+    "أُعيد فحص العيّنة الثانية لأن القيمة 3.75 تغيّرت عند نقلها إلى جدول المراقبة.",
+    "The recorder stored both spectra without rounding the measured values or altering their order.",
+    "سجّل الباحث في الخانة الرابعة ٤٢ قراءة، وأضاف: «لاحظتُ فرقًا يسيرًا بعد التبريد».",
+    "An independent observer checked each entry against the notebook before writing the final account.",
+    "بقيتْ العيّنتان داخل الحجرة حتى نهاية النهار، ثم قارن الفريق النتيجة بالقيمة المرجعية."
+  ],
+  "breaks": [
+    "أول كلمة\tCONTROL\nالسطر التالي",
+    "",
+    "End of known file."
+  ],
+  "alternate": [
+    "Start.",
+    "Single visible result",
+    "End."
+  ],
+  "textbox": [
+    "Start.",
+    "Outer beginning.",
+    "Inside textbox.",
+    "Outer ending.",
+    "End."
+  ]
+}

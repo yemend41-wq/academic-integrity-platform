@@ -1,6 +1,7 @@
 import { createAuditPdf } from "../research/export/audit.mjs";
+import {writingPassages} from "../ui/writing-passages.mjs";
 import { fileTerm } from "../research/media/labels.mjs";
-import { displayedOverlap, sourceScope, writingExplanation } from "../ui/report-interpretation.mjs";
+import { displayedOverlap, sourceScope, writingExplanation, writingLabel, confidenceNote, pageCoverage } from "../ui/report-interpretation.mjs";
 
 function flatten(value, ar, key = "", rows = []) {
   if (value == null) return rows;
@@ -42,11 +43,34 @@ export function pdfAudit(r, locale) {
   });
   add(l("AI writing signals", "مؤشرات الكتابة المولّدة"), {
     [l("Model", "النموذج")]: r.detector.model,
-    [l("Display", "المؤشر")]: r.detector.display ?? l("Insufficient text", "نص غير كافٍ"),
+    [l("Display", "المؤشر")]: writingLabel(r.detector, ar),
     [l("Eligible words", "الكلمات المؤهلة للكاشف")]: r.detector.eligibleWords,
     [l("How to read this signal", "تفسير المؤشر")]: writingExplanation(r.detector, ar),
+    [l("Individual confidence", "الثقة الفردية")]: confidenceNote(ar),
+    [l("Text layer", "طبقة النص")]: pageCoverage(r.detector.review, ar) || undefined,
     [l("Review", "المراجعة الأكاديمية")]: l("An instructor reads the evidence before making an academic decision.", "يقرأ المدرّس الأدلة في سياقها قبل اتخاذ أي قرار أكاديمي."),
   });
+  const blocks = r.detector.review?.paragraphs;
+  if (blocks) {
+    add(l("Writing evidence by block", "أدلة الكتابة حسب المقطع"), {
+      [l("Total blocks", "عدد المقاطع")]:blocks.total,
+      [l("Blocks in this table", "المقاطع المعروضة")]:blocks.rows.length,
+      ...Object.fromEntries(blocks.rows.map(row=>[l("Block ", "المقطع ")+row.number,
+        l("Selected / eligible words", "الكلمات المختارة من المؤهلة")+"  "+row.selectedWords+" / "+row.eligibleWords]))
+    });
+  }
+  if (r.detector.status === "analyzed" && r.detector.segments?.some(segment => segment.flagged)) {
+    const writingText = r.writingText ?? r.text;
+    const spans = writingPassages(writingText,r.detector.segments);
+    const rows = [{label:l("Selected passages","مجموع المقاطع المختارة"),value:String(spans.length)},
+      {label:l("Excerpts included","المقتطفات المعروضة"),value:String(Math.min(spans.length,12))}];
+    for (const [index,span] of spans.slice(0,12).entries()) {
+      const excerpt = writingText.slice(span.start,Math.min(span.end,span.start+300));
+      rows.push({label:l("Passage ","المقطع ")+(index+1)+" · "+span.start+"–"+span.end,
+        value:excerpt+(span.end-span.start>300?"…":"")});
+    }
+    sections.push({title:l("Selected writing passages","مقاطع الكتابة المختارة"),rows});
+  }
   const matches = s.matches || [];
   add(l("Source matches", "المصادر المطابقة"), matches.length ? matches.map(m => ({
     [l("Source", "المصدر")]: m.sourceTitle || m.sourceId,

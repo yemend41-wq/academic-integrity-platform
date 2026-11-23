@@ -16,7 +16,7 @@ function confidence(hits, n) {
 
 function scoreInterval(result) {
   const {status, display} = result;
-  if (status === "insufficient" && display === null) return null;
+  if (["insufficient","unavailable","uncertain"].includes(status) && display === null) return null;
   if (status === "suppressed" && display === "*%") return [0, 20];
   if (status === "analyzed" && /^(?:0|[2-9][0-9]|100)%$/.test(display)) {
     const value = Number.parseInt(display, 10);

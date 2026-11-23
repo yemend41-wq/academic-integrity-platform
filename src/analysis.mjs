@@ -1,8 +1,9 @@
 import { inspectFile } from "../research/media/index.mjs";
 import { verifyReferences } from "../research/media/citations.mjs";
-import { detect } from "../research/detector/detector.mjs";
+import { analyzeWriting } from "./writing-analysis.mjs";
 import { compareDocument, PUBLIC_SOURCES } from "../research/similarity/engine.mjs";
 import { maskPII, cleanEvidence } from "./privacy.mjs";
+import {encodeReport, decodeReport} from "./report-storage.mjs";
 import { Fault, now, stmt } from "./auth.mjs";
 export const wordCount = (s) =>
   (s.match(/[\p{L}\p{N}]+(?:['’\-][\p{L}\p{N}]+)*/gu) || []).length;
@@ -17,7 +18,7 @@ export async function getReport(env, p, id) {
     p.role,
   ).first();
   if (!row) throw new Fault(404, "not_found");
-  const report = JSON.parse(row.audit);
+  const report = await decodeReport(row.audit);
   if (report.privacyVersion !== 4) {
     report.text = maskPII(report.text);
     report.forensics = cleanEvidence(report.forensics);
@@ -129,12 +130,13 @@ async function readSubmission({bytes, kind, edited}) {
     )
   )
     throw new Fault(422, "format_mismatch");
-  return {text, fmt, inspection};
+  const writingText = inspection.writingText == null ? text : maskPII(inspection.writingText);
+  return {text, writingText, fmt, inspection};
 }
 
 export async function blindWritingScore(bytes, kind) {
-  const {text} = await readSubmission({bytes, kind});
-  const {model, status, display, eligibleWords} = detect(text);
+  const {writingText, fmt, inspection} = await readSubmission({bytes, kind});
+  const {model, status, display, eligibleWords} = analyzeWriting(writingText, fmt, inspection.forensics);
   const digest = new Uint8Array(await crypto.subtle.digest("SHA-256", bytes));
   const sha256 = Array.from(digest, b => b.toString(16).padStart(2, "0")).join("");
   return {sha256, model, status, display, eligibleWords};
@@ -146,12 +148,12 @@ export async function analyze(
   {bytes, kind, edited, indexed, options, telemetry},
 ) {
   const start = Date.now();
-  const {text, fmt, inspection} = await readSubmission({bytes, kind, edited});
+  const {text, writingText, fmt, inspection} = await readSubmission({bytes, kind, edited});
   const [sim, refs] = await Promise.all([
     similarity(env, p, text, options, ""),
     verifyReferences(text),
   ]);
-  const detection = detect(text);
+  const detection = analyzeWriting(writingText, fmt, inspection.forensics);
   const id = crypto.randomUUID(),
     created = now(),
     words = wordCount(text);
@@ -166,6 +168,7 @@ export async function analyze(
     indexed,
     similarity: sim,
     detector: detection,
+    ...(writingText !== text && writingText.length <= 100000 ? {writingText} : {}),
     forensics: cleanEvidence(inspection.forensics),
     provenance: cleanEvidence(inspection.provenance),
     citations: cleanEvidence(refs),
@@ -173,8 +176,8 @@ export async function analyze(
     options,
     elapsedMs: Date.now() - start,
   };
-  const encoded = JSON.stringify(audit);
-  if (new TextEncoder().encode(encoded).length > 970000)
+  const encoded = await encodeReport(audit);
+  if (encoded === null)
     throw new Fault(413, "report_limit");
   await stmt(
     env,

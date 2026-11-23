@@ -86,12 +86,12 @@ await check('Health, distinct roles and protected routes',async()=>{
   return {roles,unauthenticated:401,badCredentials:401,secureHttpOnlyCookies:true};
 });
 await check('Public bilingual assessment, no private report access', async () => {
-  for (const [lang, title] of [['ar','سجل قبول الإصدار الخامس'],['en','Release 5 acceptance register']]) {
+  for (const [lang, title] of [['ar','سجل قبول ميزان'],['en','Mizan acceptance register']]) {
     const response = await worker.fetch(new Request(origin + '/acceptance?lang=' + lang),env,{});
     assert.equal(response.status,200);
     const page = await response.text();
     assert.ok(page.includes(title) && page.includes('AIP-HL-3'));
-    assert.ok(page.includes('ArguGPT') && !page.includes('sourceSha256'));
+    assert.ok(page.includes('/detector-study?lang=') && page.includes('ArguGPT') && !page.includes('sourceSha256'));
     assert.equal(response.headers.get('content-type'),'text/html; charset=utf-8');
   }
   assert.equal((await request('/api/health/details')).status,401);

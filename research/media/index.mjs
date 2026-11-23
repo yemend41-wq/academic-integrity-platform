@@ -1,5 +1,6 @@
 import {zipEntries} from './zip.mjs';
 import {readProperties,wordXML} from './xml.mjs';
+import {writingWordXML} from './word-writing.mjs';
 import {visibilityStyles} from './word-visibility.mjs';
 import {png,jpeg} from './images.mjs';
 import {pdf} from './pdf.mjs';
@@ -25,7 +26,9 @@ async function docx(bytes){
   const entries=zipEntries(bytes);
   if(!entries.has('[Content_Types].xml')||!entries.has('word/document.xml'))throw new Error('Not a Word processing document');
   const visibility=await visibilityStyles(entries.get('word/styles.xml')?.());
-  const {text,data}=wordXML(entries.get('word/document.xml')(),visibility);
+  const body=entries.get('word/document.xml')();
+  const {text,data}=wordXML(body,visibility);
+  const writingView=writingWordXML(body,visibility,text);
   // Only metadata relevant to process is retained. Author identities, document
   // titles, organisations and directory paths are never placed into reports.
   const core=readProperties(entries.get('docProps/core.xml')?.(),['revision','created','modified','lastPrinted']);
@@ -42,7 +45,7 @@ async function docx(bytes){
   }
   const packageManifest=entries.get('META-INF/content_credential.c2pa');
   const provenance=packageManifest?await inspectManifest(packageManifest(),bytes,[]):{...missingCredential(),scope:'OOXML package; see embedded media separately'};
-  return {text,format:'DOCX',forensics:{...data,core,app,editingMinutes:app.TotalTime&&/^\d+$/.test(app.TotalTime)?Number(app.TotalTime):null,
+  return {text,writingText:writingView.writingText,format:'DOCX',forensics:{...data,core,app,editingMinutes:app.TotalTime&&/^\d+$/.test(app.TotalTime)?Number(app.TotalTime):null,
     embeddedMediaCount:embedded.length,embeddedMediaScanned:media.length,embeddedMedia:media},
     provenance};
 }

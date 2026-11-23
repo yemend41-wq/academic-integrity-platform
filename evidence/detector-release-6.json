@@ -1,0 +1,1093 @@
+{
+  "release": "AI review R6",
+  "date": "2026-11-24",
+  "active": "AIP-HL-3",
+  "similarityTree": "2d3e6c2523a2c57eff3ced293fe34ef09fc6733f",
+  "audit": [
+    {
+      "ar": "يفحص AIP-HL-3 الكلمات وأزواج الكلمات واللواصق داخل نوافذ من 96 كلمة تتقدم بمقدار 32 كلمة. تتبع كل جملة قرار أقرب نافذة. يتطلب الفحص 48 كلمة على الأقل، وغلبة الخط المؤهل بنسبة 70% داخل النافذة.",
+      "en": "AIP-HL-3 compares hashed word, word-pair and affix features against language-specific thresholds in overlapping windows of 96 words, stepped by 32. Sentences inherit their nearest window decision. It requires 48 lexical tokens and 70% script dominance within a window."
+    },
+    {
+      "ar": "يعني الصفر أن الكاشف لم يختر كلمة مؤهلة للمراجعة. يحجب الرمز *% الرقم والمواضع عندما توجد إشارة تقل حصتها عن 20%. تُحسب النسبة بقسمة الكلمات المختارة على الكلمات المؤهلة. لم تُعايَر احتمالات نسبة مقطع بعينه إلى مؤلف بشري أو آلي.",
+      "en": "Zero means zero selected eligible words. A positive share below 20% is masked as *%, including its positions. Numeric shares count selected words divided by eligible words. No calibrated probability is available for the authorship of an individual passage."
+    },
+    {
+      "ar": "عرض تقرير الهاتف العربي *% بين 2,435 كلمة مؤهلة للكاشف، وعرض التقرير الإنجليزي 0% بين 1,170 كلمة مؤهلة. لم يتوفر توثيق لمن كتب أيًا من المستندين.",
+      "en": "The Arabic Android report showed *% for 2,435 eligible detector words. The English report showed 0% for 1,170 eligible detector words. The origin of the two texts is unknown."
+    }
+  ],
+  "studies": [
+    {
+      "id": "r6-fresh",
+      "title": {
+        "en": "Independent source holdout · identical documents",
+        "ar": "الاختبار الأعمى على مستندات مشتركة"
+      },
+      "description": {
+        "en": "512 primary files, 128 human and 128 generated per language. Arabic compares pre-2020 student essays with Fanar educational answers and has a genre difference. English pairs human research abstracts with generated abstracts on the same paper titles. Scoring rules and model weights were locked before unblinding.",
+        "ar": "ضم الاختبار الأساسي 512 ملفًا، منها 128 بشريًا و128 مولّدًا لكل لغة. تقارن عينة العربية مقالات طلابية سابقة لعام 2020 بإجابات تعليمية مولّدة بنموذج فنار، ويختلف النوع الكتابي بين المجموعتين. تقارن عينة الإنجليزية ملخّصات بشرية وأخرى مولّدة عن عناوين الأوراق نفسها. ثُبّتت الأوزان وقواعد القرار قبل كشف الإجابات."
+      },
+      "rows": [
+        {
+          "model": "AIP-CE-8-research",
+          "lang": "ar",
+          "endpoint": "all",
+          "tp": 37,
+          "fp": 24,
+          "tn": 104,
+          "fn": 91,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-CE-8-research",
+          "lang": "ar",
+          "endpoint": "numeric",
+          "tp": 37,
+          "fp": 24,
+          "tn": 104,
+          "fn": 91,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-CE-8-research",
+          "lang": "en",
+          "endpoint": "all",
+          "tp": 109,
+          "fp": 20,
+          "tn": 108,
+          "fn": 19,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-CE-8-research",
+          "lang": "en",
+          "endpoint": "numeric",
+          "tp": 109,
+          "fp": 20,
+          "tn": 108,
+          "fn": 19,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-CN-8-research",
+          "lang": "ar",
+          "endpoint": "all",
+          "tp": 16,
+          "fp": 8,
+          "tn": 120,
+          "fn": 112,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-CN-8-research",
+          "lang": "ar",
+          "endpoint": "numeric",
+          "tp": 16,
+          "fp": 8,
+          "tn": 120,
+          "fn": 112,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-CN-8-research",
+          "lang": "en",
+          "endpoint": "all",
+          "tp": 23,
+          "fp": 2,
+          "tn": 126,
+          "fn": 105,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-CN-8-research",
+          "lang": "en",
+          "endpoint": "numeric",
+          "tp": 23,
+          "fp": 2,
+          "tn": 126,
+          "fn": 105,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-HL-3",
+          "lang": "ar",
+          "endpoint": "all",
+          "tp": 13,
+          "fp": 8,
+          "tn": 120,
+          "fn": 115,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-HL-3",
+          "lang": "ar",
+          "endpoint": "numeric",
+          "tp": 13,
+          "fp": 7,
+          "tn": 121,
+          "fn": 115,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-HL-3",
+          "lang": "en",
+          "endpoint": "all",
+          "tp": 39,
+          "fp": 3,
+          "tn": 125,
+          "fn": 89,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-HL-3",
+          "lang": "en",
+          "endpoint": "numeric",
+          "tp": 36,
+          "fp": 2,
+          "tn": 126,
+          "fn": 92,
+          "abstained": 0
+        },
+        {
+          "model": "AraBERT · Arabic AI Text Detector",
+          "lang": "ar",
+          "endpoint": "binary",
+          "tp": 64,
+          "fp": 49,
+          "tn": 79,
+          "fn": 64,
+          "abstained": 0
+        },
+        {
+          "model": "RoBERTa · OpenAI GPT-2 Detector",
+          "lang": "en",
+          "endpoint": "binary",
+          "tp": 101,
+          "fp": 4,
+          "tn": 124,
+          "fn": 27,
+          "abstained": 0
+        }
+      ]
+    },
+    {
+      "title": {
+        "ar": "المقارنة الثنائية المتوازنة السابقة",
+        "en": "Archived balanced bilingual comparison"
+      },
+      "description": {
+        "ar": "شمل القياس السابق 400 مستند بشري و400 مستند مولّد في كل لغة. تدخل الملفات المؤهلة في الحساب، ويظل المقام نفسه عند الانتقال بين التنبيه الرقمي وجميع الإشارات.",
+        "en": "Historical evaluation of 400 human and 400 generated documents in each language. Each row uses only eligible cases. Both alert definitions use the same denominator."
+      },
+      "rows": [
+        {
+          "model": "AIP-HL-3",
+          "lang": "ar",
+          "endpoint": "all",
+          "tp": 310,
+          "fp": 34,
+          "tn": 366,
+          "fn": 90,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-HL-3",
+          "lang": "ar",
+          "endpoint": "numeric",
+          "tp": 299,
+          "fp": 15,
+          "tn": 385,
+          "fn": 101,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-HL-3",
+          "lang": "en",
+          "endpoint": "all",
+          "tp": 61,
+          "fp": 3,
+          "tn": 397,
+          "fn": 339,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-HL-3",
+          "lang": "en",
+          "endpoint": "numeric",
+          "tp": 51,
+          "fp": 1,
+          "tn": 399,
+          "fn": 349,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-HL-6-research",
+          "lang": "ar",
+          "endpoint": "all",
+          "tp": 0,
+          "fp": 0,
+          "tn": 400,
+          "fn": 400,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-HL-6-research",
+          "lang": "ar",
+          "endpoint": "numeric",
+          "tp": 0,
+          "fp": 0,
+          "tn": 400,
+          "fn": 400,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-HL-6-research",
+          "lang": "en",
+          "endpoint": "all",
+          "tp": 182,
+          "fp": 0,
+          "tn": 400,
+          "fn": 218,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-HL-6-research",
+          "lang": "en",
+          "endpoint": "numeric",
+          "tp": 181,
+          "fp": 0,
+          "tn": 400,
+          "fn": 219,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-HL-7-research",
+          "lang": "ar",
+          "endpoint": "all",
+          "tp": 157,
+          "fp": 3,
+          "tn": 397,
+          "fn": 243,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-HL-7-research",
+          "lang": "ar",
+          "endpoint": "numeric",
+          "tp": 157,
+          "fp": 3,
+          "tn": 397,
+          "fn": 243,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-HL-7-research",
+          "lang": "en",
+          "endpoint": "all",
+          "tp": 82,
+          "fp": 1,
+          "tn": 399,
+          "fn": 318,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-HL-7-research",
+          "lang": "en",
+          "endpoint": "numeric",
+          "tp": 81,
+          "fp": 1,
+          "tn": 399,
+          "fn": 319,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-CN-8-research",
+          "lang": "ar",
+          "endpoint": "all",
+          "tp": 162,
+          "fp": 12,
+          "tn": 388,
+          "fn": 238,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-CN-8-research",
+          "lang": "ar",
+          "endpoint": "numeric",
+          "tp": 162,
+          "fp": 12,
+          "tn": 388,
+          "fn": 238,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-CN-8-research",
+          "lang": "en",
+          "endpoint": "all",
+          "tp": 28,
+          "fp": 0,
+          "tn": 400,
+          "fn": 372,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-CN-8-research",
+          "lang": "en",
+          "endpoint": "numeric",
+          "tp": 28,
+          "fp": 0,
+          "tn": 400,
+          "fn": 372,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-CE-8-research",
+          "lang": "ar",
+          "endpoint": "all",
+          "tp": 339,
+          "fp": 55,
+          "tn": 345,
+          "fn": 61,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-CE-8-research",
+          "lang": "ar",
+          "endpoint": "numeric",
+          "tp": 339,
+          "fp": 55,
+          "tn": 345,
+          "fn": 61,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-CE-8-research",
+          "lang": "en",
+          "endpoint": "all",
+          "tp": 231,
+          "fp": 8,
+          "tn": 392,
+          "fn": 169,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-CE-8-research",
+          "lang": "en",
+          "endpoint": "numeric",
+          "tp": 231,
+          "fp": 8,
+          "tn": 392,
+          "fn": 169,
+          "abstained": 0
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Open-weight specialist models · archived comparison",
+        "ar": "الكاشفان المتخصصان مفتوحا الأوزان · الاختبار السابق المحفوظ"
+      },
+      "description": {
+        "en": "Local CPU inference using a frozen threshold on 256 documents: 64 human and 64 generated per language, across two source groups per language. The English detector targeted GPT-2. Overlap with third-party pretraining cannot be audited fully.",
+        "ar": "جرى التشغيل محليًا بعتبة ثابتة على 256 مستندًا، منها 64 نصًا بشريًا و64 نصًا مولّدًا في كل لغة، من مجموعتي مصادر لكل لغة. صُمّم الكاشف الإنجليزي أصلًا لنصوص GPT-2. تعذّر التدقيق الكامل في تداخل بيانات تدريب النماذج الخارجية."
+      },
+      "rows": [
+        {
+          "model": "AraBERT · Arabic AI Text Detector",
+          "lang": "ar",
+          "endpoint": "binary",
+          "tp": 43,
+          "tn": 60,
+          "fp": 4,
+          "fn": 21,
+          "abstained": 0
+        },
+        {
+          "model": "RoBERTa · OpenAI GPT-2 Detector",
+          "lang": "en",
+          "endpoint": "binary",
+          "tp": 32,
+          "tn": 62,
+          "fp": 2,
+          "fn": 32,
+          "abstained": 0
+        }
+      ]
+    }
+  ],
+  "notes": [
+    {
+      "ar": "تصف Precision حصة التنبيهات الصحيحة، ويقيس Recall حصة النصوص المولّدة المكتشفة، ويجمع F1 بينهما. تقيس Accuracy صحة التصنيف الإجمالية. مقام FPR هو النصوص البشرية المؤهلة، ومقام FNR هو النصوص المولّدة المؤهلة. تعني الشرطة أن المقام صفر. حُسبت فواصل ويلسون بنسبة 95% على مستوى المستندات، وقد يوسّع ترابطها عدم اليقين.",
+      "en": "Precision measures how many positive calls were correct. Recall measures how many generated documents were found. F1 balances the two. Accuracy covers all scored documents. FPR and FNR use scored human and generated documents, respectively. A dash means an undefined denominator. Intervals use Wilson 95% on document counts; dependence between documents can widen uncertainty."
+    },
+    {
+      "en": "On a local CPU, three warm 3,000-word runs took 7.93–8.61 seconds for Arabic and 1.46–1.65 seconds for English. Peak process memory was 903 MB and 341 MB respectively. The current Worker has a 128 MB memory limit. These times exclude upload, extraction and report generation.",
+      "ar": "في ثلاثة تشغيلات محلية بعد تحميل الأوزان، استغرق استدلال 3,000 كلمة 7.93–8.61 ثانية للعربية و1.46–1.65 ثانية للإنجليزية. بلغ استهلاك الذاكرة الأقصى للعملية 903 و341 ميغابايت على التوالي، وتتيح الاستضافة الحالية 128 ميغابايت للعامل. تقيس هذه الأزمنة الاستدلال وحده."
+    },
+    {
+      "en": "Copyleaks publishes support for Arabic and English and requires authenticated API access. No commercial run, purchase or external document transfer took place.",
+      "ar": "تعلن Copyleaks دعم العربية والإنجليزية وتتطلب واجهتها حسابًا مفعّلًا. اقتصر التقييم المقاس على النماذج المتاحة محليًا وفق اختيار مالك المشروع."
+    },
+    {
+      "ar": "تدرّب المرشح CN-8 على سمات الحروف، وجمع CE-8 قراره مع الكاشف الحالي بأوزان ثابتة. رفع الدمج اكتشاف الإنجليزية في M4 إلى 231 من 400، ورفع إنذارات العربية البشرية في المجموعة نفسها إلى 55 من 400. لم يجتز أيهما بوابة الترقية.",
+      "en": "CN-8 uses character features. CE-8 combines standardized CN-8 and HL-3 window scores with fixed equal weights. CE-8 found 231 of 400 generated English M4 documents, but flagged 55 of 400 human Arabic documents in the same benchmark. Neither candidate passed the promotion gates."
+    },
+    {
+      "en": "The available split and overlap audit screened 32,182 prior texts. English author rosters could be resolved for 48 of 128 primary papers (101 distinct listed authors, no repeated author in that subset). A separate group of 75 Emirati learner essays received zero alerts from the current detector; its Wilson 95% upper limit is 4.87%.",
+      "ar": "شمل فحص التداخل 32,182 نصًا سابقًا. أمكن التحقق من قوائم المؤلفين لـ48 ورقة من أصل 128 ورقة إنجليزية في الاختبار الأساسي، وتضم 101 مؤلف دون تكرار في الجزء المعروف. وفي 75 مقالًا مستقلًا لمتعلمي الإنجليزية الإماراتيين سجّل الكاشف الحالي صفر إنذارات، والحد الأعلى لفاصل الثقة 95% هو 4.87%."
+    },
+    {
+      "en": "A separate 256-word follow-up used 48 new controlled mixtures (192 known paragraphs). Mean absolute error of AIP-HL-3 was 46.88 points in Arabic and 50.00 in English. This diagnostic was registered after the primary experiment and cannot alter the promotion decision.",
+      "ar": "في اختبار لاحق مسجل على حدة، شملت 48 وثيقة جديدة من 256 كلمة 192 فقرة معلومة المصدر. بلغ خطأ الكاشف المنشور 46.88 نقطة للعربية و50.00 للإنجليزية. سُجل هذا الفحص بعد التجربة الأساسية، ولم يغيّر قرار الاعتماد."
+    }
+  ],
+  "cost": {
+    "ar": {
+      "words": 3000,
+      "windows": 26,
+      "threads": 3,
+      "warm_inference_seconds": [
+        8.607598643000529,
+        8.213348936998955,
+        7.932284182999865
+      ],
+      "process_peak_rss_bytes": 903450624,
+      "scope": "Standalone, warm local CPU inference only. Excludes network, upload, parsing, storage, queues and other modules."
+    },
+    "en": {
+      "words": 3000,
+      "windows": 20,
+      "threads": 3,
+      "warm_inference_seconds": [
+        1.653017071999784,
+        1.486237016000814,
+        1.4554799129982712
+      ],
+      "process_peak_rss_bytes": 341397504,
+      "scope": "Standalone, warm local CPU inference only. Excludes network, upload, parsing, storage, queues and other modules."
+    }
+  },
+  "references": [
+    "https://huggingface.co/sabaridsnfuji/arabic-ai-text-detector",
+    "https://huggingface.co/openai-community/roberta-base-openai-detector",
+    "https://docs.copyleaks.com/reference/actions/miscellaneous/ai-detection-supported-languages/"
+  ],
+  "mixtures": [
+    {
+      "model": "AIP-HL-3",
+      "lang": "ar",
+      "truth": 25,
+      "maePP": 23.28,
+      "biasPP": -19.55,
+      "files": 400,
+      "abstained": 0
+    },
+    {
+      "model": "AIP-CN-8-research",
+      "lang": "ar",
+      "truth": 25,
+      "maePP": 29.19,
+      "biasPP": -16.31,
+      "files": 400,
+      "abstained": 0
+    },
+    {
+      "model": "AIP-CE-8-research",
+      "lang": "ar",
+      "truth": 25,
+      "maePP": 38.36,
+      "biasPP": 2.23,
+      "files": 400,
+      "abstained": 0
+    },
+    {
+      "model": "AIP-HL-3",
+      "lang": "ar",
+      "truth": 50,
+      "maePP": 34.66,
+      "biasPP": -31.83,
+      "files": 400,
+      "abstained": 0
+    },
+    {
+      "model": "AIP-CN-8-research",
+      "lang": "ar",
+      "truth": 50,
+      "maePP": 49.32,
+      "biasPP": -33.18,
+      "files": 400,
+      "abstained": 0
+    },
+    {
+      "model": "AIP-CE-8-research",
+      "lang": "ar",
+      "truth": 50,
+      "maePP": 48.53,
+      "biasPP": 7.78,
+      "files": 400,
+      "abstained": 0
+    },
+    {
+      "model": "AIP-HL-3",
+      "lang": "ar",
+      "truth": 75,
+      "maePP": 45.85,
+      "biasPP": -40.99,
+      "files": 400,
+      "abstained": 0
+    },
+    {
+      "model": "AIP-CN-8-research",
+      "lang": "ar",
+      "truth": 75,
+      "maePP": 61.21,
+      "biasPP": -47.58,
+      "files": 400,
+      "abstained": 0
+    },
+    {
+      "model": "AIP-CE-8-research",
+      "lang": "ar",
+      "truth": 75,
+      "maePP": 36.85,
+      "biasPP": 1.15,
+      "files": 400,
+      "abstained": 0
+    },
+    {
+      "model": "AIP-HL-3",
+      "lang": "en",
+      "truth": 25,
+      "maePP": 24.91,
+      "biasPP": -24.71,
+      "files": 400,
+      "abstained": 0
+    },
+    {
+      "model": "AIP-CN-8-research",
+      "lang": "en",
+      "truth": 25,
+      "maePP": 25,
+      "biasPP": -25,
+      "files": 400,
+      "abstained": 0
+    },
+    {
+      "model": "AIP-CE-8-research",
+      "lang": "en",
+      "truth": 25,
+      "maePP": 25.82,
+      "biasPP": -23.18,
+      "files": 400,
+      "abstained": 0
+    },
+    {
+      "model": "AIP-HL-3",
+      "lang": "en",
+      "truth": 50,
+      "maePP": 49.28,
+      "biasPP": -49.28,
+      "files": 400,
+      "abstained": 0
+    },
+    {
+      "model": "AIP-CN-8-research",
+      "lang": "en",
+      "truth": 50,
+      "maePP": 49.79,
+      "biasPP": -49.71,
+      "files": 400,
+      "abstained": 0
+    },
+    {
+      "model": "AIP-CE-8-research",
+      "lang": "en",
+      "truth": 50,
+      "maePP": 47.92,
+      "biasPP": -39.58,
+      "files": 400,
+      "abstained": 0
+    },
+    {
+      "model": "AIP-HL-3",
+      "lang": "en",
+      "truth": 75,
+      "maePP": 73.6,
+      "biasPP": -73.6,
+      "files": 400,
+      "abstained": 0
+    },
+    {
+      "model": "AIP-CN-8-research",
+      "lang": "en",
+      "truth": 75,
+      "maePP": 73.76,
+      "biasPP": -73.51,
+      "files": 400,
+      "abstained": 0
+    },
+    {
+      "model": "AIP-CE-8-research",
+      "lang": "en",
+      "truth": 75,
+      "maePP": 59.67,
+      "biasPP": -48.04,
+      "files": 400,
+      "abstained": 0
+    }
+  ],
+  "candidateProtocol": {
+    "sha256": "570e533467d171a78ad789bb38378779e8471e593d44226b8f6886b8b79eb3b8",
+    "weightsSHA256": "013cb1a52a29c5bc3af2e59e628bef8fb58568ac0c9739e06343dedfcb5e8cb6",
+    "retrospectiveCases": 10176
+  },
+  "independentMixtures": [
+    {
+      "model": "AIP-CE-8-research",
+      "lang": "ar",
+      "level": "25",
+      "n": 20,
+      "abstained": 0,
+      "maePP": 32.5,
+      "biasPP": -10.0,
+      "iou": 0.10345,
+      "f1": 0.1875
+    },
+    {
+      "model": "AIP-CE-8-research",
+      "lang": "ar",
+      "level": "50",
+      "n": 20,
+      "abstained": 0,
+      "maePP": 50.0,
+      "biasPP": -40.0,
+      "iou": 0.09091,
+      "f1": 0.16667
+    },
+    {
+      "model": "AIP-CE-8-research",
+      "lang": "ar",
+      "level": "75",
+      "n": 20,
+      "abstained": 0,
+      "maePP": 65.0,
+      "biasPP": -55.0,
+      "iou": 0.1875,
+      "f1": 0.31579
+    },
+    {
+      "model": "AIP-CE-8-research",
+      "lang": "ar",
+      "level": "all",
+      "n": 60,
+      "abstained": 0,
+      "maePP": 49.16667,
+      "biasPP": -35.0,
+      "iou": 0.13869,
+      "f1": 0.24359
+    },
+    {
+      "model": "AIP-CE-8-research",
+      "lang": "en",
+      "level": "25",
+      "n": 20,
+      "abstained": 0,
+      "maePP": 35.0,
+      "biasPP": -5.0,
+      "iou": 0.125,
+      "f1": 0.22222
+    },
+    {
+      "model": "AIP-CE-8-research",
+      "lang": "en",
+      "level": "50",
+      "n": 20,
+      "abstained": 0,
+      "maePP": 50.0,
+      "biasPP": -25.0,
+      "iou": 0.2,
+      "f1": 0.33333
+    },
+    {
+      "model": "AIP-CE-8-research",
+      "lang": "en",
+      "level": "75",
+      "n": 20,
+      "abstained": 0,
+      "maePP": 47.5,
+      "biasPP": -20.0,
+      "iou": 0.46479,
+      "f1": 0.63462
+    },
+    {
+      "model": "AIP-CE-8-research",
+      "lang": "en",
+      "level": "all",
+      "n": 60,
+      "abstained": 0,
+      "maePP": 44.16667,
+      "biasPP": -16.66667,
+      "iou": 0.30719,
+      "f1": 0.47
+    },
+    {
+      "model": "AIP-CN-8-research",
+      "lang": "ar",
+      "level": "25",
+      "n": 20,
+      "abstained": 0,
+      "maePP": 35.0,
+      "biasPP": -5.0,
+      "iou": 0.125,
+      "f1": 0.22222
+    },
+    {
+      "model": "AIP-CN-8-research",
+      "lang": "ar",
+      "level": "50",
+      "n": 20,
+      "abstained": 0,
+      "maePP": 50.0,
+      "biasPP": -40.0,
+      "iou": 0.09091,
+      "f1": 0.16667
+    },
+    {
+      "model": "AIP-CN-8-research",
+      "lang": "ar",
+      "level": "75",
+      "n": 20,
+      "abstained": 0,
+      "maePP": 67.5,
+      "biasPP": -60.0,
+      "iou": 0.14286,
+      "f1": 0.25
+    },
+    {
+      "model": "AIP-CN-8-research",
+      "lang": "ar",
+      "level": "all",
+      "n": 60,
+      "abstained": 0,
+      "maePP": 50.83333,
+      "biasPP": -35.0,
+      "iou": 0.1223,
+      "f1": 0.21795
+    },
+    {
+      "model": "AIP-CN-8-research",
+      "lang": "en",
+      "level": "25",
+      "n": 20,
+      "abstained": 0,
+      "maePP": 25.0,
+      "biasPP": -25.0,
+      "iou": 0.0,
+      "f1": 0.0
+    },
+    {
+      "model": "AIP-CN-8-research",
+      "lang": "en",
+      "level": "50",
+      "n": 20,
+      "abstained": 0,
+      "maePP": 50.0,
+      "biasPP": -45.0,
+      "iou": 0.04762,
+      "f1": 0.09091
+    },
+    {
+      "model": "AIP-CN-8-research",
+      "lang": "en",
+      "level": "75",
+      "n": 20,
+      "abstained": 0,
+      "maePP": 70.0,
+      "biasPP": -65.0,
+      "iou": 0.09677,
+      "f1": 0.17647
+    },
+    {
+      "model": "AIP-CN-8-research",
+      "lang": "en",
+      "level": "all",
+      "n": 60,
+      "abstained": 0,
+      "maePP": 48.33333,
+      "biasPP": -45.0,
+      "iou": 0.06452,
+      "f1": 0.12121
+    },
+    {
+      "model": "AIP-HL-3",
+      "lang": "ar",
+      "level": "25",
+      "n": 20,
+      "abstained": 0,
+      "maePP": 25.0,
+      "biasPP": -25.0,
+      "iou": 0.0,
+      "f1": 0.0
+    },
+    {
+      "model": "AIP-HL-3",
+      "lang": "ar",
+      "level": "50",
+      "n": 20,
+      "abstained": 0,
+      "maePP": 50.0,
+      "biasPP": -40.0,
+      "iou": 0.09091,
+      "f1": 0.16667
+    },
+    {
+      "model": "AIP-HL-3",
+      "lang": "ar",
+      "level": "75",
+      "n": 20,
+      "abstained": 0,
+      "maePP": 72.5,
+      "biasPP": -70.0,
+      "iou": 0.04918,
+      "f1": 0.09375
+    },
+    {
+      "model": "AIP-HL-3",
+      "lang": "ar",
+      "level": "all",
+      "n": 60,
+      "abstained": 0,
+      "maePP": 49.16667,
+      "biasPP": -45.0,
+      "iou": 0.056,
+      "f1": 0.10606
+    },
+    {
+      "model": "AIP-HL-3",
+      "lang": "en",
+      "level": "25",
+      "n": 20,
+      "abstained": 0,
+      "maePP": 25.0,
+      "biasPP": -25.0,
+      "iou": 0.0,
+      "f1": 0.0
+    },
+    {
+      "model": "AIP-HL-3",
+      "lang": "en",
+      "level": "50",
+      "n": 20,
+      "abstained": 0,
+      "maePP": 50.0,
+      "biasPP": -40.0,
+      "iou": 0.09091,
+      "f1": 0.16667
+    },
+    {
+      "model": "AIP-HL-3",
+      "lang": "en",
+      "level": "75",
+      "n": 20,
+      "abstained": 0,
+      "maePP": 67.5,
+      "biasPP": -60.0,
+      "iou": 0.14286,
+      "f1": 0.25
+    },
+    {
+      "model": "AIP-HL-3",
+      "lang": "en",
+      "level": "all",
+      "n": 60,
+      "abstained": 0,
+      "maePP": 47.5,
+      "biasPP": -41.66667,
+      "iou": 0.10236,
+      "f1": 0.18571
+    },
+    {
+      "model": "AraBERT · Arabic AI Text Detector",
+      "lang": "ar",
+      "level": "25",
+      "n": 20,
+      "abstained": 0,
+      "maePP": null,
+      "biasPP": null,
+      "iou": 0.21429,
+      "f1": 0.35294
+    },
+    {
+      "model": "AraBERT · Arabic AI Text Detector",
+      "lang": "ar",
+      "level": "50",
+      "n": 20,
+      "abstained": 0,
+      "maePP": null,
+      "biasPP": null,
+      "iou": 0.31034,
+      "f1": 0.47368
+    },
+    {
+      "model": "AraBERT · Arabic AI Text Detector",
+      "lang": "ar",
+      "level": "75",
+      "n": 20,
+      "abstained": 0,
+      "maePP": null,
+      "biasPP": null,
+      "iou": 0.46479,
+      "f1": 0.63462
+    },
+    {
+      "model": "AraBERT · Arabic AI Text Detector",
+      "lang": "ar",
+      "level": "all",
+      "n": 60,
+      "abstained": 0,
+      "maePP": null,
+      "biasPP": null,
+      "iou": 0.34054,
+      "f1": 0.50806
+    },
+    {
+      "model": "RoBERTa · OpenAI GPT-2 Detector",
+      "lang": "en",
+      "level": "25",
+      "n": 20,
+      "abstained": 0,
+      "maePP": null,
+      "biasPP": null,
+      "iou": 0.07692,
+      "f1": 0.14286
+    },
+    {
+      "model": "RoBERTa · OpenAI GPT-2 Detector",
+      "lang": "en",
+      "level": "50",
+      "n": 20,
+      "abstained": 0,
+      "maePP": null,
+      "biasPP": null,
+      "iou": 0.09091,
+      "f1": 0.16667
+    },
+    {
+      "model": "RoBERTa · OpenAI GPT-2 Detector",
+      "lang": "en",
+      "level": "75",
+      "n": 20,
+      "abstained": 0,
+      "maePP": null,
+      "biasPP": null,
+      "iou": 0.14286,
+      "f1": 0.25
+    },
+    {
+      "model": "RoBERTa · OpenAI GPT-2 Detector",
+      "lang": "en",
+      "level": "all",
+      "n": 60,
+      "abstained": 0,
+      "maePP": null,
+      "biasPP": null,
+      "iou": 0.11278,
+      "f1": 0.2027
+    }
+  ],
+  "holdout": {
+    "totalFiles": 987,
+    "primaryFiles": 512,
+    "mixedParagraphs": 480,
+    "blindInputSHA256": "ddb56177823433dc558f55593d8108a603be62beff86a139fcb75f9a7a5e415a",
+    "protocolSHA256": "f606d861d0ad09aa3e75c72f4445bbc768a8595bd6682a17ac3d6aeb8e1c524d",
+    "archivedDetectedDonorOverlaps": 0
+  },
+  "readingTests": {
+    "ordinaryExtractionFilesIdentical": 16,
+    "similarityOutputsIdentical": 10,
+    "nativePDFKnownTokens": 76,
+    "recoveredInOrder": 76,
+    "legacyTokens": 89,
+    "uncertainVowelMarksOmitted": 9
+  },
+  "decisionNotes": [
+    {
+      "en": "The primary new-text trial included no abstentions. The Arabic specialist misclassified 49/128 human texts; the English specialist misclassified 4/128. Positive AIP-HL-3 decisions numbered 8/128 and 3/128 on the same human documents. The university threshold remains unmet.",
+      "ar": "لم يمتنع أي نموذج عن تقدير الملفات الأساسية. أخطأ الكاشف المتخصص في 49 من 128 نصًا عربيًا بشريًا وفي 4 من 128 نصًا إنجليزيًا بشريًا. أصدر AIP-HL-3 إشارة على 8 و3 من النصوص البشرية نفسها على التوالي. بقي شرط الجامعة دون اجتياز."
+    },
+    {
+      "en": "The 987-file panel contained 120 newly constructed 80-word mixtures with independently checked paragraph provenance. In these short mixtures the deployed detector averaged 49.17 percentage points of absolute error in Arabic and 47.50 in English. Token IoU measures overlap between visible highlighted words and source-attributed words.",
+      "ar": "شملت الملفات الـ987 عدد 120 نصًا مختلطًا من 80 كلمة بمواضع فقرات معلومة المصدر. بلغ متوسط الخطأ المطلق للكاشف المنشور 49.17 نقطة مئوية في العربية و47.50 في الإنجليزية. يقيس IoU مدى تداخل الكلمات المظللة ظاهرًا مع الكلمات المولّدة معلومة الموضع."
+    },
+    {
+      "en": "Among 32 English original/polished pairs, the live detector changed its inclusive decision twice; 30 remained unflagged. All 32 Arabic short pairs abstained before and after native review. The edited passages have no known generated-word percentage.",
+      "ar": "تغيّر قرار الكاشف المنشور في زوجين من 32 زوجًا إنجليزيًا يضم النص الأصلي ونسخته المصقولة، وبقي 30 زوجًا دون إشارة. امتنع الكاشف في الأزواج العربية القصيرة البالغ عددها 32 قبل التحرير وبعده. لا تتوافر نسبة توليد مرجعية لهذه النصوص المحررة."
+    },
+    {
+      "en": "Source and duplicate screening used the available training, calibration and evaluation manifests. Undisclosed external pretraining and missing author identities prevent a universal no-leakage claim. These are development-team experiments; independent university confirmation remains open.",
+      "ar": "شمل تدقيق التداخل بيانات التدريب والمعايرة والتقييم المتاحة وأُجري قبل قراءة النتائج. تعذّر تدقيق هويات المؤلفين المجهولة وبيانات التدريب غير المعلنة للنماذج الخارجية. أجرى فريق التطوير التجربة، وما زال اختبار اللجنة الجامعية المستقل مفتوحًا."
+    },
+    {
+      "en": "A real tagged bilingual PDF recovered 76/76 word tokens in source order; ambiguous vowel marks (9) were omitted. Inputs to the frozen similarity engine were byte-identical on 16 files and its outputs matched on 10 comparative checks. Image-only pages are counted and do not generate a writing percentage.",
+      "ar": "في ملف PDF ثنائي اللغة، استعاد مسار القراءة 76 من 76 كلمة بالترتيب الصحيح، وتعذّر تعيين تسع حركات. تطابق نص محرك التشابه مع الإصدار السابق في 16 ملفًا، وتطابقت مخرجاته في عشر مقارنات. يبين التقرير تغطية الصفحات، ويمتنع الكاشف عند غياب نص قابل للاستخراج."
+    }
+  ],
+  "authorScreen": {
+    "authorsSeenOnMultipleSelectedPapers": 0,
+    "distinctListedAuthors": 101,
+    "papers": 128,
+    "registeredAllListedAuthorIDs": 48
+  },
+  "longMixtures": [
+    {
+      "model": "AIP-CE-8-research",
+      "lang": "ar",
+      "n": 24,
+      "maePP": 52.08333,
+      "areaIoU": 0.20635,
+      "visibleF1": 0.34211
+    },
+    {
+      "model": "AIP-CE-8-research",
+      "lang": "en",
+      "n": 24,
+      "maePP": 35.64453,
+      "areaIoU": 0.51849,
+      "visibleF1": 0.6829
+    },
+    {
+      "model": "AIP-CN-8-research",
+      "lang": "ar",
+      "n": 24,
+      "maePP": 50.0,
+      "areaIoU": 0.0,
+      "visibleF1": 0.0
+    },
+    {
+      "model": "AIP-CN-8-research",
+      "lang": "en",
+      "n": 24,
+      "maePP": 48.48633,
+      "areaIoU": 0.12602,
+      "visibleF1": 0.22383
+    },
+    {
+      "model": "AIP-HL-3",
+      "lang": "ar",
+      "n": 24,
+      "maePP": 46.875,
+      "areaIoU": 0.04082,
+      "visibleF1": 0.07843
+    },
+    {
+      "model": "AIP-HL-3",
+      "lang": "en",
+      "n": 24,
+      "maePP": 50.0,
+      "areaIoU": 0.0,
+      "visibleF1": 0.0
+    }
+  ]
+}

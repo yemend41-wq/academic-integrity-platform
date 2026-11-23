@@ -62,7 +62,9 @@ export async function readJSON(request, limit = 8192) {
 }
 function activeBenchmark(env) {
   if (!env.BENCHMARK_ACCESS) return null;
-  const config = JSON.parse(env.BENCHMARK_ACCESS);
+  let config;
+  try { config = JSON.parse(env.BENCHMARK_ACCESS); } catch { return null; }
+  if (!config || typeof config !== "object") return null;
   if (!/^[a-f0-9]{12}$/.test(config.run) || !/^[a-f0-9]{64}$/.test(config.verifier)) return null;
   if (!Number.isSafeInteger(config.until) || config.until <= now() || config.until > now() + 86400) return null;
   return config;

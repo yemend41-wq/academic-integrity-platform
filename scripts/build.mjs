@@ -26,8 +26,14 @@ await writeFile(
     JSON.stringify(files) +
     ';\nexport function asset(path){const f=files[path];return f?new Response(f[1],{headers:{"Content-Type":f[0]}}):new Response("Not found",{status:404});}\n',
 );
+// Fingerprint every bundled input that can affect file extraction or scoring.
+const graph = await esbuild.build({
+  entryPoints:["src/analysis.mjs"], bundle:true, metafile:true, write:false, format:"esm",
+  target:"es2022", platform:"browser", external:["node:*"], logLevel:"silent",
+  define:{"process.versions.node":"undefined"},
+});
 const fingerprint = createHash("sha256");
-for (const path of ["src/analysis.mjs", "research/detector/inference.mjs", "research/detector/detector.mjs", "research/detector/weights.mjs", "research/similarity/engine.mjs", "research/similarity/model.mjs", "research/similarity/sources.mjs"]) {
+for (const path of Object.keys(graph.metafile.inputs).sort()) {
   fingerprint.update(path + "\0").update(await readFile(path)).update("\0");
 }
 await esbuild.build({

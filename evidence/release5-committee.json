@@ -1,0 +1,122 @@
+{
+  "scope": "Authenticated public HTTPS with existing committee login. No physical device attestation.",
+  "startedUTC": "2026-11-23T21:09:34.256213+00:00",
+  "origin": "https://mizan-integrity-studio.yemend41.chatgpt.site",
+  "checks": [
+    {
+      "name": "Committee identity and current live version",
+      "status": "passed",
+      "observation": {
+        "http": 200,
+        "model": "AIP-HL-3",
+        "assessment": "zz-release-5"
+      }
+    },
+    {
+      "name": "Non-indexed blind DOCX score matches ordinary report",
+      "status": "passed",
+      "observation": {
+        "fixtureSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+        "normalWords": 3000,
+        "scoreStatus": "analyzed",
+        "indexed": false,
+        "extraReportSaved": false
+      }
+    },
+    {
+      "name": "Non-indexed blind PDF score matches ordinary report",
+      "status": "passed",
+      "observation": {
+        "fixtureSHA256": "43da6fe9442391a51a31f2cd2267dca1266f67fe25cfd8ee0a584d012895a8f7",
+        "normalWords": 3000,
+        "scoreStatus": "analyzed",
+        "indexed": false,
+        "extraReportSaved": false
+      }
+    },
+    {
+      "name": "Bilingual PDFs and saved JSON",
+      "status": "passed",
+      "observation": {
+        "inputSHA256": "b8f512d2c27aab9f6252eb46ba540a3f07eca3be2c92b59d1414e1ed507d7e13",
+        "words": 3000,
+        "pdf": {
+          "ar": {
+            "pages": 4,
+            "sha256": "909b14bc025d69859ec9a4b6d31c6ac6d0adc2e5d3f2a3be59d3533c57b12ea6"
+          },
+          "en": {
+            "pages": 4,
+            "sha256": "2a5b55bb8a2c7f5409c73f9345dc42a7f120909028a46ac5dd30390170f5ad80"
+          }
+        },
+        "jsonMatchesStored": true
+      }
+    },
+    {
+      "name": "Source and passage in a published paper",
+      "status": "passed",
+      "observation": {
+        "inputSHA256": "b196e33fcebb974fca4ec5e9563e0c1ca54ceb026426c98a9f3ead36d182e9b1",
+        "realPaperMatches": 23
+      }
+    },
+    {
+      "name": "Quote and reference denominators",
+      "status": "passed",
+      "observation": {
+        "inputSHA256": "0b3eb4409e83440ccfd2299e7ba3eed9c75f30c5091f8d0a4060a1a0fbd4d1f3",
+        "filtered": [
+          19,
+          19
+        ],
+        "included": [
+          57,
+          58
+        ]
+      }
+    },
+    {
+      "name": "Registry outcomes",
+      "status": "passed",
+      "observation": {
+        "10.1038/nature12373": "verified",
+        "10.99999/mizan-evaluation-missing-2026": "not_found",
+        "9780306406157": "verified",
+        "9780306406158": "invalid_checksum"
+      }
+    },
+    {
+      "name": "Real DOCX file and redaction",
+      "status": "passed",
+      "observation": {
+        "inputSHA256": "6d8f40db085a82126c3117aef677fc5f5cfd2276cc4b18fe52c8588be12a7f6c",
+        "zeroWidth": 1,
+        "maskPresent": true
+      }
+    },
+    {
+      "name": "Authentic signed JPEG",
+      "status": "passed",
+      "observation": {
+        "inputSHA256": "e71bff58fc57640803e6e65f7534e2fb0c2f99018c85276cc14b30f04427cc76",
+        "status": "manifest_read",
+        "signature": "verified_with_embedded_leaf",
+        "trust": "not_evaluated"
+      }
+    },
+    {
+      "name": "Existing committee revision playback",
+      "status": "passed",
+      "observation": {
+        "revision": 1,
+        "edits": 4,
+        "activeMs": 2600,
+        "reconstructed": true,
+        "draftChanged": false
+      }
+    }
+  ],
+  "analysisFingerprint": "ab7348672aacd049ab2b7b614b15fee909fb139302fa9007cd04236e8b5bb3dd",
+  "finishedUTC": "2026-11-23T21:09:59.569713+00:00"
+}

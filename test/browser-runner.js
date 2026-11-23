@@ -26,8 +26,15 @@ async function suite(width,lang){
    d.querySelector('#rq').click();d.querySelector('#refilter').click();await waitFor(()=>!d.querySelector('#refilter')?.disabled);
    for(const tab of ['writing','file','refs','matches']){d.querySelector('[data-tab="'+tab+'"]').click();assert(d.querySelector('#detail').textContent.trim(),'empty tab');}
    assert(!d.querySelector('#rq').checked,'selected exclusions survived tab switch');
-   const urls=[...d.querySelectorAll('a[download]')].map(a=>a.getAttribute('href'));assert(urls.length===2,'export controls');
-   const responses=await Promise.all(urls.map(s=>fetch(s)));assert(responses.every(r=>r.ok),'export HTTP');const bytes=await responses[0].arrayBuffer();assert(new TextDecoder().decode(bytes.slice(0,5))==='%PDF-','PDF bytes');assert((await responses[1].json()).words===3000,'JSON content');return {pdfBytes:bytes.byteLength};
+   const urls=[...d.querySelectorAll('a[download]')].map(a=>a.getAttribute('href'));
+   assert(urls.length===3 && urls.some(s=>s.endsWith('lang=ar')) && urls.some(s=>s.endsWith('lang=en')),'bilingual export controls');
+   let pdfCount=0;
+   for(const url of urls){
+     const response=await fetch(url);assert(response.ok,'export HTTP');
+     if(url.includes('/pdf?')){const bytes=await response.arrayBuffer();assert(new TextDecoder().decode(bytes.slice(0,5))==='%PDF-','PDF bytes');pdfCount++;}
+     else assert((await response.json()).words===3000,'JSON content');
+   }
+   return {pdfCount,jsonOpened:true};
  });
  await testCase('Clarity entry, paste, save, playback and submission',async()=>{
   const d=doc();d.querySelector('[data-nav="clarity"]').click();const edit=await waitFor(()=>d.querySelector('textarea'));edit.focus();const prior=edit.value;
@@ -42,9 +49,22 @@ async function suite(width,lang){
   const d=doc();d.querySelector('[data-nav=records]').click();const search=await waitFor(()=>d.querySelector('#search'));await waitFor(()=>d.querySelector('[data-id]'));search.value='docx';search.dispatchEvent(new f.contentWindow.Event('input'));
   assert(d.querySelector('[data-id]'),'search found no document');d.querySelector('[data-nav=health]').click();await waitFor(()=>d.querySelector('.badge'));const overflow=d.documentElement.scrollWidth-d.documentElement.clientWidth;assert(overflow<=2,'horizontal overflow '+overflow);return {overflow};
  });
+ await testCase('Sealed blind panel on the actual document',async()=>{
+   const d=doc(),pane=d.querySelector('#blind-panel');assert(pane,'evaluator panel visible');
+   pane.querySelector('details').open=true;
+   const id=await digest(await b.arrayBuffer());
+   const key=JSON.stringify({version:1,cases:[{sha256:id,language:'en',origin:'human',condition:'original',generatedPercent:0,authorGroup:'A1',sourceGroup:'S1'}]});
+   const attach=(selector,bytes,name)=>{const transfer=new f.contentWindow.DataTransfer();transfer.items.add(new f.contentWindow.File([bytes],name));pane.querySelector(selector).files=transfer.files;};
+   attach('[data-files]',b,'novel.docx');attach('[data-key]',key,'answers.json');
+   pane.querySelector('[data-run]').click();await waitFor(()=>!pane.querySelector('[data-reveal]').hidden);
+   assert(!pane.querySelector('tbody') && pane.querySelector('[data-key]').disabled,'decisions remain closed until opening');
+   pane.querySelector('[data-reveal]').click();await waitFor(()=>pane.querySelector('tbody tr'));
+   assert(!pane.querySelector('[data-save]').hidden,'private result export');
+   return {files:1,viewports:[d.documentElement.clientWidth],sealedBeforeScoring:true};
+ });
  f.src='about:blank';await waitFor(()=>!doc().querySelector('#frame'));
 }
 document.querySelector('button').onclick=async e=>{e.target.disabled=true;try{
- await suite(390,'ar');await suite(1240,'en');document.title='UI checks passed';document.querySelector('h1').textContent='UI checks passed';
+ await suite(390,'ar');await suite(390,'en');await suite(1240,'en');await suite(1240,'ar');document.title='UI checks passed';document.querySelector('h1').textContent='UI checks passed';
 }catch(e){results.push({status:'failed',detail:e.message});document.title='UI checks failed';document.querySelector('h1').textContent='UI checks failed';}
  output.textContent=JSON.stringify(results,null,2);await fetch('/__qa/results',{method:'POST',body:JSON.stringify(results)});};

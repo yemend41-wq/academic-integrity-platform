@@ -74,6 +74,20 @@ async function exercise(){
     check('cookie bound state required',(await send(st,signed,'')).status,401);
     const r=await send(st,signed),identity=await r.json();
     check('signed instructor launch',[r.status,identity.role,identity.source],[200,'instructor','lti']);
+    check('an omitted optional locale preserves the default experience',identity.locale,undefined);
+    for (const [title, presentation, profileLocale, expected] of [
+      ['Arabic presentation language takes priority', 'ar-OM', 'en-GB', 'ar'],
+      ['English launch uses an English interface', 'en-GB', 'ar-OM', 'en'],
+      ['Invalid presentation tag falls back to supported profile language', 'invalid tag', 'ar-AE', 'ar'],
+      ['Unserved languages leave the local preference available', 'de-DE', 'fr-FR', undefined],
+    ]) {
+      const flow = await login();
+      const localized = await send(flow, await prepare(flow, {
+        [claim+'launch_presentation']: {document_target: 'window', locale: presentation},
+        locale: profileLocale,
+      }));
+      check(title, [localized.status, (await localized.json()).locale], [200, expected]);
+    }
     check('pseudonyms replace raw user and course',/^lti-[\w-]{43}$/.test(identity.id)&&/^lti-[\w-]{43}$/.test(identity.cohort)&&!JSON.stringify(identity).includes('@'),true);
     check('single-use accepted launch',(await send(st,signed)).status,401);
     const st2=await login(true);

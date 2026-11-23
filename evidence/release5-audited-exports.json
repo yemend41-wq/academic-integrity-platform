@@ -1,0 +1,98 @@
+{
+  "scope": "Two new ordinary uploads over public HTTPS using the document format control and publisher research paper. Independent JSON word counts and four regenerated PDFs opened in three readers.",
+  "checkedUTC": "2026-11-23T21:37:16.265718+00:00",
+  "revisedExport": true,
+  "reports": {
+    "ar": {
+      "format": "docx",
+      "extractedWords": 78,
+      "matched": 0,
+      "eligible": 77,
+      "overlapPercent": 0.0,
+      "excludeQuotes": true,
+      "excludeReferences": true,
+      "rangesRecounted": true,
+      "matches": 0,
+      "sourceKinds": {
+        "paper": 3,
+        "publication": 2
+      },
+      "distinctMatchedSources": 0,
+      "matchMethods": {},
+      "cohortCompared": 0,
+      "windowLimited": false,
+      "detectorDisplay": "0%",
+      "detectorStatus": "analyzed",
+      "detectorEligible": 77,
+      "model": "AIP-HL-3",
+      "authorshipLabel": "unknown",
+      "pdf": {
+        "ar": {
+          "http": 200,
+          "pages": 4,
+          "opened": true,
+          "renderedAllPages": true,
+          "languageTag": true,
+          "distinctDownloadName": true,
+          "threeReadersAgreed": true
+        },
+        "en": {
+          "http": 200,
+          "pages": 4,
+          "opened": true,
+          "renderedAllPages": true,
+          "languageTag": true,
+          "distinctDownloadName": true,
+          "threeReadersAgreed": true
+        }
+      }
+    },
+    "en": {
+      "format": "pdf",
+      "extractedWords": 2772,
+      "matched": 841,
+      "eligible": 1098,
+      "overlapPercent": 76.6,
+      "excludeQuotes": true,
+      "excludeReferences": true,
+      "rangesRecounted": true,
+      "matches": 24,
+      "sourceKinds": {
+        "paper": 3,
+        "publication": 2
+      },
+      "distinctMatchedSources": 2,
+      "matchMethods": {
+        "verbatim": 23,
+        "paraphrase": 1
+      },
+      "cohortCompared": 0,
+      "windowLimited": false,
+      "detectorDisplay": "0%",
+      "detectorStatus": "analyzed",
+      "detectorEligible": 2460,
+      "model": "AIP-HL-3",
+      "authorshipLabel": "unknown",
+      "pdf": {
+        "ar": {
+          "http": 200,
+          "pages": 27,
+          "opened": true,
+          "renderedAllPages": true,
+          "languageTag": true,
+          "distinctDownloadName": true,
+          "threeReadersAgreed": true
+        },
+        "en": {
+          "http": 200,
+          "pages": 27,
+          "opened": true,
+          "renderedAllPages": true,
+          "languageTag": true,
+          "distinctDownloadName": true,
+          "threeReadersAgreed": true
+        }
+      }
+    }
+  }
+}

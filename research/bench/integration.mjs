@@ -86,7 +86,7 @@ await check('Health, distinct roles and protected routes',async()=>{
   return {roles,unauthenticated:401,badCredentials:401,secureHttpOnlyCookies:true};
 });
 await check('Public bilingual assessment, no private report access', async () => {
-  for (const [lang, title] of [['ar','سجل قبول الإصدار الرابع'],['en','Release 4 acceptance register']]) {
+  for (const [lang, title] of [['ar','سجل قبول الإصدار الخامس'],['en','Release 5 acceptance register']]) {
     const response = await worker.fetch(new Request(origin + '/acceptance?lang=' + lang),env,{});
     assert.equal(response.status,200);
     const page = await response.text();
@@ -254,6 +254,6 @@ await check('Logout invalidates saved session',async()=>{
 });
 env.DB.close();
 const result={scope:'Local built ESM Worker, Node Fetch API, real SQLite adapter. One process, no external HTTP or hosted D1. Timings are not public SLAs.',runtime:process.version,started,finished:new Date().toISOString(),builtBundleSha256:digest(await read('../../dist/server/index.js')),fixtures:manifest.files.map(({file,sha256})=>({file,sha256})),checks,raw};
-await writeFile(new URL('integration-results.json',base),JSON.stringify(result,null,2)+'\n');
+await writeFile(process.env.MIZAN_INTEGRATION_EVIDENCE || new URL('integration-results.json',base),JSON.stringify(result,null,2)+'\n');
 console.log(JSON.stringify(checks,null,2));
 if(checks.some(r=>r.status!=='passed'))process.exitCode=1;

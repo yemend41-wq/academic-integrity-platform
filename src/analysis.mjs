@@ -79,12 +79,7 @@ export async function similarity(env, p, body, options, id) {
     cohortWindowLimited: corpus.limited,
   };
 }
-export async function analyze(
-  env,
-  p,
-  { bytes, kind, edited, indexed, options, telemetry },
-) {
-  const start = Date.now();
+async function readSubmission({bytes, kind, edited}) {
   let inspection;
   if (edited !== undefined)
     inspection = {
@@ -134,6 +129,24 @@ export async function analyze(
     )
   )
     throw new Fault(422, "format_mismatch");
+  return {text, fmt, inspection};
+}
+
+export async function blindWritingScore(bytes, kind) {
+  const {text} = await readSubmission({bytes, kind});
+  const {model, status, display, eligibleWords} = detect(text);
+  const digest = new Uint8Array(await crypto.subtle.digest("SHA-256", bytes));
+  const sha256 = Array.from(digest, b => b.toString(16).padStart(2, "0")).join("");
+  return {sha256, model, status, display, eligibleWords};
+}
+
+export async function analyze(
+  env,
+  p,
+  {bytes, kind, edited, indexed, options, telemetry},
+) {
+  const start = Date.now();
+  const {text, fmt, inspection} = await readSubmission({bytes, kind, edited});
   const [sim, refs] = await Promise.all([
     similarity(env, p, text, options, ""),
     verifyReferences(text),

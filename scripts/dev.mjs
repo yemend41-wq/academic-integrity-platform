@@ -19,7 +19,7 @@ const server = createServer(async (req, res) => {
       if(req.url==='/__qa/runner.js'){res.writeHead(200,{'Content-Type':'text/javascript'});res.end(readFileSync('test/browser-runner.js'));return;}
       if(req.url==='/__qa/passage'){res.writeHead(200,{'Content-Type':'text/plain'});res.end(readFileSync('research/bench/source/melville-excerpt.txt','utf8').split(/\s+/).slice(12,42).join(' '));return;}
       if(req.url==='/__qa/fixture'){res.writeHead(200,{'Content-Type':'application/octet-stream'});res.end(readFileSync('research/bench/fixtures/melville-3000.docx'));return;}
-      if(req.url==='/__qa/results'&&req.method==='POST'){let raw='';for await(const b of req){raw+=b;if(raw.length>15000)throw Error('Result too large');}const checks=JSON.parse(raw);writeFileSync('evidence/local-browser.json',JSON.stringify({at:new Date().toISOString(),environment:'Chrome via managed local preview; actual SQLite workspace and ephemeral test principal',checks},null,2));res.writeHead(204);res.end();return;}
+      if(req.url==='/__qa/results'&&req.method==='POST'){let raw='';for await(const b of req){raw+=b;if(raw.length>15000)throw Error('Result too large');}const checks=JSON.parse(raw);writeFileSync('evidence/release5-browser.json',JSON.stringify({at:new Date().toISOString(),environment:'Chrome via managed local preview; actual SQLite workspace and ephemeral test principal',checks},null,2));res.writeHead(204);res.end();return;}
     }
     const request = new Request(url, {
       method: req.method,

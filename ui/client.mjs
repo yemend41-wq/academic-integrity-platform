@@ -1,3 +1,7 @@
+import { displayedOverlap, sourceScope, writingExplanation } from "./report-interpretation.mjs";
+import { writingPassages } from "./writing-passages.mjs";
+import { mountBlindPanel } from "./blind-panel.mjs";
+import { independentPanel } from "./independent-study.mjs";
 import { studyPanel } from "./study.mjs";
 import { fileTerm } from "../research/media/labels.mjs";
 import { mountClarity } from "../research/clarity/editor.mjs";
@@ -454,22 +458,22 @@ function renderReport(c, r) {
   c.innerHTML =
     head(
       t("Document review", "مراجعة المستند"),
-      esc(fmtFile(r.format)) + " · " + esc(r.id.slice(0, 8)),
+      esc(fmtFile(r.format)) + " · <bdi>" + esc(r.id.slice(0, 8)) + "</bdi>",
       esc(date(r.created)),
     ) +
     '<div class="metric-grid">' +
     [
-      [sim.percentage + "%", t("Source overlap", "التشابه مع المصادر")],
-      [det.display ?? "—", t("AI writing signal", "مؤشّر الكتابة المولّدة")],
+      [displayedOverlap(sim, ar), t("Source overlap", "التشابه مع المصادر")],
+      [det.display ?? "—", t("AI writing signal", "مؤشّر الكتابة المولّدة"), writingExplanation(det, ar)],
       [r.words, t("Extracted words", "الكلمات المستخرجة")],
     ]
       .map(
-        ([v, k]) =>
-          '<div class="metric"><strong>' +
+        ([v, k, explanation]) =>
+          '<div class="metric"><strong><bdi dir="ltr">' +
           esc(v) +
-          "</strong><span>" +
+          "</bdi></strong><span>" +
           k +
-          "</span></div>",
+          "</span>" + (explanation ? '<small class="metric-note">' + esc(explanation) + "</small>" : "") + "</div>",
       )
       .join("") +
     '</div><section class="panel"><div class="tabs">' +
@@ -486,12 +490,14 @@ function renderReport(c, r) {
     "/pdf?lang=" +
     (ar ? "ar" : "en") +
     '">' +
-    t("Download audit PDF", "تنزيل تقرير PDF") +
+    t("Download PDF in English", "تنزيل PDF بالعربية") +
+    '</a><a class="ghost" download href="/api/reports/' + esc(r.id) + '/pdf?lang=' + (ar ? 'en' : 'ar') + '">' +
+    t("Download PDF in Arabic", "تنزيل PDF بالإنجليزية") +
     '</a><a class="ghost" download href="/api/reports/' +
     r.id +
     '/json">' +
     t("Download JSON", "تنزيل JSON") +
-    "</a></div>";
+    '</a></div><p class="hint">'+t("Report ID", "معرّف التقرير")+' · <bdi class="report-id">'+esc(r.id)+'</bdi></p>';
   const detail = $("#detail");
   let activeSim = sim;
   let applied = { ...r.options };
@@ -504,7 +510,7 @@ function renderReport(c, r) {
       ids = [...new Set(matches.map((x) => x.sourceId))];
     const indexOf = new Map(matches.map((m, i) => [m, i]));
     const metric = c.querySelector(".metric strong");
-    if (metric) metric.textContent = activeSim.percentage + "%";
+    if (metric) metric.querySelector("bdi").textContent = displayedOverlap(activeSim, ar);
     detail.innerHTML =
       '<div class="settings"><label><input id="rq" type="checkbox">' +
       t("Exclude quotations", "استبعاد الاقتباسات") +
@@ -513,14 +519,14 @@ function renderReport(c, r) {
       '</label><button id="refilter" class="ghost">' +
       t("Apply", "تطبيق") +
       '</button></div><p class="hint">' +
-      esc(activeSim.percentage) +
-      "% · " +
+      esc(displayedOverlap(activeSim, ar)) +
+      " · " +
       esc(activeSim.matchedWords) +
       " / " +
       esc(activeSim.eligibleWords) +
       " " +
       t("eligible words", "كلمة مشمولة") +
-      '</p><p class="hint">' + filterSummary() + '</p><div class="grid"><div class="review-text" dir="auto">' +
+      '</p><p class="hint">' + filterSummary() + '</p><p class="mini-bar gap">' + esc(sourceScope(activeSim, ar)) + '</p><div class="grid"><div class="review-text" dir="auto">' +
       (highlight(r.text, matches, "sim") ||
         t("No extractable text", "لا يوجد نص قابل للاستخراج")) +
       "</div><aside><h3>" +
@@ -571,11 +577,7 @@ function renderReport(c, r) {
             })
             .join("")
         : "<li>" + t("No source matched.", "لم تظهر مقاطع مطابقة.") + "</li>") +
-      "</ul><small>" +
-      esc(activeSim.cohortCompared) +
-      " " +
-      t("cohort texts compared", "نصوص من المجموعة شملتها المقارنة") +
-      "</small></aside></div>";
+      "</ul></aside></div>";
     $("#rq").checked = applied.excludeQuotes;
     $("#rb").checked = applied.excludeReferences;
     detail.querySelectorAll("[data-evidence]").forEach(link => {
@@ -614,7 +616,7 @@ function renderReport(c, r) {
       b.classList.toggle("active", b.dataset.tab === k),
     );
     if (k === "matches") similarityView();
-    else if (k === "writing")
+    else if (k === "writing") {
       detail.innerHTML =
         "<h3>" +
         t("Sentence-level review", "مراجعة الجمل") +
@@ -624,28 +626,23 @@ function renderReport(c, r) {
           "كاشف تجريبي. تجاوزت الإنذارات الخاطئة الحد المطلوب، خصوصًا في النصوص العربية البشرية. راجع نتائج الاختبارات في بطاقة النموذج.",
         ) +
         '</p><p class="hint">' +
-        (det.status === "suppressed"
-          ? t(
-              "The score is suppressed (*%) and its highlights are hidden.",
-              "حُجبت النسبة (*%) وعلامات التظليل المرتبطة بها.",
-            )
-          : det.status === "insufficient"
-            ? t(
-                "There is too little eligible prose to score this document.",
-                "لا يتضمن المستند نصًا نثريًا كافيًا لعرض مؤشر.",
-              )
-            : t(
-                "Blue marks identify sentences selected by the detector. The model card documents measured errors.",
-                "يشير اللون الأزرق إلى الجمل التي حدّدها الكاشف. تعرض بطاقة النموذج الأخطاء المُقاسة.",
-              )) +
-        '</p><div class="review-text" dir="auto">' +
-        highlight(
-          r.text,
-          (det.segments || []).filter((s) => s.flagged),
-          "ai",
-        ) +
-        "</div>";
-    else if (k === "file")
+        esc(writingExplanation(det, ar)) +
+        '</p><p class="hint">' + t("Eligible words", "الكلمات المؤهلة") + ' · <bdi>' + esc(det.eligibleWords) + '</bdi>. ' +
+        t("The percentage is the share of eligible words in selected segments.", "تعبّر النسبة عن حصة الكلمات المؤهلة الواقعة في المقاطع التي حدّدها الكاشف.") + '</p>' +
+        (det.status === "analyzed" && det.segments?.some(s => s.flagged) ? '<label class="field">' +
+          t("Blue highlighting", "عرض التظليل الأزرق") + '<select data-writing-level><option value="sentences">' +
+          t("Sentences", "الجمل") + '</option><option value="passages">' + t("Contiguous passages", "المقاطع المتصلة") +
+          '</option></select></label>' : '') + '<div class="review-text" data-writing-text dir="auto"></div>';
+      const displaySpans = () => {
+        const segments = det.status === "analyzed" ? det.segments || [] : [];
+        const spans = detail.querySelector("[data-writing-level]")?.value === "passages" ?
+          writingPassages(r.text, segments) : segments.filter(s => s.flagged);
+        detail.querySelector("[data-writing-text]").innerHTML = highlight(r.text, spans, "ai");
+      };
+      const level = detail.querySelector("[data-writing-level]");
+      if (level) level.onchange = displaySpans;
+      displaySpans();
+    } else if (k === "file")
       detail.innerHTML =
         "<h3>" +
         t("Content credentials", "اعتماد المحتوى") +
@@ -775,7 +772,8 @@ async function health(c, seq) {
           : '<details class="past-run"><summary>' + title + '</summary>' + content + '</details>';
       })
       .join("") +
-    '</section>' + studyPanel(d.model.release4, t, esc) + '</div><aside><section class="panel"><div class="inline"><h3>' +
+    '</section>' + independentPanel(d.model.release5,t,esc) + studyPanel(d.model.release4, t, esc) +
+    (["instructor","admin"].includes(principal.role) ? '<div id="blind-panel"></div>' : '') + '</div><aside><section class="panel"><div class="inline"><h3>' +
     t("System health", "حالة النظام") +
     '</h3><span class="badge">' +
     t("Online", "متصل") +
@@ -834,6 +832,7 @@ async function health(c, seq) {
     "</summary>" +
     tree(d.lti) +
     "</details></section></aside></div>";
+  if (c.querySelector("#blind-panel")) mountBlindPanel(c.querySelector("#blind-panel"), {t,api,esc});
   c.querySelectorAll("[data-observation]").forEach(el => {
     el.ontoggle = () => {
       if (!el.open) return;
@@ -897,6 +896,9 @@ language();
 api("/api/me")
   .then((p) => {
     principal = p;
+    if (p.source === "lti" && p.locale && localStorage.getItem("mizan-language") === null) {
+      ar = p.locale === "ar";
+    }
     return go(location.hash === "#acceptance" ? "health" : "desk");
   })
   .catch(signIn);

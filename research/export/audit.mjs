@@ -33,16 +33,19 @@ function unicodeClusters(text) {
     const here = font.joining[current.cp];
     const previousJoin = joinPrev(here) && joinNext(before);
     const nextJoin = joinNext(here) && joinPrev(after);
+    const index = i;
     let shape = current.cp;
-    let marks = current.marks;
+    let alef;
+    const marks = current.marks.map(cp => ({cp, index}));
     if (shape === 0x644 && font.lam[clusters[i + 1]?.cp]) {
       const next = clusters[++i];
       shape = font.lam[next.cp][Number(previousJoin)];
-      marks = [...marks, ...next.marks];
+      alef = next.cp;
+      marks.push(...next.marks.map(cp => ({cp, index:i})));
     } else if (font.forms[shape]) {
       shape = font.forms[shape][Number(previousJoin) + 2 * Number(nextJoin)];
     }
-    shaped.push({cp:current.cp, shape, marks});
+    shaped.push({cp:current.cp, shape, marks, index, alef});
   }
   return shaped;
 }
@@ -80,18 +83,34 @@ function shapeLine(text, px, direction) {
     const cp = mirrored ? mirrored.codePointAt(0) : cluster.shape;
     const gid = font.cmap[cp] ?? font.cmap[0xfffd];
     const w = font.widths[gid];
-    shapes.push({gid, x:advance, y:0, text:String.fromCodePoint(cp).normalize('NFKC')});
+    const {index} = cluster;
+    if (cluster.alef) {
+      // One visible outline represents two selectable Unicode characters. Its
+      // right and left halves carry the lam and alef in logical reading order.
+      const half = w / 2;
+      shapes.push({index, gid, text:'ل', x:advance + half, width:half, dx:-half, dy:0});
+      shapes.push({index:index + 1, gid:null, text:String.fromCodePoint(cluster.alef),
+                   x:advance, width:half, dx:0, dy:0});
+    } else {
+      const glyph = {index, gid, text:String.fromCodePoint(cluster.cp), x:advance, width:w};
+      if (mirrored || font.cmap[cp] == null) Object.assign(glyph, {dx:0, dy:0});
+      shapes.push(glyph);
+    }
     for (const mark of cluster.marks) {
-      const mg = font.cmap[mark];
+      const mg = font.cmap[mark.cp];
       if (mg == null) continue;
-      const base = font.baseAnchors[gid];
-      const anchor = font.markAnchors[mg];
+      const base = font.baseAnchors[gid], anchor = font.markAnchors[mg];
       const dx = base && anchor ? base[0] - anchor[0] : w / 2;
       const dy = base && anchor ? base[1] - anchor[1] : 0;
-      shapes.push({gid:mg, x:advance + dx, y:dy, text:String.fromCodePoint(mark)});
+      // Give the zero-advance scalar a distinct position next to its logical
+      // base. The wrapper paints the original mark precisely at the font anchor.
+      const relative = levels.levels[visualIndex] % 2 ? -font.upm / 400 : w;
+      shapes.push({index:mark.index + 0.5, gid:mg, text:String.fromCodePoint(mark.cp),
+                   x:advance + relative, width:0, dx:dx-relative, dy});
     }
     advance += w;
   }
+  shapes.sort((a,b) => a.index - b.index);
   const scale = px / font.upm;
   return {shapes, width:advance*scale, scale, rtl:Boolean(levels.paragraphs[0]?.level % 2)};
 }
@@ -148,21 +167,69 @@ function stream(bytes, dict='') {
   const buffer = typeof bytes === 'string' ? encoder.encode(bytes) : bytes;
   return concat(['<< /Length ', String(buffer.length), ' ', dict, ' >>\nstream\n', buffer, '\nendstream']);
 }
-function cmapStream(mapping) {
+function cmapStream(mapping, bytes=2) {
+  const code = value => value.toString(16).padStart(bytes * 2, '0');
   const entries = [...mapping];
   const out = ['/CIDInit /ProcSet findresource begin 12 dict begin begincmap',
     '/CIDSystemInfo << /Registry (Adobe) /Ordering (UCS) /Supplement 0 >> def',
     '/CMapName /MizanUnicode def /CMapType 2 def',
-    '1 begincodespacerange <0000> <FFFF> endcodespacerange'];
+    '1 begincodespacerange <'+code(0)+'> <'+'FF'.repeat(bytes)+'> endcodespacerange'];
   for (let i=0; i<entries.length; i+=100) {
     const block = entries.slice(i,i+100);
-    out.push(block.length + ' beginbfchar', ...block.map(([gid,t])=>'<'+gidHex(gid)+'> <'+utf16Hex(t)+'>'), 'endbfchar');
+    out.push(block.length + ' beginbfchar', ...block.map(([id,t])=>'<'+code(id)+'> <'+utf16Hex(t)+'>'), 'endbfchar');
   }
   out.push('endcmap CMapName currentdict /CMap defineresource pop end end');
   return stream(out.join('\n'));
 }
 
-function serialize(pages, cmap) {
+const charsPerFont = 200;
+function addClusterFonts(objects, characters) {
+  const resources = ['/F 3 0 R'];
+  for (let offset=0; offset<characters.length; offset+=charsPerFont) {
+    const chunk = characters.slice(offset,offset+charsPerFont);
+    const procs = [], names = [], map = new Map();
+    for (const [i,glyph] of chunk.entries()) {
+      const name = '/g'+(i+1);
+      names.push(name);
+      map.set(i+1,glyph.text);
+      const outline = glyph.gid == null ? '' :
+        ' BT /F '+font.upm+' Tf 1 0 0 1 '+n(glyph.dx)+' '+n(glyph.dy)+' Tm <'+gidHex(glyph.gid)+'> Tj ET';
+      const id = objects.push(stream(n(glyph.width)+' 0 d0'+outline));
+      procs.push(name+' '+id+' 0 R');
+    }
+    const unicode = objects.push(cmapStream(map,1));
+    const scale = 1 / font.upm;
+    const fontId = objects.push('<< /Type /Font /Subtype /Type3 /FontBBox [-2300 -1000 3650 3000] /FontMatrix ['+scale+' 0 0 '+scale+' 0 0] '+
+      '/CharProcs << '+procs.join(' ')+' >> /Encoding << /Type /Encoding /Differences [1 '+names.join(' ')+'] >> /FirstChar 1 /LastChar '+chunk.length+
+      ' /Widths ['+chunk.map(g=>n(g.width)).join(' ')+'] /ToUnicode '+unicode+' 0 R /Resources << /Font << /F 3 0 R >> >> >>');
+    resources.push('/X'+(offset/charsPerFont)+' '+fontId+' 0 R');
+  }
+  return '<< /ProcSet [/PDF /Text] /Font << '+resources.join(' ')+' >> >>';
+}
+
+function addStructure(objects, lines, locale) {
+  const root = objects.push(null);
+  const parents = [], parts=[];
+  for (const [i,blocks] of lines.entries()) {
+    const pageId = 9+2*i, part = objects.push(null), children=[];
+    for (const [mcid,block] of blocks.entries()) {
+      const alternative = block.runReplacement ? '/Alt' : '/ActualText';
+      const id = objects.push('<< /Type /StructElem /S /'+block.role+' /P '+part+' 0 R /Pg '+pageId+
+        ' 0 R /K '+mcid+' '+alternative+' <FEFF'+utf16Hex(block.text)+'> >>');
+      children.push(id+' 0 R');
+    }
+    const refs = '['+children.join(' ')+']';
+    objects[part-1]='<< /Type /StructElem /S /Part /P '+root+' 0 R /Pg '+pageId+' 0 R /K '+refs+' >>';
+    parts.push(part+' 0 R');
+    parents.push(i+' '+refs);
+  }
+  const tree = objects.push('<< /Nums ['+parents.join(' ')+'] >>');
+  objects[root-1]='<< /Type /StructTreeRoot /K ['+parts.join(' ')+'] /ParentTree '+tree+' 0 R /ParentTreeNextKey '+lines.length+' >>';
+  objects[0]='<< /Type /Catalog /Pages 2 0 R /Lang ('+locale+') /MarkInfo << /Marked true >> /StructTreeRoot '+root+
+    ' 0 R /ViewerPreferences << /Direction /'+(locale==='ar'?'R2L':'L2R')+' >> >>';
+}
+
+function serialize(pages, cmap, special, lines, locale) {
   const fontBytes = Uint8Array.from(atob(font.font), c => c.charCodeAt(0));
   const objects = [
     '<< /Type /Catalog /Pages 2 0 R >>',
@@ -175,9 +242,11 @@ function serialize(pages, cmap) {
     '<< /ProcSet [/PDF /Text] /Font << /F 3 0 R >> >>'
   ];
   for (let i=0; i<pages.length; i++) {
-    objects.push('<< /Type /Page /Parent 2 0 R /MediaBox [0 0 '+page.width+' '+page.height+'] /Resources 8 0 R /Contents '+(10+i*2)+' 0 R >>',
+    objects.push('<< /Type /Page /Parent 2 0 R /Lang ('+locale+') /StructParents '+i+' /MediaBox [0 0 '+page.width+' '+page.height+'] /Resources 8 0 R /Contents '+(10+i*2)+' 0 R >>',
       stream(pages[i].join('\n')));
   }
+  objects[7] = addClusterFonts(objects, special);
+  addStructure(objects, lines, locale);
   const parts = ['%PDF-1.7\n'];
   const offsets = [];
   let pos = parts[0].length;
@@ -197,31 +266,59 @@ export function createAuditPdf({id, createdAt, locale='en', sections=[]}) {
   const language = locale === 'ar' ? 'ar' : 'en';
   const d = dictionary[language];
   const pages = [];
-  const cmap = new Map();
-  let commands;
-  let y;
-  function draw(text, size, baseline, ink=color.ink, align, direction) {
-    const line = shapeLine(text, size, direction);
-    const x = align === 'right' || (align !== 'left' && line.rtl) ? page.width-page.margin-line.width : page.margin;
-    commands.push('/Span << /ActualText <FEFF'+utf16Hex(text)+'> >> BDC','BT /F '+size+' Tf '+ink+' rg');
-    // Font widths place consecutive base glyphs. Start a new positioned run
-    // whenever an attached diacritic needs its font-specific anchor.
-    let pending = '';
-    let expectedX = NaN;
-    let row = NaN;
-    for (const glyph of line.shapes) {
-      cmap.set(glyph.gid,glyph.text);
-      if (glyph.x !== expectedX || glyph.y !== row) {
-        if (pending) commands.push('<'+pending+'> Tj');
-        pending = '';
-        commands.push('1 0 0 1 '+n(x+glyph.x*line.scale)+' '+n(page.height-baseline+glyph.y*line.scale)+' Tm');
-      }
-      pending += gidHex(glyph.gid);
-      expectedX = glyph.x + font.widths[glyph.gid];
-      row = glyph.y;
+  const cmap = new Map(), special = [], aliases = new Map(), logicalPages=[];
+  let commands, logicalLines, y;
+  function encode(glyph) {
+    const previous = cmap.get(glyph.gid);
+    if (glyph.dx == null && (previous == null || previous === glyph.text)) {
+      cmap.set(glyph.gid, glyph.text);
+      return ['F', gidHex(glyph.gid)];
     }
-    if (pending) commands.push('<'+pending+'> Tj');
-    commands.push('ET EMC');
+    const dx = glyph.dx ?? 0, dy = glyph.dy ?? 0;
+    const key = [glyph.gid,dx,dy,glyph.width,glyph.text].join('|');
+    let id = aliases.get(key);
+    if (id == null) {
+      id = special.length;
+      aliases.set(key,id);
+      special.push({gid:glyph.gid, dx, dy, width:glyph.width, text:glyph.text});
+    }
+    return ['X'+Math.floor(id/charsPerFont), (id%charsPerFont+1).toString(16).padStart(2,'0')];
+  }
+  function draw(text, size, baseline, ink=color.ink, direction, role='P') {
+    if (!text) return;
+    const line = shapeLine(text, size, direction);
+    // Every line shares the reading margin of the report. Each LTR technical
+    // run keeps an upright font matrix and its intrinsic character order.
+    const x = language === 'ar' || line.rtl ? page.width-page.margin-line.width : page.margin;
+    const mcid = logicalLines.push({text,role})-1;
+    commands.push('/'+role+' << /MCID '+mcid+' >> BDC');
+    let letters='', runText='', face, origin, after;
+    function flush(nextText='') {
+      if (!letters) return;
+      const technical = line.rtl && /[A-Za-z0-9]/.test(runText) &&
+        /^[A-Za-z0-9:/._@+%?=& -]+$/.test(runText);
+      // Poppler assigns spaces at bidi boundaries to the adjoining run. A
+      // nonbreaking replacement retains an existing lexical boundary on copy.
+      const boundary = technical && (runText.endsWith(' ') || nextText === ' ');
+      if (boundary) {
+        logicalLines[mcid].runReplacement = true;
+        commands.push('/Span << /ActualText <FEFF'+utf16Hex(runText.trimEnd()+'\u00a0')+'> >> BDC');
+      }
+      commands.push('BT /'+face+' '+size+' Tf '+ink+' rg',
+        '1 0 0 1 '+n(x+origin*line.scale)+' '+n(page.height-baseline)+' Tm','<'+letters+'> Tj ET');
+      if (boundary) commands.push('EMC');
+      letters=''; runText='';
+    }
+    for (const glyph of line.shapes) {
+      const [key, value] = encode(glyph);
+      if (!letters || after !== glyph.x || face !== key) {
+        flush(glyph.text);
+        origin = glyph.x; face = key;
+      }
+      letters += value; runText += glyph.text; after=glyph.x+glyph.width;
+    }
+    flush();
+    commands.push('EMC');
   }
   function rule(baseline) {
     commands.push('0.81 0.85 0.86 RG 0.6 w '+page.margin+' '+n(page.height-baseline)+' m '+(page.width-page.margin)+' '+n(page.height-baseline)+' l S');
@@ -229,20 +326,21 @@ export function createAuditPdf({id, createdAt, locale='en', sections=[]}) {
   function newPage() {
     commands = [];
     pages.push(commands);
-    draw(d.brand,12,35,color.accent, language==='ar'?'right':'left');
+    logicalLines=[]; logicalPages.push(logicalLines);
+    draw(d.brand,12,35,color.accent);
     rule(47);
     y=70;
   }
   function ensure(height) { if (y+height > page.height-58) newPage(); }
-  function block(value,size,leading,ink=color.ink) {
+  function block(value,size,leading,ink=color.ink,role='P') {
     for (const {line,direction} of wrap(value,size,page.content)) {
       ensure(leading);
-      draw(line,size,y,ink,undefined,direction);
+      draw(line,size,y,ink,direction,role);
       y+=leading;
     }
   }
   newPage();
-  block(d.title,24,34,color.accent);
+  block(d.title,24,34,color.accent,'H1');
   block(d.id+' · '+String(id),10,15,color.soft);
   if (createdAt) block(d.date+' · '+String(createdAt),10,16,color.soft);
   y+=10;
@@ -250,7 +348,7 @@ export function createAuditPdf({id, createdAt, locale='en', sections=[]}) {
     ensure(75);
     rule(y);
     y+=22;
-    block(section.title,14,22,color.accent);
+    block(section.title,14,22,color.accent,'H2');
     for (const {label,value} of section.rows ?? []) {
       ensure(37);
       if (label) block(label,9.5,15,color.soft);
@@ -264,9 +362,9 @@ export function createAuditPdf({id, createdAt, locale='en', sections=[]}) {
   y+=20;
   block(d.warning,10,16,color.soft);
   for (let i=0; i<pages.length; i++) {
-    commands=pages[i];
+    commands=pages[i]; logicalLines=logicalPages[i];
     rule(page.height-42);
-    draw(d.page+' '+(i+1)+(language==='ar'?' من ':' / ')+pages.length,9,page.height-25,color.soft,language==='ar'?'right':'left');
+    draw(d.page+' '+(i+1)+(language==='ar'?' من ':' / ')+pages.length,9,page.height-25,color.soft);
   }
-  return serialize(pages,cmap);
+  return serialize(pages,cmap,special,logicalPages,language);
 }

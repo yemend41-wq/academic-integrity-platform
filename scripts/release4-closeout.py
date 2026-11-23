@@ -4,6 +4,7 @@ import getpass
 import hashlib
 import io
 import json
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -20,7 +21,7 @@ def verify(checks, name, passed, **fields):
         raise RuntimeError(name)
 
 
-def check_access(client, credentials, checks):
+def check_access(client, credentials, checks, reference):
     def login(username, key):
         return client.post("/api/login", json={"username": username, "password": credentials[key]})
 
@@ -32,8 +33,8 @@ def check_access(client, credentials, checks):
     correct_actor = actor.get("role") == "instructor" and actor.get("cohort") == "committee-review"
     verify(checks, "Committee private login", response.status_code == profile.status_code == 200 and correct_actor,
            http=response.status_code, profileHttp=profile.status_code)
-    benchmark = json.loads((PROJECT / "evidence/release4-authenticated-public-load.json").read_text())
-    expected_hash = benchmark["health"]["service"]["analysisFingerprint"]
+    benchmark = json.loads(reference.read_text())
+    expected_hash = benchmark.get("analysisFingerprint") or benchmark["health"]["service"]["analysisFingerprint"]
     health = client.get("/api/health").json()
     verify(checks, "Published analyzer matches measured analyzer", health.get("analysisFingerprint") == expected_hash,
            analysisFingerprint=health.get("analysisFingerprint"), model=health.get("model"))
@@ -63,14 +64,15 @@ def check_report(client, fmt, checks):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, required=True)
+    parser.add_argument("--reference", type=Path, default=PROJECT / "evidence/release4-authenticated-public-load.json")
     args = parser.parse_args()
-    credentials = json.loads(getpass.getpass("Closeout credentials: "))
+    credentials = json.loads(getpass.getpass("Closeout credentials: ") if sys.stdin.isatty() else sys.stdin.readline())
     checks = []
     record = {"at": datetime.now(timezone.utc).isoformat(), "origin": ORIGIN, "checks": checks}
     with args.out.open("x", encoding="utf-8") as destination:
         try:
             with httpx.Client(base_url=ORIGIN, timeout=45) as client:
-                check_access(client, credentials, checks)
+                check_access(client, credentials, checks,args.reference)
                 for fmt in ("docx", "pdf"):
                     check_report(client, fmt, checks)
                 logout = client.post("/api/logout")

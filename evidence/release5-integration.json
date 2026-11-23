@@ -1,0 +1,100 @@
+{
+  "scope": "Local built ESM Worker, Node Fetch API, real SQLite adapter. One process, no external HTTP or hosted D1. Timings are not public SLAs.",
+  "runtime": "v24.22.3",
+  "started": "2026-11-23T21:27:50.419Z",
+  "finished": "2026-11-23T21:27:53.308Z",
+  "builtBundleSha256": "3db4c01b2a79ca8bf317bb6673449d6755e7e91e14521c79e7b1a245dc1fa580",
+  "checks": [
+    {
+      "name": "Health, distinct roles and protected routes",
+      "status": "passed",
+      "ms": 29.797
+    },
+    {
+      "name": "Public bilingual assessment, no private report access",
+      "status": "passed",
+      "ms": 3.543
+    },
+    {
+      "name": "Upload and persisted readback: docx",
+      "status": "passed",
+      "ms": 165.997
+    },
+    {
+      "name": "Upload and persisted readback: pdf",
+      "status": "passed",
+      "ms": 215.176
+    },
+    {
+      "name": "Upload and persisted readback: png",
+      "status": "passed",
+      "ms": 1.644
+    },
+    {
+      "name": "Upload and persisted readback: jpeg",
+      "status": "passed",
+      "ms": 1.381
+    },
+    {
+      "name": "Media provenance: embedded C2PA",
+      "status": "passed",
+      "ms": 6.733
+    },
+    {
+      "name": "Arabic DOCX forensics and privacy",
+      "status": "passed",
+      "ms": 23.601
+    },
+    {
+      "name": "JSON audit and bilingual downloadable PDF exports",
+      "status": "passed",
+      "ms": 422.546
+    },
+    {
+      "name": "TXT indexing and duplicate in same cohort",
+      "status": "passed",
+      "ms": 8.547
+    },
+    {
+      "name": "Published paper and quote exclusion switch",
+      "status": "passed",
+      "ms": 23.335
+    },
+    {
+      "name": "Student, instructor and cross-course isolation",
+      "status": "passed",
+      "ms": 6.925
+    },
+    {
+      "name": "Membership administration and evidence permissions",
+      "status": "passed",
+      "ms": 52.933
+    },
+    {
+      "name": "Clarity edits, active time, bulk paste, replay and submission",
+      "status": "passed",
+      "ms": 3.428
+    },
+    {
+      "name": "Invalid document and missing session",
+      "status": "passed",
+      "ms": 1.075
+    },
+    {
+      "name": "Built Worker local 50-upload and report-readback batch",
+      "status": "passed",
+      "ms": 1914.178
+    },
+    {
+      "name": "Expired test rows and scheduled handler",
+      "status": "passed",
+      "ms": 1.384
+    },
+    {
+      "name": "Logout invalidates saved session",
+      "status": "passed",
+      "ms": 3.433
+    }
+  ],
+  "publicEvidenceFormat": 1
+}

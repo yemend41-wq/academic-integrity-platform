@@ -31,4 +31,9 @@ test("expiring provisioner creates only fifty numbered students in its isolated 
   assert.equal((await request("/api/me",null,auth)).status,401);assert.equal((await request("/api/me",null,session)).status,401);
   assert.equal((await sign(name,learnerPassword)).status,401);
   assert.equal((await sign("benchmark-provisioner",password)).status,401);
+  for (const disabled of ["{","null",JSON.stringify({disabled:true})]) {
+    env.BENCHMARK_ACCESS=disabled;
+    assert.equal((await sign("benchmark-provisioner",password)).status,401);
+    assert.equal((await sign("review-panel",password+"panel")).status,200);
+  }
 });

@@ -646,3 +646,13 @@ pre {
 .public-register { width: min(65rem, 100%); margin: 2rem auto; padding-inline: 1rem; box-sizing: border-box; }
 .public-register .record { padding-block: 1rem; }
 .public-register .record p { line-height: 1.65; }
+
+.blind-panel { margin-block: 1rem; padding: 1.25rem; }
+.blind-panel > summary { font-weight: 650; cursor: pointer; }
+.blind-panel .field, .blind-panel details, .blind-panel .actions { margin-block: 1rem; }
+.blind-panel input[type=file] { display: block; max-width: 100%; margin-block-start: .35rem; }
+.blind-panel table { width: 100%; border-collapse: collapse; }
+.blind-panel th, .blind-panel td { text-align: start; padding: .55rem; border-bottom: 1px solid #d8e2df; }
+.report-id { overflow-wrap: anywhere; user-select: all; }
+
+.metric .metric-note{display:block;font-size:.86rem;line-height:1.5;margin-top:.55rem;color:var(--ink,#163831)}

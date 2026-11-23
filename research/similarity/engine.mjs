@@ -101,6 +101,36 @@ function alignmentKey(term, variants, concept) {
     (ending, offset) => offset >= 3 ? "" : ending);
   return stem;
 }
+// A surface stem complements the concept/sense view. Offset-bearing tokens stay intact.
+const arabicFunctionWords = new Set("من في علي الي عن مع به له قد ثم كما هذا هذه ذلك تلك الذي التي الذين بما منذ عند بينما انه انها هم هي هو كان كانت يكون تكون ان او اي ما كل".split(" "));
+function surfaceAnchor(term, variants, concept) {
+  if (alignmentStop.has(term) || /^\d+$/.test(term) || term.length < 2) return null;
+  if (concept !== undefined) return "concept:" + commonConcept.get(concept);
+  if (!/^[\u0621-\u064a]+$/u.test(term)) return alignmentKey(term, variants, concept);
+  if (arabicFunctionWords.has(term)) return null;
+  let stem = term.replace(/^(?:[وف]?[بكل]?ال|[وف]?لل)(?=.{3})/u, "");
+  if (stem === term) stem = stem.replace(/^[وف](?=.{4})/u, "");
+  if (arabicFunctionWords.has(stem)) return null;
+  stem = stem.replace(/(?:هما|كما|هم|هن|كم|نا|ها|ه)(?<=.{4})$/u, (suffix, pos) => pos >= 3 ? "" : suffix);
+  stem = stem.replace(/(?:يات|يون|يين|ات|ان|ون|ين|ة)$/u, (suffix, pos) => pos >= 3 ? "" : suffix);
+  return stem.length >= 2 && !arabicFunctionWords.has(stem) ? stem : null;
+}
+function weightedAlignment(left, right, weights) {
+  const [small, large] = left.size <= right.size ? [left, right] : [right, left];
+  if (small.size < 2) return 0;
+  let common = 0, sharedWeight = 0, smallWeight = 0, largeWeight = 0;
+  for (const token of small) {
+    const weight = weights(token);
+    smallWeight += weight;
+    if (large.has(token)) { common++; sharedWeight += weight; }
+  }
+  if (common < (small.size <= 4 ? 2 : 3)) return 0;
+  if (common === 2 && sharedWeight < smallWeight * 0.65) return 0;
+  for (const token of large) largeWeight += weights(token);
+  const dice = 2 * sharedWeight / (smallWeight + largeWeight);
+  // Three established evidence channels get precedence over the weaker alignment fallback.
+  return dice >= 0.55 ? Math.min(dice, 0.66) : 0;
+}
 function alignmentScore(a, b) {
   const short = a.keys.size <= b.keys.size ? a.keys : b.keys;
   const long = short === a.keys ? b.keys : a.keys;
@@ -165,7 +195,7 @@ function sentenceRanges(t) {
 }
 function add(map, k, val=1) { map.set(k,Math.max(map.get(k)||0,val)); }
 function vector(t, a, b) {
-  const bag = new Map(), keys = new Set(), numbers=[], v=new Float32Array(dimensions);
+  const bag = new Map(), keys = new Set(), surface = new Set(), numbers=[], v=new Float32Array(dimensions);
   let neg=false, content=0, known=0;
   for(let i=a;i<b;i++) {
     const k=t[i].key;
@@ -177,6 +207,8 @@ function vector(t, a, b) {
     const canonical = vv.find(w=>commonConcept.has(w));
     const alignment = alignmentKey(k, vv, canonical);
     if (alignment) keys.add(alignment);
+    const stem = surfaceAnchor(k, vv, canonical);
+    if (stem) surface.add(stem);
     const lemma=vv.find(w=>senses[w]);
     const base=canonical || lemma || vv.at(-1);
     add(bag,"w:"+base,0.8);
@@ -193,7 +225,7 @@ function vector(t, a, b) {
   for(const n of v) norm+=n*n;
   norm=Math.sqrt(norm)||1;
   for(let k=0;k<dimensions;k++) v[k]/=norm;
-  return {a,b,bag,keys,v,numbers:numbers.sort().join("/"),neg,coverage:known/Math.max(1,content)};
+  return {a,b,bag,keys,surface,v,numbers:numbers.sort().join("/"),neg,coverage:known/Math.max(1,content)};
 }
 function build(source, options) {
   const text=source.text, t=tokenize(text,ranges(text,options)), grams=new Map();
@@ -224,9 +256,9 @@ function longest(q,i,source,positions) {
   }
   return [best,bestAt];
 }
-function semanticScore(a,b) {
+function semanticScore(a,b,weights) {
   if(a.neg!==b.neg || a.numbers!==b.numbers || Math.max(a.b-a.a,b.b-b.a)>2.1*Math.min(a.b-a.a,b.b-b.a)) return 0;
-  const aligned = alignmentScore(a, b);
+  const aligned = Math.max(alignmentScore(a,b), weightedAlignment(a.keys,b.keys,weights), weightedAlignment(a.surface,b.surface,weights));
   if (Math.min(a.b-a.a,b.b-b.a) < 5) return aligned;
   let inter=0, normA=0, normB=0, anchors=0;
   for(const [k,w] of a.bag) {
@@ -274,19 +306,33 @@ export function compareDocument(text, cohortSources=[], settings={}) {
   }
   // Candidate screening by posting lists avoids scanning every sentence in every upload.
   let postings;
+  const documentFrequency = new Map();
+  const weightCache = new Map();
+  function weight(key) {
+    if (!weightCache.has(key)) weightCache.set(key, Math.log1p((corpus.length + 1) / (0.5 + (documentFrequency.get(key) || 0))));
+    return weightCache.get(key);
+  }
   function* postingKeys(sentence) {
     yield* sentence.bag.keys();
     for (const key of sentence.keys) yield "align:" + key;
+    for (const key of sentence.surface) yield "surface:" + key;
   }
   for(const [a,b] of sentenceRanges(q)) {
     if(exactCovered.subarray(a,b).some(Boolean)) continue;
     if(!postings){
       postings=new Map();
-      for(const source of corpus) for(const sentence of source.sentences) {
-        const entry={source,sentence};
-        for(const key of postingKeys(sentence)){
-          const list=postings.get(key);if(list)list.push(entry);else postings.set(key,[entry]);
+      for (const source of corpus) {
+        const documentKeys = new Set();
+        for (const sentence of source.sentences) {
+          const entry = {source, sentence};
+          for (const key of sentence.keys) documentKeys.add(key);
+          for (const key of sentence.surface) documentKeys.add(key);
+          for (const key of postingKeys(sentence)) {
+            const list = postings.get(key);
+            if (list) list.push(entry); else postings.set(key, [entry]);
+          }
         }
+        for (const key of documentKeys) documentFrequency.set(key, (documentFrequency.get(key) || 0) + 1);
       }
     }
     const query=vector(q,a,b), entries=new Map();
@@ -297,7 +343,7 @@ export function compareDocument(text, cohortSources=[], settings={}) {
     let best=null, score=0;
     for(const [item,n] of entries){
       if(n<2)continue;
-      const v=semanticScore(query,item.sentence);if(v>score){score=v;best=item;}
+      const v=semanticScore(query,item.sentence,weight);if(v>score){score=v;best=item;}
     }
     if(best) candidates.push(note(best.source,a,b,best.sentence.a,best.sentence.b,"paraphrase",score));
   }

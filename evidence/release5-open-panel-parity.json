@@ -1,0 +1,303 @@
+{
+  "startedUTC": "2026-11-23T21:18:48.091513+00:00",
+  "mode": "public-HTTPS",
+  "origin": "https://mizan-integrity-studio.yemend41.chatgpt.site",
+  "commitment": "a8bfbc6cedd3004f7f901dea370e34c932a68fcda0d7c90c925fa1630c458954",
+  "scope": "Fixed open and originally authored artificial TXT cases; functional display parity only. No research corpus or student document is an input.",
+  "fixtures": [
+    {
+      "id": "ar-license",
+      "language": "ar",
+      "kind": "public-license",
+      "format": "txt",
+      "bytes": 19623,
+      "sha256": "3501f76d921ad92b6b3331669472e9e0726694b4c933fa2f0c3ccbf5a40bdc6b",
+      "words": 1716,
+      "source": "https://creativecommons.org/licenses/by/4.0/legalcode.ar",
+      "expected": {
+        "sha256": "3501f76d921ad92b6b3331669472e9e0726694b4c933fa2f0c3ccbf5a40bdc6b",
+        "model": "AIP-HL-3",
+        "status": "analyzed",
+        "display": "0%",
+        "eligibleWords": 1716
+      },
+      "status": "passed",
+      "http": 200
+    },
+    {
+      "id": "ar-original",
+      "language": "ar",
+      "kind": "original-artificial",
+      "format": "txt",
+      "bytes": 1203,
+      "sha256": "0e7add25d3a56c259280a84d0e72e2f1bd442ede127ff1f42c5d92454a8987e0",
+      "words": 118,
+      "expected": {
+        "sha256": "0e7add25d3a56c259280a84d0e72e2f1bd442ede127ff1f42c5d92454a8987e0",
+        "model": "AIP-HL-3",
+        "status": "analyzed",
+        "display": "0%",
+        "eligibleWords": 118
+      },
+      "status": "passed",
+      "http": 200
+    },
+    {
+      "id": "ar-short",
+      "language": "ar",
+      "kind": "short",
+      "format": "txt",
+      "bytes": 100,
+      "sha256": "2b8a284197dc3700906f1e7d2c081cf83ddf7762b7626f1bea5a297636dc3ec6",
+      "words": 10,
+      "expected": {
+        "sha256": "2b8a284197dc3700906f1e7d2c081cf83ddf7762b7626f1bea5a297636dc3ec6",
+        "model": "AIP-HL-3",
+        "status": "insufficient",
+        "display": null,
+        "eligibleWords": 0
+      },
+      "status": "passed",
+      "http": 200
+    },
+    {
+      "id": "ar-mix-25",
+      "language": "ar",
+      "kind": "controlled-splice",
+      "format": "txt",
+      "bytes": 1142,
+      "sha256": "05784856a229c721d3ff1eb6a1b653cb0859b9ac242deb436b58c9f5e06632ce",
+      "words": 96,
+      "source": "https://creativecommons.org/licenses/by/4.0/legalcode.ar",
+      "total": 96,
+      "originalWords": 24,
+      "licenseWords": 72,
+      "originalWordShare": 25,
+      "expected": {
+        "sha256": "05784856a229c721d3ff1eb6a1b653cb0859b9ac242deb436b58c9f5e06632ce",
+        "model": "AIP-HL-3",
+        "status": "analyzed",
+        "display": "0%",
+        "eligibleWords": 96
+      },
+      "status": "passed",
+      "http": 200
+    },
+    {
+      "id": "ar-mix-50",
+      "language": "ar",
+      "kind": "controlled-splice",
+      "format": "txt",
+      "bytes": 1090,
+      "sha256": "56c82415e5faae2042da8b74a12f3afe3045cd6b3a3faa461f75f5fdec83db75",
+      "words": 96,
+      "source": "https://creativecommons.org/licenses/by/4.0/legalcode.ar",
+      "total": 96,
+      "originalWords": 48,
+      "licenseWords": 48,
+      "originalWordShare": 50,
+      "expected": {
+        "sha256": "56c82415e5faae2042da8b74a12f3afe3045cd6b3a3faa461f75f5fdec83db75",
+        "model": "AIP-HL-3",
+        "status": "analyzed",
+        "display": "0%",
+        "eligibleWords": 96
+      },
+      "status": "passed",
+      "http": 200
+    },
+    {
+      "id": "ar-mix-75",
+      "language": "ar",
+      "kind": "controlled-splice",
+      "format": "txt",
+      "bytes": 1039,
+      "sha256": "710d81631a14bd9d965c180792fef838e8282db49816df6cf527e85984e5ade0",
+      "words": 96,
+      "source": "https://creativecommons.org/licenses/by/4.0/legalcode.ar",
+      "total": 96,
+      "originalWords": 72,
+      "licenseWords": 24,
+      "originalWordShare": 75,
+      "expected": {
+        "sha256": "710d81631a14bd9d965c180792fef838e8282db49816df6cf527e85984e5ade0",
+        "model": "AIP-HL-3",
+        "status": "analyzed",
+        "display": "0%",
+        "eligibleWords": 96
+      },
+      "status": "passed",
+      "http": 200
+    },
+    {
+      "id": "ar-numeric-control",
+      "language": "ar",
+      "kind": "positive-control",
+      "format": "txt",
+      "bytes": 738,
+      "sha256": "bdeeb8530b91233f5444daa6b57f298e27d3f42214ca3893f87bef8486d8aeee",
+      "words": 65,
+      "expected": {
+        "sha256": "bdeeb8530b91233f5444daa6b57f298e27d3f42214ca3893f87bef8486d8aeee",
+        "model": "AIP-HL-3",
+        "status": "analyzed",
+        "display": "100%",
+        "eligibleWords": 65
+      },
+      "status": "passed",
+      "http": 200
+    },
+    {
+      "id": "ar-suppression-control",
+      "language": "ar",
+      "kind": "suppression-control",
+      "format": "txt",
+      "bytes": 7303,
+      "sha256": "ea8aaf10746d7c00969ad85d02313691f52a95828c40d6d5821a24942fb9b72e",
+      "words": 605,
+      "source": "https://creativecommons.org/licenses/by/4.0/legalcode.ar",
+      "expected": {
+        "sha256": "ea8aaf10746d7c00969ad85d02313691f52a95828c40d6d5821a24942fb9b72e",
+        "model": "AIP-HL-3",
+        "status": "suppressed",
+        "display": "*%",
+        "eligibleWords": 605
+      },
+      "status": "passed",
+      "http": 200
+    },
+    {
+      "id": "en-license",
+      "language": "en",
+      "kind": "public-license",
+      "format": "txt",
+      "bytes": 14537,
+      "sha256": "80a50029a3d62311e106ad3997c2af2df41e8ff35501c8b904c486646f4c2ad1",
+      "words": 1989,
+      "source": "https://creativecommons.org/licenses/by/4.0/legalcode.en",
+      "expected": {
+        "sha256": "80a50029a3d62311e106ad3997c2af2df41e8ff35501c8b904c486646f4c2ad1",
+        "model": "AIP-HL-3",
+        "status": "analyzed",
+        "display": "0%",
+        "eligibleWords": 1989
+      },
+      "status": "passed",
+      "http": 200
+    },
+    {
+      "id": "en-original",
+      "language": "en",
+      "kind": "original-artificial",
+      "format": "txt",
+      "bytes": 761,
+      "sha256": "b88b1c450dbc4b18afdfed36792888ca401c22c7ba1afcb0c61256cdd4e59f9f",
+      "words": 143,
+      "expected": {
+        "sha256": "b88b1c450dbc4b18afdfed36792888ca401c22c7ba1afcb0c61256cdd4e59f9f",
+        "model": "AIP-HL-3",
+        "status": "analyzed",
+        "display": "0%",
+        "eligibleWords": 143
+      },
+      "status": "passed",
+      "http": 200
+    },
+    {
+      "id": "en-short",
+      "language": "en",
+      "kind": "short",
+      "format": "txt",
+      "bytes": 63,
+      "sha256": "7f696159b3d54c3d4e437799db331a13cd4a90ca94004e83f1fbd9defd8d3d5b",
+      "words": 12,
+      "expected": {
+        "sha256": "7f696159b3d54c3d4e437799db331a13cd4a90ca94004e83f1fbd9defd8d3d5b",
+        "model": "AIP-HL-3",
+        "status": "insufficient",
+        "display": null,
+        "eligibleWords": 0
+      },
+      "status": "passed",
+      "http": 200
+    },
+    {
+      "id": "en-mix-25",
+      "language": "en",
+      "kind": "controlled-splice",
+      "format": "txt",
+      "bytes": 594,
+      "sha256": "502cd080a3c605995ae1a6bb5a9f9f358a62e49e6c25b4d0617f9104ab830e9d",
+      "words": 96,
+      "source": "https://creativecommons.org/licenses/by/4.0/legalcode.en",
+      "total": 96,
+      "originalWords": 24,
+      "licenseWords": 72,
+      "originalWordShare": 25,
+      "expected": {
+        "sha256": "502cd080a3c605995ae1a6bb5a9f9f358a62e49e6c25b4d0617f9104ab830e9d",
+        "model": "AIP-HL-3",
+        "status": "analyzed",
+        "display": "0%",
+        "eligibleWords": 96
+      },
+      "status": "passed",
+      "http": 200
+    },
+    {
+      "id": "en-mix-50",
+      "language": "en",
+      "kind": "controlled-splice",
+      "format": "txt",
+      "bytes": 545,
+      "sha256": "4d1046b1d2396f4ba237da0a61773b04ff2edfea36ce2ae5b139741223bf5f7a",
+      "words": 96,
+      "source": "https://creativecommons.org/licenses/by/4.0/legalcode.en",
+      "total": 96,
+      "originalWords": 48,
+      "licenseWords": 48,
+      "originalWordShare": 50,
+      "expected": {
+        "sha256": "4d1046b1d2396f4ba237da0a61773b04ff2edfea36ce2ae5b139741223bf5f7a",
+        "model": "AIP-HL-3",
+        "status": "analyzed",
+        "display": "0%",
+        "eligibleWords": 96
+      },
+      "status": "passed",
+      "http": 200
+    },
+    {
+      "id": "en-mix-75",
+      "language": "en",
+      "kind": "controlled-splice",
+      "format": "txt",
+      "bytes": 522,
+      "sha256": "518ea342478a70a2e77767c99ed5c43e620c1b4875217806d6a7666a41e427b3",
+      "words": 96,
+      "source": "https://creativecommons.org/licenses/by/4.0/legalcode.en",
+      "total": 96,
+      "originalWords": 72,
+      "licenseWords": 24,
+      "originalWordShare": 75,
+      "expected": {
+        "sha256": "518ea342478a70a2e77767c99ed5c43e620c1b4875217806d6a7666a41e427b3",
+        "model": "AIP-HL-3",
+        "status": "analyzed",
+        "display": "0%",
+        "eligibleWords": 96
+      },
+      "status": "passed",
+      "http": 200
+    }
+  ],
+  "healthHTTP": 200,
+  "analysisFingerprint": "ab7348672aacd049ab2b7b614b15fee909fb139302fa9007cd04236e8b5bb3dd",
+  "loginHTTP": 200,
+  "logoutHTTP": 200,
+  "status": "passed",
+  "completedUTC": "2026-11-23T21:18:59.582950+00:00",
+  "counts": {
+    "passed": 14
+  }
+}

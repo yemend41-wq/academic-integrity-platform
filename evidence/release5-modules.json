@@ -1,0 +1,261 @@
+{
+  "started": "2026-11-23T21:28:18.093Z",
+  "environment": "Local Work Node v24.22.3; application analysis, draft, PDF, and persistence functions, in-memory SQLite; no HTTP hosting SLA",
+  "inputs": {
+    "revisions.docx": {
+      "bytes": 38208,
+      "sha256": "626c32de0bffbffcf6c996edbfd49468cc753ee805c026606b655440cc2a4da4"
+    },
+    "bilingual-text.pdf": {
+      "bytes": 177256,
+      "sha256": "a8aace26013c4d8b9ac75742dc25eb15bd5956dcb815030630d82d969a1fe885"
+    },
+    "geometry.png": {
+      "bytes": 489,
+      "sha256": "e0e1a7502e3325b1776dc61168a36150f3ad22bc41b057002ae021dfc90912c1"
+    },
+    "geometry.jpg": {
+      "bytes": 1348,
+      "sha256": "cdba474f2f8069b266415466370c9572c588b702e0009d4929f72486cc292ddb"
+    },
+    "official-CA.jpg": {
+      "bytes": 166864,
+      "sha256": "e71bff58fc57640803e6e65f7534e2fb0c2f99018c85276cc14b30f04427cc76"
+    }
+  },
+  "checks": [
+    {
+      "name": "OOXML visible text, revisions, metadata and inherited styles",
+      "status": "passed",
+      "detail": {
+        "hiddenRuns": 3,
+        "whiteRuns": 2,
+        "trackedInsertions": 1,
+        "trackedDeletions": 1,
+        "editingMinutes": 17,
+        "coreRevision": "4",
+        "visibleMarkers": [
+          "PREVIOUS_FORMAT_VISIBLE",
+          "TOGGLED_VISIBLE",
+          "DIRECT_VISIBLE",
+          "PARAGRAPH_OVERRIDE_VISIBLE",
+          "NEW_INSERTION",
+          "MOVE_NEW"
+        ],
+        "excludedMarkers": [
+          "MOVE_OLD",
+          "OLD_DELETION",
+          "INHERITED_HIDDEN",
+          "INHERITED_WHITE",
+          "PARAGRAPH_HIDDEN"
+        ],
+        "dimensions": [
+          {
+            "widthMm": 215.9,
+            "heightMm": 279.4
+          }
+        ]
+      }
+    },
+    {
+      "name": "PDF text in two scripts and physical page size",
+      "status": "passed",
+      "detail": {
+        "pages": 1,
+        "pageSizes": [
+          {
+            "widthPt": 595.28,
+            "heightPt": 841.89
+          }
+        ],
+        "fontFamilies": [
+          "sans-serif"
+        ],
+        "provenance": {
+          "status": "no_document_level_manifest_found",
+          "signature": "not_checked",
+          "assetBinding": "not_checked",
+          "trust": "not_evaluated",
+          "scope": "catalog AF and named content credential attachments"
+        }
+      }
+    },
+    {
+      "name": "Unsigned media dimensions and actual chunk and segment records",
+      "status": "passed",
+      "detail": {
+        "png": {
+          "IHDR": 1,
+          "tEXt": 1,
+          "IDAT": 1,
+          "IEND": 1
+        },
+        "jpeg": {
+          "APP0": 1,
+          "0xDB": 2,
+          "0xC0": 1,
+          "0xC4": 4,
+          "0xDA": 1
+        }
+      }
+    },
+    {
+      "name": "C2PA signed asset and a controlled metadata-only edit",
+      "status": "passed",
+      "detail": {
+        "original": {
+          "signature": "verified_with_embedded_leaf",
+          "binding": "match",
+          "assertions": "match",
+          "trust": "not_evaluated"
+        },
+        "edited": {
+          "signature": "verified_with_embedded_leaf",
+          "binding": "mismatch",
+          "assertions": "match",
+          "trust": "not_evaluated"
+        },
+        "changedInputSHA256": "d8bdc686b5d83f3693c60edeb10956c79c432dfad22ab7b981b370faf255ff81"
+      }
+    },
+    {
+      "name": "PII removed from source, stored index, JSON and file properties",
+      "status": "passed",
+      "detail": {
+        "maskedCodeUnits": 40,
+        "inspectionPassed": true,
+        "SQLiteReadback": true
+      }
+    },
+    {
+      "name": "PDF audit en generated, reopened and rendered",
+      "status": "passed",
+      "detail": {
+        "pages": 6,
+        "logicalFields": 213,
+        "renderedAllPages": true,
+        "localeTitleFound": true,
+        "unmaskedTestIdentifiersAbsent": true,
+        "bytes": 124151,
+        "sha256": "55059a354d795914985c316fdf162f2d816517700797505a26da90579686bf02"
+      }
+    },
+    {
+      "name": "PDF audit ar generated, reopened and rendered",
+      "status": "passed",
+      "detail": {
+        "pages": 6,
+        "logicalFields": 213,
+        "renderedAllPages": true,
+        "localeTitleFound": true,
+        "unmaskedTestIdentifiersAbsent": true,
+        "bytes": 333032,
+        "sha256": "2514cd88e63c9433463982079c8b8426c5e2106f839b26b14cb2ad3e7bf7bdfd"
+      }
+    },
+    {
+      "name": "Clarity known typing, long idle period, paste and replacement",
+      "status": "passed",
+      "detail": {
+        "inputGestureMs": [
+          1000,
+          1750,
+          24000,
+          24800
+        ],
+        "elapsedGapBeforePasteMs": 22250,
+        "activeMs": 1550,
+        "bulkPastes": 1,
+        "frameDigests": [
+          "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "463816d07097e1a7cf27b86cf03082ee49f6ce2d87663cd27a24d7254a83e76a",
+          "2252028cdd2c28e91fe78d89c186325af4e7002a675026a2ca72cae5ae82e812",
+          "5f504f7470143746e3e2b0868b4787a217326a3aa5efc248f73e6cd5ad854a0f",
+          "4216e18395d84702c4b6a86c342761589af423b195830a55168119316932fc64"
+        ]
+      }
+    }
+  ],
+  "registry": [
+    {
+      "id": "10.1038/nature12373",
+      "expected": "verified",
+      "actual": "registry_unavailable",
+      "result": "unverified",
+      "registry": "Crossref / DOI Handle System",
+      "attempts": [
+        {
+          "registry": "Crossref",
+          "outcome": "timeout"
+        },
+        {
+          "registry": "DOI Handle System",
+          "outcome": "timeout"
+        }
+      ]
+    },
+    {
+      "id": "10.99999/mizan-no-record-2026",
+      "expected": "not_found",
+      "actual": "registry_unavailable",
+      "result": "unverified",
+      "registry": "Crossref / DOI Handle System",
+      "attempts": [
+        {
+          "registry": "Crossref",
+          "outcome": "timeout"
+        },
+        {
+          "registry": "DOI Handle System",
+          "outcome": "timeout"
+        }
+      ]
+    },
+    {
+      "id": "9780306406157",
+      "expected": "verified",
+      "actual": "registry_unavailable",
+      "result": "unverified",
+      "registry": "Open Library / Crossref / Google Books",
+      "attempts": [
+        {
+          "registry": "Open Library",
+          "outcome": "timeout"
+        },
+        {
+          "registry": "Crossref",
+          "outcome": "response",
+          "httpStatus": 200
+        },
+        {
+          "registry": "Google Books",
+          "outcome": "timeout"
+        }
+      ]
+    },
+    {
+      "id": "9780306406158",
+      "expected": "invalid_checksum",
+      "actual": "invalid_checksum",
+      "result": "passed",
+      "registry": null,
+      "attempts": []
+    }
+  ],
+  "finished": "2026-11-23T21:28:24.826Z",
+  "sourceSha256": {
+    "research/media/index.mjs": "d42cef1e791c709800fcbae477ac495a15916e170063e5c92ca501b167d6c7c8",
+    "research/media/xml.mjs": "c23561bce5697e6e5c237c4a3f1aa05e10197bcd3c725d848055d28bce223baf",
+    "research/media/word-visibility.mjs": "d43e73e8dad73b11c50da0c086770bc960d1ebfd167e46a78675edb757ea0edd",
+    "research/media/citations.mjs": "bd4a8e00f1e666d9860a47aa62d00e714f90f2cd3dc8560b86a463f98604f41e",
+    "research/media/c2pa.mjs": "5d995ec7e1d83148d975ccf850b31d456b7427ae42dd4a8b470e29151bef78a3",
+    "research/clarity/history.mjs": "994647fa3fadd1f5c0eb84874e710f16c9b17cd4b042f52fdf498e6683a5bfa8",
+    "research/clarity/redaction.mjs": "283be63ce777431daed4c52b2c8f46a1bd98109d678f32a5abc7706b2a774f99",
+    "src/privacy.mjs": "7d2470236938787e0084c257ba8022fe85eec031e1cab031f31ff82759fa21f7",
+    "src/analysis.mjs": "1e5342bb66fd4ae2c23e315bfb641b3e7403bcbb819d87004614c88334bc03b3",
+    "src/drafts.mjs": "ff780890c042ab2b1811c502a85010153e8a96689030b7dfeaaa9352b5f6a463",
+    "src/report.mjs": "0417ea6221741fc73fc5e52e6e1fad7733b114eed8081ae8b84ce1be61e4b9ce",
+    "test/module-audit-release4.mjs": "f7dee46941b0ac7ec22df2de387505d3211326db07727268d441a84fab8aafbd",
+    "research/media/tests/make-revision-fixture.py": "c2de6ca4db136b872d1fbe5b7f6f037f7296af88eadc01f37d2d70a25cb5e446"
+  }
+}

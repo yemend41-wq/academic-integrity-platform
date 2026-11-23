@@ -1,0 +1,191 @@
+{
+  "id": "zz-release-5",
+  "title": "Release 5 acceptance register",
+  "titleAr": "سجل قبول الإصدار الخامس",
+  "testedAt": "2026-11-23T21:32:56.774888+00:00",
+  "model": "AIP-HL-3",
+  "checks": [
+    {
+      "name": "Hybrid source and span retrieval",
+      "ar": "استرجاع المصدر وتحديد المقطع",
+      "status": "partial",
+      "detail": "Correct first source on STS: Arabic 23/41, English 37/41. Independent SemRel: Arabic 4/56, English 60/80. Exact-copy and rewritten-passage cases are recorded separately. A separate 18/18 arithmetic regression covered duplicated sources, intersecting ranges and both exclusions. Two real handset PDFs preserved 0/2,594 and 979/984 eligible words. Only the latter matched: five verbatim passages from two cohort sources.",
+      "detailsAr": "في اختبار STS استُرجع أول مصدر صحيح في 23/41 بالعربية و37/41 بالإنجليزية. وفي اختبار SemRel المستقل بلغت النتيجة 4/56 بالعربية و60/80 بالإنجليزية. للتطابق الحرفي وإعادة الصياغة قياسات منفصلة. اجتاز العدّ 18/18 فحصًا للتكرار والتداخل والاستبعاد. وأظهر تقريرا الهاتف 0/2,594 و979/984 كلمة مشمولة. اشتمل التقرير الثاني على خمسة مقاطع حرفية من تسليمين بالمجموعة.",
+      "verifiedAt": "2026-11-23T21:20:11.826020+00:00",
+      "evidence": {
+        "implementation": "research/similarity/engine.mjs + src/analysis.mjs",
+        "test": "research/similarity/test.mjs + research/similarity/training/release5/phone-regression.mjs",
+        "record": "evidence/release5-similarity-arithmetic.json + evidence/release5-android.json"
+      }
+    },
+    {
+      "name": "Human false-alert rate and machine recall",
+      "ar": "إنذارات النصوص البشرية وحساسية الكشف",
+      "status": "failed",
+      "detail": "AIP-HL-3 exceeded the 1% false-alert threshold on human Arabic writing. Observed alerts on a paired abstract cohort: 34/400 human, 325/400 generated. Rates for each independent study are reported separately. In a separate 400-file Arabic human sample, 15 numeric alerts and 34 total signals appeared. Local and HTTPS decisions agreed on all 14 open functional controls, including a masked result and short-text abstentions.",
+      "detailsAr": "تجاوز الكاشف AIP-HL-3 حد الإنذار الخاطئ 1% على عينات بشرية عربية. وفي مجموعة ملخصات متقابلة، أصدر إنذارًا على 34/400 نص بشري واكتشف 325/400 نص مولّد. تُعرض كل عينة مستقلة بمقامها. وفي عينة مستقلة من 400 نص عربي بشري ظهرت 15 نتيجة رقمية و34 إشارة باحتساب النسب المحجوبة. تطابق القرار المحلي والمنشور في 14/14 مثالًا وظيفيًا بمواد مفتوحة، بينها نتيجة محجوبة وحالات امتناع.",
+      "verifiedAt": "2026-11-23T21:01:54.704972+00:00",
+      "evidence": {
+        "implementation": "research/detector/detector.mjs",
+        "test": "test/blind-panel.mjs + scripts/release5-open-fixtures.py",
+        "record": "evidence/release5-model-studies.json + evidence/release5-open-panel-parity.json"
+      }
+    },
+    {
+      "name": "Mixtures, paraphrasing and back-translation",
+      "ar": "النصوص المختلطة وإعادة الصياغة والترجمة العكسية",
+      "status": "partial",
+      "detail": "Known 25%, 50% and 75% mixtures are reported by language and model. Individual low scores remain masked. An independent university panel has yet to be run.",
+      "detailsAr": "تعرض البطاقة نتائج خلط الكلمات بنسب 25% و50% و75% حسب اللغة والنموذج. تبقى النسب الفردية الصغيرة محجوبة. لم تُختبر بعد عينة خاصة بالجامعة.",
+      "verifiedAt": "2026-11-23T21:01:54.704972+00:00",
+      "evidence": {
+        "implementation": "research/detector/inference.mjs",
+        "test": "test/blind-panel.mjs + scripts/release5-open-fixtures.py",
+        "record": "evidence/release5-model-studies.json + evidence/release5-open-panel-parity.json"
+      }
+    },
+    {
+      "name": "Word, PDF, PNG and JPEG · local fixtures",
+      "ar": "تحليل Word وPDF وPNG وJPEG · ملفات محلية",
+      "status": "passed",
+      "detail": "Known revision text and inherited styles matched the fixture. PDF text and image structure were checked.",
+      "detailsAr": "وافق النص الظاهر والتنسيق الموروث ملف Word المعلوم؛ واستُخرج النص الثنائي من PDF وفُحصت بنية الصورتين.",
+      "verifiedAt": "2026-11-23T21:28:24.826Z",
+      "evidence": {
+        "implementation": "research/media/index.mjs",
+        "test": "node test/module-audit-release4.mjs",
+        "record": "evidence/release5-modules.json"
+      }
+    },
+    {
+      "name": "C2PA signature and asset binding · local fixtures",
+      "ar": "صحة توقيع C2PA وارتباطه بالملف · ملفات محلية",
+      "status": "passed",
+      "detail": "The signed original and controlled modified asset were distinguished. Independent certificate trust was not evaluated.",
+      "detailsAr": "ميّز الفحص بين الأصل الموقّع والملف المعدّل. لم يُختبر اعتماد سلسلة الشهادات من جهة ثقة مستقلة.",
+      "verifiedAt": "2026-11-23T21:28:24.826Z",
+      "evidence": {
+        "implementation": "research/media/c2pa.mjs",
+        "test": "node test/module-audit-release4.mjs",
+        "record": "evidence/release5-modules.json"
+      }
+    },
+    {
+      "name": "Masked index and PDF/JSON exports · local fixtures",
+      "ar": "حجب الهوية في الفهرس وتصدير PDF وJSON · ملفات محلية",
+      "status": "passed",
+      "detail": "Checked stored text/index, JSON and both rendered PDFs.",
+      "detailsAr": "فُحصت بيانات التخزين والفهرس وJSON، وفُتح تقريران بالعربية والإنجليزية ورُسمت صفحاتهما.",
+      "verifiedAt": "2026-11-23T21:28:24.826Z",
+      "evidence": {
+        "implementation": "src/privacy.mjs + src/report.mjs",
+        "test": "node test/module-audit-release4.mjs",
+        "record": "evidence/release5-modules.json"
+      }
+    },
+    {
+      "name": "Clarity replay and active time · local fixtures",
+      "ar": "إعادة الكتابة وزمن النشاط في Clarity · ملفات محلية",
+      "status": "passed",
+      "detail": "Reconstructed the known input sequence and independently checked active time.",
+      "detailsAr": "أعيد تسلسل التحرير المعروف، وفُحص احتساب زمن النشاط واستبعاد التوقف.",
+      "verifiedAt": "2026-11-23T21:28:24.826Z",
+      "evidence": {
+        "implementation": "src/drafts.mjs + research/clarity/redaction.mjs",
+        "test": "node test/module-audit-release4.mjs",
+        "record": "evidence/release5-modules.json"
+      }
+    },
+    {
+      "name": "Live citation registries",
+      "ar": "التحقق الحي من سجلات المراجع",
+      "status": "passed",
+      "detail": "The public release returned distinct responses for a registered DOI, a missing DOI, a valid ISBN and an invalid ISBN checksum.",
+      "detailsAr": "ميّز الإصدار المنشور بين DOI موجود وآخر غير موجود، وبين ISBN صحيح وآخر ذي خانة تحقّق خاطئة.",
+      "verifiedAt": "2026-11-23T21:09:59.569713+00:00",
+      "evidence": {
+        "implementation": "research/media/citations.mjs",
+        "test": "scripts/release5-committee.py",
+        "record": "evidence/release5-committee.json"
+      }
+    },
+    {
+      "name": "Indexed upload load · isolated HTTPS",
+      "ar": "أداء الرفع مع الفهرسة · HTTPS معزول",
+      "status": "passed",
+      "detail": "Isolated HTTPS · 3,000 words: DOCX 0.10 s, PDF 0.20 s. 50/50 complete indexed reports, 50/50 under 15 seconds. p95 2.44 s, maximum 2.62 s. Peer reads denied: 50/50.",
+      "detailsAr": "لـ 3,000 كلمة، Word 0.10 ثانية وPDF 0.20 ثانية. استُرجع 50/50 تقريرًا مع الفهرسة، واكتمل 50/50 خلال أقل من 15 ثانية. المئين 95 بلغ 2.44 ثانية، والأبطأ 2.62 ثانية. رُفضت قراءة تقارير الزملاء في 50/50 محاولة.",
+      "verifiedAt": "2026-11-23T21:00:50.200+00:00",
+      "evidence": {
+        "implementation": "src/worker.mjs + src/analysis.mjs",
+        "test": "scripts/release4-bench.py + research/bench/distinct.py",
+        "record": "evidence/release5-loopback.json"
+      }
+    },
+    {
+      "name": "Permissions, retention and saved reports · local Worker",
+      "ar": "الصلاحيات والحذف الدوري والتقارير المحفوظة · محلي",
+      "status": "passed",
+      "detail": "Local Worker role, index, privacy and retention checks run with SQLite. Hosted scheduler history is shown on the health page.",
+      "detailsAr": "تفحص الاختبارات المحلية الصلاحيات والفهرس والخصوصية والاحتفاظ باستخدام SQLite. تعرض صفحة الصحة آخر تشغيل للحذف على الاستضافة.",
+      "verifiedAt": "2026-11-23T21:27:53.308Z",
+      "evidence": {
+        "implementation": "src/auth.mjs + src/worker.mjs",
+        "test": "research/bench/integration.mjs",
+        "record": "evidence/release5-integration.json"
+      }
+    },
+    {
+      "name": "Public HTTPS load and 3,000-word latency",
+      "ar": "أداء الرابط العام تحت الحمل",
+      "status": "passed",
+      "detail": "Public HTTPS · 3,000 words: DOCX 0.88 s, PDF 6.37 s. 50/50 complete indexed reports, 50/50 under 15 seconds. p95 7.70 s, maximum 7.85 s. Peer reads denied: 50/50. A second batch used 50 different 3,000-word passages: 50/50 retrieved, 50/50 under 15 s, p95 8.88 s, maximum 9.07 s. The bounded comparison window covered 42 cohort submissions. The historical fixed-text p95 was 8.43 s in release 3 and 12.43 s in release 4 under their recorded conditions.",
+      "detailsAr": "لـ 3,000 كلمة، Word 0.88 ثانية وPDF 6.37 ثانية. استُرجع 50/50 تقريرًا مع الفهرسة، واكتمل 50/50 خلال أقل من 15 ثانية. المئين 95 بلغ 7.70 ثانية، والأبطأ 7.85 ثانية. رُفضت قراءة تقارير الزملاء في 50/50 محاولة. وفي جولة ثانية بخمسين نصًا مختلفًا من 3,000 كلمة، استُرجع 50/50، واكتمل 50/50 تحت 15 ثانية. بلغ المئين 95 نحو 8.88 ثانية والأبطأ 9.07 ثانية. شملت نافذة المقارنة 42 تسليمًا من المجموعة. في جولة النص الموحّد بلغ المئين 95 تاريخيًا 8.43 ثانية للإصدار الثالث و12.43 ثانية للرابع ضمن ظروف كل جولة.",
+      "verifiedAt": "2026-11-23T21:07:59.625+00:00",
+      "evidence": {
+        "implementation": "src/worker.mjs + src/analysis.mjs",
+        "test": "scripts/release4-bench.py + research/bench/distinct.py",
+        "record": "evidence/release5-public-load.json"
+      }
+    },
+    {
+      "name": "Mobile and desktop committee journey",
+      "ar": "رحلة اللجنة على الهاتف والحاسوب",
+      "status": "partial",
+      "detail": "Browser controls and downloads: 20/20 passed in local Chromium at 390 px and 1240 px. The owner exercised two real Android uploads, analysis and both language PDF downloads. On-device JSON opening and a physical rerun after the PDF correction remain unconfirmed. Arabic PDF rendering, mixed identifiers and selected-text checks passed on regenerated test files. Four PDFs freshly exported over public HTTPS from a new DOCX and a publisher PDF passed checks in three readers. Each preserved its report ID and language, and every page rendered.",
+      "detailsAr": "اجتازت الواجهة والتنزيلات 20/20 فحصًا في Chromium بعرضَي 390 و1240 بكسل. أثبت المستخدم على Android رفع مستندين وتحليلهما وتنزيل PDF باللغتين. يبقى فتح JSON على الهاتف وإعادة التجربة عليه بعد إصلاح PDF غير متحققين. اجتاز تصدير PDF العربي فحص المحاذاة ونسخ النص المختلط والمعرّفات على ملفات أعيد توليدها. وجرى تنزيل أربعة تقارير جديدة عبر HTTPS من مستند Word وورقة بحثية بصيغة PDF. قرأتها ثلاثة برامج، وحافظت على المعرّف واللغة، وفُتحت جميع صفحاتها.",
+      "verifiedAt": "2026-11-23T21:32:32.598012+00:00",
+      "evidence": {
+        "implementation": "ui/client.mjs + ui/studio.css",
+        "test": "test/browser-runner.js",
+        "record": "evidence/release5-browser.json + evidence/release5-android.json + evidence/release5-pdf-rtl.json + evidence/release5-live-pdf.json"
+      }
+    },
+    {
+      "name": "Institutional LTI 1.3 launch",
+      "ar": "الإطلاق المؤسسي عبر LTI 1.3",
+      "status": "unverified",
+      "detail": "Open edX signed launches and isolated course/report workflows passed 15/15 on two local TLS origins. No university launch has been observed.",
+      "detailsAr": "اجتازت إطلاقات Open edX الموقعة وعزل المقررات والتقارير 15/15 فحصًا عبر خادمين محليين يستخدمان TLS. يبقى إطلاق «ميزان» من نظام الجامعة غير متحقق.",
+      "verifiedAt": "2026-11-23T20:54:05.086272+00:00",
+      "evidence": {
+        "implementation": "research/lti/lti.mjs",
+        "test": "research/lti/test-openedx.py",
+        "record": "evidence/release5-openedx-interop.json"
+      }
+    },
+    {
+      "name": "Committee workspace · public HTTPS",
+      "ar": "مساحة اللجنة على الرابط العام",
+      "status": "passed",
+      "detail": "Current public functional checks passed: 10/10.",
+      "detailsAr": "اجتازت مساحة اللجنة على الإصدار المنشور 10/10 فحصًا.",
+      "verifiedAt": "2026-11-23T21:32:56.774888+00:00",
+      "evidence": {
+        "implementation": "src/worker.mjs + src/auth.mjs",
+        "test": "scripts/release5-committee.py",
+        "record": "evidence/release5-final-committee.json"
+      }
+    }
+  ]
+}

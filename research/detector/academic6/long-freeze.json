@@ -1,0 +1,18 @@
+{
+  "inputFiles": {
+    "all-input.jsonl": "0a33fb16000173385fb3557d0858467f1345b16b5122ddcf764d89419b07e3cf",
+    "primary-input.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "truth.jsonl": "e1f8cbc243410f96a6d4fc5262d04ea52b06572a9dc92092d574fd427767a674"
+  },
+  "primary": 0,
+  "protocolSHA256": "5990e0088ada1671affcfa54f9a9c747e133f1426181f51d4686fadcb3fcec0e",
+  "selected": 48,
+  "maskedInputs": {
+    "sealed-primary.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "sealed-all.jsonl": "0a33fb16000173385fb3557d0858467f1345b16b5122ddcf764d89419b07e3cf"
+  },
+  "privacyModified": 0,
+  "verifiedMixedParagraphs": 192,
+  "expectedParagraphWords": 64,
+  "expectedWords": 256
+}

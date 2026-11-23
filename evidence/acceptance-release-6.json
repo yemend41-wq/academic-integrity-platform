@@ -139,13 +139,13 @@
       "name": "Public HTTPS load and 3,000-word latency",
       "ar": "أداء الرابط العام تحت الحمل",
       "status": "passed",
-      "detail": "R6 HTTPS: 50/50 fixed inputs and 50/50 distinct 3,000-word inputs completed in 15 seconds. Distinct p95 8.19 s, maximum 8.40 s. All 100 owner readbacks and 100 peer denials succeeded.",
-      "detailsAr": "عبر HTTPS، اكتملت 50 من 50 عملية في كل من مجموعتي النص المتكرر والنصوص المتمايزة خلال 15 ثانية، بواقع 3,000 كلمة للملف. في المجموعة المتمايزة بلغ المئين 95 مقدار 8.19 ثانية وأبطأ طلب 8.40 ثانية، ونجحت فحوص استرجاع المالك وعزل الحسابات.",
-      "verifiedAt": "2026-11-23T22:24:21.466+00:00",
+      "detail": "HTTPS with 50 independent students, active course index and 3,000 words/file: fixed input 50/50 (p95 5.78s, max 6.90s); distinct inputs 50/50 (p95 2.43s, max 2.45s). Students retrieved every own report; all 100 peer reads were denied.",
+      "detailsAr": "رفع 50 طالبًا مستقلًا ملفات من 3,000 كلمة مع فهرسة المقرر عبر HTTPS. اكتمل 50/50 في الدفعة ذات النص الثابت (المئين 95: 5.78 ث؛ الأبطأ 6.90 ث)، و50/50 للنصوص المختلفة (المئين 95: 2.43 ث؛ الأبطأ 2.45 ث). استرجع كل حساب تقريره وحُجبت محاولات قراءة تقارير الزملاء المئة.",
+      "verifiedAt": "2026-11-23T22:31:57.757+00:00",
       "evidence": {
         "implementation": "src/analysis.mjs",
         "test": "scripts/release4-bench.py",
-        "record": "evidence/release6-hosted-load-a.json"
+        "record": "evidence/release6-hosted-load.json"
       }
     },
     {
@@ -180,11 +180,11 @@
       "status": "passed",
       "detail": "All ten authenticated checks passed on the public R6 candidate, including bilingual PDF export and saved JSON.",
       "detailsAr": "اجتاز حساب اللجنة الفحوص العشرة على الإصدار السادس المنشور، ومنها تصدير PDF باللغتين واسترجاع JSON.",
-      "verifiedAt": "2026-11-23T22:21:18.013440+00:00",
+      "verifiedAt": "2026-11-23T22:31:22.947304+00:00",
       "evidence": {
         "implementation": "src/worker.mjs",
         "test": "scripts/release5-committee.py",
-        "record": "evidence/release6-committee-a.json"
+        "record": "evidence/release6-committee.json + evidence/release6-hosted-intake.json"
       }
     }
   ]

@@ -1,0 +1,20 @@
+{
+  "byteIdentical": {
+    "long-fixed-decisions": "7438959b3c03975e29c469df4fa2dec02a155745e9476394302281c111f7a3db",
+    "long-freeze": "0b52a8422a58c5ae18805ff426cd9b6ed4d83f0ad363cb578d88a7ebe62f0fb0",
+    "main-fixed-decisions": "c9fff7a479364ac5f8f0a7fef82a72817b5176b53fb039913d29a0ec053e23e8",
+    "main-freeze": "7f8244742c4c935b9a1616aafd01d716315fea0f729fc492826a5cabebbacacb"
+  },
+  "fixedModelInferenceRerun": 3105,
+  "freshPrivatePreprocessing": true,
+  "neuralDuringReplay": "Aggregates recomputed from the four original, hash-committed offline prediction files. Neural inference ran once.",
+  "neuralInferenceCountOriginal": 1035,
+  "publishedAggregateContentSHA256ExcludingRunTime": {
+    "fixed-metrics.json": "d96e0df4dc6e9212cbcea179537003dbf2548e98de294ac60b63edb686c60a68",
+    "long-fixed-metrics.json": "eb660fd1da6735d025edca1e8530564a6081acb0204045d59d8c864b99fe5aad",
+    "long-specialist-metrics.json": "a6246c563c0fd878d2d688cdfea7a39d9e93fd70afa1c1e88c0a35b7e9495b38",
+    "specialist-metrics.json": "3fb9edb0bb2e27e15701178871088dfdce07c5d827a441b0036ea463981f24d4"
+  },
+  "researchImplementationCommit": "8b26313b28ec6f8b968d824163cc72ca3e259fb3",
+  "verifiedUTC": "2026-11-23T22:32:13.119854+00:00"
+}

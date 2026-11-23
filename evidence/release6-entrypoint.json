@@ -1,0 +1,29 @@
+{
+  "checkedUTC": "2026-11-23T22:35:41.156Z",
+  "code": "3ca39cd8bd4ce8cc34715bfc1b05e6cc13a6169b",
+  "panels": [
+    {
+      "panel": "main",
+      "files": 987,
+      "localAuthenticatedScoringFunctionParity": 987,
+      "mixedVisibleParagraphBlockChecks": 480,
+      "changedDocuments": 1,
+      "releaseStatuses": {
+        "analyzed": 880,
+        "insufficient": 88,
+        "suppressed": 18,
+        "uncertain": 1
+      }
+    },
+    {
+      "panel": "long",
+      "files": 48,
+      "localAuthenticatedScoringFunctionParity": 48,
+      "mixedVisibleParagraphBlockChecks": 192,
+      "changedDocuments": 0,
+      "releaseStatuses": {
+        "analyzed": 48
+      }
+    }
+  ]
+}

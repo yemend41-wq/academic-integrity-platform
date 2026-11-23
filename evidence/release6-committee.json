@@ -1,0 +1,51 @@
+{
+  "scope": "Authenticated public HTTPS with existing committee login. No physical device attestation.",
+  "finishedUTC": "2026-11-23T22:31:22.947304+00:00",
+  "checks": [
+    {
+      "name": "Committee identity and current live version",
+      "status": "passed"
+    },
+    {
+      "name": "Non-indexed blind DOCX score matches ordinary report",
+      "status": "passed"
+    },
+    {
+      "name": "Non-indexed blind PDF score matches ordinary report",
+      "status": "passed"
+    },
+    {
+      "name": "Bilingual PDFs and saved JSON",
+      "status": "passed"
+    },
+    {
+      "name": "Source and passage in a published paper",
+      "status": "passed"
+    },
+    {
+      "name": "Quote and reference denominators",
+      "status": "passed"
+    },
+    {
+      "name": "Registry outcomes",
+      "status": "passed"
+    },
+    {
+      "name": "Real DOCX file and redaction",
+      "status": "passed"
+    },
+    {
+      "name": "Authentic signed JPEG",
+      "status": "passed"
+    },
+    {
+      "name": "Existing committee revision playback",
+      "status": "passed"
+    }
+  ],
+  "firstOverlappingRun": {
+    "passed": 9,
+    "failed": 1,
+    "observation": "A concurrent QA job saved ordinary reports for the same committee account during the blind-panel no-write list assertion. The exclusive rerun passed all ten."
+  }
+}

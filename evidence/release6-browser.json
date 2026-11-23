@@ -1,85 +1,125 @@
 {
-  "at": "2026-11-23T22:14:02.929Z",
+  "at": "2026-11-23T22:30:32.992Z",
   "environment": "Chrome via managed local preview; actual SQLite workspace and ephemeral test principal",
   "checks": [
     {
       "name": "Upload a real 3,000-word DOCX in rendered controls",
+      "width": 390,
+      "lang": "ar",
       "status": "passed"
     },
     {
       "name": "Report tabs, exclusions, JSON and PDF controls",
+      "width": 390,
+      "lang": "ar",
       "status": "passed"
     },
     {
       "name": "Clarity entry, paste, save, playback and submission",
+      "width": 390,
+      "lang": "ar",
       "status": "passed"
     },
     {
       "name": "Submissions, model card and health",
+      "width": 390,
+      "lang": "ar",
       "status": "passed"
     },
     {
       "name": "Sealed blind panel on the actual document",
+      "width": 390,
+      "lang": "ar",
       "status": "passed"
     },
     {
       "name": "Upload a real 3,000-word DOCX in rendered controls",
+      "width": 390,
+      "lang": "en",
       "status": "passed"
     },
     {
       "name": "Report tabs, exclusions, JSON and PDF controls",
+      "width": 390,
+      "lang": "en",
       "status": "passed"
     },
     {
       "name": "Clarity entry, paste, save, playback and submission",
+      "width": 390,
+      "lang": "en",
       "status": "passed"
     },
     {
       "name": "Submissions, model card and health",
+      "width": 390,
+      "lang": "en",
       "status": "passed"
     },
     {
       "name": "Sealed blind panel on the actual document",
+      "width": 390,
+      "lang": "en",
       "status": "passed"
     },
     {
       "name": "Upload a real 3,000-word DOCX in rendered controls",
+      "width": 1240,
+      "lang": "en",
       "status": "passed"
     },
     {
       "name": "Report tabs, exclusions, JSON and PDF controls",
+      "width": 1240,
+      "lang": "en",
       "status": "passed"
     },
     {
       "name": "Clarity entry, paste, save, playback and submission",
+      "width": 1240,
+      "lang": "en",
       "status": "passed"
     },
     {
       "name": "Submissions, model card and health",
+      "width": 1240,
+      "lang": "en",
       "status": "passed"
     },
     {
       "name": "Sealed blind panel on the actual document",
+      "width": 1240,
+      "lang": "en",
       "status": "passed"
     },
     {
       "name": "Upload a real 3,000-word DOCX in rendered controls",
+      "width": 1240,
+      "lang": "ar",
       "status": "passed"
     },
     {
       "name": "Report tabs, exclusions, JSON and PDF controls",
+      "width": 1240,
+      "lang": "ar",
       "status": "passed"
     },
     {
       "name": "Clarity entry, paste, save, playback and submission",
+      "width": 1240,
+      "lang": "ar",
       "status": "passed"
     },
     {
       "name": "Submissions, model card and health",
+      "width": 1240,
+      "lang": "ar",
       "status": "passed"
     },
     {
       "name": "Sealed blind panel on the actual document",
+      "width": 1240,
+      "lang": "ar",
       "status": "passed"
     }
   ]

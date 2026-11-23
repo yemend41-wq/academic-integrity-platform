@@ -30,6 +30,46 @@
       },
       "rows": [
         {
+          "model": "AIP-HL-3/R6",
+          "lang": "ar",
+          "endpoint": "all",
+          "tp": 13,
+          "fp": 8,
+          "tn": 120,
+          "fn": 115,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-HL-3/R6",
+          "lang": "ar",
+          "endpoint": "numeric",
+          "tp": 13,
+          "fp": 7,
+          "tn": 121,
+          "fn": 115,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-HL-3/R6",
+          "lang": "en",
+          "endpoint": "all",
+          "tp": 39,
+          "fp": 3,
+          "tn": 125,
+          "fn": 89,
+          "abstained": 0
+        },
+        {
+          "model": "AIP-HL-3/R6",
+          "lang": "en",
+          "endpoint": "numeric",
+          "tp": 36,
+          "fp": 2,
+          "tn": 126,
+          "fn": 92,
+          "abstained": 0
+        },
+        {
           "model": "AIP-CE-8-research",
           "lang": "ar",
           "endpoint": "all",
@@ -440,6 +480,10 @@
     {
       "en": "A separate 256-word follow-up used 48 new controlled mixtures (192 known paragraphs). Mean absolute error of AIP-HL-3 was 46.88 points in Arabic and 50.00 in English. This diagnostic was registered after the primary experiment and cannot alter the promotion decision.",
       "ar": "في اختبار لاحق مسجل على حدة، شملت 48 وثيقة جديدة من 256 كلمة 192 فقرة معلومة المصدر. بلغ خطأ الكاشف المنشور 46.88 نقطة للعربية و50.00 للإنجليزية. سُجل هذا الفحص بعد التجربة الأساسية، ولم يغيّر قرار الاعتماد."
+    },
+    {
+      "ar": "اجتاز الإصدار المنشور فحوص اللجنة العشرة وقراءة سبعة ملفات معلومة الخصائص. وفي آخر اختبار متزامن عبر HTTPS اكتملت 50 من 50 عملية على نصوص مختلفة، بحساب مستقل لكل طالب وفهرسة مفعّلة، وبلغ المئين 95 نحو 2.43 ثانية. يتيح سجل القبول أزمنة الدفعة الثابتة أيضًا.",
+      "en": "The hosted build passed ten committee checks and seven known-input file checks. The final concurrent HTTPS study completed 50/50 distinct indexed submissions with separate student accounts and p95 of 2.43 seconds. The acceptance register also reports the identical-input batch."
     }
   ],
   "cost": {
@@ -1018,6 +1062,10 @@
       "ar": "لم يمتنع أي نموذج عن تقدير الملفات الأساسية. أخطأ الكاشف المتخصص في 49 من 128 نصًا عربيًا بشريًا وفي 4 من 128 نصًا إنجليزيًا بشريًا. أصدر AIP-HL-3 إشارة على 8 و3 من النصوص البشرية نفسها على التوالي. بقي شرط الجامعة دون اجتياز."
     },
     {
+      "en": "On all 1,035 files we checked the R6 scoring entrypoint. It produced an estimate for 946 and abstained on 89 (88 short, one insufficiently covered). Eighteen of the 946 displayed *%. In a secondary Arabic group, 1 of 64 human documents changed from 0% to abstention. The subgroup had 6 inclusive and 2 numeric false alerts among 63 eligible humans. The primary confusion counts did not change.",
+      "ar": "اختُبر مسار الإصدار المنشور على 1,035 ملفًا محليًا. أصدر تقديرًا لـ946، منها 18 نتيجة محجوبة بالرمز *%. وامتنع عن 89 ملفًا، منها 88 لقصر النص وملف لتدنّي التغطية. في عينة عربية ثانوية تغيّرت نتيجة مستند بشري واحد من 0% إلى امتناع. بقي 63 نصًا بشريًا مؤهلًا، منها 6 إشارات إجمالية وإنذاران رقميان. بقيت نتائج العينة الأساسية كما هي."
+    },
+    {
       "en": "The 987-file panel contained 120 newly constructed 80-word mixtures with independently checked paragraph provenance. In these short mixtures the deployed detector averaged 49.17 percentage points of absolute error in Arabic and 47.50 in English. Token IoU measures overlap between visible highlighted words and source-attributed words.",
       "ar": "شملت الملفات الـ987 عدد 120 نصًا مختلطًا من 80 كلمة بمواضع فقرات معلومة المصدر. بلغ متوسط الخطأ المطلق للكاشف المنشور 49.17 نقطة مئوية في العربية و47.50 في الإنجليزية. يقيس IoU مدى تداخل الكلمات المظللة ظاهرًا مع الكلمات المولّدة معلومة الموضع."
     },
@@ -1088,6 +1136,99 @@
       "maePP": 50.0,
       "areaIoU": 0.0,
       "visibleF1": 0.0
+    },
+    {
+      "model": "AraBERT · Arabic AI Text Detector",
+      "lang": "ar",
+      "n": 24,
+      "maePP": null,
+      "visibleF1": 0.30844,
+      "areaIoU": 0.18234
+    },
+    {
+      "model": "RoBERTa · OpenAI GPT-2 Detector",
+      "lang": "en",
+      "n": 24,
+      "maePP": null,
+      "visibleF1": 0.0,
+      "areaIoU": 0.0
     }
-  ]
+  ],
+  "hostedOperations": {
+    "codeRevision": "3ca39cd8bd4ce8cc34715bfc1b05e6cc13a6169b",
+    "analysisFingerprint": "9bf90be4ac51ac1f2e46890eaba33ff0fe34c1ed88a274eafc84bece928e188e",
+    "testedUTC": "2026-11-23T22:31:57.757+00:00",
+    "singles": {
+      "requested": 2,
+      "verifiedReports": 2,
+      "errors": 0,
+      "under15Seconds": 2,
+      "p95Ms": 4488.87,
+      "maxMs": 4488.87,
+      "formats": {
+        "docx": 1,
+        "pdf": 1
+      }
+    },
+    "fixed": {
+      "requested": 50,
+      "verifiedReports": 50,
+      "errors": 0,
+      "under15Seconds": 50,
+      "p95Ms": 5783.85,
+      "maxMs": 6899.19,
+      "formats": {
+        "docx": 25,
+        "pdf": 25
+      }
+    },
+    "distinct": {
+      "startedUTC": "2026-11-23T22:31:54.134311+00:00",
+      "finishedUTC": "2026-11-23T22:31:57.716325+00:00",
+      "sourceSHA256": "baf9b04fcf6e0008f30eaaa6697277751448c1070b20175e0082f28cbb161fd3",
+      "uniqueVerified": 50,
+      "verifiedUnder15s": 50,
+      "failed": 0,
+      "peerReadHTTP": {
+        "404": 50
+      },
+      "p95Ms": 2431.87,
+      "maxMs": 2445.59,
+      "status": "passed",
+      "uniqueInputTexts": 50,
+      "formats": {
+        "docx": 25,
+        "pdf": 25
+      },
+      "sourceRangeCompared": [
+        42,
+        42
+      ],
+      "selectedIndexWindowLimited": 50,
+      "fixtureDigest": "c7309886d49fafdf51e442cd158f37acd2305a91cfc995b55eb7c9021b869818"
+    },
+    "indexBeforeLoad": {
+      "cohortDocuments": 3,
+      "publishedSources": 5
+    },
+    "independentAccounts": 50,
+    "peerReadHTTP": {
+      "404": 50
+    },
+    "committeeChecksPassed": 10,
+    "hostedExtractionFixtures": 7,
+    "benchmarkCredentialAfterCloseoutHttp": 401,
+    "secondaryLoadRecord": "evidence/release6-hosted-load-a.json"
+  },
+  "releaseLayer": {
+    "apiModel": "AIP-HL-3",
+    "version": "AI review R6",
+    "localFilePathComparisons": 1035,
+    "displayed": 946,
+    "abstained": 89,
+    "short": 88,
+    "limitedCoverage": 1,
+    "suppressed": 18,
+    "paragraphTruthBlocks": 672
+  }
 }
